@@ -629,3 +629,103 @@ Pour un poste donné, le déboursé sec MO se calcule : `Déboursé MO = PU_MOY 
 ---
 
 *Document généré automatiquement à partir de `LCB_BAT_Bureau_Etudes_v8.html`. À régénérer à chaque évolution du programme source.*
+
+---
+
+### Lot AGEN — Agencement sur mesure (Atelier Blanc)
+
+> **⚠️ Brouillon v0 à dire d'expert — À VALIDER par le métier avant usage client.**
+> Catalogue standard de la production interne « Atelier Blanc ». Prix **HT et hors markup**, indexés **IDF Q2 2026**.
+> Gammes : **MIN** = entrée (mélaminé/MDF laqué, quincaillerie Hettich/Häfele) · **MOY** = standard ·
+> **MAX** = haut de gamme « HdG » (essences nobles/chêne plaqué, tiroirs Blum Legrabox/Blumotion, finitions spéciales, LED).
+> Caler sur devis fournisseur réel ou ratio chantier comparable avant remise. — **40 postes**
+
+**Dressings, placards, rangements**
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `AGEN-01` | Placard intégré portes battantes — caissons mélaminé + façades MDF laqué, aménagement standard (étagères + penderie) | ml | 650 | 950 | 1500 |
+| `AGEN-02` | Placard portes coulissantes — rail Häfele + façades MDF laqué | ml | 750 | 1100 | 1700 |
+| `AGEN-03` | Dressing ouvert sur-mesure — caissons + façades laquées, tiroirs Blum | ml | 900 | 1350 | 2200 |
+| `AGEN-04` | Dressing fermé haut de gamme — chêne plaqué, tiroirs Blum Legrabox, LED, miroir | ml | 1300 | 1900 | 3200 |
+| `AGEN-05` | Module tiroirs supplémentaire amorti Blum push-to-open | U | 280 | 420 | 800 |
+
+**Cuisine (hors électroménager et plan de travail)**
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `AGEN-06` | Cuisine Atelier Blanc — caissons + façades laquées mates, charnières Blum | ml | 1200 | 1750 | 2900 |
+| `AGEN-07` | Cuisine essences nobles (chêne massif/plaqué) — tiroirs Legrabox, push | ml | 1700 | 2400 | 3900 |
+| `AGEN-08` | Îlot central sur-mesure — caisson + habillage + déport de plan | U | 2500 | 3800 | 6500 |
+| `AGEN-09` | Colonne four/frigo encastrée sur-mesure | U | 900 | 1300 | 2200 |
+| `AGEN-10` | Meuble haut vitré / vitrine sur-mesure | ml | 600 | 900 | 1600 |
+
+**Meubles salle de bains (panneaux hydrofuges)**
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `AGEN-11` | Meuble vasque suspendu sur-mesure — plan + tiroirs Blum, hydrofuge | ml | 800 | 1200 | 2000 |
+| `AGEN-12` | Colonne / rangement SDB sur-mesure laqué hydrofuge | U | 600 | 900 | 1600 |
+| `AGEN-13` | Miroir LED sur-mesure avec cadre/habillage intégré | U | 350 | 550 | 1100 |
+
+**Séjour, bibliothèques, rangements**
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `AGEN-14` | Bibliothèque sur-mesure murale MDF peint, toute hauteur | m² | 350 | 520 | 900 |
+| `AGEN-15` | Meuble TV / banc média sur-mesure laqué, passage câbles | ml | 700 | 1050 | 1800 |
+| `AGEN-16` | Bibliothèque + porte coulissante miroir sur-mesure (ébéniste) | U | 3500 | 4900 | 8500 |
+| `AGEN-17` | Habillage de niche / renfoncement sur-mesure | ml | 300 | 480 | 850 |
+
+**Entrée, vestiaire**
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `AGEN-18` | Vestiaire d'entrée sur-mesure MDF laqué — LED + tiroirs push | U | 4500 | 6500 | 12000 |
+| `AGEN-19` | Banc / banquette sur-mesure avec coffre de rangement | ml | 500 | 750 | 1300 |
+
+**Chambre**
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `AGEN-20` | Tête de lit sur-mesure MDF à peindre — fixation murale renforcée | U | 900 | 1280 | 2400 |
+| `AGEN-21` | Tête de lit capitonnée tissu (gamme tissu standard) | U | 1100 | 1600 | 2900 |
+| `AGEN-22` | Lit-estrade / couchage sur-mesure avec rangements intégrés | U | 2200 | 3200 | 5500 |
+
+**Plans de travail (fournis + posés, profondeur ~65 cm)**
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `AGEN-23` | Plan de travail stratifié compact (HPL/Fenix) ép.12 mm | ml | 250 | 380 | 650 |
+| `AGEN-24` | Plan de travail compact massif (Trespa/Compact) ép.20 mm | ml | 350 | 520 | 850 |
+| `AGEN-25` | Plan de travail Dekton/céramique ép.12-20 mm — chants + découpes | ml | 550 | 800 | 1400 |
+| `AGEN-26` | Plan de travail pierre (quartz/granit) | ml | 600 | 900 | 1600 |
+| `AGEN-27` | Crédence assortie au plan (même matériau, H 60 cm) | ml | 200 | 320 | 600 |
+
+**Menuiserie déco — claustras, verrières, habillages bois**
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `AGEN-28` | Verrière atelier bois sur-mesure — cadre + vitrage clair | m² | 600 | 850 | 1400 |
+| `AGEN-29` | Claustra / séparation tasseaux bois sur ossature | m² | 350 | 520 | 950 |
+| `AGEN-30` | Habillage mural tasseaux acoustique sur-mesure | m² | 250 | 400 | 750 |
+| `AGEN-31` | Porte à galandage habillée assortie agencement | U | 900 | 1300 | 2300 |
+| `AGEN-32` | Habillage radiateur / cache-conduit sur-mesure ajouré | U | 250 | 400 | 750 |
+
+**Bureau, étagères, divers**
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `AGEN-33` | Bureau / plan intégré sur-mesure avec passe-câbles | ml | 450 | 680 | 1200 |
+| `AGEN-34` | Étagères murales sur-mesure — tablette épaisse, fixation invisible | ml | 120 | 190 | 350 |
+
+**Options et prestations transverses**
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `AGEN-35` | Éclairage LED intégré agencement — réglette + transfo + variateur | ml | 60 | 95 | 180 |
+| `AGEN-36` | Supplément façade laquée haut de gamme — RAL spécial, mat soft-touch | m² | 80 | 130 | 240 |
+| `AGEN-37` | Supplément quincaillerie premium Blum Blumotion (vs std Hettich/Häfele) | ens | 150 | 280 | 600 |
+| `AGEN-38` | Étude + plans d'exécution agencement sur-mesure (Atelier Blanc) | ens | 300 | 600 | 1500 |
+| `AGEN-39` | Pose et réglage sur site — MO atelier, par jour compagnon | J | 350 | 480 | 750 |
+| `AGEN-40` | Dépose ancien agencement + évacuation | ml | 40 | 70 | 130 |

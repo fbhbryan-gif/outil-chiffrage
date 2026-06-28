@@ -1,5 +1,405 @@
 [
   {
+    "code": "AGEN-01",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Placard intégré portes battantes — caissons mélaminé + façades MDF laqué, aménagement standard (étagères + penderie)",
+    "unite": "ml",
+    "min": 650,
+    "moy": 950,
+    "max": 1500
+  },
+  {
+    "code": "AGEN-02",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Placard portes coulissantes — rail Häfele + façades MDF laqué",
+    "unite": "ml",
+    "min": 750,
+    "moy": 1100,
+    "max": 1700
+  },
+  {
+    "code": "AGEN-03",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Dressing ouvert sur-mesure — caissons + façades laquées, tiroirs Blum",
+    "unite": "ml",
+    "min": 900,
+    "moy": 1350,
+    "max": 2200
+  },
+  {
+    "code": "AGEN-04",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Dressing fermé haut de gamme — chêne plaqué, tiroirs Blum Legrabox, LED, miroir",
+    "unite": "ml",
+    "min": 1300,
+    "moy": 1900,
+    "max": 3200
+  },
+  {
+    "code": "AGEN-05",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Module tiroirs supplémentaire amorti Blum push-to-open",
+    "unite": "U",
+    "min": 280,
+    "moy": 420,
+    "max": 800
+  },
+  {
+    "code": "AGEN-06",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Cuisine Atelier Blanc — caissons + façades laquées mates, charnières Blum",
+    "unite": "ml",
+    "min": 1200,
+    "moy": 1750,
+    "max": 2900
+  },
+  {
+    "code": "AGEN-07",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Cuisine essences nobles (chêne massif/plaqué) — tiroirs Legrabox, push",
+    "unite": "ml",
+    "min": 1700,
+    "moy": 2400,
+    "max": 3900
+  },
+  {
+    "code": "AGEN-08",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Îlot central sur-mesure — caisson + habillage + déport de plan",
+    "unite": "U",
+    "min": 2500,
+    "moy": 3800,
+    "max": 6500
+  },
+  {
+    "code": "AGEN-09",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Colonne four/frigo encastrée sur-mesure",
+    "unite": "U",
+    "min": 900,
+    "moy": 1300,
+    "max": 2200
+  },
+  {
+    "code": "AGEN-10",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Meuble haut vitré / vitrine sur-mesure",
+    "unite": "ml",
+    "min": 600,
+    "moy": 900,
+    "max": 1600
+  },
+  {
+    "code": "AGEN-11",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Meuble vasque suspendu sur-mesure — plan + tiroirs Blum, hydrofuge",
+    "unite": "ml",
+    "min": 800,
+    "moy": 1200,
+    "max": 2000
+  },
+  {
+    "code": "AGEN-12",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Colonne / rangement SDB sur-mesure laqué hydrofuge",
+    "unite": "U",
+    "min": 600,
+    "moy": 900,
+    "max": 1600
+  },
+  {
+    "code": "AGEN-13",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Miroir LED sur-mesure avec cadre/habillage intégré",
+    "unite": "U",
+    "min": 350,
+    "moy": 550,
+    "max": 1100
+  },
+  {
+    "code": "AGEN-14",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Bibliothèque sur-mesure murale MDF peint, toute hauteur",
+    "unite": "m²",
+    "min": 350,
+    "moy": 520,
+    "max": 900
+  },
+  {
+    "code": "AGEN-15",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Meuble TV / banc média sur-mesure laqué, passage câbles",
+    "unite": "ml",
+    "min": 700,
+    "moy": 1050,
+    "max": 1800
+  },
+  {
+    "code": "AGEN-16",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Bibliothèque + porte coulissante miroir sur-mesure (ébéniste)",
+    "unite": "U",
+    "min": 3500,
+    "moy": 4900,
+    "max": 8500
+  },
+  {
+    "code": "AGEN-17",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Habillage de niche / renfoncement sur-mesure",
+    "unite": "ml",
+    "min": 300,
+    "moy": 480,
+    "max": 850
+  },
+  {
+    "code": "AGEN-18",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Vestiaire d'entrée sur-mesure MDF laqué — LED + tiroirs push",
+    "unite": "U",
+    "min": 4500,
+    "moy": 6500,
+    "max": 12000
+  },
+  {
+    "code": "AGEN-19",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Banc / banquette sur-mesure avec coffre de rangement",
+    "unite": "ml",
+    "min": 500,
+    "moy": 750,
+    "max": 1300
+  },
+  {
+    "code": "AGEN-20",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Tête de lit sur-mesure MDF à peindre — fixation murale renforcée",
+    "unite": "U",
+    "min": 900,
+    "moy": 1280,
+    "max": 2400
+  },
+  {
+    "code": "AGEN-21",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Tête de lit capitonnée tissu (gamme tissu standard)",
+    "unite": "U",
+    "min": 1100,
+    "moy": 1600,
+    "max": 2900
+  },
+  {
+    "code": "AGEN-22",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Lit-estrade / couchage sur-mesure avec rangements intégrés",
+    "unite": "U",
+    "min": 2200,
+    "moy": 3200,
+    "max": 5500
+  },
+  {
+    "code": "AGEN-23",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Plan de travail stratifié compact (HPL/Fenix) ép.12 mm",
+    "unite": "ml",
+    "min": 250,
+    "moy": 380,
+    "max": 650
+  },
+  {
+    "code": "AGEN-24",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Plan de travail compact massif (Trespa/Compact) ép.20 mm",
+    "unite": "ml",
+    "min": 350,
+    "moy": 520,
+    "max": 850
+  },
+  {
+    "code": "AGEN-25",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Plan de travail Dekton/céramique ép.12-20 mm — chants + découpes",
+    "unite": "ml",
+    "min": 550,
+    "moy": 800,
+    "max": 1400
+  },
+  {
+    "code": "AGEN-26",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Plan de travail pierre (quartz/granit)",
+    "unite": "ml",
+    "min": 600,
+    "moy": 900,
+    "max": 1600
+  },
+  {
+    "code": "AGEN-27",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Crédence assortie au plan (même matériau, H 60 cm)",
+    "unite": "ml",
+    "min": 200,
+    "moy": 320,
+    "max": 600
+  },
+  {
+    "code": "AGEN-28",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Verrière atelier bois sur-mesure — cadre + vitrage clair",
+    "unite": "m²",
+    "min": 600,
+    "moy": 850,
+    "max": 1400
+  },
+  {
+    "code": "AGEN-29",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Claustra / séparation tasseaux bois sur ossature",
+    "unite": "m²",
+    "min": 350,
+    "moy": 520,
+    "max": 950
+  },
+  {
+    "code": "AGEN-30",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Habillage mural tasseaux acoustique sur-mesure",
+    "unite": "m²",
+    "min": 250,
+    "moy": 400,
+    "max": 750
+  },
+  {
+    "code": "AGEN-31",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Porte à galandage habillée assortie agencement",
+    "unite": "U",
+    "min": 900,
+    "moy": 1300,
+    "max": 2300
+  },
+  {
+    "code": "AGEN-32",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Habillage radiateur / cache-conduit sur-mesure ajouré",
+    "unite": "U",
+    "min": 250,
+    "moy": 400,
+    "max": 750
+  },
+  {
+    "code": "AGEN-33",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Bureau / plan intégré sur-mesure avec passe-câbles",
+    "unite": "ml",
+    "min": 450,
+    "moy": 680,
+    "max": 1200
+  },
+  {
+    "code": "AGEN-34",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Étagères murales sur-mesure — tablette épaisse, fixation invisible",
+    "unite": "ml",
+    "min": 120,
+    "moy": 190,
+    "max": 350
+  },
+  {
+    "code": "AGEN-35",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Éclairage LED intégré agencement — réglette + transfo + variateur",
+    "unite": "ml",
+    "min": 60,
+    "moy": 95,
+    "max": 180
+  },
+  {
+    "code": "AGEN-36",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Supplément façade laquée haut de gamme — RAL spécial, mat soft-touch",
+    "unite": "m²",
+    "min": 80,
+    "moy": 130,
+    "max": 240
+  },
+  {
+    "code": "AGEN-37",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Supplément quincaillerie premium Blum Blumotion (vs std Hettich/Häfele)",
+    "unite": "ens",
+    "min": 150,
+    "moy": 280,
+    "max": 600
+  },
+  {
+    "code": "AGEN-38",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Étude + plans d'exécution agencement sur-mesure (Atelier Blanc)",
+    "unite": "ens",
+    "min": 300,
+    "moy": 600,
+    "max": 1500
+  },
+  {
+    "code": "AGEN-39",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Pose et réglage sur site — MO atelier, par jour compagnon",
+    "unite": "J",
+    "min": 350,
+    "moy": 480,
+    "max": 750
+  },
+  {
+    "code": "AGEN-40",
+    "lot": "AGEN",
+    "lotTitre": "Agencement sur mesure (Atelier Blanc)",
+    "designation": "Dépose ancien agencement + évacuation",
+    "unite": "ml",
+    "min": 40,
+    "moy": 70,
+    "max": 130
+  },
+  {
     "code": "CHAR-01",
     "lot": "CHAR",
     "lotTitre": "Charpente et couverture",
