@@ -18,6 +18,8 @@ import type {
 export type TypeProjetRapide =
   | "renovation_appartement"
   | "renovation_maison"
+  | "renovation_energetique"
+  | "renovation_studio"
   | "extension"
   | "surelevation"
   | "erp"
@@ -26,6 +28,8 @@ export type TypeProjetRapide =
 export const TYPES_PROJET: { value: TypeProjetRapide; label: string }[] = [
   { value: "renovation_appartement", label: "Rénovation appartement" },
   { value: "renovation_maison", label: "Rénovation maison" },
+  { value: "renovation_studio", label: "Studio / locatif éco" },
+  { value: "renovation_energetique", label: "Rénovation énergétique" },
   { value: "extension", label: "Extension" },
   { value: "surelevation", label: "Surélévation" },
   { value: "erp", label: "ERP / local pro" },
@@ -53,8 +57,12 @@ export interface OuvrageRapide {
 const RENO: TypeProjetRapide[] = [
   "renovation_appartement",
   "renovation_maison",
+  "renovation_studio",
   "erp",
 ];
+
+/** Ouvrages d'amélioration énergétique, proposés au projet "énergétique". */
+const ENERGETIQUE: TypeProjetRapide = "renovation_energetique";
 
 /**
  * Catalogue des ouvrages complets du mode rapide.
@@ -107,7 +115,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Isolation intérieure (ITI)",
     groupe: "Enveloppe",
     aide: "m² de murs",
-    pour: RENO,
+    pour: [...RENO, ENERGETIQUE],
     qteDefaut: () => 0,
   },
   {
@@ -115,7 +123,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Isolation extérieure (ITE)",
     groupe: "Enveloppe",
     aide: "m² de façade",
-    pour: ["renovation_maison"],
+    pour: ["renovation_maison", ENERGETIQUE],
     qteDefaut: () => 0,
   },
   {
@@ -123,7 +131,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Ravalement de façade",
     groupe: "Enveloppe",
     aide: "m² de façade",
-    pour: ["renovation_maison"],
+    pour: ["renovation_maison", ENERGETIQUE],
     qteDefaut: () => 0,
   },
   {
@@ -131,7 +139,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Remplacement menuiseries extérieures",
     groupe: "Enveloppe",
     aide: "m² de menuiseries",
-    pour: RENO,
+    pour: [...RENO, ENERGETIQUE],
     qteDefaut: () => 0,
   },
   {
@@ -203,17 +211,29 @@ export function ouvragesPourType(type: TypeProjetRapide): OuvrageRapide[] {
   return filtres.length > 0 ? filtres : OUVRAGES_RAPIDE;
 }
 
+/** Types de rénovation de logement existant (TVA réduite éligible). */
+const TYPES_RENO_LOGEMENT: TypeProjetRapide[] = [
+  "renovation_appartement",
+  "renovation_maison",
+  "renovation_studio",
+  "renovation_energetique",
+];
+
 /** TVA par défaut suggérée selon le type de projet (Guide §2.1). */
 export function tvaSuggeree(type: TypeProjetRapide): TauxTVA {
-  // Rénovation logement > 2 ans = 10 % ; neuf / extension / pro = 20 %.
-  if (type === "renovation_appartement" || type === "renovation_maison") {
-    return 10;
-  }
+  // Énergétique = 5,5 % ; rénovation logement = 10 % ; neuf/extension/pro = 20 %.
+  if (type === "renovation_energetique") return 5.5;
+  if (TYPES_RENO_LOGEMENT.includes(type)) return 10;
   return 20;
 }
 
 /** Ouvrages d'amélioration énergétique (TVA 5,5 % si seuls, Guide §2.1). */
-export const CODES_ENERGETIQUES = new Set(["OCREN-04", "OCREN-05", "OCREN-09"]);
+export const CODES_ENERGETIQUES = new Set([
+  "OCREN-04", // ITI
+  "OCREN-05", // ITE
+  "OCREN-09", // ravalement isolant
+  "OCREN-10", // menuiseries isolantes
+]);
 
 /**
  * TVA suggérée en tenant compte de la sélection : 5,5 % si le chantier est
@@ -223,9 +243,8 @@ export function tvaSuggereeSelection(
   type: TypeProjetRapide,
   codesActifs: string[],
 ): TauxTVA {
-  const reno = type === "renovation_appartement" || type === "renovation_maison";
   if (
-    reno &&
+    TYPES_RENO_LOGEMENT.includes(type) &&
     codesActifs.length > 0 &&
     codesActifs.every((c) => CODES_ENERGETIQUES.has(c))
   ) {
@@ -239,6 +258,9 @@ const RECOUVREMENTS: Record<string, string[]> = {
   // La rénovation globale au m² SHAB recouvre déjà la pièce de vie et les
   // lots techniques pris séparément.
   "OCREN-07": ["OCREN-06", "OCREN-11", "OCREN-12"],
+  // Les forfaits "clé en main TCE" englobent leur variante hors d'eau/hors d'air.
+  "OCMOB-10": ["OCMOB-09"],
+  "OCMOB-12": ["OCMOB-11"],
 };
 
 /**

@@ -83,6 +83,11 @@ const SYNONYMES: Record<string, string> = {
   cuisine: "cuisine",
   dressing: "dressing",
   placard: "placard",
+  italienne: "douche",
+  antiderapant: "r11",
+  spots: "spot",
+  sanibroyeur: "wc",
+  seche: "sèche",
 };
 
 /** Étend un mot par son synonyme BPU éventuel (les deux sont testés). */

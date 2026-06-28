@@ -21,6 +21,12 @@ import {
   versDevisUpdate,
 } from "@/lib/engine";
 import { quantitesLiees } from "@/lib/pieces";
+import {
+  TEMPLATES_PIECE,
+  genererPanier,
+  lignesDepuisPanier,
+  type ElementPanier,
+} from "@/lib/templates-piece";
 import { bumpVersion, genRef, versionDeRef } from "@/lib/ref";
 import {
   TYPES_PROJET,
@@ -878,6 +884,20 @@ function Detaille({
     pousserRecent(poste.code);
   }
 
+  function ajouterPanier(
+    selection: ElementPanier[],
+    occurrences: number,
+    zone: string,
+  ) {
+    const nouvelles = lignesDepuisPanier(selection, occurrences, zone, (code, qte) => {
+      const poste = BPU_PAR_CODE.get(code);
+      return poste ? ligneDepuisPoste(poste, params, qte) : null;
+    });
+    if (!nouvelles.length) return;
+    setLignes((ls) => [...ls, ...nouvelles]);
+    nouvelles.forEach((l) => pousserRecent(l.code));
+  }
+
   function ajouterAdHoc() {
     setLignes((ls) => [
       ...ls,
@@ -1102,6 +1122,7 @@ function Detaille({
         setQteRef={setQteRef}
         onAjouter={ajouterPoste}
         onAdHoc={ajouterAdHoc}
+        onAjouterPanier={ajouterPanier}
         codesPresents={codesPresents}
       />
 
@@ -1348,12 +1369,14 @@ function AjoutPostes({
   setQteRef,
   onAjouter,
   onAdHoc,
+  onAjouterPanier,
   codesPresents,
 }: {
   qteRef: number;
   setQteRef: (n: number) => void;
   onAjouter: (poste: PosteBPU) => void;
   onAdHoc: () => void;
+  onAjouterPanier: (selection: ElementPanier[], occurrences: number, zone: string) => void;
   codesPresents: Set<string>;
 }) {
   const [vue, setVue] = useState<"recherche" | "lots" | "recents" | "piece">("recherche");
@@ -1362,18 +1385,36 @@ function AjoutPostes({
   const [filtreLot, setFiltreLot] = useState("");
   const [recents, setRecents] = useState<string[]>([]);
 
-  // Pièce
+  // Configurateur de pièce
+  const [pType, setPType] = useState(TEMPLATES_PIECE[0].id);
   const [pSurf, setPSurf] = useState(0);
   const [pPerim, setPPerim] = useState(0);
   const [pHaut, setPHaut] = useState(2.5);
+  const [pNb, setPNb] = useState(1);
+  const [pZone, setPZone] = useState("");
+  const [panier, setPanier] = useState<ElementPanier[]>([]);
 
   useEffect(() => {
     if (vue === "recents") setRecents(lireRecents());
   }, [vue]);
 
+  // Régénère le panier quand le type ou les dimensions changent.
+  const template = TEMPLATES_PIECE.find((t) => t.id === pType) ?? TEMPLATES_PIECE[0];
+  useEffect(() => {
+    setPanier(
+      genererPanier(
+        template,
+        { surfaceSol: pSurf, perimetre: pPerim || undefined, hauteur: pHaut },
+        (c) => BPU_PAR_CODE.get(c),
+      ),
+    );
+    if (!pZone) setPZone(template.nom);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pType, pSurf, pPerim, pHaut]);
+
   const tousResultats = useMemo(() => rechercherBPU(query), [query]);
   const resultats = tousResultats.slice(0, 30);
-  const q = quantitesLiees({ surfaceSol: pSurf, perimetre: pPerim || undefined, hauteur: pHaut });
+  const panierCoche = panier.filter((e) => e.coche && e.qte > 0);
 
   return (
     <section>
@@ -1397,7 +1438,7 @@ function AjoutPostes({
             ["recherche", "Recherche"],
             ["lots", "Parcourir par lot"],
             ["recents", "Récents"],
-            ["piece", "Pièce liée"],
+            ["piece", "Configurer une pièce"],
           ] as [typeof vue, string][]
         ).map(([v, label]) => (
           <button
@@ -1486,11 +1527,37 @@ function AjoutPostes({
       {vue === "piece" && (
         <div className="rounded-md border border-marine-50 p-4">
           <p className="mb-3 text-xs text-marine-700/70">
-            Saisissez les dimensions d'une pièce : cliquez ensuite une quantité pour la
-            poser comme « quantité de référence », puis ajoutez les postes liés (sol,
-            plinthes, murs…) — tous au même métré (cohérence inter-lots, §8.2).
+            Choisissez un <b>type de pièce</b> et ses dimensions : l'outil pré-coche les
+            postes pertinents avec leurs quantités (sol = surface, plinthes = périmètre,
+            faïence = murs, équipements à l'unité). Ajustez, puis ajoutez la sélection —
+            multipliée par le nombre de pièces identiques.
           </p>
-          <div className="grid grid-cols-3 gap-3">
+
+          {/* Type de pièce */}
+          <div className="mb-3 flex flex-wrap gap-2">
+            {TEMPLATES_PIECE.map((t) => (
+              <button
+                key={t.id}
+                onClick={() => {
+                  setPType(t.id);
+                  setPZone(t.nom);
+                }}
+                className={`rounded-md border px-3 py-1.5 text-sm font-medium transition ${
+                  pType === t.id
+                    ? "border-or bg-or/10 text-marine-900"
+                    : "border-marine-50 bg-white text-marine-700 hover:border-or"
+                }`}
+              >
+                {t.nom}
+              </button>
+            ))}
+          </div>
+          {template.note && (
+            <p className="mb-3 text-xs text-marine-700/55">{template.note}</p>
+          )}
+
+          {/* Dimensions + occurrences + zone */}
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
             <Field label="Surface sol (m²)">
               <input
                 className="input text-right"
@@ -1501,14 +1568,14 @@ function AjoutPostes({
                 onChange={(e) => setPSurf(num(e.target.value))}
               />
             </Field>
-            <Field label="Périmètre (ml) — optionnel">
+            <Field label="Périmètre (ml)">
               <input
                 className="input text-right"
                 type="number"
                 min={0}
                 step="any"
                 value={pPerim || ""}
-                placeholder={q.perimetre ? `≈ ${q.perimetre}` : ""}
+                placeholder={pSurf ? `≈ ${quantitesLiees({ surfaceSol: pSurf }).perimetre}` : ""}
                 onChange={(e) => setPPerim(num(e.target.value))}
               />
             </Field>
@@ -1522,28 +1589,89 @@ function AjoutPostes({
                 onChange={(e) => setPHaut(num(e.target.value, 2.5))}
               />
             </Field>
+            <Field label="Pièces identiques (×N)">
+              <input
+                className="input text-right"
+                type="number"
+                min={1}
+                step={1}
+                value={pNb || ""}
+                onChange={(e) => setPNb(Math.max(1, Math.floor(num(e.target.value, 1))))}
+              />
+            </Field>
+            <Field label="Nom de zone (vue client)">
+              <input
+                className="input"
+                value={pZone}
+                placeholder={template.nom}
+                onChange={(e) => setPZone(e.target.value)}
+              />
+            </Field>
           </div>
-          {pSurf > 0 && (
-            <div className="mt-3 flex flex-wrap gap-2">
-              {(
-                [
-                  ["Sol / plafond", q.sol],
-                  ["Plinthes", q.plinthes],
-                  ["Murs", q.murs],
-                ] as [string, number][]
-              ).map(([label, val]) => (
+
+          {/* Panier de postes */}
+          {pSurf > 0 ? (
+            <>
+              <div className="mt-3 max-h-72 divide-y divide-marine-50 overflow-auto rounded-md border border-marine-50">
+                {panier.map((el, i) => (
+                  <label
+                    key={el.code}
+                    className="flex items-center gap-3 px-3 py-1.5 hover:bg-marine-50/40"
+                  >
+                    <input
+                      type="checkbox"
+                      className="h-4 w-4 accent-[#C8A96A]"
+                      checked={el.coche}
+                      onChange={(e) =>
+                        setPanier((p) =>
+                          p.map((x, j) => (j === i ? { ...x, coche: e.target.checked } : x)),
+                        )
+                      }
+                    />
+                    <span className="w-20 shrink-0 font-mono text-xs text-or-dark">
+                      {el.code}
+                    </span>
+                    <span className="flex-1 text-sm text-marine-900">{el.designation}</span>
+                    <input
+                      type="number"
+                      min={0}
+                      step="any"
+                      className="input !w-20 text-right"
+                      value={el.qte || ""}
+                      onChange={(e) =>
+                        setPanier((p) =>
+                          p.map((x, j) => (j === i ? { ...x, qte: num(e.target.value) } : x)),
+                        )
+                      }
+                    />
+                    <span className="w-6 text-xs text-marine-700/60">{el.unite}</span>
+                  </label>
+                ))}
+                {panier.length === 0 && (
+                  <p className="px-3 py-3 text-sm text-marine-700/60">
+                    Aucun poste disponible pour ce type.
+                  </p>
+                )}
+              </div>
+              <div className="mt-3 flex items-center justify-between">
+                <span className="text-xs text-marine-700/60">
+                  {panierCoche.length} poste{panierCoche.length > 1 ? "s" : ""} sélectionné
+                  {panierCoche.length > 1 ? "s" : ""}
+                  {pNb > 1 ? ` × ${pNb} pièces` : ""}
+                </span>
                 <button
-                  key={label}
-                  className="btn-ghost"
-                  onClick={() => setQteRef(val)}
+                  className="btn-or"
+                  disabled={panierCoche.length === 0}
+                  onClick={() => onAjouterPanier(panierCoche, pNb, pZone.trim() || template.nom)}
                 >
-                  {label} : <span className="ml-1 font-semibold">{val}</span>
+                  Ajouter au chiffrage ({panierCoche.length * pNb} lignes)
                 </button>
-              ))}
-              <span className="self-center text-xs text-marine-700/60">
-                → définit la quantité de référence pour les prochains ajouts
-              </span>
-            </div>
+              </div>
+            </>
+          ) : (
+            <p className="mt-3 text-sm text-marine-700/60">
+              Saisissez la surface au sol pour générer le panier de postes.
+            </p>
           )}
         </div>
       )}
