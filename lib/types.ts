@@ -10,10 +10,10 @@ export type Unite = "m²" | "ml" | "m³" | "U" | "F" | "J" | "ens";
 /** Taux de TVA applicables (Specifications §2.1). */
 export type TauxTVA = 5.5 | 10 | 20;
 
-/** Type de client — conditionne le markup appliqué (Specifications §2.2). */
+/** Type de client (métadonnée projet ; n'influe plus sur le prix). */
 export type TypeClient = "particulier" | "erp" | "pro";
 
-/** Un poste de la bibliothèque BPU. Prix HT, HORS markup. */
+/** Un poste de la bibliothèque BPU. Prix HT. */
 export interface PosteBPU {
   /** Code unique, ex. "RS-01", "OCREN-07". */
   code: string;
@@ -24,11 +24,11 @@ export interface PosteBPU {
   /** Désignation technique du poste. */
   designation: string;
   unite: Unite;
-  /** Prix unitaire gamme économique (HT, hors markup). */
+  /** Prix unitaire gamme économique (HT). */
   min: number;
   /** Prix unitaire standard (HT, hors markup) — défaut. */
   moy: number;
-  /** Prix unitaire haut de gamme (HT, hors markup). */
+  /** Prix unitaire haut de gamme (HT). */
   max: number;
 }
 
@@ -38,7 +38,7 @@ export interface LigneDevis {
   code: string;
   designation: string;
   unite: Unite;
-  /** Prix unitaire de base retenu (HT, hors markup). Repris du BPU selon la gamme, ou saisi (AD-HOC). */
+  /** Prix unitaire de base retenu (HT). Repris du BPU selon la gamme, ou saisi (AD-HOC). */
   puBase: number;
   /** Gamme retenue pour cette ligne. */
   gamme: Gamme;
@@ -80,7 +80,7 @@ export interface ParametresDevis {
 export interface LigneCalculee extends LigneDevis {
   /** Quantité appliquée = qteBrute × coefQte (arrondie). */
   qteAppliquee: number;
-  /** PU après markup (HT). */
+  /** PU final HT appliqué (= PU de base, sans majoration). */
   puFinal: number;
   /** Total ligne HT = qteAppliquee × puFinal. */
   totalHT: number;
@@ -113,6 +113,4 @@ export interface SyntheseDevis {
   tvaParTaux: TotalTVA[];
   totalTVA: number;
   totalTTC: number;
-  /** Markup effectif appliqué (1.15 pour particuliers par défaut). */
-  markupApplique: number;
 }

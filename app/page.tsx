@@ -694,9 +694,9 @@ function Detaille({
                 setParam("typeClient", e.target.value as TypeClient)
               }
             >
-              <option value="particulier">Particulier (markup 15 %)</option>
-              <option value="erp">ERP (à confirmer)</option>
-              <option value="pro">Professionnel (à confirmer)</option>
+              <option value="particulier">Particulier</option>
+              <option value="erp">ERP</option>
+              <option value="pro">Professionnel</option>
             </select>
           </Field>
           <Field label="Gamme par défaut">
@@ -738,8 +738,7 @@ function Detaille({
           </Field>
         </div>
         <p className="mt-2 text-xs text-marine-700/60">
-          Prix indexés {INDEXATION}. Markup particuliers appliqué au calcul,
-          jamais affiché côté client.
+          Prix HT du BPU, indexés {INDEXATION}.
         </p>
       </section>
 
@@ -840,8 +839,7 @@ function Detaille({
             </p>
           )}
           <p className="mt-3 text-xs text-marine-700/60">
-            Markup interne appliqué : ×{synthese.markupApplique} — jamais affiché
-            côté client.
+            PU HT du BPU (gamme {params.gammeDefaut}), indexés {INDEXATION}.
           </p>
         </div>
 

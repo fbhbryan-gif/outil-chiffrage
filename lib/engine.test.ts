@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import {
-  appliquerMarkup,
   calculerLigne,
   calculerSynthese,
   coefDefautPourUnite,
@@ -73,18 +72,6 @@ describe("PU de base et prix verrouillés", () => {
   });
 });
 
-describe("markup", () => {
-  it("applique +15 % aux particuliers", () => {
-    expect(appliquerMarkup(100, "particulier")).toBe(115);
-    expect(appliquerMarkup(50, "particulier")).toBe(57.5);
-  });
-
-  it("n'applique pas de markup ERP/pro par défaut", () => {
-    expect(appliquerMarkup(100, "erp")).toBe(100);
-    expect(appliquerMarkup(100, "pro")).toBe(100);
-  });
-});
-
 describe("ligneDepuisPoste", () => {
   it("hérite gamme/TVA des paramètres et coef selon l'unité", () => {
     const l = ligneDepuisPoste(posteOCREN04, params({ gammeDefaut: "MIN", tvaDefaut: 20 }), 10);
@@ -102,7 +89,7 @@ describe("ligneDepuisPoste", () => {
 });
 
 describe("calculerLigne", () => {
-  it("applique coef quantité et markup", () => {
+  it("applique le coef quantité ; le PU final est le PU du BPU (sans majoration)", () => {
     const ligne: LigneDevis = {
       id: "1",
       code: "RS-01",
@@ -114,10 +101,10 @@ describe("calculerLigne", () => {
       coefQte: 1.08,
       tva: 10,
     };
-    const c = calculerLigne(ligne, "particulier");
+    const c = calculerLigne(ligne);
     expect(c.qteAppliquee).toBe(21.6); // 20 × 1.08
-    expect(c.puFinal).toBe(57.5); // 50 × 1.15
-    expect(c.totalHT).toBe(1242); // 21.6 × 57.5
+    expect(c.puFinal).toBe(50); // PU du BPU, aucune majoration
+    expect(c.totalHT).toBe(1080); // 21.6 × 50
   });
 });
 
@@ -149,14 +136,13 @@ describe("calculerSynthese", () => {
 
   it("totalise HT, imprévus, TVA et TTC (taux unique)", () => {
     const s = calculerSynthese(lignes, params({ tauxImprevus: 0.04 }), (l) => l);
-    expect(s.htPostes).toBe(4595.4); // 1242 + 3353.4
-    expect(s.montantImprevus).toBe(183.82);
-    expect(s.totalHT).toBe(4779.22);
+    expect(s.htPostes).toBe(3996); // 1080 + 2916
+    expect(s.montantImprevus).toBe(159.84);
+    expect(s.totalHT).toBe(4155.84);
     expect(s.tvaParTaux).toHaveLength(1);
     expect(s.tvaParTaux[0].taux).toBe(10);
-    expect(s.tvaParTaux[0].montantTVA).toBe(477.92);
-    expect(s.totalTTC).toBe(5257.14);
-    expect(s.markupApplique).toBe(1.15);
+    expect(s.tvaParTaux[0].montantTVA).toBe(415.58);
+    expect(s.totalTTC).toBe(4571.42);
   });
 
   it("répartit les imprévus au prorata sur deux taux de TVA", () => {
@@ -185,15 +171,15 @@ describe("calculerSynthese", () => {
 });
 
 describe("versDevisUpdate", () => {
-  it("produit des PU déjà markupés et la structure attendue", () => {
+  it("produit les PU HT et la structure attendue", () => {
     const lignes: LigneDevis[] = [
       { id: "1", code: "RS-01", designation: "Carrelage", unite: "m²", puBase: 50, gamme: "MOY", qteBrute: 20, coefQte: 1.08, tva: 10 },
     ];
     const out = versDevisUpdate(lignes, params(), (l) => l);
     expect(out.lots).toHaveLength(1);
     const item = out.lots[0].items[0] as { pu: number; qty: number; total: number };
-    expect(item.pu).toBe(57.5);
+    expect(item.pu).toBe(50);
     expect(item.qty).toBe(21.6);
-    expect(item.total).toBe(1242);
+    expect(item.total).toBe(1080);
   });
 });

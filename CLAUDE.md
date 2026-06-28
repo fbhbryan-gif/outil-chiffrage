@@ -35,17 +35,16 @@ dans l'UI. L'UI ne fait qu'appeler le moteur et afficher.
 
 1. **TVA** : 10 % par défaut (rénovation > 2 ans) ; 5,5 % (énergétique seul) ;
    20 % (neuf / extension / pro / équipements séparés). Attestation TVA si < 20 %.
-2. **Markup particuliers : +15 %** appliqué sur les PU du BPU au moment du devis.
-   **Jamais visible côté client.** ERP/pro : markup à confirmer projet par projet
-   (1.0 par défaut ici).
+2. **Pas de markup** : la règle de majoration +15 % a été **supprimée** (décision
+   métier 2026-06-28). Le PU appliqué = PU du BPU selon la gamme. Une majoration
+   globale du devis sera ajoutée ultérieurement comme fonctionnalité dédiée.
 3. **Prix verrouillés** : `RS-01` et `RS-09` = **50 €/m²**, jamais recalculés
-   (constante `PRIX_VERROUILLES`). Le markup s'applique ensuite normalement.
+   (constante `PRIX_VERROUILLES`). Appliqués tels quels (plus de markup).
 4. **Quantités conservatrices** (§5.1) : surfaces ×1.05–1.10, linéaires ×1.10,
    imprévus 3–5 % du HT. Implémenté via `coefQte` par ligne + `tauxImprevus` global
    (réparti au prorata sur les bases de TVA).
 5. **Indexation IDF Q2 2026** ; clause de révision si chantier > 6 mois.
-6. **BPU** : tous les prix sont **HT et HORS markup**. Trois gammes MIN/MOY/MAX
-   (MOY = défaut).
+6. **BPU** : tous les prix sont **HT**. Trois gammes MIN/MOY/MAX (MOY = défaut).
 
 ## Décisions ouvertes (à valider avec le métier)
 

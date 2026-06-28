@@ -1,9 +1,9 @@
 // Moteur de chiffrage LCB BAT — règles métier centralisées.
 // Source de vérité : Specifications_LCB_BAT.md (§2, §5) + BPU_LCB_BAT_v10.md.
 //
-// PRINCIPE : tous les prix du BPU sont HT et HORS markup. Le markup (15 %
-// particuliers) est appliqué AU MOMENT du calcul du devis, jamais stocké dans
-// le BPU et jamais visible côté client.
+// PRINCIPE : le PU appliqué d'une ligne est le PU du BPU selon la gamme retenue
+// (ou le prix verrouillé). Aucune majoration n'est appliquée par le moteur —
+// une éventuelle majoration globale du devis sera gérée séparément.
 
 import type {
   Gamme,
@@ -15,23 +15,14 @@ import type {
   TauxTVA,
   TotalLot,
   TotalTVA,
-  TypeClient,
 } from "./types";
 
 // ---------------------------------------------------------------------------
-// Constantes métier (Specifications §2.2, §2.4, §5.1)
+// Constantes métier (Specifications §2.4, §5.1)
 // ---------------------------------------------------------------------------
-
-/** Markup appliqué selon le type de client. ERP/pro = à confirmer projet par projet. */
-export const MARKUP: Record<TypeClient, number> = {
-  particulier: 1.15,
-  erp: 1.0,
-  pro: 1.0,
-};
 
 /**
  * Prix verrouillés à dire d'expert (Specifications §2.4).
- * Valeurs HT hors markup : le markup s'applique ensuite normalement.
  * Ne JAMAIS recalculer ces postes depuis la base composants.
  */
 export const PRIX_VERROUILLES: Record<string, number> = {
@@ -63,7 +54,7 @@ export function coefDefautPourUnite(unite: string): number {
   return COEF_QTE_DEFAUT[unite] ?? 1;
 }
 
-/** PU de base d'un poste selon la gamme (HT, hors markup). */
+/** PU de base d'un poste selon la gamme (HT). */
 export function puBasePourGamme(poste: PosteBPU, gamme: Gamme): number {
   switch (gamme) {
     case "MIN":
@@ -85,11 +76,6 @@ export function puBaseRetenu(poste: PosteBPU, gamme: Gamme): number {
     return PRIX_VERROUILLES[poste.code];
   }
   return puBasePourGamme(poste, gamme);
-}
-
-/** Applique le markup client à un PU de base. */
-export function appliquerMarkup(puBase: number, typeClient: TypeClient): number {
-  return round2(puBase * (MARKUP[typeClient] ?? 1));
 }
 
 // ---------------------------------------------------------------------------
@@ -132,13 +118,10 @@ export function cryptoRandomId(): string {
 // Calculs
 // ---------------------------------------------------------------------------
 
-/** Calcule une ligne : quantité appliquée, PU final markupé, total HT. */
-export function calculerLigne(
-  ligne: LigneDevis,
-  typeClient: TypeClient,
-): LigneCalculee {
+/** Calcule une ligne : quantité appliquée, PU final, total HT. */
+export function calculerLigne(ligne: LigneDevis): LigneCalculee {
   const qteAppliquee = round2(ligne.qteBrute * (ligne.coefQte || 1));
-  const puFinal = appliquerMarkup(ligne.puBase, typeClient);
+  const puFinal = round2(ligne.puBase);
   const totalHT = round2(qteAppliquee * puFinal);
   return { ...ligne, qteAppliquee, puFinal, totalHT };
 }
@@ -174,7 +157,7 @@ export function calculerSynthese(
   params: ParametresDevis,
   lotTitre: (lot: string) => string = (l) => l,
 ): SyntheseDevis {
-  const calculees = lignes.map((l) => calculerLigne(l, params.typeClient));
+  const calculees = lignes.map((l) => calculerLigne(l));
   const parLot = regrouperParLot(calculees, lotTitre);
 
   const htPostes = round2(calculees.reduce((s, l) => s + l.totalHT, 0));
@@ -209,7 +192,6 @@ export function calculerSynthese(
     tvaParTaux,
     totalTVA,
     totalTTC,
-    markupApplique: MARKUP[params.typeClient] ?? 1,
   };
 }
 
@@ -219,7 +201,7 @@ export function calculerSynthese(
 
 /**
  * Produit la charge utile JSON attendue par le programme historique
- * (format [DEVIS_UPDATE]). Les PU exportés sont DÉJÀ markupés.
+ * (format [DEVIS_UPDATE]). Les PU exportés sont les PU HT du BPU.
  */
 export function versDevisUpdate(
   lignes: LigneDevis[],
