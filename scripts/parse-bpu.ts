@@ -38,8 +38,16 @@ const SRC = resolve(process.env.BPU_SRC ?? "data/BPU_v10.md");
 const OUT = resolve("data/bpu.json");
 
 function normUnite(u: string): string {
-  const map: Record<string, string> = { m2: "m²", m3: "m³" };
-  return map[u] ?? u;
+  // Normalisation insensible à la casse (le BPU mélange "ENS"/"ens", "U"/"u"…).
+  const map: Record<string, string> = {
+    m2: "m²",
+    m3: "m³",
+    ens: "ens",
+    u: "U",
+    f: "F",
+    j: "J",
+  };
+  return map[u.toLowerCase()] ?? u;
 }
 
 /** Convertit "1 200", "1200", "1.850" -> nombre. Retourne NaN si non numérique. */

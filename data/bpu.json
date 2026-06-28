@@ -1,22 +1,2842 @@
 [
-  { "code": "PREP-01", "lot": "PREP", "lotTitre": "Préparation, études et installations", "designation": "Installation/repli de chantier (amenée, nettoyage, signalisation)", "unite": "U", "min": 1200, "moy": 1600, "max": 2500 },
-  { "code": "PREP-02", "lot": "PREP", "lotTitre": "Préparation, études et installations", "designation": "Location mini-pelle avec opérateur (journée complète, carburant inclus)", "unite": "F", "min": 1200, "moy": 1800, "max": 2800 },
-  { "code": "PREP-03", "lot": "PREP", "lotTitre": "Préparation, études et installations", "designation": "Évacuation gravats en décharge agréée (BSD CERFA inclus)", "unite": "m³", "min": 80, "moy": 160, "max": 220 },
-  { "code": "PREP-04", "lot": "PREP", "lotTitre": "Préparation, études et installations", "designation": "Rapport BET structure (notes de calcul, plans d'exécution)", "unite": "U", "min": 1500, "moy": 1800, "max": 3000 },
-  { "code": "PREP-06", "lot": "PREP", "lotTitre": "Préparation, études et installations", "designation": "Plans architecturaux + dépôt PC ou déclaration préalable", "unite": "U", "min": 600, "moy": 900, "max": 1800 },
-  { "code": "PREP-12", "lot": "PREP", "lotTitre": "Préparation, études et installations", "designation": "Protection chantier + ménage complet de fin de chantier", "unite": "F", "min": 800, "moy": 1450, "max": 2500 },
-
-  { "code": "RS-01", "lot": "RS", "lotTitre": "Revêtements de sols", "designation": "Pose carrelage sol standard (grès cérame 60×60, pose collée + joints)", "unite": "m²", "min": 50, "moy": 50, "max": 50 },
-  { "code": "RS-09", "lot": "RS", "lotTitre": "Revêtements de sols", "designation": "Pose parquet flottant standard", "unite": "m²", "min": 50, "moy": 50, "max": 50 },
-
-  { "code": "OCREN-01", "lot": "OCREN", "lotTitre": "Ouvrages complets — Rénovation", "designation": "SDB complète clé en main — dépose+étanchéité+carrelage+sanitaires+robinetterie", "unite": "m²", "min": 1200, "moy": 1850, "max": 3200 },
-  { "code": "OCREN-02", "lot": "OCREN", "lotTitre": "Ouvrages complets — Rénovation", "designation": "Cuisine complète clé en main — dépose+meubles+plan de travail+plomberie+élec", "unite": "ml", "min": 1100, "moy": 1650, "max": 3200 },
-  { "code": "OCREN-04", "lot": "OCREN", "lotTitre": "Ouvrages complets — Rénovation", "designation": "ITI complète prête à peindre — dépose+ossature métallique+LV GR32+BA13", "unite": "m²", "min": 60, "moy": 90, "max": 135 },
-  { "code": "OCREN-07", "lot": "OCREN", "lotTitre": "Ouvrages complets — Rénovation", "designation": "Rénovation appartement complète (m² SHAB — hors cuisine et SDB)", "unite": "m²", "min": 1100, "moy": 1650, "max": 2800 },
-  { "code": "OCREN-08", "lot": "OCREN", "lotTitre": "Ouvrages complets — Rénovation", "designation": "Mur porteur clé en main — BET+étaiement+sciage+poutre+sommiers+coffrage BA13", "unite": "U", "min": 4500, "moy": 6500, "max": 11000 },
-  { "code": "OCREN-11", "lot": "OCREN", "lotTitre": "Ouvrages complets — Rénovation", "designation": "Électricité appartement complète — tableau NFC15100+distribution+CONSUEL", "unite": "m²", "min": 95, "moy": 155, "max": 280 },
-  { "code": "OCREN-12", "lot": "OCREN", "lotTitre": "Ouvrages complets — Rénovation", "designation": "Plomberie appartement complète — EF/ECS multicouche+EU/EV PVC+CES 100L", "unite": "m²", "min": 120, "moy": 185, "max": 320 },
-
-  { "code": "OCMOB-09", "lot": "OCMOB", "lotTitre": "Ouvrages complets — Maison Ossature Bois", "designation": "Extension MOB hors d'eau hors d'air — fondations+parois+toiture+menuiseries (SHON)", "unite": "m²", "min": 1350, "moy": 1850, "max": 2800 },
-  { "code": "OCMOB-10", "lot": "OCMOB", "lotTitre": "Ouvrages complets — Maison Ossature Bois", "designation": "Extension MOB clé en main TCE complète — HO-HA+plaquisterie+TCE (SHON)", "unite": "m²", "min": 2400, "moy": 3200, "max": 4800 }
+  {
+    "code": "CHAR-01",
+    "lot": "CHAR",
+    "lotTitre": "Charpente et couverture",
+    "designation": "Dépose partielle charpente/couverture (jonction extension)",
+    "unite": "U",
+    "min": 550,
+    "moy": 800,
+    "max": 1400
+  },
+  {
+    "code": "CHAR-02",
+    "lot": "CHAR",
+    "lotTitre": "Charpente et couverture",
+    "designation": "Reprise charpente-couverture extension (EP + gouttière)",
+    "unite": "U",
+    "min": 1400,
+    "moy": 1900,
+    "max": 3200
+  },
+  {
+    "code": "CHAR-03",
+    "lot": "CHAR",
+    "lotTitre": "Charpente et couverture",
+    "designation": "Gouttière zinc demi-ronde (crochets universels + crapaudines)",
+    "unite": "ml",
+    "min": 90,
+    "moy": 125,
+    "max": 200
+  },
+  {
+    "code": "CHAR-04",
+    "lot": "CHAR",
+    "lotTitre": "Charpente et couverture",
+    "designation": "Descente EP zinc (tubes + colliers + dauphin fonte peint)",
+    "unite": "ml",
+    "min": 75,
+    "moy": 110,
+    "max": 180
+  },
+  {
+    "code": "CHAR-05",
+    "lot": "CHAR",
+    "lotTitre": "Charpente et couverture",
+    "designation": "Charpente + couverture zinc extension (pigmenté ou naturel)",
+    "unite": "m²",
+    "min": 140,
+    "moy": 193.75,
+    "max": 320
+  },
+  {
+    "code": "CHAR-06",
+    "lot": "CHAR",
+    "lotTitre": "Charpente et couverture",
+    "designation": "Chéneau zinc carré (jonction extension/mur de clôture)",
+    "unite": "ml",
+    "min": 300,
+    "moy": 420,
+    "max": 700
+  },
+  {
+    "code": "CLO-01",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Niche de rangement encastrée en BA13 (par niche)",
+    "unite": "U",
+    "min": 250,
+    "moy": 350,
+    "max": 600
+  },
+  {
+    "code": "CLO-02",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Coffrage BA13 divers (poutre, soffite, WC suspendu)",
+    "unite": "U",
+    "min": 180,
+    "moy": 250,
+    "max": 420
+  },
+  {
+    "code": "CLO-06",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Faux-plafond acoustique BA13 + TECSOUND (spots LED intégrés)",
+    "unite": "m²",
+    "min": 60,
+    "moy": 80,
+    "max": 130
+  },
+  {
+    "code": "CLO-08",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Faux-plafond BA13 plan sur fourrures F47 (prêt à peindre)",
+    "unite": "m²",
+    "min": 55,
+    "moy": 75,
+    "max": 120
+  },
+  {
+    "code": "CLO-10",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Cloison 7cm BA13 phonique recto-verso sur rail métallique",
+    "unite": "F",
+    "min": 420,
+    "moy": 600,
+    "max": 980
+  },
+  {
+    "code": "CLO-11",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Cloison 7cm BA13 hydrofuge sur rail métallique (pièces humides)",
+    "unite": "F",
+    "min": 420,
+    "moy": 600,
+    "max": 980
+  },
+  {
+    "code": "CLO-12",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Doublage mur intérieur BA13 hydrofuge simple face",
+    "unite": "F",
+    "min": 130,
+    "moy": 190,
+    "max": 320
+  },
+  {
+    "code": "CLO-14",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Création demi-arche décorative BA13 sur ossature métallique",
+    "unite": "F",
+    "min": 170,
+    "moy": 250,
+    "max": 430
+  },
+  {
+    "code": "CLO-15",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Faux-plafond cuisine BA13 sur fourrures (prêt à peindre)",
+    "unite": "m²",
+    "min": 45,
+    "moy": 65,
+    "max": 105
+  },
+  {
+    "code": "CLO-16",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Cloison WC avec galandage (BA13 recto-verso + châssis encastré)",
+    "unite": "F",
+    "min": 550,
+    "moy": 790,
+    "max": 1300
+  },
+  {
+    "code": "CLO-17",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Coffrage bâti Geberit en BA13 hydrofuge (WC suspendu)",
+    "unite": "F",
+    "min": 130,
+    "moy": 190,
+    "max": 320
+  },
+  {
+    "code": "CLO-28",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Faux-plafond hydrofuge SDE/SDB (BA13H sur fourrures F47)",
+    "unite": "m²",
+    "min": 45,
+    "moy": 65,
+    "max": 105
+  },
+  {
+    "code": "CLO-30",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Enduit réparation fissure plafond suite dépose cloisons (ml)",
+    "unite": "ml",
+    "min": 7,
+    "moy": 10,
+    "max": 18
+  },
+  {
+    "code": "CLO-32",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Cloison 100mm double BA13 (Rw≥46dB, DTU 25.41)",
+    "unite": "m²",
+    "min": 80,
+    "moy": 110,
+    "max": 175
+  },
+  {
+    "code": "CLO-33",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Faux-plafond rampant BA13 + laine de bois (combles aménagés)",
+    "unite": "m²",
+    "min": 60,
+    "moy": 85,
+    "max": 140
+  },
+  {
+    "code": "CLO-35",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Reprise plâtres suite dépose faïence ou crédence",
+    "unite": "m²",
+    "min": 30,
+    "moy": 45,
+    "max": 75
+  },
+  {
+    "code": "CVC-01",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Split RDC inverter A++ + unité ext. (fourniture + pose + mise en service)",
+    "unite": "U",
+    "min": 2500,
+    "moy": 3500,
+    "max": 6500
+  },
+  {
+    "code": "CVC-02",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Split chambre inverter A++ (fourniture + pose + mise en service)",
+    "unite": "U",
+    "min": 1800,
+    "moy": 2500,
+    "max": 4500
+  },
+  {
+    "code": "CVC-05",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Modification installation chauffage existante (dévoiement)",
+    "unite": "ens",
+    "min": 650,
+    "moy": 960,
+    "max": 1800
+  },
+  {
+    "code": "CVC-06",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Dépose + réinstallation chaudière (purge + raccordements)",
+    "unite": "U",
+    "min": 500,
+    "moy": 715,
+    "max": 1300
+  },
+  {
+    "code": "CVC-10",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Split mural monosplit inverter 2,5kW A+++ — Daikin FTXM25R/RXM25R ou Mitsubishi MSZ-AP25VGK/MUZ-AP25VG ou Atlantic ASYG09KMCE/AOYG09KMCE ou Hitachi RAK-25RPE/RAC-25WPE — fourniture + pose + mise en service",
+    "unite": "U",
+    "min": 2200,
+    "moy": 3200,
+    "max": 5500
+  },
+  {
+    "code": "CVC-11",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Split mural monosplit inverter 3,5kW A+++ — Daikin FTXM35R/RXM35R ou Mitsubishi MSZ-AP35VGK/MUZ-AP35VG ou Atlantic ASYG12KMCE/AOYG12KMCE ou Hitachi RAK-35RPE/RAC-35WPE — fourniture + pose + mise en service",
+    "unite": "U",
+    "min": 2600,
+    "moy": 3600,
+    "max": 6200
+  },
+  {
+    "code": "CVC-12",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Split mural monosplit inverter 5,0kW A+++ — Daikin FTXM50R/RXM50R ou Mitsubishi MSZ-AP50VGK/MUZ-AP50VG ou Atlantic ASYG18KMCE/AOYG18KMCE ou Hitachi RAK-50RPE/RAC-50WPE — fourniture + pose + mise en service",
+    "unite": "U",
+    "min": 3000,
+    "moy": 4100,
+    "max": 7000
+  },
+  {
+    "code": "CVC-13",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Split mural monosplit inverter 7,0kW A+++ — Daikin FTXM71R/RXM71R ou Mitsubishi MSZ-AP71VGK/MUZ-AP71VG ou Atlantic ASYG24KMCE/AOYG24KMCE ou Hitachi RAK-70RPE/RAC-70WPE — fourniture + pose + mise en service",
+    "unite": "U",
+    "min": 3500,
+    "moy": 4800,
+    "max": 8500
+  },
+  {
+    "code": "CVC-20",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Multi-split 2 pièces 2×2,5kW — Daikin 2MXM40A+2×CTXM25R ou Mitsubishi MXZ-2HA40VF+2×MSZ-AP25VGK ou Atlantic AOYG14KBTB+2×ASYG09KMCE ou Hitachi RAM-40NP2B+2×RAK-25RPE — fourniture + pose + mise en service",
+    "unite": "ens",
+    "min": 5200,
+    "moy": 7200,
+    "max": 12000
+  },
+  {
+    "code": "CVC-21",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Multi-split 3 pièces 3×2,5kW — Daikin 3MXM52A+3×CTXM25R ou Mitsubishi MXZ-3HA52VF+3×MSZ-AP25VGK ou Atlantic AOYG18KBTA3+3×ASYG09KMCE ou Hitachi RAM-55NP3B+3×RAK-25RPE — fourniture + pose + mise en service",
+    "unite": "ens",
+    "min": 7000,
+    "moy": 9500,
+    "max": 16000
+  },
+  {
+    "code": "CVC-22",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Multi-split 4 pièces 4×2,5kW — Daikin 4MXM68A+4×CTXM25R ou Mitsubishi MXZ-4HA83VF+4×MSZ-AP25VGK ou Atlantic AOYG24KBTA4+4×ASYG09KMCE ou Hitachi RAM-68NP4B+4×RAK-25RPE — fourniture + pose + mise en service",
+    "unite": "ens",
+    "min": 8500,
+    "moy": 11500,
+    "max": 19000
+  },
+  {
+    "code": "CVC-23",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Unité intérieure murale additionnelle multi-split — Daikin CTXM25R/35R ou Mitsubishi MSZ-AP25VGK/35VGK ou Atlantic ASYG09KMCE/12KMCE ou Hitachi RAK-25RPE/35RPE — fourniture + pose + raccordement",
+    "unite": "U",
+    "min": 1300,
+    "moy": 1800,
+    "max": 3200
+  },
+  {
+    "code": "CVC-30",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Climatiseur console au sol 3,5kW A++ — Daikin FVXM35F/RXM35R ou Mitsubishi MFZ-KT35VG/MUZ-KT35VG ou Atlantic AGYG12KVCA/AOYG12KVCA ou Hitachi RPC-3.5FSNM/ROC-3.5FSNM — fourniture + pose + mise en service",
+    "unite": "U",
+    "min": 3000,
+    "moy": 4200,
+    "max": 7200
+  },
+  {
+    "code": "CVC-31",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Climatiseur gainable monozone 5,0kW — Daikin FDXS50F/RXS50L ou Mitsubishi SEZ-M50DA/SUZ-M50VA ou Atlantic ARXG18KMLA/AOYG18KBTB ou Hitachi RPI-5.0FSRE/RAS-5HVNPE — fourniture + pose + réseau soufflage/reprise + mise en service",
+    "unite": "U",
+    "min": 4200,
+    "moy": 5800,
+    "max": 9500
+  },
+  {
+    "code": "CVC-32",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Climatiseur gainable multizone 7,0kW 2-4 bouches — Daikin FDXS71F/RXS71L ou Mitsubishi SEZ-M71DA/SUZ-M71VA ou Atlantic ARXG24KMLA/AOYG24KBTB ou Hitachi RPI-7.0FSRE/RAS-7HVNPE — fourniture + pose + réseau complet + mise en service",
+    "unite": "U",
+    "min": 6000,
+    "moy": 8500,
+    "max": 14000
+  },
+  {
+    "code": "CVC-33",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Cassette plafond 4 directions 3,5kW — Daikin FCAHG35B/RXM35R ou Mitsubishi SLZ-M35FA/SUZ-M35VA ou Atlantic AUYG12LVLB/AOYG12KVCA ou Hitachi RCI-3.5XNPE/RAS-3HVNPE — fourniture + pose + mise en service",
+    "unite": "U",
+    "min": 2800,
+    "moy": 3900,
+    "max": 6500
+  },
+  {
+    "code": "CVC-40",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Liaison frigorifique cuivre isolée ≤3/8+1/2 — au mètre linéaire posé (aller + retour)",
+    "unite": "ml",
+    "min": 60,
+    "moy": 85,
+    "max": 150
+  },
+  {
+    "code": "CVC-41",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Liaison frigorifique cuivre isolée ≤1/2+5/8 — au mètre linéaire posé (aller + retour)",
+    "unite": "ml",
+    "min": 75,
+    "moy": 110,
+    "max": 190
+  },
+  {
+    "code": "CVC-42",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Goulotte PVC blanche 60×40mm habillage liaisons frigorifiques — pose murale",
+    "unite": "ml",
+    "min": 30,
+    "moy": 45,
+    "max": 80
+  },
+  {
+    "code": "CVC-43",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Support unité extérieure — console murale galva + chevilles chimiques + anti-vibratoires — pose façade",
+    "unite": "U",
+    "min": 120,
+    "moy": 180,
+    "max": 350
+  },
+  {
+    "code": "CVC-44",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Support unité extérieure — platine toit terrasse inox + lestage — pose toiture",
+    "unite": "U",
+    "min": 200,
+    "moy": 280,
+    "max": 520
+  },
+  {
+    "code": "CVC-45",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Conduit évacuation condensats PVC Ø22mm — depuis unité intérieure jusqu'à EU existante",
+    "unite": "ml",
+    "min": 22,
+    "moy": 35,
+    "max": 65
+  },
+  {
+    "code": "CVC-46",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Raccordement électrique dédié climatiseur — câble 3G2,5mm² + disjoncteur bipolaire 16A depuis tableau",
+    "unite": "U",
+    "min": 90,
+    "moy": 140,
+    "max": 260
+  },
+  {
+    "code": "CVC-47",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Carottage façade Ø80mm pour passage liaisons — rebouchage + manchon étanche (par traversée)",
+    "unite": "U",
+    "min": 45,
+    "moy": 65,
+    "max": 120
+  },
+  {
+    "code": "CVC-50",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Entretien annuel monosplit — nettoyage filtres + échangeurs + vérification pression + attestation F-Gaz (toutes marques)",
+    "unite": "U",
+    "min": 130,
+    "moy": 180,
+    "max": 320
+  },
+  {
+    "code": "CVC-51",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Entretien annuel multi-split — nettoyage 1 unité ext. + jusqu'à 4 unités int. + attestation (toutes marques)",
+    "unite": "U",
+    "min": 190,
+    "moy": 260,
+    "max": 480
+  },
+  {
+    "code": "CVC-52",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Entretien annuel gainable — nettoyage réseau gaines + filtres + vérification + attestation (toutes marques)",
+    "unite": "U",
+    "min": 280,
+    "moy": 380,
+    "max": 680
+  },
+  {
+    "code": "CVC-53",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Recharge fluide frigorigène R32 (300g) — détection fuite préalable incluse — attestation F-Gaz (compatible Daikin/Mitsubishi/Atlantic/Hitachi)",
+    "unite": "U",
+    "min": 200,
+    "moy": 290,
+    "max": 520
+  },
+  {
+    "code": "CVC-60",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Dépose monosplit existant — pompage fluide R32/R410A + dépose unités int./ext. + obturation — technicien certifié F-Gaz (toutes marques)",
+    "unite": "U",
+    "min": 280,
+    "moy": 380,
+    "max": 680
+  },
+  {
+    "code": "CVC-61",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Dépose multi-split existant — pompage + dépose complète jusqu'à 3 unités int. — technicien certifié F-Gaz (toutes marques)",
+    "unite": "U",
+    "min": 380,
+    "moy": 520,
+    "max": 950
+  },
+  {
+    "code": "CVC-70",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Unité intérieure condensation à eau invisible monosplit 7kW (24000 BTU) R32 — Tekno Point IDRA-24C (ISKV-24C9) — mono 220V — raccord eau 1/2\" — fourniture + pose + raccordement hydraulique + MSE",
+    "unite": "U",
+    "min": 3400,
+    "moy": 4150,
+    "max": 6500
+  },
+  {
+    "code": "CVC-71",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Unité intérieure condensation à eau invisible monosplit 10,5kW (35800 BTU) R32 — Tekno Point IDRA-36C (ISKV-36C9) — mono 220V — raccord eau 1/2\" — fourniture + pose + raccordement hydraulique + MSE",
+    "unite": "U",
+    "min": 4500,
+    "moy": 5500,
+    "max": 8000
+  },
+  {
+    "code": "CVC-72",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Gainable DC inverter 7kW froid+chaud (DUCT-24) — Tekno Point DUCT-24-V — mono 220V — liaisons frigo 1/4\"-5/8\" — fourniture + pose en faux-plafond + réseau + MSE",
+    "unite": "U",
+    "min": 1400,
+    "moy": 1800,
+    "max": 3000
+  },
+  {
+    "code": "CVC-73",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Gainable DC inverter 14kW froid+chaud (DUCT-48) — Tekno Point DUCT-36-48-V — triphasé 380V — liaisons frigo 3/8\"-3/4\" — fourniture + pose en faux-plafond + réseau + MSE",
+    "unite": "U",
+    "min": 1800,
+    "moy": 2400,
+    "max": 4200
+  },
+  {
+    "code": "CVC-74",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Kit régulation zonée AIRZONE 3 zones WiFi — Tekno Point KIT AIRZONE 3 WIFI : centrale Flexa 4.0 + 3x thermostats radio + 3x registres motorisés 150mm + bypass + serveur cloud — fourniture + pose + programmation + MSE",
+    "unite": "ens",
+    "min": 2500,
+    "moy": 3050,
+    "max": 4800
+  },
+  {
+    "code": "CVC-75",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Kit anti-coup de bélier hydraulique — Tekno Point KIT AWHAM — fourniture + pose sur réseau eau",
+    "unite": "U",
+    "min": 90,
+    "moy": 150,
+    "max": 220
+  },
+  {
+    "code": "CVC-76",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Réducteur de pression 3/4\" M-F avec manomètre et thermomètre intégrés — Tekno Point RID-PR2 — fourniture + pose",
+    "unite": "U",
+    "min": 160,
+    "moy": 200,
+    "max": 380
+  },
+  {
+    "code": "CVC-77",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Réducteur de pression 1\" M-F avec manomètre et thermomètre intégrés — Tekno Point RID-PR3 — fourniture + pose",
+    "unite": "U",
+    "min": 200,
+    "moy": 300,
+    "max": 450
+  },
+  {
+    "code": "CVC-78",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Vanne de sécurité hydraulique — Tekno Point VALSIC — fourniture + pose sur réseau eau",
+    "unite": "U",
+    "min": 90,
+    "moy": 150,
+    "max": 230
+  },
+  {
+    "code": "DEMO-01",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Décaissement terres végétales + chargement + évacuation",
+    "unite": "m³",
+    "min": 10,
+    "moy": 15,
+    "max": 25
+  },
+  {
+    "code": "DEMO-02",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Démolition dalle béton armé ép.20cm (outillage électroportatif)",
+    "unite": "m²",
+    "min": 45,
+    "moy": 70,
+    "max": 120
+  },
+  {
+    "code": "DEMO-03",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Fouille en rigole pour semelles filantes",
+    "unite": "ml",
+    "min": 25,
+    "moy": 35,
+    "max": 60
+  },
+  {
+    "code": "DEMO-04",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Terrassement + préparation sols (concassé, grave, géotextile)",
+    "unite": "m²",
+    "min": 50,
+    "moy": 75,
+    "max": 120
+  },
+  {
+    "code": "DEMO-05",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Dépose cuisine complète avec consignation réseaux EU/EF",
+    "unite": "F",
+    "min": 300,
+    "moy": 400,
+    "max": 700
+  },
+  {
+    "code": "DEMO-06",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Dépose parquet flottant + plinthes (mise à nu plancher porteur)",
+    "unite": "m²",
+    "min": 6,
+    "moy": 10,
+    "max": 18
+  },
+  {
+    "code": "DEMO-07",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Dépose carrelage sol + plinthes (mise à nu plancher porteur)",
+    "unite": "m²",
+    "min": 12,
+    "moy": 20,
+    "max": 35
+  },
+  {
+    "code": "DEMO-08",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Dépose cloisons non conservées + évacuation",
+    "unite": "F",
+    "min": 500,
+    "moy": 800,
+    "max": 1500
+  },
+  {
+    "code": "DEMO-09",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Dépose + curage WC avec consignation des réseaux",
+    "unite": "F",
+    "min": 150,
+    "moy": 250,
+    "max": 450
+  },
+  {
+    "code": "DEMO-10",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Dépose salle de bains complète (consignation + évacuation)",
+    "unite": "F",
+    "min": 600,
+    "moy": 900,
+    "max": 1800
+  },
+  {
+    "code": "DEMO-11",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Dépose soigneuse bloc-porte (conservation ou évacuation)",
+    "unite": "U",
+    "min": 40,
+    "moy": 70,
+    "max": 130
+  },
+  {
+    "code": "DEMO-12",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Dépose cloison avec bâti + porte (prix au mètre linéaire)",
+    "unite": "ml",
+    "min": 30,
+    "moy": 49,
+    "max": 80
+  },
+  {
+    "code": "DEMO-16",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Dépose carrelage faïence mural + plan de travail",
+    "unite": "F",
+    "min": 120,
+    "moy": 190,
+    "max": 350
+  },
+  {
+    "code": "DEMO-17",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Dépose cheminée + coffrage + évacuation",
+    "unite": "F",
+    "min": 280,
+    "moy": 420,
+    "max": 700
+  },
+  {
+    "code": "DEMO-19",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Dépose plafond suspendu en lames PVC",
+    "unite": "m²",
+    "min": 8,
+    "moy": 15,
+    "max": 25
+  },
+  {
+    "code": "DEMO-22",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Dépose SDB complète (receveur, vasque, mitigeur)",
+    "unite": "F",
+    "min": 300,
+    "moy": 450,
+    "max": 800
+  },
+  {
+    "code": "DEMO-23",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Dépose faïences murales (burinage + mise à nu support)",
+    "unite": "F",
+    "min": 120,
+    "moy": 200,
+    "max": 380
+  },
+  {
+    "code": "DEMO-26",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Dépose doublages BA13 muraux (pour ITI)",
+    "unite": "m²",
+    "min": 12,
+    "moy": 20,
+    "max": 35
+  },
+  {
+    "code": "DEMO-28",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Dépose sol global carrelage ou parquet",
+    "unite": "m²",
+    "min": 6,
+    "moy": 10,
+    "max": 20
+  },
+  {
+    "code": "DEMO-35",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Dépose radiateur existant + obturation raccords",
+    "unite": "U",
+    "min": 35,
+    "moy": 52.5,
+    "max": 90
+  },
+  {
+    "code": "DEMO-43",
+    "lot": "DEMO",
+    "lotTitre": "Démolition et dépose",
+    "designation": "Piochage intégral enduits façade + grillage galvanisé anti-fissure",
+    "unite": "U",
+    "min": 8000,
+    "moy": 13896,
+    "max": 20000
+  },
+  {
+    "code": "EL-01",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Distribution électrique générale semi-encastrée (NFC15100)",
+    "unite": "U",
+    "min": 1000,
+    "moy": 1400,
+    "max": 2400
+  },
+  {
+    "code": "EL-02",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Prise PC-16A+T (appareillage + raccordement, par prise)",
+    "unite": "U",
+    "min": 35,
+    "moy": 50,
+    "max": 90
+  },
+  {
+    "code": "EL-03",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Point lumineux (sortie de fil plafond ou applique murale)",
+    "unite": "U",
+    "min": 85,
+    "moy": 120,
+    "max": 200
+  },
+  {
+    "code": "EL-05",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "TGBT neuf appartement (Legrand/Schneider + CONSUEL inclus)",
+    "unite": "U",
+    "min": 2200,
+    "moy": 2900,
+    "max": 5000
+  },
+  {
+    "code": "EL-06",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Sèche-serviettes Atlantic Adélis 750W (ligne directe + pose)",
+    "unite": "U",
+    "min": 500,
+    "moy": 690,
+    "max": 1200
+  },
+  {
+    "code": "EL-08",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "TGBT complet maison 3 niveaux (GTL + 3 tableaux + CONSUEL)",
+    "unite": "F",
+    "min": 4000,
+    "moy": 5300,
+    "max": 9000
+  },
+  {
+    "code": "EL-09",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Alimentation PAC (ligne TGBT + sectionneur IP55 extérieur)",
+    "unite": "U",
+    "min": 600,
+    "moy": 800,
+    "max": 1400
+  },
+  {
+    "code": "EL-10",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Ligne dédiée moteur volet électrique (par volet)",
+    "unite": "U",
+    "min": 100,
+    "moy": 140,
+    "max": 240
+  },
+  {
+    "code": "EL-11",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Prise PC-16 RDC encastrée (Dooxie Legrand blanc)",
+    "unite": "U",
+    "min": 90,
+    "moy": 120,
+    "max": 200
+  },
+  {
+    "code": "EL-12",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Double prise PC-16 encastrée (Dooxie Legrand)",
+    "unite": "U",
+    "min": 100,
+    "moy": 140,
+    "max": 240
+  },
+  {
+    "code": "EL-13",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Triple prise PC-16 encastrée (Dooxie Legrand)",
+    "unite": "U",
+    "min": 120,
+    "moy": 160,
+    "max": 270
+  },
+  {
+    "code": "EL-15",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Prise PC-20 spécialisée (LV, SL, frigo, ligne directe dédiée)",
+    "unite": "U",
+    "min": 90,
+    "moy": 120,
+    "max": 200
+  },
+  {
+    "code": "EL-16",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Prise PC-32A plaque de cuisson (câble 6mm², disjoncteur 32A)",
+    "unite": "U",
+    "min": 100,
+    "moy": 140,
+    "max": 240
+  },
+  {
+    "code": "EL-18",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Sortie de fil plafond RDC (suspension ou plafonnier)",
+    "unite": "U",
+    "min": 80,
+    "moy": 110,
+    "max": 190
+  },
+  {
+    "code": "EL-22",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Interrupteur simple RDC (Dooxie Legrand blanc)",
+    "unite": "U",
+    "min": 95,
+    "moy": 130,
+    "max": 220
+  },
+  {
+    "code": "EL-24",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Interrupteur va-et-vient RDC",
+    "unite": "U",
+    "min": 100,
+    "moy": 140,
+    "max": 240
+  },
+  {
+    "code": "EL-29",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Prise RJ45 cat.6 RDC (câblée sur coffret VDI)",
+    "unite": "U",
+    "min": 110,
+    "moy": 150,
+    "max": 260
+  },
+  {
+    "code": "EL-31",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Boîtier multimédia VDI 8 pots encastré (grade 2/3)",
+    "unite": "U",
+    "min": 130,
+    "moy": 180,
+    "max": 320
+  },
+  {
+    "code": "EL-32",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Spot LED encastré Ø85mm 3000K IRC≥80 (pièces sèches)",
+    "unite": "U",
+    "min": 350,
+    "moy": 480,
+    "max": 800
+  },
+  {
+    "code": "EL-33",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Spot LED étanche IP65 Ø85mm 3000K (pièces humides)",
+    "unite": "U",
+    "min": 175,
+    "moy": 240,
+    "max": 420
+  },
+  {
+    "code": "EL-36",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Électricité véranda (2 appliques IP44 + 2 PC16 + 1 interrupteur)",
+    "unite": "F",
+    "min": 600,
+    "moy": 800,
+    "max": 1400
+  },
+  {
+    "code": "EL-42",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Luminaire ou suspension au choix MOA (fourniture + pose)",
+    "unite": "U",
+    "min": 350,
+    "moy": 480,
+    "max": 850
+  },
+  {
+    "code": "ISO-01",
+    "lot": "ISO",
+    "lotTitre": "Isolation thermique",
+    "designation": "Doublage LV ISOVER GR32 ép.100mm + BA13 (R=3,15 m².K/W)",
+    "unite": "m²",
+    "min": 45,
+    "moy": 60,
+    "max": 90
+  },
+  {
+    "code": "ISO-02",
+    "lot": "ISO",
+    "lotTitre": "Isolation thermique",
+    "designation": "Doublage PU Placotherm 13+60 R=2,80 m².K/W collé",
+    "unite": "m²",
+    "min": 55,
+    "moy": 75,
+    "max": 115
+  },
+  {
+    "code": "ISO-03",
+    "lot": "ISO",
+    "lotTitre": "Isolation thermique",
+    "designation": "Doublage murs + rampants LV GR32 ép.100mm + BA13",
+    "unite": "m²",
+    "min": 50,
+    "moy": 70,
+    "max": 110
+  },
+  {
+    "code": "ISO-04",
+    "lot": "ISO",
+    "lotTitre": "Isolation thermique",
+    "designation": "Doublage ITI GR30 ép.9cm + BA13 + frein-vapeur INTELLO+",
+    "unite": "m²",
+    "min": 45,
+    "moy": 60,
+    "max": 90
+  },
+  {
+    "code": "ISO-06",
+    "lot": "ISO",
+    "lotTitre": "Isolation thermique",
+    "designation": "Doublage ossature bois 140mm + polyuréthane haute densité",
+    "unite": "m²",
+    "min": 75,
+    "moy": 105,
+    "max": 165
+  },
+  {
+    "code": "ISO-07",
+    "lot": "ISO",
+    "lotTitre": "Isolation thermique",
+    "designation": "Doublage ossature bois 140mm + laine de bois STEICO",
+    "unite": "m²",
+    "min": 75,
+    "moy": 105,
+    "max": 165
+  },
+  {
+    "code": "MAC-01",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Semelle filante béton armé C25/30 (0,40×0,50m)",
+    "unite": "U",
+    "min": 1800,
+    "moy": 2610,
+    "max": 4000
+  },
+  {
+    "code": "MAC-02",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Dalle pleine vide sanitaire ép.12cm (treillis ST15 + béton C25/30)",
+    "unite": "m²",
+    "min": 80,
+    "moy": 120,
+    "max": 200
+  },
+  {
+    "code": "MAC-05",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Plancher poutrelles précontraintes 12+4cm (DTU 23.1)",
+    "unite": "m²",
+    "min": 130,
+    "moy": 185,
+    "max": 280
+  },
+  {
+    "code": "MAC-06",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Plancher toit-terrasse poutrelles + entrevous (acrotère inclus)",
+    "unite": "m²",
+    "min": 130,
+    "moy": 185,
+    "max": 280
+  },
+  {
+    "code": "MAC-07",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Étanchéité toit-terrasse bicouche Soprema ou EPDM (DTU 43.1)",
+    "unite": "m²",
+    "min": 60,
+    "moy": 85,
+    "max": 140
+  },
+  {
+    "code": "MAC-08",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Couvertine aluminium prélaqué sur relevé d'acrotère",
+    "unite": "ml",
+    "min": 70,
+    "moy": 100,
+    "max": 160
+  },
+  {
+    "code": "MAC-09",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Naissance EP + descente EP + raccordement réseau drainage",
+    "unite": "ml",
+    "min": 80,
+    "moy": 115,
+    "max": 180
+  },
+  {
+    "code": "MAC-10",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Élévation maçonnée aggloméré 20×20×50 (joint bâtard)",
+    "unite": "m²",
+    "min": 45,
+    "moy": 65,
+    "max": 100
+  },
+  {
+    "code": "MAC-11",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Linteau béton armé 20×20 (ferraillage + coulage C20/25)",
+    "unite": "ml",
+    "min": 100,
+    "moy": 145,
+    "max": 220
+  },
+  {
+    "code": "MAC-14",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Chaînage horizontal plancher (agglo U + béton + HA)",
+    "unite": "ml",
+    "min": 45,
+    "moy": 65,
+    "max": 100
+  },
+  {
+    "code": "MAC-15",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Crépis façade taloché ou grésé (gobetis + corps + finition)",
+    "unite": "m²",
+    "min": 35,
+    "moy": 55,
+    "max": 90
+  },
+  {
+    "code": "MAC-16",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Escalier ext. béton balancé 6-7 marches (largeur ≤90cm)",
+    "unite": "U",
+    "min": 600,
+    "moy": 800,
+    "max": 1400
+  },
+  {
+    "code": "MAC-17",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Ouverture mur façade + pose poutre métal UPE/IPN (selon BET)",
+    "unite": "U",
+    "min": 1800,
+    "moy": 2590,
+    "max": 4500
+  },
+  {
+    "code": "MAC-18",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Terrasse haute béton armé (dalle + fondation + préparation)",
+    "unite": "U",
+    "min": 1000,
+    "moy": 1450,
+    "max": 2500
+  },
+  {
+    "code": "MAC-19",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Terrasse basse béton armé sur terre plein",
+    "unite": "U",
+    "min": 600,
+    "moy": 900,
+    "max": 1600
+  },
+  {
+    "code": "MAC-21",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Carrelage ext. anti-dérapant R11 (dalle pierre naturelle)",
+    "unite": "m²",
+    "min": 75,
+    "moy": 110,
+    "max": 180
+  },
+  {
+    "code": "MAC-23",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Chape fibrée + ragréage sol (ensemble du niveau, DTU 26.2)",
+    "unite": "m²",
+    "min": 20,
+    "moy": 30,
+    "max": 50
+  },
+  {
+    "code": "MAC-24",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Ragréage autonivelant fibré (niveau complémentaire, DTU 26.2)",
+    "unite": "m²",
+    "min": 15,
+    "moy": 25,
+    "max": 45
+  },
+  {
+    "code": "MAC-25",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Escalier béton armé 4 marches + sas (coffrage + coulage)",
+    "unite": "U",
+    "min": 1000,
+    "moy": 1490,
+    "max": 2500
+  },
+  {
+    "code": "MAC-29",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Dalle béton terre plein intérieur (ST25 + polyane 150µ)",
+    "unite": "m²",
+    "min": 80,
+    "moy": 115,
+    "max": 180
+  },
+  {
+    "code": "MAC-30",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Dalle béton terrasse extérieure (ST25 + grave drainante)",
+    "unite": "m²",
+    "min": 80,
+    "moy": 115,
+    "max": 180
+  },
+  {
+    "code": "MEN-02",
+    "lot": "MEN",
+    "lotTitre": "Menuiserie intérieure",
+    "designation": "Pose cuisine IKEA METOD (branchements + raccordements TCE)",
+    "unite": "F",
+    "min": 2000,
+    "moy": 2800,
+    "max": 4500
+  },
+  {
+    "code": "MEN-03",
+    "lot": "MEN",
+    "lotTitre": "Menuiserie intérieure",
+    "designation": "Bibliothèque MDF toute hauteur H≈275cm (bandeau LED inclus)",
+    "unite": "U",
+    "min": 3000,
+    "moy": 4250,
+    "max": 7000
+  },
+  {
+    "code": "MEN-05",
+    "lot": "MEN",
+    "lotTitre": "Menuiserie intérieure",
+    "designation": "Pont de lit MDF à peindre (penderies + éclairage tête de lit)",
+    "unite": "U",
+    "min": 2800,
+    "moy": 3800,
+    "max": 6500
+  },
+  {
+    "code": "MEN-06",
+    "lot": "MEN",
+    "lotTitre": "Menuiserie intérieure",
+    "designation": "Porte galandage âme pleine passage 65cm (inox brossé)",
+    "unite": "U",
+    "min": 1100,
+    "moy": 1490,
+    "max": 2500
+  },
+  {
+    "code": "MEN-07",
+    "lot": "MEN",
+    "lotTitre": "Menuiserie intérieure",
+    "designation": "Bibliothèque MDF placage chêne H≈275cm (bandeau LED)",
+    "unite": "U",
+    "min": 1400,
+    "moy": 1900,
+    "max": 3200
+  },
+  {
+    "code": "MEN-08",
+    "lot": "MEN",
+    "lotTitre": "Menuiserie intérieure",
+    "designation": "Repose porte mise en réserve (pose seule)",
+    "unite": "U",
+    "min": 80,
+    "moy": 130,
+    "max": 220
+  },
+  {
+    "code": "MEN-10",
+    "lot": "MEN",
+    "lotTitre": "Menuiserie intérieure",
+    "designation": "Porte coulissante rail applique à peindre passage 63cm",
+    "unite": "U",
+    "min": 230,
+    "moy": 320,
+    "max": 550
+  },
+  {
+    "code": "MEN-11",
+    "lot": "MEN",
+    "lotTitre": "Menuiserie intérieure",
+    "designation": "Porte galandage à peindre passage 73cm (châssis + quincaillerie)",
+    "unite": "U",
+    "min": 450,
+    "moy": 650,
+    "max": 1100
+  },
+  {
+    "code": "MEN-13",
+    "lot": "MEN",
+    "lotTitre": "Menuiserie intérieure",
+    "designation": "Fenêtre PVC + imposte basse fixe (DV 4/16/4 argon Uw≤1,30)",
+    "unite": "U",
+    "min": 900,
+    "moy": 1250,
+    "max": 2200
+  },
+  {
+    "code": "MEN-14",
+    "lot": "MEN",
+    "lotTitre": "Menuiserie intérieure",
+    "designation": "Velux 118×114 + stores opaque + solaire ext. + modif. charpente",
+    "unite": "F",
+    "min": 2400,
+    "moy": 3200,
+    "max": 5500
+  },
+  {
+    "code": "MEN-15",
+    "lot": "MEN",
+    "lotTitre": "Menuiserie intérieure",
+    "designation": "Velux remplacement 98×78 + store tamisant intérieur",
+    "unite": "F",
+    "min": 700,
+    "moy": 950,
+    "max": 1600
+  },
+  {
+    "code": "MEN-16",
+    "lot": "MEN",
+    "lotTitre": "Menuiserie intérieure",
+    "designation": "Fenêtre PVC DV 2 vantaux 129×80cm (4/16/4 argon)",
+    "unite": "U",
+    "min": 450,
+    "moy": 650,
+    "max": 1100
+  },
+  {
+    "code": "MEN-17",
+    "lot": "MEN",
+    "lotTitre": "Menuiserie intérieure",
+    "designation": "Porte intérieure LM Matild passage 73cm (fourniture + pose)",
+    "unite": "U",
+    "min": 380,
+    "moy": 550,
+    "max": 950
+  },
+  {
+    "code": "MEN-18",
+    "lot": "MEN",
+    "lotTitre": "Menuiserie intérieure",
+    "designation": "Porte coulissante bois galandage 63cm + quincaillerie design",
+    "unite": "U",
+    "min": 650,
+    "moy": 890,
+    "max": 1500
+  },
+  {
+    "code": "MEN-20",
+    "lot": "MEN",
+    "lotTitre": "Menuiserie intérieure",
+    "designation": "Remise en état escalier (décapage + sablage + peinture + vernis)",
+    "unite": "U",
+    "min": 1000,
+    "moy": 1400,
+    "max": 2500
+  },
+  {
+    "code": "MEX-01",
+    "lot": "MEX",
+    "lotTitre": "Menuiserie extérieure",
+    "designation": "Porte bois 1V + tierce fixe petits bois doucine (dito exist.)",
+    "unite": "U",
+    "min": 1200,
+    "moy": 1650,
+    "max": 2800
+  },
+  {
+    "code": "MEX-02",
+    "lot": "MEX",
+    "lotTitre": "Menuiserie extérieure",
+    "designation": "Porte alu 1V thermolaquée RAL (vert lichen ou autre)",
+    "unite": "U",
+    "min": 1300,
+    "moy": 1800,
+    "max": 3200
+  },
+  {
+    "code": "MEX-06",
+    "lot": "MEX",
+    "lotTitre": "Menuiserie extérieure",
+    "designation": "Velux toiture plate 78×98cm avec store intérieur DKL",
+    "unite": "U",
+    "min": 1000,
+    "moy": 1400,
+    "max": 2500
+  },
+  {
+    "code": "MEX-10",
+    "lot": "MEX",
+    "lotTitre": "Menuiserie extérieure",
+    "designation": "Fenêtre bois 2V SP10 petits bois (dito menuiseries existantes)",
+    "unite": "U",
+    "min": 550,
+    "moy": 755,
+    "max": 1400
+  },
+  {
+    "code": "MEX-11",
+    "lot": "MEX",
+    "lotTitre": "Menuiserie extérieure",
+    "designation": "Store roulant micro-perforé L=135cm (fourniture + pose)",
+    "unite": "U",
+    "min": 90,
+    "moy": 126.25,
+    "max": 220
+  },
+  {
+    "code": "MP-01",
+    "lot": "MP",
+    "lotTitre": "Murs porteurs",
+    "designation": "Découpe mur porteur scie diamant + étaiement bastaings",
+    "unite": "U",
+    "min": 1000,
+    "moy": 1460,
+    "max": 2500
+  },
+  {
+    "code": "MP-02",
+    "lot": "MP",
+    "lotTitre": "Murs porteurs",
+    "designation": "Sommier BA (coffrage + ferraillage + SikaGrout sans retrait)",
+    "unite": "U",
+    "min": 800,
+    "moy": 1130,
+    "max": 1800
+  },
+  {
+    "code": "MP-04",
+    "lot": "MP",
+    "lotTitre": "Murs porteurs",
+    "designation": "Coffrage BA13 PLACOFLAMM CF1h poutre + bandes calicots",
+    "unite": "U",
+    "min": 550,
+    "moy": 830,
+    "max": 1400
+  },
+  {
+    "code": "MP-05",
+    "lot": "MP",
+    "lotTitre": "Murs porteurs",
+    "designation": "Dépose cloison porteuse (étaiement + IPN + 2 sommiers + coffrage BA13)",
+    "unite": "F",
+    "min": 3200,
+    "moy": 4960,
+    "max": 8000
+  },
+  {
+    "code": "MP-06",
+    "lot": "MP",
+    "lotTitre": "Murs porteurs",
+    "designation": "Renforcement mur porteur (étaiement lourd + HEA + matage mortier)",
+    "unite": "ml",
+    "min": 600,
+    "moy": 900,
+    "max": 1500
+  },
+  {
+    "code": "MSM-01",
+    "lot": "MSM",
+    "lotTitre": "Mobilier sur mesure (postes legacy)",
+    "designation": "Vestiaire sur-mesure MDF laqué (LED intégré + tiroirs push)",
+    "unite": "U",
+    "min": 4500,
+    "moy": 6500,
+    "max": 12000
+  },
+  {
+    "code": "MSM-03",
+    "lot": "MSM",
+    "lotTitre": "Mobilier sur mesure (postes legacy)",
+    "designation": "Bibliothèque + porte coulissante miroir sur-mesure (ébéniste)",
+    "unite": "U",
+    "min": 3500,
+    "moy": 4900,
+    "max": 8500
+  },
+  {
+    "code": "MSM-05",
+    "lot": "MSM",
+    "lotTitre": "Mobilier sur mesure (postes legacy)",
+    "designation": "Tête de lit sur-mesure MDF à peindre (fixation murale renforcée)",
+    "unite": "U",
+    "min": 900,
+    "moy": 1280,
+    "max": 2400
+  },
+  {
+    "code": "OCMOB-01",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Paroi ext. MOB R=3,80 — KVH145+LB 145mm+OSB+pare-pluie+bardage douglas",
+    "unite": "m²",
+    "min": 195,
+    "moy": 285,
+    "max": 420
+  },
+  {
+    "code": "OCMOB-02",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Paroi ext. MOB R=5,50 — KVH200+ouate cellulose+Shou Sugi Ban carbonisé",
+    "unite": "m²",
+    "min": 295,
+    "moy": 420,
+    "max": 640
+  },
+  {
+    "code": "OCMOB-03",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Refend MOB porteur — KVH120+LR MW 120mm+BA13 double face",
+    "unite": "m²",
+    "min": 115,
+    "moy": 175,
+    "max": 265
+  },
+  {
+    "code": "OCMOB-04",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Plancher bois entre niveaux — solives KVH+LB 100mm+chape sèche Fermacell",
+    "unite": "m²",
+    "min": 130,
+    "moy": 195,
+    "max": 300
+  },
+  {
+    "code": "OCMOB-05",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Plancher bas hors sol — plots béton+KVH 220mm+ouate 200mm+Fermacell",
+    "unite": "m²",
+    "min": 165,
+    "moy": 245,
+    "max": 380
+  },
+  {
+    "code": "OCMOB-06",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Toiture inclinée bois ≥20% — charpente+PIR sarking 120mm+tuiles TC",
+    "unite": "m²",
+    "min": 245,
+    "moy": 365,
+    "max": 560
+  },
+  {
+    "code": "OCMOB-07",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Toiture terrasse accessible — CLT 100mm+PIR 160mm+EPDM+dalles plots",
+    "unite": "m²",
+    "min": 285,
+    "moy": 420,
+    "max": 650
+  },
+  {
+    "code": "OCMOB-08",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Toiture zinc joint debout ≥3% — OSB4+Solitex WA++Rheinzink 0,70mm",
+    "unite": "m²",
+    "min": 210,
+    "moy": 310,
+    "max": 480
+  },
+  {
+    "code": "OCMOB-09",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Extension MOB hors d'eau hors d'air — fondations+parois+toiture+menuiseries (SHON)",
+    "unite": "m²",
+    "min": 1350,
+    "moy": 1850,
+    "max": 2800
+  },
+  {
+    "code": "OCMOB-10",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Extension MOB clé en main TCE complète — HO-HA+plaquisterie+TCE (SHON)",
+    "unite": "m²",
+    "min": 2400,
+    "moy": 3200,
+    "max": 4800
+  },
+  {
+    "code": "OCMOB-11",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Surélévation MOB hors d'eau hors d'air — dépose+sablière LVL+levage grue (SHON)",
+    "unite": "m²",
+    "min": 1750,
+    "moy": 2400,
+    "max": 3800
+  },
+  {
+    "code": "OCMOB-12",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Surélévation MOB clé en main TCE — HO-HA+TCE+escalier (SHON)",
+    "unite": "m²",
+    "min": 3200,
+    "moy": 4200,
+    "max": 6500
+  },
+  {
+    "code": "OCREN-01",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "SDB complète clé en main — dépose+étanchéité+carrelage+sanitaires+robinetterie",
+    "unite": "m²",
+    "min": 1200,
+    "moy": 1850,
+    "max": 3200
+  },
+  {
+    "code": "OCREN-02",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "Cuisine complète clé en main — dépose+meubles+plan de travail+plomberie+élec",
+    "unite": "ml",
+    "min": 1100,
+    "moy": 1650,
+    "max": 3200
+  },
+  {
+    "code": "OCREN-03",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "WC complet — bâti Geberit+cuvette+faïence+coffrage+raccordements",
+    "unite": "U",
+    "min": 2200,
+    "moy": 3200,
+    "max": 5500
+  },
+  {
+    "code": "OCREN-04",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "ITI complète prête à peindre — dépose+ossature métallique+LV GR32+BA13",
+    "unite": "m²",
+    "min": 60,
+    "moy": 90,
+    "max": 135
+  },
+  {
+    "code": "OCREN-05",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "ITE enduit sur isolant — piochage+PSE 100mm+sous-enduit armé+finition W2",
+    "unite": "m²",
+    "min": 135,
+    "moy": 195,
+    "max": 320
+  },
+  {
+    "code": "OCREN-06",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "Réfection pièce de vie — dépose sol+ragréage+parquet+peinture murs+plafond",
+    "unite": "m²",
+    "min": 210,
+    "moy": 320,
+    "max": 520
+  },
+  {
+    "code": "OCREN-07",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "Rénovation appartement complète (m² SHAB — hors cuisine et SDB)",
+    "unite": "m²",
+    "min": 1100,
+    "moy": 1650,
+    "max": 2800
+  },
+  {
+    "code": "OCREN-08",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "Mur porteur clé en main — BET+étaiement+sciage+poutre+sommiers+coffrage BA13",
+    "unite": "U",
+    "min": 4500,
+    "moy": 6500,
+    "max": 11000
+  },
+  {
+    "code": "OCREN-09",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "Ravalement complet — piochage+enduit 3 passes+modénatures+peinture bois",
+    "unite": "m²",
+    "min": 185,
+    "moy": 280,
+    "max": 450
+  },
+  {
+    "code": "OCREN-10",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "Remplacement menuiseries ext. — dépose+alu RPT DV argon+calfeutrement",
+    "unite": "m²",
+    "min": 750,
+    "moy": 1100,
+    "max": 1800
+  },
+  {
+    "code": "OCREN-11",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "Électricité appartement complète — tableau NFC15100+distribution+CONSUEL",
+    "unite": "m²",
+    "min": 95,
+    "moy": 155,
+    "max": 280
+  },
+  {
+    "code": "OCREN-12",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "Plomberie appartement complète — EF/ECS multicouche+EU/EV PVC+CES 100L",
+    "unite": "m²",
+    "min": 120,
+    "moy": 185,
+    "max": 320
+  },
+  {
+    "code": "PEINT-01",
+    "lot": "PEINT",
+    "lotTitre": "Peinture",
+    "designation": "Peinture complète appartement (rebouchage + enduit + 2C mat)",
+    "unite": "U",
+    "min": 4000,
+    "moy": 5500,
+    "max": 9500
+  },
+  {
+    "code": "PEINT-02",
+    "lot": "PEINT",
+    "lotTitre": "Peinture",
+    "designation": "Peinture huisseries bois + mobilier + plinthes médium",
+    "unite": "U",
+    "min": 580,
+    "moy": 800,
+    "max": 1400
+  },
+  {
+    "code": "PEINT-03",
+    "lot": "PEINT",
+    "lotTitre": "Peinture",
+    "designation": "Peinture complète maison (enduit lissage + impression + 2C)",
+    "unite": "U",
+    "min": 4000,
+    "moy": 5500,
+    "max": 9500
+  },
+  {
+    "code": "PLO-01",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Conduit extraction VMC façade (carottage + manchon + grille)",
+    "unite": "U",
+    "min": 600,
+    "moy": 850,
+    "max": 1400
+  },
+  {
+    "code": "PLO-02",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Chauffe-eau Atlantic Lineo 100L pose murale (raccordements inclus)",
+    "unite": "U",
+    "min": 900,
+    "moy": 1200,
+    "max": 2000
+  },
+  {
+    "code": "PLO-03",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "VMC centralisée Aldes EasyHome hygro (3 pièces humides)",
+    "unite": "F",
+    "min": 1200,
+    "moy": 1600,
+    "max": 2800
+  },
+  {
+    "code": "PLO-04",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Distribution EF/ECS multicouche serti (par appareil)",
+    "unite": "U",
+    "min": 130,
+    "moy": 190,
+    "max": 320
+  },
+  {
+    "code": "PLO-05",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Évacuation PVC DN40 ou DN100 (par appareil sanitaire)",
+    "unite": "U",
+    "min": 160,
+    "moy": 230,
+    "max": 380
+  },
+  {
+    "code": "PLO-06",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Bâti-support Geberit DuoFix H=112cm + réservoir UP230",
+    "unite": "U",
+    "min": 320,
+    "moy": 450,
+    "max": 750
+  },
+  {
+    "code": "PLO-07",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "WC suspendu Geberit Renova Compact 48cm + abattant softclose",
+    "unite": "U",
+    "min": 700,
+    "moy": 950,
+    "max": 1600
+  },
+  {
+    "code": "PLO-08",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Mitigeur lavabo Grohe Essence S bronze (fourniture + pose)",
+    "unite": "U",
+    "min": 350,
+    "moy": 490,
+    "max": 850
+  },
+  {
+    "code": "PLO-09",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Porte douche pliante 70cm Mexen Mist-F (cuivre brossé)",
+    "unite": "U",
+    "min": 300,
+    "moy": 400,
+    "max": 700
+  },
+  {
+    "code": "PLO-10",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Receveur résine + bonde réglette extra-plate (fourniture + pose)",
+    "unite": "U",
+    "min": 320,
+    "moy": 450,
+    "max": 750
+  },
+  {
+    "code": "PLO-11",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Meuble sous-vasque 80cm 2 tiroirs (chêne Coast Evoke LM)",
+    "unite": "U",
+    "min": 350,
+    "moy": 490,
+    "max": 850
+  },
+  {
+    "code": "PLO-14",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Pack bâti Geberit DuoFix + cuvette Villeroy & Boch faible profondeur",
+    "unite": "U",
+    "min": 850,
+    "moy": 1150,
+    "max": 2000
+  },
+  {
+    "code": "PLO-15",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Ajustement réseaux douche + lave-mains (reconfiguration)",
+    "unite": "F",
+    "min": 650,
+    "moy": 900,
+    "max": 1600
+  },
+  {
+    "code": "PLO-16",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Étanchéité zone douche KERDI ou Sika (natte + bandes d'about)",
+    "unite": "F",
+    "min": 380,
+    "moy": 500,
+    "max": 850
+  },
+  {
+    "code": "PLO-17",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Receveur douche 90×80cm + bonde extra-plate (fourniture seule)",
+    "unite": "U",
+    "min": 550,
+    "moy": 740,
+    "max": 1300
+  },
+  {
+    "code": "PLO-19",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Receveur douche 140×90cm + bonde extra-plate (fourniture seule)",
+    "unite": "U",
+    "min": 350,
+    "moy": 470,
+    "max": 850
+  },
+  {
+    "code": "PLO-25",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Paroi douche fixe 80cm profilé doré brossé (fourniture seule)",
+    "unite": "U",
+    "min": 430,
+    "moy": 590,
+    "max": 1050
+  },
+  {
+    "code": "PLO-28",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Meuble vasque suspendu Panthéon ou équivalent (pose incluse)",
+    "unite": "U",
+    "min": 520,
+    "moy": 720,
+    "max": 1300
+  },
+  {
+    "code": "PLO-29",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Baignoire îlot ovale + robinet bain-douche de plage Châtelet",
+    "unite": "U",
+    "min": 1200,
+    "moy": 1600,
+    "max": 3000
+  },
+  {
+    "code": "PLO-30",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Réseau EV + EF pour WC en création (canalisations complètes)",
+    "unite": "U",
+    "min": 500,
+    "moy": 690,
+    "max": 1200
+  },
+  {
+    "code": "PLO-33",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Attente EF/EC + EU (par point — évier ou lave-mains)",
+    "unite": "U",
+    "min": 140,
+    "moy": 200,
+    "max": 340
+  },
+  {
+    "code": "PLO-42",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "VMC hygro compacte Aldes EasyHome 5-6 pièces humides",
+    "unite": "U",
+    "min": 1350,
+    "moy": 1850,
+    "max": 3200
+  },
+  {
+    "code": "PLO-44",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Réseaux EF/ECS complets (multicouche serti + réducteur pression)",
+    "unite": "ens",
+    "min": 1800,
+    "moy": 2500,
+    "max": 4500
+  },
+  {
+    "code": "PLO-45",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Réseaux EU/EV intérieurs en PVC (canalisations vidange)",
+    "unite": "ens",
+    "min": 420,
+    "moy": 600,
+    "max": 1100
+  },
+  {
+    "code": "PLO-52",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Robinet ext. mural (fourniture + pose + distribution EF)",
+    "unite": "U",
+    "min": 300,
+    "moy": 428.75,
+    "max": 750
+  },
+  {
+    "code": "PLO-60",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "PAC air-eau monoblock 6-8 kW chauffage+ECS R32 COP≥3,8 — Atlantic Extensa 6 AOYA06LALL ou Daikin Altherma 3 ERLA06DV3 ou Mitsubishi Ecodan PUHZ-SW50VHA — fourniture+pose+raccordements hydrauliques+MSE",
+    "unite": "U",
+    "min": 7000,
+    "moy": 9500,
+    "max": 14000
+  },
+  {
+    "code": "PLO-61",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "PAC air-eau monoblock 10-12 kW chauffage+ECS R32 COP≥3,5 — Atlantic Extensa 12 AOYA12LALL ou Daikin Altherma 3 ERLA12DV3 ou Mitsubishi Ecodan PUHZ-SW120VHA — fourniture+pose+raccordements hydrauliques+MSE",
+    "unite": "U",
+    "min": 9500,
+    "moy": 12500,
+    "max": 18000
+  },
+  {
+    "code": "PLO-62",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Ballon tampon hydraulique 200L — Atlantic Sauvegarde 200 ou Daikin BUH200GW ou Mitsubishi EHST20D-MEC — calorifugeage PU 50mm + raccordements — fourniture+pose",
+    "unite": "U",
+    "min": 2000,
+    "moy": 2800,
+    "max": 5000
+  },
+  {
+    "code": "PLO-63",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Groupe hydraulique PAC — circulateur Grundfos UPM3 ou Wilo Stratos Pico + vase 12L + soupape 3b + filtre maillage — fourniture+pose+raccordement",
+    "unite": "U",
+    "min": 850,
+    "moy": 1200,
+    "max": 2200
+  },
+  {
+    "code": "PLO-64",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Chaudière gaz condensation murale 24-28 kW ECS instantanée ErP A+ — Viessmann Vitodens 100-W B1HF024 ou Atlantic Naéa Condens 24 ou De Dietrich MCR3-24 — fourniture+pose+raccord gaz/eau/condensats+évacuation PPs Ø80/125+MSE",
+    "unite": "U",
+    "min": 4000,
+    "moy": 5500,
+    "max": 9000
+  },
+  {
+    "code": "PLO-65",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Chaudière gaz condensation sol 30-35 kW ErP A+ rendement 109% PCI — Viessmann Vitodens 200-W B2HF035 ou De Dietrich MCR5-34 ou Buderus Logamax Plus GB172i-35 — fourniture+pose+TCE+évacuation+MSE+1 an entretien inclus",
+    "unite": "U",
+    "min": 5500,
+    "moy": 7200,
+    "max": 12000
+  },
+  {
+    "code": "PLO-66",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Ballon ECS 200L inox couplé chaudière — Viessmann Vitocell 100-W CVAA200 ou Atlantic Corhydro 200 ou De Dietrich ST-160-E — calorifugeage+raccordement serpentin+MSE — fourniture+pose",
+    "unite": "U",
+    "min": 1200,
+    "moy": 1800,
+    "max": 3200
+  },
+  {
+    "code": "PLO-67",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Entretien annuel chaudière gaz — ramonage+réglage combustion+contrôle sécurités+attestation obligatoire (arrêté 15/09/2009) — compatible Viessmann/Atlantic/De Dietrich/toutes marques",
+    "unite": "U",
+    "min": 280,
+    "moy": 420,
+    "max": 750
+  },
+  {
+    "code": "PLO-68",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Ballon thermodynamique 200L COP≥2,9 mono 230V — Atlantic Calypso VM 200 (050302) ou Ariston Nuos Plus 200 ou Thermor Aeromax 4 200L — fourniture+pose+raccordements eau+électrique ligne dédiée 16A+MSE",
+    "unite": "U",
+    "min": 1800,
+    "moy": 2400,
+    "max": 4000
+  },
+  {
+    "code": "PLO-69",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Ballon thermodynamique 270L COP≥3,0 mono 230V — Atlantic Calypso VM 270 ou Thermor Aeromax 4 270L ou Stiebel Eltron WWK 301 — fourniture+pose+raccordements eau+électrique+MSE",
+    "unite": "U",
+    "min": 2200,
+    "moy": 2900,
+    "max": 5000
+  },
+  {
+    "code": "PLO-70",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Plancher chauffant hydraulique BT tubes PER Ø16 e=15cm — isolant PSE Noma Confort 20mm Knauf ou Uponor Uni Pipe PLUS ou Rehau RAUTHERM S — film polyane+agrafage DTU 65.14 — pose seule hors chape",
+    "unite": "m²",
+    "min": 40,
+    "moy": 55,
+    "max": 90
+  },
+  {
+    "code": "PLO-71",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Collecteur PCH 3-6 circuits vannes équilibrage+débitmètres+têtes thermo — Uponor Vario S ou Rehau Rautitan ou Giacomini R553 — fourniture+pose+équilibrage hydraulique",
+    "unite": "U",
+    "min": 1200,
+    "moy": 1800,
+    "max": 3200
+  },
+  {
+    "code": "PLO-72",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Chape fluide anhydrite ép.5cm sur plancher chauffant — Lafarge Agilia Sol A5 ou Chryso Self-sol ou Knauf FE50 — pompage+mise à niveau+mise à l'eau+contrôle humidité avant revêtement — fourniture+pose DTU 26.2",
+    "unite": "m²",
+    "min": 22,
+    "moy": 30,
+    "max": 55
+  },
+  {
+    "code": "PLO-73",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Vanne mélangeuse 3 voies+circulateur régulation PCH — Grundfos MAGNA3+vanne Watts Aquamix ou Wilo Yonos PICO+Oventrop Aquastrom — fourniture+pose+réglage courbe chauffe",
+    "unite": "U",
+    "min": 250,
+    "moy": 380,
+    "max": 700
+  },
+  {
+    "code": "PLO-74",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Radiateur acier tubulaire 500-1000W eau chaude — robinet thermostatique Danfoss RA2000 inclus — Zehnder Charleston 2-col H600 ou Acova Clarian TRD ou Runtal Rondal — fourniture+pose+raccordement+purge",
+    "unite": "U",
+    "min": 320,
+    "moy": 480,
+    "max": 950
+  },
+  {
+    "code": "PLO-75",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Radiateur acier tubulaire 1000-2000W eau chaude — robinet thermostatique+té de réglage — Zehnder Charleston 3-col H600 ou Acova Atoll ou Runtal Vertical — fourniture+pose+raccordement+purge",
+    "unite": "U",
+    "min": 480,
+    "moy": 680,
+    "max": 1400
+  },
+  {
+    "code": "PLO-76",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Sèche-serviettes eau chaude 500-750W — Zehnder Zeno H1217 ou Acova Kerberos Duo 750W ou Atlantic Adelis H750 — robinet thermostatique Danfoss RTD-N inclus — fourniture+pose+raccordement",
+    "unite": "U",
+    "min": 500,
+    "moy": 750,
+    "max": 1500
+  },
+  {
+    "code": "PLO-77",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Robinet thermostatique remplacement — Danfoss RA 2000 ou Oventrop Uni LD ou Giacomini R470 — fourniture+pose+purge+réglage (par radiateur)",
+    "unite": "U",
+    "min": 120,
+    "moy": 180,
+    "max": 350
+  },
+  {
+    "code": "PLO-78",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Adoucisseur eau bi-bloc 12-15L résine TH IDF 30-40°f — Fleck 5600SXT 12L ou BWT Perla Silk 12L ou Culligan Mark 89 — by-pass inox+sel 25kg inclus — fourniture+pose+raccordement+MSE",
+    "unite": "U",
+    "min": 1600,
+    "moy": 2200,
+    "max": 4000
+  },
+  {
+    "code": "PLO-79",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Entretien annuel adoucisseur — rechargement sel 25kg+contrôle TH+réglage capacité — compatible Fleck/BWT/Culligan/toutes marques",
+    "unite": "U",
+    "min": 120,
+    "moy": 180,
+    "max": 320
+  },
+  {
+    "code": "PLO-80",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Pompe de relevage EU — Grundfos Unilift KP250-A1 ou Wilo Drain TP50 ou SFA Saninivea — installation sous-sol/local technique — fourniture+pose+raccordement EU+alarme niveau",
+    "unite": "U",
+    "min": 580,
+    "moy": 850,
+    "max": 1600
+  },
+  {
+    "code": "PLO-81",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Disconnecteur anti-pollution type BA ou EA — Watts 007 DN20 ou Honeywell D06FN 3/4\" ou Socla Hydromat — conformité NF EN 1717 — fourniture+pose+test étanchéité",
+    "unite": "U",
+    "min": 200,
+    "moy": 320,
+    "max": 580
+  },
+  {
+    "code": "PLO-82",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Régulation multizone chauffage 3 zones WiFi+appli — Netatmo Smart NRH01+3x NVP-PRG ou Honeywell Evohome ATF600 ou Nest Thermostat 3e gén T3028EF — fourniture+pose+programmation+MSE",
+    "unite": "U",
+    "min": 1000,
+    "moy": 1400,
+    "max": 2600
+  },
+  {
+    "code": "PLO-83",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Désembouage circuit chauffage — Fernox F3 ou Sentinel X400+rinçage+inhibiteur Fernox F1 — fourniture produits+main d'oeuvre — avant remplacement chaudière ou PAC — toutes installations",
+    "unite": "U",
+    "min": 180,
+    "moy": 290,
+    "max": 550
+  },
+  {
+    "code": "PLO-84",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Mise en service installation chauffage — réglages températures départ/retour+courbes chauffe+équilibrage hydraulique+formation utilisateur — Atlantic/Daikin/Mitsubishi/Viessmann/De Dietrich ou toutes marques — main d'oeuvre seule",
+    "unite": "U",
+    "min": 260,
+    "moy": 380,
+    "max": 680
+  },
+  {
+    "code": "PREP-01",
+    "lot": "PREP",
+    "lotTitre": "Préparation, études et installations",
+    "designation": "Installation/repli de chantier (amenée, nettoyage, signalisation)",
+    "unite": "U",
+    "min": 1200,
+    "moy": 1600,
+    "max": 2500
+  },
+  {
+    "code": "PREP-02",
+    "lot": "PREP",
+    "lotTitre": "Préparation, études et installations",
+    "designation": "Location mini-pelle avec opérateur (journée complète, carburant inclus)",
+    "unite": "F",
+    "min": 1200,
+    "moy": 1800,
+    "max": 2800
+  },
+  {
+    "code": "PREP-03",
+    "lot": "PREP",
+    "lotTitre": "Préparation, études et installations",
+    "designation": "Évacuation gravats en décharge agréée (BSD CERFA inclus)",
+    "unite": "m³",
+    "min": 80,
+    "moy": 160,
+    "max": 220
+  },
+  {
+    "code": "PREP-04",
+    "lot": "PREP",
+    "lotTitre": "Préparation, études et installations",
+    "designation": "Rapport BET structure (notes de calcul, plans d'exécution)",
+    "unite": "U",
+    "min": 1500,
+    "moy": 1800,
+    "max": 3000
+  },
+  {
+    "code": "PREP-05",
+    "lot": "PREP",
+    "lotTitre": "Préparation, études et installations",
+    "designation": "Étude géotechnique de sol (mission G2 AVP ou G2 PRO)",
+    "unite": "U",
+    "min": 1200,
+    "moy": 1600,
+    "max": 2500
+  },
+  {
+    "code": "PREP-06",
+    "lot": "PREP",
+    "lotTitre": "Préparation, études et installations",
+    "designation": "Plans architecturaux + dépôt PC ou déclaration préalable",
+    "unite": "U",
+    "min": 600,
+    "moy": 900,
+    "max": 1800
+  },
+  {
+    "code": "PREP-07",
+    "lot": "PREP",
+    "lotTitre": "Préparation, études et installations",
+    "designation": "Constat huissier avant travaux (contradictoire MOA/syndic)",
+    "unite": "F",
+    "min": 350,
+    "moy": 490,
+    "max": 700
+  },
+  {
+    "code": "PREP-08",
+    "lot": "PREP",
+    "lotTitre": "Préparation, études et installations",
+    "designation": "Installation chantier (clôture, balisage, protection des ouvrages)",
+    "unite": "F",
+    "min": 400,
+    "moy": 600,
+    "max": 1200
+  },
+  {
+    "code": "PREP-09",
+    "lot": "PREP",
+    "lotTitre": "Préparation, études et installations",
+    "designation": "Évacuation gravois (déchetterie, transport inclus)",
+    "unite": "m³",
+    "min": 60,
+    "moy": 90,
+    "max": 150
+  },
+  {
+    "code": "PREP-12",
+    "lot": "PREP",
+    "lotTitre": "Préparation, études et installations",
+    "designation": "Protection chantier + ménage complet de fin de chantier",
+    "unite": "F",
+    "min": 800,
+    "moy": 1450,
+    "max": 2500
+  },
+  {
+    "code": "PREP-13",
+    "lot": "PREP",
+    "lotTitre": "Préparation, études et installations",
+    "designation": "Gestion déchets centre tri agréé (BSD CERFA numérique)",
+    "unite": "m³",
+    "min": 80,
+    "moy": 115,
+    "max": 180
+  },
+  {
+    "code": "PREP-14",
+    "lot": "PREP",
+    "lotTitre": "Préparation, études et installations",
+    "designation": "Dossier DP + autorisation domaine public pour échafaudage",
+    "unite": "F",
+    "min": 600,
+    "moy": 850,
+    "max": 1500
+  },
+  {
+    "code": "PREP-16",
+    "lot": "PREP",
+    "lotTitre": "Préparation, études et installations",
+    "designation": "Cantonnement base vie roulotte 4 compagnons (par mois)",
+    "unite": "U",
+    "min": 350,
+    "moy": 525,
+    "max": 800
+  },
+  {
+    "code": "PREP-24",
+    "lot": "PREP",
+    "lotTitre": "Préparation, études et installations",
+    "designation": "Mission BET structure complète (G2 PRO + plans + suivi chantier)",
+    "unite": "ens",
+    "min": 1800,
+    "moy": 2500,
+    "max": 5000
+  },
+  {
+    "code": "RAV-01",
+    "lot": "RAV",
+    "lotTitre": "Ravalement de façade",
+    "designation": "Échafaudage pied classe 4 (300kg/m², par m² façade, 3 mois)",
+    "unite": "m²",
+    "min": 22,
+    "moy": 32,
+    "max": 55
+  },
+  {
+    "code": "RAV-02",
+    "lot": "RAV",
+    "lotTitre": "Ravalement de façade",
+    "designation": "Pare-gravois filets mailles serrées (rétention chutes)",
+    "unite": "ml",
+    "min": 8,
+    "moy": 12,
+    "max": 22
+  },
+  {
+    "code": "RAV-05",
+    "lot": "RAV",
+    "lotTitre": "Ravalement de façade",
+    "designation": "Étanchéité cour EPDM 1,5mm + pare-vapeur + isolant PSE 10cm",
+    "unite": "m²",
+    "min": 150,
+    "moy": 210,
+    "max": 360
+  },
+  {
+    "code": "RM-01",
+    "lot": "RM",
+    "lotTitre": "Revêtements muraux",
+    "designation": "Faïence zellige WC bâti Geberit (forfait avec baguettes finition)",
+    "unite": "U",
+    "min": 280,
+    "moy": 390,
+    "max": 650
+  },
+  {
+    "code": "RM-03",
+    "lot": "RM",
+    "lotTitre": "Revêtements muraux",
+    "designation": "Faïence zellige douche toute hauteur + retours + crédence",
+    "unite": "F",
+    "min": 600,
+    "moy": 850,
+    "max": 1400
+  },
+  {
+    "code": "RM-04",
+    "lot": "RM",
+    "lotTitre": "Revêtements muraux",
+    "designation": "Carrelage mural granito 60×60 douche 2 pans (forfait)",
+    "unite": "U",
+    "min": 680,
+    "moy": 950,
+    "max": 1600
+  },
+  {
+    "code": "RM-07",
+    "lot": "RM",
+    "lotTitre": "Revêtements muraux",
+    "designation": "Faïence LUME BONE bâti Geberit + crédence évier (WC/buanderie)",
+    "unite": "F",
+    "min": 320,
+    "moy": 450,
+    "max": 750
+  },
+  {
+    "code": "RM-14",
+    "lot": "RM",
+    "lotTitre": "Revêtements muraux",
+    "designation": "Pose papier peint fourni client (encollage + pose + découpes)",
+    "unite": "F",
+    "min": 130,
+    "moy": 200,
+    "max": 380
+  },
+  {
+    "code": "RM-15",
+    "lot": "RM",
+    "lotTitre": "Revêtements muraux",
+    "designation": "Peinture murs (enduit lissage + impression + 2C satiné, DTU 59.1)",
+    "unite": "m²",
+    "min": 28,
+    "moy": 39,
+    "max": 60
+  },
+  {
+    "code": "RM-16",
+    "lot": "RM",
+    "lotTitre": "Revêtements muraux",
+    "designation": "Peinture plafond (enduit lissage + impression + 2C satiné)",
+    "unite": "m²",
+    "min": 22,
+    "moy": 30,
+    "max": 48
+  },
+  {
+    "code": "RM-17",
+    "lot": "RM",
+    "lotTitre": "Revêtements muraux",
+    "designation": "Peinture plafond mat (enduit lissage + impression + 2C mat)",
+    "unite": "m²",
+    "min": 32,
+    "moy": 45,
+    "max": 70
+  },
+  {
+    "code": "RM-19",
+    "lot": "RM",
+    "lotTitre": "Revêtements muraux",
+    "designation": "Peinture murs grandes surfaces velouté (séjour, cuisine)",
+    "unite": "m²",
+    "min": 25,
+    "moy": 35,
+    "max": 55
+  },
+  {
+    "code": "RM-21",
+    "lot": "RM",
+    "lotTitre": "Revêtements muraux",
+    "designation": "Mise en peinture porte (impression + ponçage + 2 couches satiné)",
+    "unite": "F",
+    "min": 95,
+    "moy": 140,
+    "max": 220
+  },
+  {
+    "code": "RM-23",
+    "lot": "RM",
+    "lotTitre": "Revêtements muraux",
+    "designation": "Préparation complète surfaces avant peinture (DTU 59.1)",
+    "unite": "m²",
+    "min": 12,
+    "moy": 19,
+    "max": 32
+  },
+  {
+    "code": "RM-24",
+    "lot": "RM",
+    "lotTitre": "Revêtements muraux",
+    "designation": "Peinture acrylique mat 2 couches finition (type A DTU 59.1)",
+    "unite": "m²",
+    "min": 20,
+    "moy": 29,
+    "max": 48
+  },
+  {
+    "code": "RM-28",
+    "lot": "RM",
+    "lotTitre": "Revêtements muraux",
+    "designation": "Peinture ferronneries ext. (antirouille + 2C glycéro laque)",
+    "unite": "ml",
+    "min": 40,
+    "moy": 61,
+    "max": 100
+  },
+  {
+    "code": "RM-29",
+    "lot": "RM",
+    "lotTitre": "Revêtements muraux",
+    "designation": "Peinture bois façade (lessivage + impression + 2C microporeuse)",
+    "unite": "U",
+    "min": 110,
+    "moy": 160,
+    "max": 270
+  },
+  {
+    "code": "RM-31",
+    "lot": "RM",
+    "lotTitre": "Revêtements muraux",
+    "designation": "Enduit façade monocouche 3 passes (gobetis + corps + finition W2)",
+    "unite": "m²",
+    "min": 110,
+    "moy": 155,
+    "max": 240
+  },
+  {
+    "code": "RS-01",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Chape allégée ciment ép.5cm CT-C25-F5 (parquet collé)",
+    "unite": "m²",
+    "min": 20,
+    "moy": 50,
+    "max": 50
+  },
+  {
+    "code": "RS-02",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Chape allégée granulats ép.5cm CT-C20-F4 (carrelage collé)",
+    "unite": "m²",
+    "min": 22,
+    "moy": 35,
+    "max": 55
+  },
+  {
+    "code": "RS-03",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Parquet contrecollé chêne naturel huilé (pose pont de bateau)",
+    "unite": "m²",
+    "min": 75,
+    "moy": 105,
+    "max": 165
+  },
+  {
+    "code": "RS-04",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Plinthe MDF H=10cm prête à peindre",
+    "unite": "ml",
+    "min": 10,
+    "moy": 15,
+    "max": 25
+  },
+  {
+    "code": "RS-05",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Carrelage sol hexagonal 21×18 grès céram (type Equipe Coimbra)",
+    "unite": "m²",
+    "min": 90,
+    "moy": 130,
+    "max": 200
+  },
+  {
+    "code": "RS-07",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Natte d'étanchéité Schluter KERDI zone douche (DTU 52.2)",
+    "unite": "U",
+    "min": 250,
+    "moy": 350,
+    "max": 600
+  },
+  {
+    "code": "RS-08",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Ragréage fibré autonivelant (ép. 3-10mm, planéité ≤3mm)",
+    "unite": "m²",
+    "min": 22,
+    "moy": 35,
+    "max": 60
+  },
+  {
+    "code": "RS-09",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Parquet toutes essences (fourniture + pose, sous-couche incluse)",
+    "unite": "m²",
+    "min": 60,
+    "moy": 50,
+    "max": 140
+  },
+  {
+    "code": "RS-10",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Carrelage sol 120×60 grès céram rectifié (Marazzi Travertino)",
+    "unite": "m²",
+    "min": 80,
+    "moy": 115,
+    "max": 190
+  },
+  {
+    "code": "RS-11",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Plinthe carrelage 6cm bord carré",
+    "unite": "ml",
+    "min": 10,
+    "moy": 15,
+    "max": 25
+  },
+  {
+    "code": "RS-12",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Carrelage sol 75×75 grès céram rectifié (Mystone berrici)",
+    "unite": "m²",
+    "min": 75,
+    "moy": 110,
+    "max": 180
+  },
+  {
+    "code": "RS-13",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Sol PVC clipsable LVT (Floorify chêne cognac + sous-couche IXPE)",
+    "unite": "m²",
+    "min": 70,
+    "moy": 100,
+    "max": 160
+  },
+  {
+    "code": "RS-14",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Carrelage ext. 120×60 R11 (travertino, terrasse ou véranda)",
+    "unite": "m²",
+    "min": 70,
+    "moy": 105,
+    "max": 175
+  },
+  {
+    "code": "RS-15",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Terre cuite ancienne dito existant (pose + colle + joint)",
+    "unite": "m²",
+    "min": 95,
+    "moy": 132.5,
+    "max": 220
+  },
+  {
+    "code": "SER-01",
+    "lot": "SER",
+    "lotTitre": "Serrurerie et métallerie",
+    "designation": "Clôture fer forgé barreaudage dito existant (fourniture + pose)",
+    "unite": "ml",
+    "min": 300,
+    "moy": 425,
+    "max": 750
+  },
+  {
+    "code": "SER-02",
+    "lot": "SER",
+    "lotTitre": "Serrurerie et métallerie",
+    "designation": "Portail fer forgé 90cm barreaudage dito existant (fourniture + pose)",
+    "unite": "ml",
+    "min": 380,
+    "moy": 515,
+    "max": 950
+  }
 ]
