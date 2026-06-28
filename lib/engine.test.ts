@@ -279,6 +279,51 @@ describe("clauseRevisionRequise", () => {
   });
 });
 
+describe("versDevisUpdate — ordre TCE et mentions", () => {
+  const L = (code: string): LigneDevis => ({
+    id: code,
+    code,
+    designation: code,
+    unite: "F",
+    puBase: 100,
+    gamme: "MOY",
+    qteBrute: 1,
+    coefQte: 1,
+    tva: 10,
+  });
+  const ordre = (lot: string) => ["DEMO", "PEINT"].indexOf(lot);
+
+  it("trie les lots selon ordreLot, quel que soit l'ordre de saisie", () => {
+    const out = versDevisUpdate([L("PEINT-01"), L("DEMO-01")], params(), (l) => l, ordre);
+    expect(out.lots.map((x) => x.title)).toEqual([
+      "Lot DEMO — DEMO",
+      "Lot PEINT — PEINT",
+    ]);
+  });
+
+  it("émet les mentions INCLUS/EXCLUS du lot", () => {
+    const out = versDevisUpdate(
+      [L("DEMO-01")],
+      params({ mentionsParLot: { DEMO: { inclus: "Évacuation incluse" } } }),
+      (l) => l,
+    );
+    expect(out.lots[0].mentions?.inclus).toBe("Évacuation incluse");
+  });
+});
+
+describe("calculerSynthese — résidu d'arrondi des imprévus", () => {
+  it("Σ baseHT par taux === Total HT exact (multi-taux)", () => {
+    const lignes: LigneDevis[] = [
+      { id: "a", code: "AD-1", designation: "a", unite: "F", puBase: 333.33, gamme: "MOY", qteBrute: 1, coefQte: 1, tva: 5.5 },
+      { id: "b", code: "AD-2", designation: "b", unite: "F", puBase: 333.34, gamme: "MOY", qteBrute: 1, coefQte: 1, tva: 10 },
+      { id: "c", code: "AD-3", designation: "c", unite: "F", puBase: 333.34, gamme: "MOY", qteBrute: 1, coefQte: 1, tva: 20 },
+    ];
+    const s = calculerSynthese(lignes, params({ tauxImprevus: 0.05 }), (l) => l);
+    const sommeBases = round2(s.tvaParTaux.reduce((acc, t) => acc + t.baseHT, 0));
+    expect(sommeBases).toBe(s.totalHT);
+  });
+});
+
 describe("parseDevisUpdate", () => {
   it("round-trip export → import (lignes équivalentes)", () => {
     const lignes: LigneDevis[] = [

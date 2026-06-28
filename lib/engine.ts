@@ -9,6 +9,7 @@ import type {
   Gamme,
   LigneCalculee,
   LigneDevis,
+  MentionsLot,
   ParametresDevis,
   PosteBPU,
   SyntheseDevis,
@@ -194,16 +195,22 @@ export function calculerSynthese(
     baseParTaux.set(l.tva, round2((baseParTaux.get(l.tva) ?? 0) + l.totalHT));
   }
 
-  const tvaParTaux: TotalTVA[] = [...baseParTaux.entries()]
-    .sort((a, b) => a[0] - b[0])
-    .map(([taux, basePostes]) => {
-      // Part d'imprévus attribuée à ce taux, au prorata.
-      const partImprevus =
-        htPostes > 0 ? round2(montantImprevus * (basePostes / htPostes)) : 0;
-      const baseHT = round2(basePostes + partImprevus);
-      const montantTVA = round2(baseHT * (taux / 100));
-      return { taux, baseHT, montantTVA };
-    });
+  // Imprévus répartis au prorata, le résidu d'arrondi étant affecté au dernier
+  // taux pour garantir Σ baseHT === totalHT au centime.
+  const tauxTries = [...baseParTaux.entries()].sort((a, b) => a[0] - b[0]);
+  let imprevusRestant = montantImprevus;
+  const tvaParTaux: TotalTVA[] = tauxTries.map(([taux, basePostes], i) => {
+    const partImprevus =
+      i === tauxTries.length - 1
+        ? round2(imprevusRestant)
+        : htPostes > 0
+          ? round2(montantImprevus * (basePostes / htPostes))
+          : 0;
+    imprevusRestant = round2(imprevusRestant - partImprevus);
+    const baseHT = round2(basePostes + partImprevus);
+    const montantTVA = round2(baseHT * (taux / 100));
+    return { taux, baseHT, montantTVA };
+  });
 
   const totalTVA = round2(tvaParTaux.reduce((s, t) => s + t.montantTVA, 0));
   const totalTTC = round2(totalHT + totalTVA);
@@ -253,11 +260,13 @@ export function versDevisUpdate(
   lignes: LigneDevis[],
   params: ParametresDevis,
   lotTitre: (lot: string) => string = (l) => l,
-): { lots: Array<{ title: string; items: object[] }> } {
-  const synthese = calculerSynthese(lignes, params, lotTitre);
+  ordreLot: (lot: string) => number = () => 0,
+): { lots: Array<{ title: string; mentions?: MentionsLot; items: object[] }> } {
+  const synthese = calculerSynthese(lignes, params, lotTitre, ordreLot);
   return {
     lots: synthese.parLot.map((lot) => ({
       title: `Lot ${lot.lot} — ${lot.lotTitre}`,
+      mentions: params.mentionsParLot?.[lot.lot],
       items: lot.lignes.map((l) => ({
         code: l.code,
         designation: l.designation,

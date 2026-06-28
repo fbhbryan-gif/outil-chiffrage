@@ -841,11 +841,31 @@ function Detaille({
     setParams((p) => ({ ...p, [k]: v }));
   }
 
+  // Vrai si la réf est encore celle qu'aurait produite genRef (non éditée à la main).
+  function refEstAuto(p: ParametresDevis): boolean {
+    return (
+      p.ref ===
+      genRef(p.client, versionDeRef(p.ref), new Date(p.dateEmission || isoToday()))
+    );
+  }
+
   function majClient(client: string) {
     setParams((p) => ({
       ...p,
       client,
-      ref: genRef(client, versionDeRef(p.ref), new Date(p.dateEmission || isoToday())),
+      ref: refEstAuto(p)
+        ? genRef(client, versionDeRef(p.ref), new Date(p.dateEmission || isoToday()))
+        : p.ref, // réf éditée manuellement : préservée
+    }));
+  }
+
+  function majDateEmission(date: string | undefined) {
+    setParams((p) => ({
+      ...p,
+      dateEmission: date,
+      ref: refEstAuto(p)
+        ? genRef(p.client, versionDeRef(p.ref), new Date(date || isoToday()))
+        : p.ref,
     }));
   }
 
@@ -907,7 +927,8 @@ function Detaille({
     setLignes((ls) =>
       ls.map((l) => {
         const cle = l.adHoc || l.code === "AD-HOC" ? "DIV" : l.code.split("-")[0];
-        if (cle !== lot || l.adHoc) return l;
+        // On épargne les postes hors BPU et les prix verrouillés (gamme sans effet).
+        if (cle !== lot || l.adHoc || isVerrouille(l.code)) return l;
         const poste = BPU_PAR_CODE.get(l.code);
         return poste ? { ...l, gamme, puBase: puBaseRetenu(poste, gamme) } : { ...l, gamme };
       }),
@@ -923,7 +944,7 @@ function Detaille({
   }
 
   function exporterJSON() {
-    const payload = versDevisUpdate(lignes, params, titreLot);
+    const payload = versDevisUpdate(lignes, params, titreLot, ordreDuLot);
     const txt = `[DEVIS_UPDATE]\n${JSON.stringify(payload)}\n[/DEVIS_UPDATE]`;
     const blob = new Blob([txt], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
@@ -1054,7 +1075,7 @@ function Detaille({
               className="input"
               type="date"
               value={params.dateEmission ?? ""}
-              onChange={(e) => setParam("dateEmission", e.target.value || undefined)}
+              onChange={(e) => majDateEmission(e.target.value || undefined)}
             />
           </Field>
           <Field label="Démarrage prévisionnel">
@@ -1115,7 +1136,7 @@ function Detaille({
         </div>
 
         {vueClient ? (
-          <VueClient synthese={synthese} eur={eur} />
+          <VueClient synthese={synthese} tauxImprevus={params.tauxImprevus} eur={eur} />
         ) : (
           <div className="overflow-x-auto rounded-md border border-marine-50">
             <table className="w-full min-w-[940px] text-sm">
@@ -1256,9 +1277,11 @@ function RecapPill({ label, value, strong }: { label: string; value: string; str
 /* ---- Vue consolidée client ---- */
 function VueClient({
   synthese,
+  tauxImprevus,
   eur,
 }: {
   synthese: ReturnType<typeof calculerSynthese>;
+  tauxImprevus: number;
   eur: Intl.NumberFormat;
 }) {
   // Regroupe par groupeClient si présent, sinon par intitulé de lot.
@@ -1290,6 +1313,16 @@ function VueClient({
             <tr>
               <td colSpan={2} className="px-3 py-6 text-center text-marine-700/60">
                 Aucun poste.
+              </td>
+            </tr>
+          )}
+          {synthese.montantImprevus > 0 && lignes.length > 0 && (
+            <tr className="border-b border-marine-50">
+              <td className="px-3 py-2 text-marine-900">
+                Imprévus / aléas ({Math.round(tauxImprevus * 1000) / 10} %)
+              </td>
+              <td className="px-3 py-2 text-right tabular-nums">
+                {eur.format(synthese.montantImprevus)}
               </td>
             </tr>
           )}
@@ -1679,7 +1712,7 @@ function LotRows({
         <td colSpan={2} className="px-3 py-1.5 text-xs font-semibold text-marine-900">
           Lot {lot.lot} — {lot.lotTitre}
         </td>
-        <td colSpan={5} className="px-2 py-1.5">
+        <td colSpan={6} className="px-2 py-1.5">
           {lot.lot !== "DIV" && (
             <span className="flex items-center gap-1 text-xs text-marine-700/70">
               Gamme du lot :
