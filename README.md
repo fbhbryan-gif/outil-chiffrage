@@ -19,8 +19,8 @@ npm install
 npm run dev
 ```
 
-Ouvrir http://localhost:3000. L'app démarre avec un **jeu de données BPU de
-démonstration** (`data/bpu.json`, ~18 postes réels).
+Ouvrir http://localhost:3000. L'app charge le **BPU LCB BAT v10**
+(`data/bpu.json`, **284 postes sur 20 lots**, généré depuis `data/BPU_v10.md`).
 
 ### Lancer les tests du moteur
 
@@ -84,7 +84,8 @@ Auth.js ou Clerk + une base (Vercel Postgres / Supabase).
 - [x] Moteur de chiffrage testé (TVA, markup, gammes, verrouillages, imprévus)
 - [x] Bibliothèque BPU + recherche + saisie de devis
 - [x] Export `[DEVIS_UPDATE]`
-- [ ] Import du BPU complet (Agencement, Composants)
+- [x] Import du BPU v10 complet (284 postes, 20 lots)
+- [ ] Onglets Agencement & SM (67) + Détail Composants (136) — cible v11
 - [ ] Exports Excel / PDF brandés (charte Luxe Discret)
 - [ ] Authentification multi-collaborateurs + persistance serveur
 - [ ] Phases suivantes : livrables, suivi chantier, contrats
