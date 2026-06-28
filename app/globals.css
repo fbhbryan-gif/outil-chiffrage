@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-creme text-marine-900 font-sans antialiased;
+}
+
+/* Liseré or sous les titres de section. */
+.rule-or {
+  @apply border-b-2 border-or;
+}
+
+/* Champs de saisie compacts et cohérents. */
+.input {
+  @apply w-full rounded-md border border-marine-50 bg-white px-2 py-1.5 text-sm
+         text-marine-900 outline-none transition
+         focus:border-or focus:ring-2 focus:ring-or/30;
+}
+
+.btn-or {
+  @apply inline-flex items-center justify-center gap-2 rounded-md bg-or px-3 py-2
+         text-sm font-semibold text-marine-900 transition hover:bg-or-dark
+         disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center rounded-md border border-marine-50
+         bg-white px-3 py-2 text-sm font-medium text-marine-700 transition
+         hover:border-or;
+}

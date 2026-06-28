@@ -1,0 +1,22 @@
+[
+  { "code": "PREP-01", "lot": "PREP", "lotTitre": "Préparation, études et installations", "designation": "Installation/repli de chantier (amenée, nettoyage, signalisation)", "unite": "U", "min": 1200, "moy": 1600, "max": 2500 },
+  { "code": "PREP-02", "lot": "PREP", "lotTitre": "Préparation, études et installations", "designation": "Location mini-pelle avec opérateur (journée complète, carburant inclus)", "unite": "F", "min": 1200, "moy": 1800, "max": 2800 },
+  { "code": "PREP-03", "lot": "PREP", "lotTitre": "Préparation, études et installations", "designation": "Évacuation gravats en décharge agréée (BSD CERFA inclus)", "unite": "m³", "min": 80, "moy": 160, "max": 220 },
+  { "code": "PREP-04", "lot": "PREP", "lotTitre": "Préparation, études et installations", "designation": "Rapport BET structure (notes de calcul, plans d'exécution)", "unite": "U", "min": 1500, "moy": 1800, "max": 3000 },
+  { "code": "PREP-06", "lot": "PREP", "lotTitre": "Préparation, études et installations", "designation": "Plans architecturaux + dépôt PC ou déclaration préalable", "unite": "U", "min": 600, "moy": 900, "max": 1800 },
+  { "code": "PREP-12", "lot": "PREP", "lotTitre": "Préparation, études et installations", "designation": "Protection chantier + ménage complet de fin de chantier", "unite": "F", "min": 800, "moy": 1450, "max": 2500 },
+
+  { "code": "RS-01", "lot": "RS", "lotTitre": "Revêtements de sols", "designation": "Pose carrelage sol standard (grès cérame 60×60, pose collée + joints)", "unite": "m²", "min": 50, "moy": 50, "max": 50 },
+  { "code": "RS-09", "lot": "RS", "lotTitre": "Revêtements de sols", "designation": "Pose parquet flottant standard", "unite": "m²", "min": 50, "moy": 50, "max": 50 },
+
+  { "code": "OCREN-01", "lot": "OCREN", "lotTitre": "Ouvrages complets — Rénovation", "designation": "SDB complète clé en main — dépose+étanchéité+carrelage+sanitaires+robinetterie", "unite": "m²", "min": 1200, "moy": 1850, "max": 3200 },
+  { "code": "OCREN-02", "lot": "OCREN", "lotTitre": "Ouvrages complets — Rénovation", "designation": "Cuisine complète clé en main — dépose+meubles+plan de travail+plomberie+élec", "unite": "ml", "min": 1100, "moy": 1650, "max": 3200 },
+  { "code": "OCREN-04", "lot": "OCREN", "lotTitre": "Ouvrages complets — Rénovation", "designation": "ITI complète prête à peindre — dépose+ossature métallique+LV GR32+BA13", "unite": "m²", "min": 60, "moy": 90, "max": 135 },
+  { "code": "OCREN-07", "lot": "OCREN", "lotTitre": "Ouvrages complets — Rénovation", "designation": "Rénovation appartement complète (m² SHAB — hors cuisine et SDB)", "unite": "m²", "min": 1100, "moy": 1650, "max": 2800 },
+  { "code": "OCREN-08", "lot": "OCREN", "lotTitre": "Ouvrages complets — Rénovation", "designation": "Mur porteur clé en main — BET+étaiement+sciage+poutre+sommiers+coffrage BA13", "unite": "U", "min": 4500, "moy": 6500, "max": 11000 },
+  { "code": "OCREN-11", "lot": "OCREN", "lotTitre": "Ouvrages complets — Rénovation", "designation": "Électricité appartement complète — tableau NFC15100+distribution+CONSUEL", "unite": "m²", "min": 95, "moy": 155, "max": 280 },
+  { "code": "OCREN-12", "lot": "OCREN", "lotTitre": "Ouvrages complets — Rénovation", "designation": "Plomberie appartement complète — EF/ECS multicouche+EU/EV PVC+CES 100L", "unite": "m²", "min": 120, "moy": 185, "max": 320 },
+
+  { "code": "OCMOB-09", "lot": "OCMOB", "lotTitre": "Ouvrages complets — Maison Ossature Bois", "designation": "Extension MOB hors d'eau hors d'air — fondations+parois+toiture+menuiseries (SHON)", "unite": "m²", "min": 1350, "moy": 1850, "max": 2800 },
+  { "code": "OCMOB-10", "lot": "OCMOB", "lotTitre": "Ouvrages complets — Maison Ossature Bois", "designation": "Extension MOB clé en main TCE complète — HO-HA+plaquisterie+TCE (SHON)", "unite": "m²", "min": 2400, "moy": 3200, "max": 4800 }
+]
