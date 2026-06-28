@@ -51,10 +51,23 @@ export interface LigneDevis {
   coefQte: number;
   /** Taux de TVA de la ligne. */
   tva: TauxTVA;
+  /** Quantité ferme : si true, le coefficient conservateur est ignoré (coef = 1). */
+  ferme?: boolean;
+  /** Pièce / zone d'affichage (métadonnée, n'influe pas sur le prix). */
+  zone?: string;
+  /** Groupe de consolidation côté client (ex. "Cuisine", "Salle de bains"). */
+  groupeClient?: string;
   /** Note interne (non destinée au client). */
   note?: string;
   /** Poste hors BPU créé à la volée. */
   adHoc?: boolean;
+}
+
+/** Mentions contractuelles d'un lot (Guide §8.3). Reprises sur les exports. */
+export interface MentionsLot {
+  inclus?: string;
+  exclus?: string;
+  conditions?: string;
 }
 
 /** Paramètres globaux du devis. */
@@ -74,6 +87,14 @@ export interface ParametresDevis {
    * 0 = aucun. Ex. 0.04 = +4 %.
    */
   tauxImprevus: number;
+  /** Surface SHAB/SHON de référence (m²), pour le ratio €/m². */
+  surfaceShab?: number;
+  /** Date d'émission de la version (ISO yyyy-mm-dd). */
+  dateEmission?: string;
+  /** Date prévisionnelle de démarrage du chantier (ISO). */
+  dateDemarragePrev?: string;
+  /** Mentions INCLUS/EXCLUS/CONDITIONS par code de lot. */
+  mentionsParLot?: Record<string, MentionsLot>;
 }
 
 /** Résultat calculé d'une ligne. */
@@ -113,4 +134,6 @@ export interface SyntheseDevis {
   tvaParTaux: TotalTVA[];
   totalTVA: number;
   totalTTC: number;
+  /** Ratio €/m² HT (Total HT / surface SHAB) si la surface est connue. */
+  ratioM2?: number;
 }

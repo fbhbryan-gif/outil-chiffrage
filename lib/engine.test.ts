@@ -2,9 +2,13 @@ import { describe, expect, it } from "vitest";
 import {
   calculerLigne,
   calculerSynthese,
+  clauseRevisionRequise,
   coefDefautPourUnite,
+  isVerrouille,
   ligneDepuisPoste,
+  parseDevisUpdate,
   puBaseRetenu,
+  regrouperParLot,
   round2,
   versDevisUpdate,
 } from "./engine";
@@ -45,9 +49,17 @@ const posteOCREN04: PosteBPU = {
 };
 
 describe("helpers", () => {
-  it("round2 gère les flottants", () => {
+  it("round2 gère les flottants et coalesce NaN → 0", () => {
     expect(round2(183.816)).toBe(183.82);
     expect(round2(0.1 + 0.2)).toBe(0.3);
+    expect(round2(NaN)).toBe(0);
+    expect(round2(Number("") * 2)).toBe(0);
+  });
+
+  it("isVerrouille repère RS-01/RS-09", () => {
+    expect(isVerrouille("RS-01")).toBe(true);
+    expect(isVerrouille("RS-09")).toBe(true);
+    expect(isVerrouille("OCREN-07")).toBe(false);
   });
 
   it("coefDefautPourUnite suit les règles §5.1", () => {
@@ -181,5 +193,113 @@ describe("versDevisUpdate", () => {
     expect(item.pu).toBe(50);
     expect(item.qty).toBe(21.6);
     expect(item.total).toBe(1080);
+  });
+});
+
+describe("calculerLigne — robustesse et ferme", () => {
+  const base: LigneDevis = {
+    id: "x",
+    code: "OCREN-04",
+    designation: "ITI",
+    unite: "m²",
+    puBase: 90,
+    gamme: "MOY",
+    qteBrute: 10,
+    coefQte: 1.08,
+    tva: 10,
+  };
+
+  it("ferme=true force le coefficient à 1", () => {
+    const c = calculerLigne({ ...base, ferme: true });
+    expect(c.qteAppliquee).toBe(10);
+    expect(c.totalHT).toBe(900);
+  });
+
+  it("coefQte/qteBrute invalides ne produisent pas de NaN", () => {
+    const c = calculerLigne({
+      ...base,
+      coefQte: NaN as unknown as number,
+      qteBrute: NaN as unknown as number,
+    });
+    expect(c.qteAppliquee).toBe(0);
+    expect(c.totalHT).toBe(0);
+  });
+});
+
+describe("regrouperParLot — ordre TCE et bucket Divers", () => {
+  const L = (code: string, adHoc = false): LigneDevis => ({
+    id: code,
+    code,
+    designation: code,
+    unite: "F",
+    puBase: 100,
+    gamme: "MOY",
+    qteBrute: 1,
+    coefQte: 1,
+    tva: 10,
+    adHoc,
+  });
+  const ordre = (lot: string) => ["DEMO", "RS", "PEINT"].indexOf(lot);
+
+  it("trie les lots selon l'ordre fourni, indépendamment de la saisie", () => {
+    const calc = [L("PEINT-01"), L("DEMO-01"), L("RS-01")].map(calculerLigne);
+    const lots = regrouperParLot(calc, (l) => l, ordre).map((g) => g.lot);
+    expect(lots).toEqual(["DEMO", "RS", "PEINT"]);
+  });
+
+  it("regroupe les postes hors BPU sous DIV en fin", () => {
+    const calc = [L("AD-HOC", true), L("DEMO-01")].map(calculerLigne);
+    const groupes = regrouperParLot(calc, (l) => l, ordre);
+    expect(groupes[groupes.length - 1].lot).toBe("DIV");
+    expect(groupes[groupes.length - 1].lotTitre).toMatch(/Divers/);
+  });
+});
+
+describe("calculerSynthese — ratio €/m²", () => {
+  it("calcule le ratio HT/surface quand surfaceShab est connue", () => {
+    const lignes: LigneDevis[] = [
+      { id: "1", code: "OCREN-07", designation: "Réno", unite: "m²", puBase: 1650, gamme: "MOY", qteBrute: 57, coefQte: 1, tva: 10, ferme: true },
+    ];
+    const s = calculerSynthese(lignes, params({ surfaceShab: 57 }), (l) => l);
+    expect(s.htPostes).toBe(94050); // 57 × 1650, sans coef
+    expect(s.ratioM2).toBe(1650);
+  });
+
+  it("ratio absent sans surface", () => {
+    const s = calculerSynthese([], params(), (l) => l);
+    expect(s.ratioM2).toBeUndefined();
+  });
+});
+
+describe("clauseRevisionRequise", () => {
+  it("vrai si démarrage > 6 mois après émission", () => {
+    expect(clauseRevisionRequise("2026-01-01", "2026-08-01")).toBe(true);
+    expect(clauseRevisionRequise("2026-01-01", "2026-05-01")).toBe(false);
+    expect(clauseRevisionRequise(undefined, "2026-08-01")).toBe(false);
+  });
+});
+
+describe("parseDevisUpdate", () => {
+  it("round-trip export → import (lignes équivalentes)", () => {
+    const lignes: LigneDevis[] = [
+      { id: "1", code: "OCREN-04", designation: "ITI", unite: "m²", puBase: 90, gamme: "MOY", qteBrute: 30, coefQte: 1.08, tva: 10 },
+    ];
+    const out = versDevisUpdate(lignes, params(), (l) => l);
+    const txt = `[DEVIS_UPDATE]\n${JSON.stringify(out)}\n[/DEVIS_UPDATE]`;
+    const re = parseDevisUpdate(txt);
+    expect(re).toHaveLength(1);
+    expect(re[0].code).toBe("OCREN-04");
+    expect(re[0].puBase).toBe(90); // pu source devient puBase
+    expect(re[0].qteBrute).toBe(32.4); // qty déjà chiffré
+    expect(re[0].coefQte).toBe(1); // pas de re-majoration
+    expect(re[0].tva).toBe(10);
+  });
+
+  it("marque AD-HOC et tolère l'absence de bloc", () => {
+    const re = parseDevisUpdate(
+      JSON.stringify({ lots: [{ items: [{ code: "AD-HOC", unit: "F", qty: 1, pu: 500, tva: 20 }] }] }),
+    );
+    expect(re[0].adHoc).toBe(true);
+    expect(re[0].tva).toBe(20);
   });
 });

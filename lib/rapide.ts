@@ -212,6 +212,55 @@ export function tvaSuggeree(type: TypeProjetRapide): TauxTVA {
   return 20;
 }
 
+/** Ouvrages d'amélioration énergétique (TVA 5,5 % si seuls, Guide §2.1). */
+export const CODES_ENERGETIQUES = new Set(["OCREN-04", "OCREN-05", "OCREN-09"]);
+
+/**
+ * TVA suggérée en tenant compte de la sélection : 5,5 % si le chantier est
+ * exclusivement énergétique (ITI/ITE/ravalement isolant), sinon règle par type.
+ */
+export function tvaSuggereeSelection(
+  type: TypeProjetRapide,
+  codesActifs: string[],
+): TauxTVA {
+  const reno = type === "renovation_appartement" || type === "renovation_maison";
+  if (
+    reno &&
+    codesActifs.length > 0 &&
+    codesActifs.every((c) => CODES_ENERGETIQUES.has(c))
+  ) {
+    return 5.5;
+  }
+  return tvaSuggeree(type);
+}
+
+/** Ouvrages dont le périmètre recouvre celui d'un autre (risque double-comptage). */
+const RECOUVREMENTS: Record<string, string[]> = {
+  // La rénovation globale au m² SHAB recouvre déjà la pièce de vie et les
+  // lots techniques pris séparément.
+  "OCREN-07": ["OCREN-06", "OCREN-11", "OCREN-12"],
+};
+
+/**
+ * Détecte les paires d'ouvrages cochés au périmètre recouvrant.
+ * Retourne des messages d'alerte (non bloquants) pour l'UI.
+ */
+export function detecterRecouvrements(codesActifs: string[]): string[] {
+  const set = new Set(codesActifs);
+  const msgs: string[] = [];
+  for (const [code, recouvre] of Object.entries(RECOUVREMENTS)) {
+    if (!set.has(code)) continue;
+    for (const r of recouvre) {
+      if (set.has(r)) {
+        const a = OUVRAGES_RAPIDE.find((o) => o.code === code)?.label ?? code;
+        const b = OUVRAGES_RAPIDE.find((o) => o.code === r)?.label ?? r;
+        msgs.push(`« ${a} » recouvre déjà « ${b} » — risque de double-comptage.`);
+      }
+    }
+  }
+  return msgs;
+}
+
 /** Sélection d'un ouvrage en mode rapide (code + quantité saisie). */
 export interface SelectionRapide {
   code: string;
@@ -233,7 +282,11 @@ export function genererLignesRapide(
     if (!sel.qte || sel.qte <= 0) continue;
     const poste = getPoste(sel.code);
     if (!poste) continue;
-    lignes.push(ligneDepuisPoste(poste, params, sel.qte));
+    const ligne = ligneDepuisPoste(poste, params, sel.qte);
+    // Ouvrage complet clé en main = quantité ferme : pas de coef conservateur.
+    ligne.coefQte = 1;
+    ligne.ferme = true;
+    lignes.push(ligne);
   }
   return lignes;
 }

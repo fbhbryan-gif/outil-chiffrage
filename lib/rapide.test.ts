@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
+  detecterRecouvrements,
   genererLignesRapide,
   ouvragesPourType,
   selectionsDefaut,
   tvaSuggeree,
+  tvaSuggereeSelection,
 } from "./rapide";
 import type { ParametresDevis, PosteBPU } from "./types";
 
@@ -53,6 +55,33 @@ describe("tvaSuggeree", () => {
   });
 });
 
+describe("tvaSuggereeSelection", () => {
+  it("5,5 % si la sélection rénovation est 100 % énergétique", () => {
+    expect(tvaSuggereeSelection("renovation_maison", ["OCREN-04"])).toBe(5.5);
+    expect(
+      tvaSuggereeSelection("renovation_maison", ["OCREN-04", "OCREN-05"]),
+    ).toBe(5.5);
+  });
+  it("10 % dès qu'un poste non énergétique est présent", () => {
+    expect(
+      tvaSuggereeSelection("renovation_appartement", ["OCREN-04", "OCREN-07"]),
+    ).toBe(10);
+  });
+  it("20 % hors rénovation même si énergétique", () => {
+    expect(tvaSuggereeSelection("extension", ["OCREN-04"])).toBe(20);
+  });
+});
+
+describe("detecterRecouvrements", () => {
+  it("alerte quand global + pièce de vie sont cochés ensemble", () => {
+    const msgs = detecterRecouvrements(["OCREN-07", "OCREN-06"]);
+    expect(msgs.length).toBeGreaterThan(0);
+  });
+  it("aucune alerte sans recouvrement", () => {
+    expect(detecterRecouvrements(["OCREN-01", "OCREN-03"])).toHaveLength(0);
+  });
+});
+
 describe("ouvragesPourType", () => {
   it("filtre les ouvrages rénovation", () => {
     const reno = ouvragesPourType("renovation_appartement").map((o) => o.code);
@@ -77,7 +106,7 @@ describe("selectionsDefaut", () => {
 });
 
 describe("genererLignesRapide", () => {
-  it("crée une ligne par ouvrage à quantité > 0", () => {
+  it("crée une ligne par ouvrage à quantité > 0, en quantité ferme (coef 1)", () => {
     const lignes = genererLignesRapide(
       [
         { code: "OCREN-07", qte: 57 },
@@ -89,7 +118,9 @@ describe("genererLignesRapide", () => {
     expect(lignes).toHaveLength(2);
     expect(lignes[0].code).toBe("OCREN-07");
     expect(lignes[0].qteBrute).toBe(57);
-    expect(lignes[0].coefQte).toBe(1.08); // m² => +8 %
+    // Forfait clé en main : pas de coef conservateur.
+    expect(lignes[0].coefQte).toBe(1);
+    expect(lignes[0].ferme).toBe(true);
     expect(lignes[0].tva).toBe(10);
   });
 

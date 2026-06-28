@@ -15,6 +15,7 @@ import type {
   TauxTVA,
   TotalLot,
   TotalTVA,
+  Unite,
 } from "./types";
 
 // ---------------------------------------------------------------------------
@@ -44,9 +45,15 @@ export const INDEXATION = "IDF Q2 2026";
 // Helpers
 // ---------------------------------------------------------------------------
 
-/** Arrondi monétaire à 2 décimales, robuste aux erreurs de flottant. */
+/** Arrondi monétaire à 2 décimales, robuste aux flottants ET aux NaN (→ 0). */
 export function round2(n: number): number {
+  if (!Number.isFinite(n)) return 0;
   return Math.round((n + Number.EPSILON) * 100) / 100;
+}
+
+/** Code à prix verrouillé (RS-01 / RS-09) : gamme sans effet, 50 €/m². */
+export function isVerrouille(code: string): boolean {
+  return code in PRIX_VERROUILLES;
 }
 
 /** Coefficient par défaut pour une unité (1 si non concernée). */
@@ -118,32 +125,48 @@ export function cryptoRandomId(): string {
 // Calculs
 // ---------------------------------------------------------------------------
 
-/** Calcule une ligne : quantité appliquée, PU final, total HT. */
+/** Calcule une ligne : quantité appliquée, PU final, total HT.
+ * Robuste aux saisies vides/NaN ; `ferme` force le coefficient à 1. */
 export function calculerLigne(ligne: LigneDevis): LigneCalculee {
-  const qteAppliquee = round2(ligne.qteBrute * (ligne.coefQte || 1));
-  const puFinal = round2(ligne.puBase);
+  const coef = ligne.ferme ? 1 : ligne.coefQte || 1;
+  const qteAppliquee = round2((ligne.qteBrute || 0) * coef);
+  const puFinal = round2(ligne.puBase || 0);
   const totalHT = round2(qteAppliquee * puFinal);
   return { ...ligne, qteAppliquee, puFinal, totalHT };
 }
 
-/** Regroupe les lignes calculées par lot (préfixe du code). */
+/** Clé de lot d'une ligne : "DIV" pour les postes hors BPU, sinon le préfixe. */
+function cleLot(l: LigneCalculee): string {
+  if (l.adHoc || l.code === "AD-HOC") return "DIV";
+  return l.code.split("-")[0] || "DIV";
+}
+
+/**
+ * Regroupe les lignes calculées par lot, triées dans l'ordre canonique TCE.
+ * `ordreLot` donne l'index d'affichage d'un lot (par défaut : ordre d'insertion).
+ * Les postes hors BPU sont regroupés sous "DIV — Divers / hors BPU", en fin.
+ */
 export function regrouperParLot(
   lignes: LigneCalculee[],
   lotTitre: (lot: string) => string,
+  ordreLot: (lot: string) => number = () => 0,
 ): TotalLot[] {
   const map = new Map<string, LigneCalculee[]>();
   for (const l of lignes) {
-    const lot = l.code.split("-")[0] || "AUTRE";
+    const lot = cleLot(l);
     const arr = map.get(lot) ?? [];
     arr.push(l);
     map.set(lot, arr);
   }
-  return [...map.entries()].map(([lot, lignesLot]) => ({
-    lot,
-    lotTitre: lotTitre(lot),
-    lignes: lignesLot,
-    totalHT: round2(lignesLot.reduce((s, l) => s + l.totalHT, 0)),
-  }));
+  const rang = (lot: string) => (lot === "DIV" ? 1000 : ordreLot(lot));
+  return [...map.entries()]
+    .sort((a, b) => rang(a[0]) - rang(b[0]))
+    .map(([lot, lignesLot]) => ({
+      lot,
+      lotTitre: lot === "DIV" ? "Divers / hors BPU" : lotTitre(lot),
+      lignes: lignesLot,
+      totalHT: round2(lignesLot.reduce((s, l) => s + l.totalHT, 0)),
+    }));
 }
 
 /**
@@ -156,9 +179,10 @@ export function calculerSynthese(
   lignes: LigneDevis[],
   params: ParametresDevis,
   lotTitre: (lot: string) => string = (l) => l,
+  ordreLot: (lot: string) => number = () => 0,
 ): SyntheseDevis {
   const calculees = lignes.map((l) => calculerLigne(l));
-  const parLot = regrouperParLot(calculees, lotTitre);
+  const parLot = regrouperParLot(calculees, lotTitre, ordreLot);
 
   const htPostes = round2(calculees.reduce((s, l) => s + l.totalHT, 0));
   const montantImprevus = round2(htPostes * (params.tauxImprevus || 0));
@@ -184,6 +208,9 @@ export function calculerSynthese(
   const totalTVA = round2(tvaParTaux.reduce((s, t) => s + t.montantTVA, 0));
   const totalTTC = round2(totalHT + totalTVA);
 
+  const surface = params.surfaceShab || 0;
+  const ratioM2 = surface > 0 ? round2(totalHT / surface) : undefined;
+
   return {
     parLot,
     htPostes,
@@ -192,7 +219,26 @@ export function calculerSynthese(
     tvaParTaux,
     totalTVA,
     totalTTC,
+    ratioM2,
   };
+}
+
+// ---------------------------------------------------------------------------
+// Clause de révision (Specifications §2.4 / Guide §2.4)
+// ---------------------------------------------------------------------------
+
+/** Vrai si le démarrage prévisionnel est > 6 mois après l'émission. */
+export function clauseRevisionRequise(
+  dateEmission?: string,
+  dateDemarrage?: string,
+): boolean {
+  if (!dateEmission || !dateDemarrage) return false;
+  const e = new Date(dateEmission);
+  const d = new Date(dateDemarrage);
+  if (Number.isNaN(e.getTime()) || Number.isNaN(d.getTime())) return false;
+  const seuil = new Date(e);
+  seuil.setMonth(seuil.getMonth() + 6);
+  return d.getTime() > seuil.getTime();
 }
 
 // ---------------------------------------------------------------------------
@@ -224,4 +270,40 @@ export function versDevisUpdate(
       })),
     })),
   };
+}
+
+/**
+ * Parse un bloc [DEVIS_UPDATE] (ou un JSON brut équivalent) en lignes de devis.
+ * Le `qty` source est DÉJÀ chiffré (Guide §13) : on pose donc coefQte = 1 pour
+ * ne pas re-majorer, et `pu` devient le PU de base.
+ * Lève une erreur si le contenu n'est pas exploitable.
+ */
+export function parseDevisUpdate(texte: string): LigneDevis[] {
+  const bloc = texte.match(/\[DEVIS_UPDATE\]([\s\S]*?)\[\/DEVIS_UPDATE\]/);
+  const json = (bloc ? bloc[1] : texte).trim();
+  const data = JSON.parse(json) as {
+    lots?: Array<{ items?: Array<Record<string, unknown>> }>;
+  };
+  const tvaValide = (n: number): TauxTVA =>
+    n === 5.5 || n === 20 ? n : 10;
+  const lignes: LigneDevis[] = [];
+  for (const lot of data.lots ?? []) {
+    for (const it of lot.items ?? []) {
+      const code = String(it.code ?? "").trim() || "AD-HOC";
+      lignes.push({
+        id: cryptoRandomId(),
+        code,
+        designation: String(it.designation ?? ""),
+        unite: (String(it.unit ?? "F") as Unite) || "F",
+        puBase: Number(it.pu) || 0,
+        gamme: "MOY",
+        qteBrute: Number(it.qty) || 0,
+        coefQte: 1, // qty déjà chiffré côté source
+        tva: tvaValide(Number(it.tva)),
+        note: it.note ? String(it.note) : undefined,
+        adHoc: code === "AD-HOC",
+      });
+    }
+  }
+  return lignes;
 }
