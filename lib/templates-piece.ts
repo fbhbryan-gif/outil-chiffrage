@@ -168,6 +168,23 @@ export const TEMPLATES_PIECE: TemplatePiece[] = [
     ],
   },
   {
+    id: "haussmannien",
+    nom: "Pièce haussmannienne",
+    note: "Parquet point de Hongrie, plinthe moulurée, corniche, rosace, peinture grande hauteur, cheminée marbre protégée.",
+    elements: [
+      { code: "RS-08", geo: "surface" }, // ragréage
+      { code: "RS-16", geo: "surface" }, // parquet point de Hongrie
+      { code: "RS-27", geo: "perimetre" }, // plinthe moulurée
+      { code: "STAFF-01", geo: "perimetre" }, // corniche restaurée
+      { code: "STAFF-03", geo: "fixe", ratio: 1 }, // rosace
+      { code: "RM-15", geo: "murs" }, // peinture murs
+      { code: "RM-16", geo: "plafond" }, // peinture plafond
+      { code: "PIE-01", geo: "fixe", ratio: 1 }, // protection cheminée marbre
+      { code: "EL-12", geo: "parM2", ratio: 0.3 }, // prises
+      { code: "EL-03", geo: "fixe", ratio: 1 }, // point lumineux
+    ],
+  },
+  {
     id: "cabine",
     nom: "Cabine d'essayage (ERP)",
     note: "Micro-pièce répétitive — utilisez ×N pour le nombre de cabines.",

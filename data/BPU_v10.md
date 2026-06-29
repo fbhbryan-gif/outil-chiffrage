@@ -891,3 +891,37 @@ Pour un poste donné, le déboursé sec MO se calcule : `Déboursé MO = PU_MOY 
 | `ENS-01` | Caisson lumineux LED d'enseigne | ml | 350 | 600 | 1200 |
 | `ENS-02` | Lettres boîtier / relief + pose | U | 150 | 300 | 700 |
 | `ENS-03` | Vitrophanie / covering vitrine | m² | 40 | 70 | 130 |
+
+## Compléments v0 — patrimonial / haussmannien
+
+> **⚠️ Brouillon v0 à dire d'expert — À VALIDER par le métier avant usage client.**
+> Prix **HT hors markup**, **IDF Q2 2026**.
+
+### Lot STAFF — Staff et modénatures
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `STAFF-01` | Restauration corniche moulurée existante (rebouchage + restitution profil) | ml | 60 | 110 | 200 |
+| `STAFF-02` | Corniche staff neuve sur tracé (gorge / doucine) | ml | 45 | 80 | 150 |
+| `STAFF-03` | Rosace de plafond staff Ø60-120 (dépose/repose ou neuve) | U | 150 | 300 | 650 |
+| `STAFF-04` | Moulure murale / cimaise / soubassement staff | ml | 30 | 55 | 110 |
+| `STAFF-05` | Réparation ponctuelle de modénature (raccord) | U | 80 | 150 | 350 |
+
+### Lot PIE — Pierre et cheminées marbre
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `PIE-01` | Protection + calage cheminée marbre conservée pendant travaux | U | 120 | 200 | 400 |
+| `PIE-02` | Nettoyage + rebouchage + lustrage marbre | U | 150 | 300 | 600 |
+| `PIE-03` | Dépose soigneuse + repose cheminée marbre | U | 400 | 700 | 1400 |
+| `PIE-04` | Remplacement tablette marbre sur mesure | ml | 200 | 350 | 700 |
+
+### Lot RS — Revêtements de sols
+*(compléments parquet patrimonial)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `RS-16` | Parquet massif chêne pose point de Hongrie (fourniture + pose collée) | m² | 90 | 140 | 240 |
+| `RS-17` | Parquet massif pose à bâtons rompus / chevrons | m² | 95 | 150 | 260 |
+| `RS-19` | Rénovation parquet existant — ponçage 3 passes + vitrification 2C ou huilage | m² | 35 | 55 | 90 |
+| `RS-27` | Plinthe bois massif/MDF H≥12cm profil mouluré (fourniture + pose) | ml | 18 | 30 | 55 |

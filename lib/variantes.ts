@@ -27,6 +27,9 @@ export const VARIANTES: GroupeVariante[] = [
       { code: "RS-13", label: "PVC clipsable LVT" },
       { code: "RS-03", label: "Parquet contrecollé chêne" },
       { code: "RS-09", label: "Parquet massif" },
+      { code: "RS-16", label: "Parquet massif point de Hongrie" },
+      { code: "RS-17", label: "Parquet massif bâtons rompus" },
+      { code: "RS-19", label: "Rénovation parquet existant (ponçage+vitrif.)" },
       { code: "RS-10", label: "Carrelage grès 120×60" },
       { code: "RS-05", label: "Carrelage hexagonal" },
       { code: "RS-22", label: "Carrelage antidérapant R11 (humide/PMR)" },
@@ -125,6 +128,26 @@ export const VARIANTES: GroupeVariante[] = [
       { code: "DEVA-01", label: "Châssis vitrine + vitrage sécurité" },
       { code: "DEVA-02", label: "Porte commerciale vitrée" },
       { code: "DEVA-03", label: "Rideau métallique motorisé" },
+    ],
+  },
+  {
+    id: "moulures",
+    titre: "Moulures / staff (patrimonial)",
+    aide: "Au ml.",
+    options: [
+      { code: "STAFF-01", label: "Restauration corniche existante" },
+      { code: "STAFF-02", label: "Corniche staff neuve" },
+      { code: "STAFF-04", label: "Cimaise / soubassement" },
+    ],
+  },
+  {
+    id: "cheminee",
+    titre: "Cheminée marbre (patrimonial)",
+    aide: "À l'unité.",
+    options: [
+      { code: "PIE-01", label: "Protection pendant travaux" },
+      { code: "PIE-02", label: "Nettoyage + lustrage marbre" },
+      { code: "PIE-03", label: "Dépose soignée + repose" },
     ],
   },
 ];

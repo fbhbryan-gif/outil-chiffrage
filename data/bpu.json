@@ -2680,6 +2680,46 @@
     "max": 9500
   },
   {
+    "code": "PIE-01",
+    "lot": "PIE",
+    "lotTitre": "Pierre et cheminées marbre",
+    "designation": "Protection + calage cheminée marbre conservée pendant travaux",
+    "unite": "U",
+    "min": 120,
+    "moy": 200,
+    "max": 400
+  },
+  {
+    "code": "PIE-02",
+    "lot": "PIE",
+    "lotTitre": "Pierre et cheminées marbre",
+    "designation": "Nettoyage + rebouchage + lustrage marbre",
+    "unite": "U",
+    "min": 150,
+    "moy": 300,
+    "max": 600
+  },
+  {
+    "code": "PIE-03",
+    "lot": "PIE",
+    "lotTitre": "Pierre et cheminées marbre",
+    "designation": "Dépose soigneuse + repose cheminée marbre",
+    "unite": "U",
+    "min": 400,
+    "moy": 700,
+    "max": 1400
+  },
+  {
+    "code": "PIE-04",
+    "lot": "PIE",
+    "lotTitre": "Pierre et cheminées marbre",
+    "designation": "Remplacement tablette marbre sur mesure",
+    "unite": "ml",
+    "min": 200,
+    "moy": 350,
+    "max": 700
+  },
+  {
     "code": "PLO-01",
     "lot": "PLO",
     "lotTitre": "Plomberie et sanitaire",
@@ -3740,6 +3780,26 @@
     "max": 220
   },
   {
+    "code": "RS-16",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Parquet massif chêne pose point de Hongrie (fourniture + pose collée)",
+    "unite": "m²",
+    "min": 90,
+    "moy": 140,
+    "max": 240
+  },
+  {
+    "code": "RS-17",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Parquet massif pose à bâtons rompus / chevrons",
+    "unite": "m²",
+    "min": 95,
+    "moy": 150,
+    "max": 260
+  },
+  {
     "code": "RS-18",
     "lot": "RS",
     "lotTitre": "Revêtements de sols",
@@ -3748,6 +3808,16 @@
     "min": 90,
     "moy": 140,
     "max": 220
+  },
+  {
+    "code": "RS-19",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Rénovation parquet existant — ponçage 3 passes + vitrification 2C ou huilage",
+    "unite": "m²",
+    "min": 35,
+    "moy": 55,
+    "max": 90
   },
   {
     "code": "RS-20",
@@ -3798,6 +3868,16 @@
     "min": 12,
     "moy": 20,
     "max": 35
+  },
+  {
+    "code": "RS-27",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Plinthe bois massif/MDF H≥12cm profil mouluré (fourniture + pose)",
+    "unite": "ml",
+    "min": 18,
+    "moy": 30,
+    "max": 55
   },
   {
     "code": "SEC-01",
@@ -3908,5 +3988,55 @@
     "min": 450,
     "moy": 700,
     "max": 1200
+  },
+  {
+    "code": "STAFF-01",
+    "lot": "STAFF",
+    "lotTitre": "Staff et modénatures",
+    "designation": "Restauration corniche moulurée existante (rebouchage + restitution profil)",
+    "unite": "ml",
+    "min": 60,
+    "moy": 110,
+    "max": 200
+  },
+  {
+    "code": "STAFF-02",
+    "lot": "STAFF",
+    "lotTitre": "Staff et modénatures",
+    "designation": "Corniche staff neuve sur tracé (gorge / doucine)",
+    "unite": "ml",
+    "min": 45,
+    "moy": 80,
+    "max": 150
+  },
+  {
+    "code": "STAFF-03",
+    "lot": "STAFF",
+    "lotTitre": "Staff et modénatures",
+    "designation": "Rosace de plafond staff Ø60-120 (dépose/repose ou neuve)",
+    "unite": "U",
+    "min": 150,
+    "moy": 300,
+    "max": 650
+  },
+  {
+    "code": "STAFF-04",
+    "lot": "STAFF",
+    "lotTitre": "Staff et modénatures",
+    "designation": "Moulure murale / cimaise / soubassement staff",
+    "unite": "ml",
+    "min": 30,
+    "moy": 55,
+    "max": 110
+  },
+  {
+    "code": "STAFF-05",
+    "lot": "STAFF",
+    "lotTitre": "Staff et modénatures",
+    "designation": "Réparation ponctuelle de modénature (raccord)",
+    "unite": "U",
+    "min": 80,
+    "moy": 150,
+    "max": 350
   }
 ]
