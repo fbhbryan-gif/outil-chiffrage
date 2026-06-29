@@ -1007,3 +1007,90 @@ Pour un poste donné, le déboursé sec MO se calcule : `Déboursé MO = PU_MOY 
 | Code | Désignation | U | MIN | MOY | MAX |
 |---|---|---|---:|---:|---:|
 | `PLO-95` | Bac à graisses / séparateur NF EN 1825 (aérien sous-évier ou enterré + débourbeur + regard), dimensionné au nombre de couverts | U | 1100 | 2300 | 5000 |
+
+## Compléments v0 — tertiaire / santé / énergétique
+
+> **⚠️ Brouillon v0 à dire d'expert — À VALIDER par le métier avant usage client.**
+> Prix **HT hors markup**, **IDF Q2 2026**.
+
+### Lot EL — Électricité courants forts et faibles
+*(compléments ERP / courants faibles)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `EL-50` | TGBT / tableau divisionnaire ERP triphasé + différentiels 30 mA dédiés + CONSUEL ERP | U | 2500 | 4000 | 8000 |
+| `EL-51` | Liaison équipotentielle supplémentaire local de soins (groupe 1) | U | 150 | 280 | 500 |
+| `EL-52` | Poste de travail double RJ45 cat.6A précâblé jusqu'à baie | U | 120 | 200 | 380 |
+| `EL-53` | Baie de brassage 19" 42U équipée + panneau de brassage + tests | U | 1200 | 2200 | 4500 |
+| `EL-55` | Tableau divisionnaire extension + raccordement au TGBT existant | U | 600 | 1100 | 2200 |
+| `EL-56` | Rail conducteur 3 allumages + projecteurs LED orientables (éclairage scénographique) | ml | 120 | 220 | 450 |
+
+### Lot CVC — Chauffage / Ventilation / Climatisation
+*(compléments tertiaire)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `CVC-90` | Système VRF tertiaire — groupe ext. + N cassettes (au m² traité) | m² | 120 | 190 | 320 |
+| `CVC-91` | Centrale double-flux tertiaire (CTA) + réseau gaines + diffusion (au m²) | m² | 90 | 150 | 260 |
+| `CVC-92` | Ventilation mécanique ERP — extraction + bouches par local selon effectif (au m²) | m² | 35 | 60 | 110 |
+
+### Lot RS — Revêtements de sols
+*(compléments tertiaire)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `RS-24` | Faux-plancher technique sur vérins, dalles 600×600 | m² | 70 | 110 | 180 |
+| `RS-26` | Dalles moquette plombantes / sol PVC tertiaire en lés | m² | 25 | 40 | 70 |
+
+### Lot RM — Revêtements muraux
+*(complément lessivable)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `RM-20` | Faïence murale pleine hauteur lessivable (cuisine / laverie / local soins) | m² | 50 | 80 | 140 |
+
+### Lot PLO — Plomberie et sanitaire
+*(complément santé)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `PLO-99` | Lave-mains hygiénique local de soins (robinet à commande non manuelle coude/IR) | U | 250 | 450 | 850 |
+
+### Lot ISO — Isolation thermique
+*(compléments combles)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `ISO-08` | Isolation combles perdus par soufflage R≥7 + pare-vapeur (par m² de plancher) | m² | 18 | 30 | 50 |
+| `ISO-09` | Isolation rampants entre/sous chevrons R≥6 | m² | 35 | 55 | 90 |
+
+### Lot PREP — Préparation, études et installations
+*(compléments énergétique)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `PREP-30` | Audit énergétique réglementaire (DPE + scénarios MaPrimeRénov') | U | 500 | 900 | 1800 |
+| `PREP-31` | Test d'infiltrométrie / perméabilité à l'air (blower door) | U | 350 | 600 | 1100 |
+
+### Lot MP — Murs porteurs
+*(complément trémie)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `MP-07` | Création trémie escalier — découpe plancher existant + chevêtre + étaiement | U | 1500 | 2800 | 5500 |
+
+### Lot CHAR — Charpente et couverture
+*(complément surélévation)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `CHAR-07` | Reprise d'interface toiture en surélévation — dépose couverture + arase + raccord étanchéité | ml | 80 | 140 | 250 |
+
+### Lot OCMOB — Ouvrages complets — Maison Ossature Bois
+*(compléments extension / surélévation)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `OCMOB-13` | Surélévation MOB hors d'air + isolation + plâtrerie (prêt à recevoir lots techniques) au m² SHON | m² | 1400 | 1900 | 2900 |
+| `OCMOB-14` | Fondations + dalle d'extension (dé-cochable du forfait HO-HA) au m² | m² | 250 | 400 | 650 |
+| `OCMOB-15` | Extension MOB clé en main toit-terrasse (variante OCMOB-10) au m² SHON | m² | 2500 | 3400 | 5000 |

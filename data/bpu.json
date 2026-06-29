@@ -500,6 +500,16 @@
     "max": 700
   },
   {
+    "code": "CHAR-07",
+    "lot": "CHAR",
+    "lotTitre": "Charpente et couverture",
+    "designation": "Reprise d'interface toiture en surélévation — dépose couverture + arase + raccord étanchéité",
+    "unite": "ml",
+    "min": 80,
+    "moy": 140,
+    "max": 250
+  },
+  {
     "code": "CHAR-10",
     "lot": "CHAR",
     "lotTitre": "Charpente et couverture",
@@ -1270,6 +1280,36 @@
     "max": 2200
   },
   {
+    "code": "CVC-90",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Système VRF tertiaire — groupe ext. + N cassettes (au m² traité)",
+    "unite": "m²",
+    "min": 120,
+    "moy": 190,
+    "max": 320
+  },
+  {
+    "code": "CVC-91",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Centrale double-flux tertiaire (CTA) + réseau gaines + diffusion (au m²)",
+    "unite": "m²",
+    "min": 90,
+    "moy": 150,
+    "max": 260
+  },
+  {
+    "code": "CVC-92",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Ventilation mécanique ERP — extraction + bouches par local selon effectif (au m²)",
+    "unite": "m²",
+    "min": 35,
+    "moy": 60,
+    "max": 110
+  },
+  {
     "code": "DEMO-01",
     "lot": "DEMO",
     "lotTitre": "Démolition et dépose",
@@ -1770,6 +1810,66 @@
     "max": 4800
   },
   {
+    "code": "EL-50",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "TGBT / tableau divisionnaire ERP triphasé + différentiels 30 mA dédiés + CONSUEL ERP",
+    "unite": "U",
+    "min": 2500,
+    "moy": 4000,
+    "max": 8000
+  },
+  {
+    "code": "EL-51",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Liaison équipotentielle supplémentaire local de soins (groupe 1)",
+    "unite": "U",
+    "min": 150,
+    "moy": 280,
+    "max": 500
+  },
+  {
+    "code": "EL-52",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Poste de travail double RJ45 cat.6A précâblé jusqu'à baie",
+    "unite": "U",
+    "min": 120,
+    "moy": 200,
+    "max": 380
+  },
+  {
+    "code": "EL-53",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Baie de brassage 19\" 42U équipée + panneau de brassage + tests",
+    "unite": "U",
+    "min": 1200,
+    "moy": 2200,
+    "max": 4500
+  },
+  {
+    "code": "EL-55",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Tableau divisionnaire extension + raccordement au TGBT existant",
+    "unite": "U",
+    "min": 600,
+    "moy": 1100,
+    "max": 2200
+  },
+  {
+    "code": "EL-56",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Rail conducteur 3 allumages + projecteurs LED orientables (éclairage scénographique)",
+    "unite": "ml",
+    "min": 120,
+    "moy": 220,
+    "max": 450
+  },
+  {
     "code": "EM-01",
     "lot": "EM",
     "lotTitre": "Électroménager (fourniture + pose)",
@@ -1928,6 +2028,26 @@
     "min": 75,
     "moy": 105,
     "max": 165
+  },
+  {
+    "code": "ISO-08",
+    "lot": "ISO",
+    "lotTitre": "Isolation thermique",
+    "designation": "Isolation combles perdus par soufflage R≥7 + pare-vapeur (par m² de plancher)",
+    "unite": "m²",
+    "min": 18,
+    "moy": 30,
+    "max": 50
+  },
+  {
+    "code": "ISO-09",
+    "lot": "ISO",
+    "lotTitre": "Isolation thermique",
+    "designation": "Isolation rampants entre/sous chevrons R≥6",
+    "unite": "m²",
+    "min": 35,
+    "moy": 55,
+    "max": 90
   },
   {
     "code": "MAC-01",
@@ -2500,6 +2620,16 @@
     "max": 1500
   },
   {
+    "code": "MP-07",
+    "lot": "MP",
+    "lotTitre": "Murs porteurs",
+    "designation": "Création trémie escalier — découpe plancher existant + chevêtre + étaiement",
+    "unite": "U",
+    "min": 1500,
+    "moy": 2800,
+    "max": 5500
+  },
+  {
     "code": "MSM-01",
     "lot": "MSM",
     "lotTitre": "Mobilier sur mesure (postes legacy)",
@@ -2728,6 +2858,36 @@
     "min": 3200,
     "moy": 4200,
     "max": 6500
+  },
+  {
+    "code": "OCMOB-13",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Surélévation MOB hors d'air + isolation + plâtrerie (prêt à recevoir lots techniques) au m² SHON",
+    "unite": "m²",
+    "min": 1400,
+    "moy": 1900,
+    "max": 2900
+  },
+  {
+    "code": "OCMOB-14",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Fondations + dalle d'extension (dé-cochable du forfait HO-HA) au m²",
+    "unite": "m²",
+    "min": 250,
+    "moy": 400,
+    "max": 650
+  },
+  {
+    "code": "OCMOB-15",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Extension MOB clé en main toit-terrasse (variante OCMOB-10) au m² SHON",
+    "unite": "m²",
+    "min": 2500,
+    "moy": 3400,
+    "max": 5000
   },
   {
     "code": "OCREN-01",
@@ -3560,6 +3720,16 @@
     "max": 9000
   },
   {
+    "code": "PLO-99",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Lave-mains hygiénique local de soins (robinet à commande non manuelle coude/IR)",
+    "unite": "U",
+    "min": 250,
+    "moy": 450,
+    "max": 850
+  },
+  {
     "code": "PLO-100",
     "lot": "PLO",
     "lotTitre": "Plomberie et sanitaire",
@@ -3720,6 +3890,26 @@
     "max": 5000
   },
   {
+    "code": "PREP-30",
+    "lot": "PREP",
+    "lotTitre": "Préparation, études et installations",
+    "designation": "Audit énergétique réglementaire (DPE + scénarios MaPrimeRénov')",
+    "unite": "U",
+    "min": 500,
+    "moy": 900,
+    "max": 1800
+  },
+  {
+    "code": "PREP-31",
+    "lot": "PREP",
+    "lotTitre": "Préparation, études et installations",
+    "designation": "Test d'infiltrométrie / perméabilité à l'air (blower door)",
+    "unite": "U",
+    "min": 350,
+    "moy": 600,
+    "max": 1100
+  },
+  {
     "code": "RAV-01",
     "lot": "RAV",
     "lotTitre": "Ravalement de façade",
@@ -3838,6 +4028,16 @@
     "min": 25,
     "moy": 35,
     "max": 55
+  },
+  {
+    "code": "RM-20",
+    "lot": "RM",
+    "lotTitre": "Revêtements muraux",
+    "designation": "Faïence murale pleine hauteur lessivable (cuisine / laverie / local soins)",
+    "unite": "m²",
+    "min": 50,
+    "moy": 80,
+    "max": 140
   },
   {
     "code": "RM-21",
@@ -4120,6 +4320,16 @@
     "max": 120
   },
   {
+    "code": "RS-24",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Faux-plancher technique sur vérins, dalles 600×600",
+    "unite": "m²",
+    "min": 70,
+    "moy": 110,
+    "max": 180
+  },
+  {
     "code": "RS-25",
     "lot": "RS",
     "lotTitre": "Revêtements de sols",
@@ -4128,6 +4338,16 @@
     "min": 12,
     "moy": 20,
     "max": 35
+  },
+  {
+    "code": "RS-26",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Dalles moquette plombantes / sol PVC tertiaire en lés",
+    "unite": "m²",
+    "min": 25,
+    "moy": 40,
+    "max": 70
   },
   {
     "code": "RS-27",

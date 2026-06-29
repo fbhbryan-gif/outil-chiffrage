@@ -223,14 +223,31 @@ export const TEMPLATES_PIECE: TemplatePiece[] = [
   {
     id: "salle_soin",
     nom: "Salle de soin (ERP santé)",
-    note: "Sol PVC à gorge, électricité dédiée, éclairage — utilisez ×N pour plusieurs salles identiques.",
+    note: "Sol PVC à gorge, lave-mains hygiénique, faïence, électricité dédiée — utilisez ×N pour plusieurs salles identiques.",
     elements: [
       { code: "RS-08", geo: "surface" }, // ragréage
       { code: "RS-23", geo: "surface" }, // PVC hospitalier
       { code: "RS-25", geo: "perimetre" }, // remontée à gorge
+      { code: "RM-20", geo: "murs" }, // faïence pleine hauteur lessivable
+      { code: "PLO-99", geo: "fixe", ratio: 1 }, // lave-mains hygiénique
+      { code: "EL-50", geo: "fixe", ratio: 1 }, // TGBT/TD ERP
+      { code: "EL-51", geo: "fixe", ratio: 1 }, // liaison équipotentielle soins
       { code: "EL-02", geo: "parM2", ratio: 0.5 }, // PC
       { code: "EL-03", geo: "parM2", ratio: 0.4 }, // éclairage
       { code: "EL-29", geo: "fixe", ratio: 1 }, // RJ45
+    ],
+  },
+  {
+    id: "salle_reunion",
+    nom: "Salle de réunion / open-space (tertiaire)",
+    note: "Cloison vitrée, faux-plancher technique, climatisation VRF, réseau RJ45, éclairage.",
+    elements: [
+      { code: "CLO-41", geo: "perimetre" }, // cloison vitrée (périmètre vitré)
+      { code: "RS-24", geo: "surface" }, // faux-plancher technique
+      { code: "CVC-90", geo: "surface" }, // VRF tertiaire
+      { code: "EL-52", geo: "parM2", ratio: 0.15 }, // postes RJ45
+      { code: "EL-56", geo: "perimetre" }, // éclairage sur rail (périmètre)
+      { code: "EL-03", geo: "parM2", ratio: 0.25 }, // points lumineux
     ],
   },
 ];

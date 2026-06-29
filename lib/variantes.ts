@@ -36,6 +36,8 @@ export const VARIANTES: GroupeVariante[] = [
       { code: "RS-18", label: "Béton ciré / microciment" },
       { code: "RS-21", label: "Résine époxy / PU" },
       { code: "RS-23", label: "PVC hospitalier U4P3 (soudé)" },
+      { code: "RS-26", label: "Dalles moquette / PVC tertiaire" },
+      { code: "RS-24", label: "Faux-plancher technique sur vérins" },
     ],
   },
   {
@@ -184,6 +186,24 @@ export const VARIANTES: GroupeVariante[] = [
     options: [
       { code: "CHR-08", label: "Positive 0/+5°C" },
       { code: "CHR-09", label: "Négative -18/-22°C" },
+    ],
+  },
+  {
+    id: "clim_tertiaire",
+    titre: "Climatisation / ventilation tertiaire",
+    aide: "Au m² traité.",
+    options: [
+      { code: "CVC-90", label: "VRF (groupe + cassettes)" },
+      { code: "CVC-91", label: "CTA double flux" },
+    ],
+  },
+  {
+    id: "iso_combles",
+    titre: "Isolation combles",
+    aide: "Au m².",
+    options: [
+      { code: "ISO-08", label: "Combles perdus (soufflage R≥7)" },
+      { code: "ISO-09", label: "Rampants (entre/sous chevrons R≥6)" },
     ],
   },
 ];
