@@ -54,13 +54,32 @@ describe("genererPanier", () => {
     const tpl = { id: "t", nom: "t", elements: [{ code: "INCONNU-1", geo: "fixe" as const }] };
     expect(genererPanier(tpl, { surfaceSol: 6 }, getStub)).toHaveLength(0);
   });
+
+  it("marque ferme les éléments fixe/parM2, pas les métrés surface/perimetre", () => {
+    const tpl = {
+      id: "t",
+      nom: "t",
+      elements: [
+        { code: "RS-10", geo: "surface" as const },
+        { code: "RS-11", geo: "perimetre" as const },
+        { code: "PLO-07", geo: "fixe" as const, ratio: 1 },
+        { code: "EL-33", geo: "parM2" as const, ratio: 0.5 },
+      ],
+    };
+    const p = genererPanier(tpl, { surfaceSol: 6, perimetre: 10 }, getStub);
+    const ferme = Object.fromEntries(p.map((e) => [e.code, e.ferme]));
+    expect(ferme["RS-10"]).toBe(false); // surface = vrai métré
+    expect(ferme["RS-11"]).toBe(false); // périmètre = vrai métré
+    expect(ferme["PLO-07"]).toBe(true); // unité = ferme
+    expect(ferme["EL-33"]).toBe(true); // parM2 = ferme
+  });
 });
 
 describe("lignesDepuisPanier", () => {
   it("multiplie par le nombre d'occurrences et applique la zone", () => {
     const sel: ElementPanier[] = [
-      { code: "RS-10", designation: "x", unite: "m²", qte: 6, coche: true },
-      { code: "RS-11", designation: "y", unite: "ml", qte: 10, coche: false }, // décoché
+      { code: "RS-10", designation: "x", unite: "m²", qte: 6, coche: true, ferme: false },
+      { code: "RS-11", designation: "y", unite: "ml", qte: 10, coche: false, ferme: false }, // décoché
     ];
     const lignes = lignesDepuisPanier(sel, 3, "SDB étage", (code, qte) => ({
       id: code + qte,

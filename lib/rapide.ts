@@ -357,9 +357,9 @@ export function tvaSuggeree(type: TypeProjetRapide): TauxTVA {
 export const CODES_ENERGETIQUES = new Set([
   "OCREN-04", // ITI
   "OCREN-05", // ITE
-  "OCREN-09", // ravalement isolant
   "OCREN-10", // menuiseries isolantes
   "OCREN-14", // PAC air-eau
+  // OCREN-09 (ravalement non isolant) EXCLU : relève du 10 %, pas du 5,5 %.
 ]);
 
 /**

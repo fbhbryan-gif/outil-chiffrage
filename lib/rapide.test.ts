@@ -70,6 +70,9 @@ describe("tvaSuggereeSelection", () => {
   it("20 % hors rénovation même si énergétique", () => {
     expect(tvaSuggereeSelection("extension", ["OCREN-04"])).toBe(20);
   });
+  it("ravalement non isolant OCREN-09 = 10 % (pas 5,5 %)", () => {
+    expect(tvaSuggereeSelection("renovation_maison", ["OCREN-09"])).toBe(10);
+  });
 });
 
 describe("detecterRecouvrements", () => {

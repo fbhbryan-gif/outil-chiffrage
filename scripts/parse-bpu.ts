@@ -15,7 +15,7 @@
  *   ### Lot RS — Revêtements de sols
  *   | Code | Désignation | U | MIN | MOY | MAX |
  *   |---|---|---|---:|---:|---:|
- *   | `RS-01` | Pose carrelage... | m² | 50 | 50 | 50 |
+ *   | `RS-50` | Pose carrelage... | m² | 50 | 50 | 50 |
  */
 
 import { readFileSync, writeFileSync, existsSync } from "node:fs";

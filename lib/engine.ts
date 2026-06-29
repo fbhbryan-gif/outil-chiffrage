@@ -52,7 +52,7 @@ export function round2(n: number): number {
   return Math.round((n + Number.EPSILON) * 100) / 100;
 }
 
-/** Code à prix verrouillé (RS-01 / RS-09) : gamme sans effet, 50 €/m². */
+/** Code à prix verrouillé (RS-50 / RS-51) : gamme sans effet, 50 €/m². */
 export function isVerrouille(code: string): boolean {
   return code in PRIX_VERROUILLES;
 }
@@ -248,11 +248,12 @@ export function clauseRevisionRequise(
   const e = new Date(dateEmission);
   const d = new Date(dateDemarrage);
   if (Number.isNaN(e.getTime()) || Number.isNaN(d.getTime())) return false;
+  // Tout en UTC (les chaînes ISO sont parsées en UTC) pour éviter les décalages.
   const seuil = new Date(e);
-  const jour = seuil.getDate();
-  seuil.setMonth(seuil.getMonth() + 6);
+  const jour = seuil.getUTCDate();
+  seuil.setUTCMonth(seuil.getUTCMonth() + 6);
   // Évite le débordement (31 août + 6 mois ≠ 3 mars) : caler en fin de mois cible.
-  if (seuil.getDate() !== jour) seuil.setDate(0);
+  if (seuil.getUTCDate() !== jour) seuil.setUTCDate(0);
   return d.getTime() > seuil.getTime();
 }
 

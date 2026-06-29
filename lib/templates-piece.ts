@@ -70,6 +70,8 @@ export interface ElementPanier {
   unite: string;
   qte: number;
   coche: boolean;
+  /** Quantité ferme (élément compté à l'unité/forfait) : pas de coef conservateur. */
+  ferme: boolean;
 }
 
 /**
@@ -323,6 +325,8 @@ export function genererPanier(
       unite: poste.unite,
       qte: round2(qteElement(el, q)),
       coche: el.coche !== false,
+      // Quantités comptées à l'unité/forfait : fermes (pas de +8/+10 % conservateur).
+      ferme: el.geo === "fixe" || el.geo === "parM2",
     });
   }
   return out;
@@ -342,6 +346,10 @@ export function lignesDepuisPanier(
       if (!el.coche || !(el.qte > 0)) continue;
       const ligne = ligneFromCode(el.code, el.qte);
       if (!ligne) continue;
+      if (el.ferme) {
+        ligne.coefQte = 1;
+        ligne.ferme = true;
+      }
       if (zone) {
         ligne.zone = zone;
         ligne.groupeClient = zone;

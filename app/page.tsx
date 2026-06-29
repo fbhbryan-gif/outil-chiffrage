@@ -117,7 +117,10 @@ export default function Page() {
   const [params, setParams] = useState<ParametresDevis>(PARAMS_DEFAUT);
   const [lignes, setLignes] = useState<LigneDevis[]>([]);
   const [charge, setCharge] = useState(false);
-  const [pendingRapide, setPendingRapide] = useState<LigneDevis[] | null>(null);
+  const [pendingRapide, setPendingRapide] = useState<{
+    lignes: LigneDevis[];
+    params: ParametresDevis;
+  } | null>(null);
 
   useEffect(() => {
     try {
@@ -142,13 +145,15 @@ export default function Page() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ params, lignes, mode }));
   }, [params, lignes, mode, charge]);
 
-  function appliquerLignesGenerees(nouvelles: LigneDevis[]) {
+  // N'applique les params QU'À la confirmation : si un chiffrage existe déjà, on
+  // diffère (modale) sans muter params (sinon « Annuler » laisserait params écrasés).
+  function appliquerLignesGenerees(nouvelles: LigneDevis[], nextParams: ParametresDevis) {
     if (lignes.length === 0) {
+      setParams(nextParams);
       setLignes(nouvelles);
       setMode("detaille");
     } else {
-      // Décision explicite via modale (remplacer / ajouter).
-      setPendingRapide(nouvelles);
+      setPendingRapide({ lignes: nouvelles, params: nextParams });
     }
   }
 
@@ -169,12 +174,12 @@ export default function Page() {
     const nouvelles = genererLignesRapide(selections, nextParams, (c) =>
       BPU_PAR_CODE.get(c),
     );
-    setParams(nextParams);
-    appliquerLignesGenerees(nouvelles);
+    appliquerLignesGenerees(nouvelles, nextParams);
   }
 
   function importerLignes(nouvelles: LigneDevis[]) {
-    appliquerLignesGenerees(nouvelles);
+    // Import : ne change pas les paramètres du devis en cours.
+    appliquerLignesGenerees(nouvelles, params);
   }
 
   return (
@@ -223,7 +228,8 @@ export default function Page() {
               label: "Remplacer",
               variant: "or",
               onClick: () => {
-                setLignes(pendingRapide);
+                setParams(pendingRapide.params);
+                setLignes(pendingRapide.lignes);
                 setPendingRapide(null);
                 setMode("detaille");
               },
@@ -232,7 +238,8 @@ export default function Page() {
               label: "Ajouter à la suite",
               variant: "ghost",
               onClick: () => {
-                setLignes((ls) => [...ls, ...pendingRapide]);
+                setParams(pendingRapide.params);
+                setLignes((ls) => [...ls, ...pendingRapide.lignes]);
                 setPendingRapide(null);
                 setMode("detaille");
               },
@@ -240,7 +247,7 @@ export default function Page() {
             {
               label: "Annuler",
               variant: "ghost",
-              onClick: () => setPendingRapide(null),
+              onClick: () => setPendingRapide(null), // params NON mutés
             },
           ]}
         />
@@ -803,7 +810,7 @@ function ImportDevis({
       </div>
       <textarea
         className="input min-h-48 font-mono text-xs"
-        placeholder={`[DEVIS_UPDATE]\n{"lots":[{"title":"Lot RS — …","items":[{"code":"RS-01","designation":"…","unit":"m²","qty":25,"pu":50,"total":1250,"tva":10,"note":""}]}]}\n[/DEVIS_UPDATE]`}
+        placeholder={`[DEVIS_UPDATE]\n{"lots":[{"title":"Lot RS — …","items":[{"code":"RS-50","designation":"…","unit":"m²","qty":25,"pu":50,"total":1250,"tva":10,"note":""}]}]}\n[/DEVIS_UPDATE]`}
         value={texte}
         onChange={(e) => setTexte(e.target.value)}
       />
@@ -1024,12 +1031,15 @@ function Detaille({
     setLignes((ls) => ls.filter((l) => l.id !== id));
   }
 
-  function appliquerGammeLot(lot: string, gamme: Gamme) {
+  function appliquerGammeLot(lot: string, gamme: Gamme, ids?: string[]) {
+    const visibles = ids ? new Set(ids) : null;
     setLignes((ls) =>
       ls.map((l) => {
         // Même clé de regroupement que le moteur (AD-HOC rangé sous son lot de rattachement).
         const cle = l.adHoc || l.code === "AD-HOC" ? l.adHocLot || "DIV" : l.code.split("-")[0];
         if (cle !== lot) return l;
+        // N'agir que sur les lignes visibles (si un filtre masque une partie du lot).
+        if (visibles && !visibles.has(l.id)) return l;
         // AD-HOC : applique la gamme seulement si le PU de cette gamme est renseigné.
         if (l.adHoc) {
           const trio: Record<Gamme, number | undefined> = {
@@ -1276,7 +1286,7 @@ function Detaille({
                     filtre={filtre}
                     mentions={params.mentionsParLot?.[lot.lot]}
                     onMentions={(patch) => setMentions(lot.lot, patch)}
-                    onAppliquerGamme={(g) => appliquerGammeLot(lot.lot, g)}
+                    onAppliquerGamme={(g, ids) => appliquerGammeLot(lot.lot, g, ids)}
                     onMaj={majLigne}
                     onDupliquer={dupliquer}
                     onSupprimer={(id) => setASupprimer(id)}
@@ -1737,6 +1747,7 @@ function AjoutPostes({
                             unite: posteChoisi.unite,
                             qte,
                             coche: true,
+                            ferme: false, // variante = vrai métré (coef conservateur applicable)
                           },
                         ],
                         1,
@@ -1838,8 +1849,8 @@ function AjoutPostes({
             </Field>
           </div>
 
-          {/* Panier de postes */}
-          {pSurf > 0 ? (
+          {/* Panier de postes — visible dès qu'un poste a une quantité (pièces très "fixes"). */}
+          {pSurf > 0 || panierCoche.length > 0 ? (
             <>
               <div className="mt-3 max-h-72 divide-y divide-marine-50 overflow-auto rounded-md border border-marine-50">
                 {panier.map((el, i) => (
@@ -2043,7 +2054,7 @@ function LotRows({
   filtre: string;
   mentions?: { inclus?: string; exclus?: string; conditions?: string };
   onMentions: (patch: Partial<{ inclus: string; exclus: string; conditions: string }>) => void;
-  onAppliquerGamme: (g: Gamme) => void;
+  onAppliquerGamme: (g: Gamme, ids: string[]) => void;
   onMaj: (id: string, patch: Partial<LigneDevis>) => void;
   onDupliquer: (id: string) => void;
   onSupprimer: (id: string) => void;
@@ -2079,7 +2090,7 @@ function LotRows({
                 <button
                   key={g}
                   className="rounded border border-marine-50 bg-white px-1.5 py-0.5 hover:border-or"
-                  onClick={() => onAppliquerGamme(g)}
+                  onClick={() => onAppliquerGamme(g, lignes.map((l) => l.id))}
                 >
                   {g}
                 </button>
@@ -2165,7 +2176,8 @@ function LotRows({
                   type="number"
                   step="any"
                   value={l.qteBrute}
-                  onChange={(e) => onMaj(l.id, { qteBrute: num(e.target.value) })}
+                  min={0}
+                  onChange={(e) => onMaj(l.id, { qteBrute: Math.max(0, num(e.target.value)) })}
                 />
               </td>
               <td className="w-16 px-1 py-1.5">
