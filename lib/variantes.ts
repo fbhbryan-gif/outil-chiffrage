@@ -150,6 +150,33 @@ export const VARIANTES: GroupeVariante[] = [
       { code: "PIE-03", label: "Dépose soignée + repose" },
     ],
   },
+  {
+    id: "charpente",
+    titre: "Charpente (neuf)",
+    aide: "Au m².",
+    options: [
+      { code: "CHAR-10", label: "Fermettes industrielles" },
+      { code: "CHAR-11", label: "Traditionnelle bois" },
+    ],
+  },
+  {
+    id: "plancher_bas",
+    titre: "Plancher bas (neuf)",
+    aide: "Au m².",
+    options: [
+      { code: "MAC-32", label: "Dallage sur terre-plein" },
+      { code: "MAC-33", label: "Hourdis sur vide sanitaire" },
+    ],
+  },
+  {
+    id: "assainissement",
+    titre: "Assainissement",
+    aide: "À l'unité.",
+    options: [
+      { code: "VRD-03", label: "Raccordement collectif" },
+      { code: "VRD-04", label: "ANC (fosse + épandage)" },
+    ],
+  },
 ];
 
 /** Ne garde que les options dont le code existe dans le BPU. */

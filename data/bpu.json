@@ -500,6 +500,36 @@
     "max": 700
   },
   {
+    "code": "CHAR-10",
+    "lot": "CHAR",
+    "lotTitre": "Charpente et couverture",
+    "designation": "Charpente fermettes industrielles (fourniture + pose, contreventement)",
+    "unite": "m²",
+    "min": 45,
+    "moy": 70,
+    "max": 110
+  },
+  {
+    "code": "CHAR-11",
+    "lot": "CHAR",
+    "lotTitre": "Charpente et couverture",
+    "designation": "Charpente traditionnelle bois (pannes / chevrons / arbalétriers)",
+    "unite": "m²",
+    "min": 80,
+    "moy": 130,
+    "max": 210
+  },
+  {
+    "code": "CHAR-12",
+    "lot": "CHAR",
+    "lotTitre": "Charpente et couverture",
+    "designation": "Couverture tuiles terre cuite + écran HPV + liteaunage + faîtage ventilé",
+    "unite": "m²",
+    "min": 55,
+    "moy": 85,
+    "max": 140
+  },
+  {
     "code": "CLO-01",
     "lot": "CLO",
     "lotTitre": "Cloisons et faux-plafonds",
@@ -1918,6 +1948,36 @@
     "min": 80,
     "moy": 115,
     "max": 180
+  },
+  {
+    "code": "MAC-31",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Soubassement parpaing de fondation + arase étanche",
+    "unite": "ml",
+    "min": 90,
+    "moy": 140,
+    "max": 220
+  },
+  {
+    "code": "MAC-32",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Hérisson + polyane + dallage BA sur terre-plein (isolant sous-dalle)",
+    "unite": "m²",
+    "min": 70,
+    "moy": 110,
+    "max": 170
+  },
+  {
+    "code": "MAC-33",
+    "lot": "MAC",
+    "lotTitre": "Maçonnerie et structure",
+    "designation": "Plancher hourdis sur vide sanitaire (poutrelles + entrevous PSE + dalle compression)",
+    "unite": "m²",
+    "min": 90,
+    "moy": 135,
+    "max": 200
   },
   {
     "code": "MEN-02",
@@ -4038,5 +4098,55 @@
     "min": 80,
     "moy": 150,
     "max": 350
+  },
+  {
+    "code": "VRD-01",
+    "lot": "VRD",
+    "lotTitre": "Voirie et réseaux divers",
+    "designation": "Tranchée + fourreaux réseaux secs (EDF / télécom)",
+    "unite": "ml",
+    "min": 35,
+    "moy": 55,
+    "max": 90
+  },
+  {
+    "code": "VRD-02",
+    "lot": "VRD",
+    "lotTitre": "Voirie et réseaux divers",
+    "designation": "Branchement et raccordement eau potable",
+    "unite": "U",
+    "min": 1200,
+    "moy": 2000,
+    "max": 3500
+  },
+  {
+    "code": "VRD-03",
+    "lot": "VRD",
+    "lotTitre": "Voirie et réseaux divers",
+    "designation": "Raccordement assainissement collectif (boîte + regard)",
+    "unite": "U",
+    "min": 1500,
+    "moy": 2500,
+    "max": 4500
+  },
+  {
+    "code": "VRD-04",
+    "lot": "VRD",
+    "lotTitre": "Voirie et réseaux divers",
+    "designation": "Filière ANC (fosse toutes eaux + épandage)",
+    "unite": "U",
+    "min": 4500,
+    "moy": 7000,
+    "max": 12000
+  },
+  {
+    "code": "VRD-05",
+    "lot": "VRD",
+    "lotTitre": "Voirie et réseaux divers",
+    "designation": "Drainage périphérique + regard",
+    "unite": "ml",
+    "min": 40,
+    "moy": 65,
+    "max": 110
   }
 ]

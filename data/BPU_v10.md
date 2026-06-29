@@ -925,3 +925,36 @@ Pour un poste donné, le déboursé sec MO se calcule : `Déboursé MO = PU_MOY 
 | `RS-17` | Parquet massif pose à bâtons rompus / chevrons | m² | 95 | 150 | 260 |
 | `RS-19` | Rénovation parquet existant — ponçage 3 passes + vitrification 2C ou huilage | m² | 35 | 55 | 90 |
 | `RS-27` | Plinthe bois massif/MDF H≥12cm profil mouluré (fourniture + pose) | ml | 18 | 30 | 55 |
+
+## Compléments v0 — neuf maçonné et VRD
+
+> **⚠️ Brouillon v0 à dire d'expert — À VALIDER par le métier avant usage client.**
+> Prix **HT hors markup**, **IDF Q2 2026**.
+
+### Lot MAC — Maçonnerie et structure
+*(compléments fondations / dallage / plancher neuf)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `MAC-31` | Soubassement parpaing de fondation + arase étanche | ml | 90 | 140 | 220 |
+| `MAC-32` | Hérisson + polyane + dallage BA sur terre-plein (isolant sous-dalle) | m² | 70 | 110 | 170 |
+| `MAC-33` | Plancher hourdis sur vide sanitaire (poutrelles + entrevous PSE + dalle compression) | m² | 90 | 135 | 200 |
+
+### Lot CHAR — Charpente et couverture
+*(compléments neuf)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `CHAR-10` | Charpente fermettes industrielles (fourniture + pose, contreventement) | m² | 45 | 70 | 110 |
+| `CHAR-11` | Charpente traditionnelle bois (pannes / chevrons / arbalétriers) | m² | 80 | 130 | 210 |
+| `CHAR-12` | Couverture tuiles terre cuite + écran HPV + liteaunage + faîtage ventilé | m² | 55 | 85 | 140 |
+
+### Lot VRD — Voirie et réseaux divers
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `VRD-01` | Tranchée + fourreaux réseaux secs (EDF / télécom) | ml | 35 | 55 | 90 |
+| `VRD-02` | Branchement et raccordement eau potable | U | 1200 | 2000 | 3500 |
+| `VRD-03` | Raccordement assainissement collectif (boîte + regard) | U | 1500 | 2500 | 4500 |
+| `VRD-04` | Filière ANC (fosse toutes eaux + épandage) | U | 4500 | 7000 | 12000 |
+| `VRD-05` | Drainage périphérique + regard | ml | 40 | 65 | 110 |

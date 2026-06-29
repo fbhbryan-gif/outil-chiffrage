@@ -26,10 +26,10 @@ export function titreLot(lot: string): string {
  * déduire l'ordre métier de la donnée : il est fixé ici.
  */
 export const ORDRE_LOTS: string[] = [
-  "PREP", "DEMO", "MAC", "MP", "ISO", "CHAR", "CLO", "MEN", "MEX", "SER",
-  "EL", "PLO", "CVC", "RS", "RM", "PEINT", "STAFF", "PIE", "RAV", "DEVA",
-  "ENS", "SEC", "ACC", "MSM", "OCMOB", "OCREN", "OCERP", "OCMAC", "OCTER",
-  "AGEN", "EM",
+  "PREP", "VRD", "DEMO", "MAC", "MP", "ISO", "CHAR", "CLO", "MEN", "MEX",
+  "SER", "EL", "PLO", "CVC", "RS", "RM", "PEINT", "STAFF", "PIE", "RAV",
+  "DEVA", "ENS", "SEC", "ACC", "MSM", "OCMOB", "OCREN", "OCERP", "OCMAC",
+  "OCTER", "AGEN", "EM",
 ];
 
 /** Index d'un lot dans l'ordre canonique (999 si inconnu → en fin). */
