@@ -1,10 +1,12 @@
 import { describe, expect, it } from "vitest";
 import {
+  BPU,
   ORDRE_LOTS,
   ordreDuLot,
   rechercherBPU,
   sansAccents,
 } from "./bpu";
+import { isVerrouille } from "./engine";
 
 describe("sansAccents", () => {
   it("retire diacritiques et passe en minuscules", () => {
@@ -29,6 +31,15 @@ describe("rechercherBPU", () => {
 
   it("requête vide renvoie toute la base", () => {
     expect(rechercherBPU("").length).toBeGreaterThan(300);
+  });
+});
+
+describe("intégrité des prix BPU", () => {
+  it("MIN ≤ MOY ≤ MAX pour tout poste non verrouillé", () => {
+    const viol = BPU.filter(
+      (p) => !isVerrouille(p.code) && !(p.min <= p.moy && p.moy <= p.max),
+    ).map((p) => `${p.code} {${p.min}/${p.moy}/${p.max}}`);
+    expect(viol, `postes incohérents: ${viol.join(", ")}`).toHaveLength(0);
   });
 });
 

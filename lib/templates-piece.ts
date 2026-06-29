@@ -9,7 +9,7 @@
 
 import { round2 } from "./engine";
 import { quantitesLiees, type DimsPiece } from "./pieces";
-import type { LigneDevis, PosteBPU } from "./types";
+import type { LigneDevis, PosteBPU, TauxTVA } from "./types";
 
 /** Mode de dérivation de la quantité d'un élément depuis la géométrie. */
 export type Geo = "surface" | "perimetre" | "murs" | "plafond" | "parM2" | "fixe";
@@ -29,6 +29,38 @@ export interface TemplatePiece {
   /** Aide affichée. */
   note?: string;
   elements: ElementPiece[];
+}
+
+/** TVA suggérée à l'ajout d'un template (équipement pro/ERP = 20 ; sinon défaut projet). */
+export const TVA_TEMPLATE: Record<string, TauxTVA> = {
+  cuisine_pro: 20,
+  salle_soin: 20,
+  salle_reunion: 20,
+  cabine: 20,
+};
+
+/** Forfaits clé en main dont un template est le DÉTAIL (anti-double-comptage). */
+export const FORFAITS_RECOUVRANTS: Record<string, string[]> = {
+  cuisine_pro: ["OCERP-10"],
+  salle_reunion: ["OCTER-01"],
+  salle_soin: ["OCERP-20"],
+  cabine: ["OCERP-01"],
+  cuisine: ["OCREN-02", "OCREN-07"],
+  sdb: ["OCREN-01", "OCREN-07"],
+  sdb_pmr: ["OCREN-13", "OCREN-07"],
+  wc: ["OCREN-03", "OCREN-07"],
+  chambre: ["OCREN-07"],
+  sejour: ["OCREN-06", "OCREN-07"],
+  haussmannien: ["OCREN-07", "OCREN-15"],
+};
+
+/** Forfaits recouvrants déjà présents au devis pour un template donné. */
+export function forfaitsRecouvrantsPresents(
+  templateId: string,
+  codesPresents: Iterable<string>,
+): string[] {
+  const set = new Set(codesPresents);
+  return (FORFAITS_RECOUVRANTS[templateId] ?? []).filter((c) => set.has(c));
 }
 
 /** Un poste du panier, prêt à présenter/éditer puis ajouter. */
@@ -242,11 +274,11 @@ export const TEMPLATES_PIECE: TemplatePiece[] = [
     nom: "Salle de réunion / open-space (tertiaire)",
     note: "Cloison vitrée, faux-plancher technique, climatisation VRF, réseau RJ45, éclairage.",
     elements: [
-      { code: "CLO-41", geo: "perimetre" }, // cloison vitrée (périmètre vitré)
+      { code: "CLO-41", geo: "fixe", ratio: 15 }, // cloison vitrée m² (≈6 ml × 2,5 m, à ajuster)
       { code: "RS-24", geo: "surface" }, // faux-plancher technique
       { code: "CVC-90", geo: "surface" }, // VRF tertiaire
       { code: "EL-52", geo: "parM2", ratio: 0.15 }, // postes RJ45
-      { code: "EL-56", geo: "perimetre" }, // éclairage sur rail (périmètre)
+      { code: "EL-56", geo: "fixe", ratio: 6 }, // éclairage sur rail (ml, défaut éditable)
       { code: "EL-03", geo: "parM2", ratio: 0.25 }, // points lumineux
     ],
   },

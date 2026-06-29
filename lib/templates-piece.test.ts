@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { BPU_PAR_CODE } from "./bpu";
 import {
   TEMPLATES_PIECE,
+  forfaitsRecouvrantsPresents,
   genererPanier,
   lignesDepuisPanier,
   type ElementPanier,
@@ -94,5 +95,36 @@ describe("intégrité des templates (codes réels)", () => {
       const panier = genererPanier(t, { surfaceSol: 10 }, (c) => BPU_PAR_CODE.get(c));
       expect(panier.length).toBeGreaterThanOrEqual(Math.ceil(t.elements.length * 0.6));
     }
+  });
+
+  it("cohérence geo↔unité : perimetre⇒ml, surface/murs/plafond⇒m²", () => {
+    const attendu: Record<string, string> = {
+      perimetre: "ml",
+      surface: "m²",
+      murs: "m²",
+      plafond: "m²",
+    };
+    for (const t of TEMPLATES_PIECE) {
+      for (const el of t.elements) {
+        const u = attendu[el.geo];
+        if (!u) continue; // fixe / parM2 : unité libre
+        const poste = BPU_PAR_CODE.get(el.code);
+        if (!poste) continue;
+        expect(poste.unite, `${t.id}/${el.code} geo=${el.geo}`).toBe(u);
+      }
+    }
+  });
+});
+
+describe("forfaitsRecouvrantsPresents (anti-double-comptage)", () => {
+  it("détecte le forfait recouvrant présent au devis", () => {
+    expect(forfaitsRecouvrantsPresents("cuisine_pro", ["OCERP-10", "RS-21"])).toEqual([
+      "OCERP-10",
+    ]);
+    expect(forfaitsRecouvrantsPresents("salle_reunion", ["OCTER-01"])).toEqual(["OCTER-01"]);
+  });
+  it("rien si aucun forfait recouvrant n'est présent", () => {
+    expect(forfaitsRecouvrantsPresents("cuisine_pro", ["RS-21", "CHR-01"])).toHaveLength(0);
+    expect(forfaitsRecouvrantsPresents("inconnu", ["OCERP-10"])).toHaveLength(0);
   });
 });

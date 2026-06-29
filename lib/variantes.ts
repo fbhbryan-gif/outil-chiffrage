@@ -43,7 +43,7 @@ export const VARIANTES: GroupeVariante[] = [
   {
     id: "toiture_mob",
     titre: "Toiture d'extension (ossature bois)",
-    aide: "Au m². Variante substituée dans le forfait.",
+    aide: "Au m². Poste séparé — ne pas cumuler avec un forfait extension/surélévation OCMOB-09/10/11/12 (toiture déjà incluse).",
     options: [
       { code: "OCMOB-06", label: "Inclinée tuiles ≥20%" },
       { code: "OCMOB-07", label: "Terrasse accessible EPDM" },

@@ -23,6 +23,8 @@ import {
 import { quantitesLiees } from "@/lib/pieces";
 import {
   TEMPLATES_PIECE,
+  TVA_TEMPLATE,
+  forfaitsRecouvrantsPresents,
   genererPanier,
   lignesDepuisPanier,
   type ElementPanier,
@@ -840,6 +842,13 @@ function Detaille({
   const [vueClient, setVueClient] = useState(false);
   const [aSupprimer, setASupprimer] = useState<string | null>(null);
   const [viderDemande, setViderDemande] = useState(false);
+  const [panierConflit, setPanierConflit] = useState<{
+    selection: ElementPanier[];
+    occurrences: number;
+    zone: string;
+    templateId?: string;
+    conflits: string[];
+  } | null>(null);
 
   const synthese = useMemo(
     () => calculerSynthese(lignes, params, titreLot, ordreDuLot),
@@ -906,18 +915,41 @@ function Detaille({
     pousserRecent(poste.code);
   }
 
-  function ajouterPanier(
+  function appliquerPanier(
     selection: ElementPanier[],
     occurrences: number,
     zone: string,
+    templateId?: string,
   ) {
+    const tva = templateId ? TVA_TEMPLATE[templateId] : undefined;
     const nouvelles = lignesDepuisPanier(selection, occurrences, zone, (code, qte) => {
       const poste = BPU_PAR_CODE.get(code);
-      return poste ? ligneDepuisPoste(poste, params, qte) : null;
+      if (!poste) return null;
+      const ligne = ligneDepuisPoste(poste, params, qte);
+      if (tva) ligne.tva = tva; // équipement pro/ERP : TVA suggérée du template
+      return ligne;
     });
     if (!nouvelles.length) return;
     setLignes((ls) => [...ls, ...nouvelles]);
     nouvelles.forEach((l) => pousserRecent(l.code));
+  }
+
+  function ajouterPanier(
+    selection: ElementPanier[],
+    occurrences: number,
+    zone: string,
+    templateId?: string,
+  ) {
+    // Anti-double-comptage : si un forfait clé en main recouvrant est déjà au devis,
+    // demander confirmation avant d'ajouter le détail.
+    const conflits = templateId
+      ? forfaitsRecouvrantsPresents(templateId, codesPresents)
+      : [];
+    if (conflits.length > 0) {
+      setPanierConflit({ selection, occurrences, zone, templateId, conflits });
+      return;
+    }
+    appliquerPanier(selection, occurrences, zone, templateId);
   }
 
   function ajouterAdHoc() {
@@ -958,13 +990,21 @@ function Detaille({
             patch.puMoy != null ||
             patch.puMax != null)
         ) {
+          // Un PU saisi se propage sur les gammes encore vides (AD-HOC à prix unique) :
+          // évite que basculer de gamme remette le PU (et le total) à 0.
+          const saisi = patch.puMin ?? patch.puMoy ?? patch.puMax;
+          if (typeof saisi === "number" && saisi > 0) {
+            if (!next.puMin) next.puMin = saisi;
+            if (!next.puMoy) next.puMoy = saisi;
+            if (!next.puMax) next.puMax = saisi;
+          }
           const trio: Record<Gamme, number | undefined> = {
             MIN: next.puMin,
             MOY: next.puMoy,
             MAX: next.puMax,
           };
           const v = trio[next.gamme];
-          if (typeof v === "number") next.puBase = v;
+          if (typeof v === "number" && v > 0) next.puBase = v;
         }
         return next;
       }),
@@ -987,9 +1027,21 @@ function Detaille({
   function appliquerGammeLot(lot: string, gamme: Gamme) {
     setLignes((ls) =>
       ls.map((l) => {
-        const cle = l.adHoc || l.code === "AD-HOC" ? "DIV" : l.code.split("-")[0];
-        // On épargne les postes hors BPU et les prix verrouillés (gamme sans effet).
-        if (cle !== lot || l.adHoc || isVerrouille(l.code)) return l;
+        // Même clé de regroupement que le moteur (AD-HOC rangé sous son lot de rattachement).
+        const cle = l.adHoc || l.code === "AD-HOC" ? l.adHocLot || "DIV" : l.code.split("-")[0];
+        if (cle !== lot) return l;
+        // AD-HOC : applique la gamme seulement si le PU de cette gamme est renseigné.
+        if (l.adHoc) {
+          const trio: Record<Gamme, number | undefined> = {
+            MIN: l.puMin,
+            MOY: l.puMoy,
+            MAX: l.puMax,
+          };
+          const v = trio[gamme];
+          return typeof v === "number" && v > 0 ? { ...l, gamme, puBase: v } : { ...l, gamme };
+        }
+        // Prix verrouillés : gamme sans effet.
+        if (isVerrouille(l.code)) return l;
         const poste = BPU_PAR_CODE.get(l.code);
         return poste ? { ...l, gamme, puBase: puBaseRetenu(poste, gamme) } : { ...l, gamme };
       }),
@@ -1349,6 +1401,28 @@ function Detaille({
           ]}
         />
       )}
+      {panierConflit && (
+        <Modale
+          titre="Risque de double-comptage"
+          message={`Un forfait clé en main (${panierConflit.conflits.join(", ")}) est déjà au devis : il inclut déjà ces prestations. Ajouter le détail en plus le compterait deux fois.`}
+          actions={[
+            {
+              label: "Ajouter quand même",
+              variant: "ghost",
+              onClick: () => {
+                appliquerPanier(
+                  panierConflit.selection,
+                  panierConflit.occurrences,
+                  panierConflit.zone,
+                  panierConflit.templateId,
+                );
+                setPanierConflit(null);
+              },
+            },
+            { label: "Annuler", variant: "or", onClick: () => setPanierConflit(null) },
+          ]}
+        />
+      )}
     </div>
   );
 }
@@ -1445,7 +1519,12 @@ function AjoutPostes({
   setQteRef: (n: number) => void;
   onAjouter: (poste: PosteBPU) => void;
   onAdHoc: () => void;
-  onAjouterPanier: (selection: ElementPanier[], occurrences: number, zone: string) => void;
+  onAjouterPanier: (
+    selection: ElementPanier[],
+    occurrences: number,
+    zone: string,
+    templateId?: string,
+  ) => void;
   codesPresents: Set<string>;
 }) {
   const [vue, setVue] = useState<
@@ -1812,7 +1891,9 @@ function AjoutPostes({
                 <button
                   className="btn-or"
                   disabled={panierCoche.length === 0}
-                  onClick={() => onAjouterPanier(panierCoche, pNb, pZone.trim() || template.nom)}
+                  onClick={() =>
+                    onAjouterPanier(panierCoche, pNb, pZone.trim() || template.nom, template.id)
+                  }
                 >
                   Ajouter au chiffrage ({panierCoche.length * pNb} lignes)
                 </button>

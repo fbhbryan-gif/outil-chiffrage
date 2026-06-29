@@ -300,6 +300,12 @@ describe("clauseRevisionRequise", () => {
     expect(clauseRevisionRequise("2026-01-01", "2026-05-01")).toBe(false);
     expect(clauseRevisionRequise(undefined, "2026-08-01")).toBe(false);
   });
+
+  it("gère le débordement de mois (émission un 31)", () => {
+    // 31 août + 6 mois = fin février (pas le 3 mars) : un démarrage au 1er mars déclenche.
+    expect(clauseRevisionRequise("2026-08-31", "2027-03-01")).toBe(true);
+    expect(clauseRevisionRequise("2026-08-31", "2027-02-27")).toBe(false);
+  });
 });
 
 describe("versDevisUpdate — ordre TCE et mentions", () => {

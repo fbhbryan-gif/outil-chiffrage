@@ -249,7 +249,10 @@ export function clauseRevisionRequise(
   const d = new Date(dateDemarrage);
   if (Number.isNaN(e.getTime()) || Number.isNaN(d.getTime())) return false;
   const seuil = new Date(e);
+  const jour = seuil.getDate();
   seuil.setMonth(seuil.getMonth() + 6);
+  // Évite le débordement (31 août + 6 mois ≠ 3 mars) : caler en fin de mois cible.
+  if (seuil.getDate() !== jour) seuil.setDate(0);
   return d.getTime() > seuil.getTime();
 }
 

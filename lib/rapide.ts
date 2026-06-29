@@ -450,7 +450,10 @@ export function selectionsDefaut(
 ): Record<string, { actif: boolean; qte: number }> {
   const out: Record<string, { actif: boolean; qte: number }> = {};
   for (const o of ouvragesPourType(type)) {
-    out[o.code] = { actif: !!o.coche, qte: o.qteDefaut(shab) };
+    // Énergétique : pré-cocher l'ITI pour ne pas ouvrir le wizard sans aucun poste.
+    const actif =
+      !!o.coche || (type === "renovation_energetique" && o.code === "OCREN-04");
+    out[o.code] = { actif, qte: o.qteDefaut(shab) };
   }
   return out;
 }
