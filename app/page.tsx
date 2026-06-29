@@ -35,6 +35,7 @@ import {
   TYPES_PROJET,
   detecterRecouvrements,
   genererLignesRapide,
+  ordreDuGroupe,
   ouvragesPourType,
   selectionsDefaut,
   tvaSuggeree,
@@ -442,7 +443,8 @@ function WizardRapide({
       arr.push(o);
       m.set(o.groupe, arr);
     }
-    return [...m.entries()];
+    // Ordre canonique des blocs (sinon ordre d'insertion du catalogue).
+    return [...m.entries()].sort((a, b) => ordreDuGroupe(a[0]) - ordreDuGroupe(b[0]));
   }, [ouvrages]);
 
   const codesActifs = Object.entries(sel)

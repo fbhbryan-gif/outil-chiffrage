@@ -71,6 +71,11 @@ const RENO: TypeProjetRapide[] = [
   "renovation_appartement",
   "renovation_maison",
   "renovation_studio",
+];
+
+/** Rénovations logement + variantes patrimoniale/PMR (pour les pièces communes). */
+const RENO_PLUS: TypeProjetRapide[] = [
+  ...RENO,
   "renovation_haussmannien",
   "adaptation_pmr",
 ];
@@ -105,7 +110,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Salle de bains clé en main",
     groupe: "Pièces",
     aide: "m² de SDB (cumul)",
-    pour: RENO,
+    pour: RENO_PLUS,
     qteDefaut: () => 5,
   },
   {
@@ -113,7 +118,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Cuisine clé en main",
     groupe: "Pièces",
     aide: "ml de meubles",
-    pour: RENO,
+    pour: RENO_PLUS,
     qteDefaut: () => 4,
   },
   {
@@ -121,7 +126,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "WC complet",
     groupe: "Pièces",
     aide: "nombre de WC",
-    pour: RENO,
+    pour: RENO_PLUS,
     qteDefaut: () => 1,
   },
   {
@@ -129,8 +134,8 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Salle de bains PMR sécurisée clé en main",
     groupe: "Pièces",
     aide: "nombre de SDB PMR",
-    pour: RENO,
-    qteDefaut: () => 0,
+    pour: RENO_PLUS,
+    qteDefaut: () => 1,
   },
   {
     code: "OCREN-04",
@@ -138,7 +143,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     groupe: "Enveloppe",
     aide: "m² de murs",
     pour: [...RENO, ENERGETIQUE],
-    qteDefaut: () => 0,
+    qteDefaut: (s) => s, // ≈ surface de murs (à ajuster), évite la coche sans quantité
   },
   {
     code: "OCREN-05",
@@ -153,7 +158,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Ravalement de façade",
     groupe: "Enveloppe",
     aide: "m² de façade",
-    pour: ["renovation_maison", ENERGETIQUE],
+    pour: ["renovation_maison"], // non isolant -> hors énergétique (ne casse plus la TVA 5,5)
     qteDefaut: () => 0,
   },
   {
@@ -210,7 +215,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Extension MOB — clé en main TCE",
     groupe: "Extension ossature bois",
     aide: "m² SHON",
-    pour: ["extension", "neuf"],
+    pour: ["extension"],
     qteDefaut: (s) => s,
   },
   {
@@ -268,9 +273,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     code: "OCERP-10",
     label: "Cuisine professionnelle CHR clé en main",
     groupe: "CHR / Restaurant",
-    aide: "m² de cuisine",
+    aide: "m² de cuisine (~30 % de la surface par défaut)",
     pour: ["chr_restaurant"],
-    qteDefaut: (s) => s,
+    qteDefaut: (s) => Math.round(s * 0.3), // la cuisine ≠ toute la SHAB (corrige ×3)
     coche: true,
   },
   {
@@ -326,6 +331,33 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   },
 ];
 
+/** Ordre canonique d'affichage des blocs (groupe) dans le wizard rapide. */
+export const GROUPES_ORDRE: string[] = [
+  "Global",
+  "Pièces",
+  "Aménagement",
+  "Enveloppe",
+  "Lots techniques",
+  "Structure",
+  "Extension ossature bois",
+  "Surélévation ossature bois",
+  "Maison maçonnée",
+  "Commerce / ERP",
+  "Devanture / vitrine",
+  "Enseigne / signalétique",
+  "CHR / Restaurant",
+  "Tertiaire / bureaux",
+  "ERP santé",
+  "Accessibilité ERP",
+  "Sécurité / Accessibilité",
+];
+
+/** Rang d'un bloc dans l'ordre canonique (999 si inconnu → en fin). */
+export function ordreDuGroupe(groupe: string): number {
+  const i = GROUPES_ORDRE.indexOf(groupe);
+  return i === -1 ? 999 : i;
+}
+
 /**
  * Ouvrages proposés pour un type de projet donné.
  * Repli sur tout le catalogue si aucun ouvrage spécifique (robustesse).
@@ -353,27 +385,44 @@ export function tvaSuggeree(type: TypeProjetRapide): TauxTVA {
   return 20;
 }
 
-/** Ouvrages d'amélioration énergétique (TVA 5,5 % si seuls, Guide §2.1). */
+/** Ouvrages d'amélioration énergétique (TVA 5,5 % si seuls, Guide §2.1 / CGI 278-0 bis A). */
 export const CODES_ENERGETIQUES = new Set([
   "OCREN-04", // ITI
   "OCREN-05", // ITE
   "OCREN-10", // menuiseries isolantes
   "OCREN-14", // PAC air-eau
+  "ISO-08", // combles soufflés
+  "ISO-09", // rampants
+  "PLO-98", // VMC double flux
   // OCREN-09 (ravalement non isolant) EXCLU : relève du 10 %, pas du 5,5 %.
 ]);
 
+/** Ouvrages d'adaptation à la perte d'autonomie (TVA 5,5 % si seuls, CGI 278-0 bis A). */
+export const CODES_ADAPTATION_PMR = new Set([
+  "OCREN-13", // SDB PMR sécurisée
+  "OCERP-03", // mise en accessibilité
+]);
+
 /**
- * TVA suggérée en tenant compte de la sélection : 5,5 % si le chantier est
- * exclusivement énergétique (ITI/ITE/ravalement isolant), sinon règle par type.
+ * TVA suggérée en tenant compte de la sélection :
+ * - 5,5 % si rénovation logement et sélection 100 % énergétique ;
+ * - 5,5 % si adaptation PMR et sélection 100 % postes d'adaptation ;
+ * sinon règle par type.
  */
 export function tvaSuggereeSelection(
   type: TypeProjetRapide,
   codesActifs: string[],
 ): TauxTVA {
+  if (codesActifs.length === 0) return tvaSuggeree(type);
   if (
     TYPES_RENO_LOGEMENT.includes(type) &&
-    codesActifs.length > 0 &&
     codesActifs.every((c) => CODES_ENERGETIQUES.has(c))
+  ) {
+    return 5.5;
+  }
+  if (
+    type === "adaptation_pmr" &&
+    codesActifs.every((c) => CODES_ADAPTATION_PMR.has(c))
   ) {
     return 5.5;
   }
@@ -450,10 +499,13 @@ export function selectionsDefaut(
 ): Record<string, { actif: boolean; qte: number }> {
   const out: Record<string, { actif: boolean; qte: number }> = {};
   for (const o of ouvragesPourType(type)) {
-    // Énergétique : pré-cocher l'ITI pour ne pas ouvrir le wizard sans aucun poste.
-    const actif =
-      !!o.coche || (type === "renovation_energetique" && o.code === "OCREN-04");
-    out[o.code] = { actif, qte: o.qteDefaut(shab) };
+    const qte = o.qteDefaut(shab);
+    // Défaut coché : ouvrage marqué coche, ou poste « tête » du type spécialisé.
+    const tete =
+      (type === "renovation_energetique" && o.code === "OCREN-04") ||
+      (type === "adaptation_pmr" && o.code === "OCREN-13");
+    // Garde-fou : ne jamais ouvrir un ouvrage coché SANS quantité (état d'erreur).
+    out[o.code] = { actif: (!!o.coche || tete) && qte > 0, qte };
   }
   return out;
 }

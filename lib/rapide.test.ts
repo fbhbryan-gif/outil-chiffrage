@@ -73,6 +73,38 @@ describe("tvaSuggereeSelection", () => {
   it("ravalement non isolant OCREN-09 = 10 % (pas 5,5 %)", () => {
     expect(tvaSuggereeSelection("renovation_maison", ["OCREN-09"])).toBe(10);
   });
+  it("adaptation PMR exclusivement = 5,5 %", () => {
+    expect(tvaSuggereeSelection("adaptation_pmr", ["OCREN-13"])).toBe(5.5);
+    expect(tvaSuggereeSelection("adaptation_pmr", ["OCREN-13", "OCREN-02"])).toBe(10);
+  });
+});
+
+describe("selectionsDefaut — parcours par type (corrigés)", () => {
+  it("haussmannien : OCREN-15 coché, OCREN-07 NON coché (plus de double-comptage)", () => {
+    const s = selectionsDefaut("renovation_haussmannien", 60);
+    expect(s["OCREN-15"].actif).toBe(true);
+    expect(s["OCREN-07"]?.actif ?? false).toBe(false);
+  });
+  it("énergétique : ITI coché AVEC une quantité (plus d'état d'erreur)", () => {
+    const s = selectionsDefaut("renovation_energetique", 80);
+    expect(s["OCREN-04"].actif).toBe(true);
+    expect(s["OCREN-04"].qte).toBeGreaterThan(0);
+  });
+  it("CHR : cuisine pro à ~30 % de la surface, pas 100 %", () => {
+    const s = selectionsDefaut("chr_restaurant", 150);
+    expect(s["OCERP-10"].qte).toBe(45); // round(150 × 0.3)
+  });
+  it("adaptation PMR : SDB PMR cochée par défaut, pas la réno globale", () => {
+    const s = selectionsDefaut("adaptation_pmr", 60);
+    expect(s["OCREN-13"].actif).toBe(true);
+    expect(s["OCREN-07"]?.actif ?? false).toBe(false);
+  });
+  it("garde-fou : aucun ouvrage coché sans quantité (surface 0)", () => {
+    const s = selectionsDefaut("amenagement_commercial", 0);
+    for (const v of Object.values(s)) {
+      if (v.actif) expect(v.qte).toBeGreaterThan(0);
+    }
+  });
 });
 
 describe("detecterRecouvrements", () => {
