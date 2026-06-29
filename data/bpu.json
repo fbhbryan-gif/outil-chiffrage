@@ -530,6 +530,126 @@
     "max": 140
   },
   {
+    "code": "CHR-01",
+    "lot": "CHR",
+    "lotTitre": "Cuisine professionnelle et agencement CHR",
+    "designation": "Hotte professionnelle inox 304 à filtres baffles + bac à graisses + éclairage IP65 (murale/îlot, raccordement gaine) — au ml de front",
+    "unite": "ml",
+    "min": 600,
+    "moy": 950,
+    "max": 1600
+  },
+  {
+    "code": "CHR-02",
+    "lot": "CHR",
+    "lotTitre": "Cuisine professionnelle et agencement CHR",
+    "designation": "Système d'extinction automatique de hotte (friture/wok) — détection + agent humide UL300/NF + asservissement coupure énergie",
+    "unite": "U",
+    "min": 2500,
+    "moy": 4000,
+    "max": 7000
+  },
+  {
+    "code": "CHR-03",
+    "lot": "CHR",
+    "lotTitre": "Cuisine professionnelle et agencement CHR",
+    "designation": "Ensemble sécurité gaz cuisine ERP — électrovanne sécurité positive + détection CH4/CO + ventilation + asservissement + Qualigaz",
+    "unite": "ens",
+    "min": 1300,
+    "moy": 2500,
+    "max": 5000
+  },
+  {
+    "code": "CHR-04",
+    "lot": "CHR",
+    "lotTitre": "Cuisine professionnelle et agencement CHR",
+    "designation": "Plonge professionnelle inox 304 à 2 bacs + égouttoir + dosseret + bonde panier (raccordement EF/EC/EU)",
+    "unite": "U",
+    "min": 650,
+    "moy": 1100,
+    "max": 2100
+  },
+  {
+    "code": "CHR-05",
+    "lot": "CHR",
+    "lotTitre": "Cuisine professionnelle et agencement CHR",
+    "designation": "Mitigeur de plonge col de cygne + douchette de pré-rinçage sur platine + clapets anti-retour",
+    "unite": "U",
+    "min": 180,
+    "moy": 320,
+    "max": 600
+  },
+  {
+    "code": "CHR-06",
+    "lot": "CHR",
+    "lotTitre": "Cuisine professionnelle et agencement CHR",
+    "designation": "Table de travail / découpe inox 304 sur pieds + étagère basse (prof. ~700mm) — au ml",
+    "unite": "ml",
+    "min": 260,
+    "moy": 400,
+    "max": 700
+  },
+  {
+    "code": "CHR-07",
+    "lot": "CHR",
+    "lotTitre": "Cuisine professionnelle et agencement CHR",
+    "designation": "Étagères murales inox 304 sur consoles (lessivables HACCP) — au ml",
+    "unite": "ml",
+    "min": 90,
+    "moy": 160,
+    "max": 320
+  },
+  {
+    "code": "CHR-08",
+    "lot": "CHR",
+    "lotTitre": "Cuisine professionnelle et agencement CHR",
+    "designation": "Chambre froide positive 0/+5°C démontable 4-12 m³ (panneaux + groupe + évaporateur + éclairage, hors F-Gaz)",
+    "unite": "U",
+    "min": 4200,
+    "moy": 7200,
+    "max": 13500
+  },
+  {
+    "code": "CHR-09",
+    "lot": "CHR",
+    "lotTitre": "Cuisine professionnelle et agencement CHR",
+    "designation": "Chambre froide négative -18/-22°C démontable 4-10 m³ (panneaux renforcés + sol antigel + groupe BT + dégivrage, hors F-Gaz)",
+    "unite": "U",
+    "min": 6200,
+    "moy": 10500,
+    "max": 19500
+  },
+  {
+    "code": "CHR-10",
+    "lot": "CHR",
+    "lotTitre": "Cuisine professionnelle et agencement CHR",
+    "designation": "Mise en service frigorifique + attestation F-Gaz (tirage au vide, charge, étanchéité) — par groupe",
+    "unite": "U",
+    "min": 250,
+    "moy": 450,
+    "max": 900
+  },
+  {
+    "code": "CHR-11",
+    "lot": "CHR",
+    "lotTitre": "Cuisine professionnelle et agencement CHR",
+    "designation": "Comptoir / bar de service technique (structure + plan inox/résine + rail à glace + plonge bar + gaine) — au ml",
+    "unite": "ml",
+    "min": 800,
+    "moy": 1400,
+    "max": 2800
+  },
+  {
+    "code": "CHR-12",
+    "lot": "CHR",
+    "lotTitre": "Cuisine professionnelle et agencement CHR",
+    "designation": "Banquette de salle sur mesure (ossature + mousse HR + garnissage M1 ERP + dosseret) — au ml",
+    "unite": "ml",
+    "min": 350,
+    "moy": 600,
+    "max": 1100
+  },
+  {
     "code": "CLO-01",
     "lot": "CLO",
     "lotTitre": "Cloisons et faux-plafonds",
@@ -1110,6 +1230,46 @@
     "max": 230
   },
   {
+    "code": "CVC-79",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Caisson d'extraction de buées cuisine en toiture (tourelle 400°C/2h, 2000-5000 m³/h, plots antivibratiles + variateur, rejet au-dessus faîtage)",
+    "unite": "U",
+    "min": 2400,
+    "moy": 4000,
+    "max": 7200
+  },
+  {
+    "code": "CVC-80",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Conduit d'extraction cuisine inox soudé étanche aux graisses + gaine coupe-feu EI + trappes de ramonage — au ml vertical réel",
+    "unite": "ml",
+    "min": 160,
+    "moy": 300,
+    "max": 520
+  },
+  {
+    "code": "CVC-81",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Ventilation de compensation d'air neuf cuisine (caisson/CTA + filtration + réseau + diffusion + asservissement ~90% extraction) — cuisine ≤50 m²",
+    "unite": "ens",
+    "min": 2500,
+    "moy": 4500,
+    "max": 8500
+  },
+  {
+    "code": "CVC-82",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Mise en service + équilibrage aéraulique + mesure des débits extraction/compensation + PV de réception",
+    "unite": "F",
+    "min": 650,
+    "moy": 1100,
+    "max": 2200
+  },
+  {
     "code": "DEMO-01",
     "lot": "DEMO",
     "lotTitre": "Démolition et dépose",
@@ -1578,6 +1738,36 @@
     "min": 350,
     "moy": 480,
     "max": 850
+  },
+  {
+    "code": "EL-43",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Départ force motrice dédié cuisine pro (mono/tri, disjoncteur + diff. 30mA, câble U1000R2V, boîte IP55) — par équipement",
+    "unite": "U",
+    "min": 220,
+    "moy": 400,
+    "max": 850
+  },
+  {
+    "code": "EL-44",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Arrêt d'urgence cuisine ERP (coup-de-poing) coupant les énergies de cuisson + asservissement gaz et extinction hotte",
+    "unite": "U",
+    "min": 380,
+    "moy": 700,
+    "max": 1400
+  },
+  {
+    "code": "EL-45",
+    "lot": "EL",
+    "lotTitre": "Électricité courants forts et faibles",
+    "designation": "Tableau divisionnaire cuisine pro étanche IP55 + différentiels par circuit + liaison équipotentielle des masses inox",
+    "unite": "U",
+    "min": 1200,
+    "moy": 2200,
+    "max": 4800
   },
   {
     "code": "EM-01",
@@ -3328,6 +3518,16 @@
     "min": 180,
     "moy": 280,
     "max": 480
+  },
+  {
+    "code": "PLO-95",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Bac à graisses / séparateur NF EN 1825 (aérien sous-évier ou enterré + débourbeur + regard), dimensionné au nombre de couverts",
+    "unite": "U",
+    "min": 1100,
+    "moy": 2300,
+    "max": 5000
   },
   {
     "code": "PLO-96",

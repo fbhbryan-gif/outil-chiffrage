@@ -177,6 +177,15 @@ export const VARIANTES: GroupeVariante[] = [
       { code: "VRD-04", label: "ANC (fosse + épandage)" },
     ],
   },
+  {
+    id: "chambre_froide",
+    titre: "Chambre froide (CHR)",
+    aide: "À l'unité. Mise en service F-Gaz (CHR-10) en complément.",
+    options: [
+      { code: "CHR-08", label: "Positive 0/+5°C" },
+      { code: "CHR-09", label: "Négative -18/-22°C" },
+    ],
+  },
 ];
 
 /** Ne garde que les options dont le code existe dans le BPU. */

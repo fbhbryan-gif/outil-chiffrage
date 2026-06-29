@@ -185,6 +185,31 @@ export const TEMPLATES_PIECE: TemplatePiece[] = [
     ],
   },
   {
+    id: "cuisine_pro",
+    nom: "Cuisine professionnelle CHR",
+    note: "Détail de l'OCERP-10 : extraction + sécurité + plonge + mobilier inox + chambre froide + force/élec. Ne pas cumuler avec le forfait OCERP-10.",
+    elements: [
+      { code: "RS-21", geo: "surface" }, // sol résine
+      { code: "CHR-01", geo: "fixe", ratio: 3 }, // hotte (ml de front)
+      { code: "CVC-79", geo: "fixe", ratio: 1 }, // caisson extraction toiture
+      { code: "CVC-80", geo: "fixe", ratio: 8 }, // conduit (ml vertical)
+      { code: "CVC-81", geo: "fixe", ratio: 1 }, // compensation air neuf
+      { code: "CVC-82", geo: "fixe", ratio: 1 }, // MSE / équilibrage
+      { code: "CHR-02", geo: "fixe", ratio: 1, coche: false }, // extinction hotte (si friture)
+      { code: "CHR-03", geo: "fixe", ratio: 1, coche: false }, // sécurité gaz (si gaz)
+      { code: "CHR-04", geo: "fixe", ratio: 1 }, // plonge 2 bacs
+      { code: "CHR-05", geo: "fixe", ratio: 1 }, // mitigeur plonge
+      { code: "CHR-06", geo: "fixe", ratio: 3 }, // table inox (ml)
+      { code: "CHR-07", geo: "fixe", ratio: 4 }, // étagères inox (ml)
+      { code: "CHR-08", geo: "fixe", ratio: 1 }, // chambre froide positive
+      { code: "CHR-10", geo: "fixe", ratio: 1 }, // MSE F-Gaz
+      { code: "PLO-95", geo: "fixe", ratio: 1 }, // bac à graisses
+      { code: "EL-43", geo: "fixe", ratio: 3 }, // départs force
+      { code: "EL-44", geo: "fixe", ratio: 1 }, // arrêt d'urgence
+      { code: "EL-45", geo: "fixe", ratio: 1 }, // tableau divisionnaire cuisine
+    ],
+  },
+  {
     id: "cabine",
     nom: "Cabine d'essayage (ERP)",
     note: "Micro-pièce répétitive — utilisez ×N pour le nombre de cabines.",

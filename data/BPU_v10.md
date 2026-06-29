@@ -958,3 +958,52 @@ Pour un poste donné, le déboursé sec MO se calcule : `Déboursé MO = PU_MOY 
 | `VRD-03` | Raccordement assainissement collectif (boîte + regard) | U | 1500 | 2500 | 4500 |
 | `VRD-04` | Filière ANC (fosse toutes eaux + épandage) | U | 4500 | 7000 | 12000 |
 | `VRD-05` | Drainage périphérique + regard | ml | 40 | 65 | 110 |
+
+## Compléments v0 — CHR / cuisine professionnelle
+
+> **⚠️ Brouillon v0 à dire d'expert (synthèse 3 experts) — À VALIDER par le métier avant usage client.**
+> Prix **HT hors markup**, **IDF Q2 2026**, valeurs de consensus.
+> **Garde-fou anti-cumul** : ces postes détaillés sont l'ALTERNATIVE éclatée du forfait `OCERP-10` (cuisine pro clé en main) — ne jamais cumuler le forfait et le détail.
+
+### Lot CHR — Cuisine professionnelle et agencement CHR
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `CHR-01` | Hotte professionnelle inox 304 à filtres baffles + bac à graisses + éclairage IP65 (murale/îlot, raccordement gaine) — au ml de front | ml | 600 | 950 | 1600 |
+| `CHR-02` | Système d'extinction automatique de hotte (friture/wok) — détection + agent humide UL300/NF + asservissement coupure énergie | U | 2500 | 4000 | 7000 |
+| `CHR-03` | Ensemble sécurité gaz cuisine ERP — électrovanne sécurité positive + détection CH4/CO + ventilation + asservissement + Qualigaz | ens | 1300 | 2500 | 5000 |
+| `CHR-04` | Plonge professionnelle inox 304 à 2 bacs + égouttoir + dosseret + bonde panier (raccordement EF/EC/EU) | U | 650 | 1100 | 2100 |
+| `CHR-05` | Mitigeur de plonge col de cygne + douchette de pré-rinçage sur platine + clapets anti-retour | U | 180 | 320 | 600 |
+| `CHR-06` | Table de travail / découpe inox 304 sur pieds + étagère basse (prof. ~700mm) — au ml | ml | 260 | 400 | 700 |
+| `CHR-07` | Étagères murales inox 304 sur consoles (lessivables HACCP) — au ml | ml | 90 | 160 | 320 |
+| `CHR-08` | Chambre froide positive 0/+5°C démontable 4-12 m³ (panneaux + groupe + évaporateur + éclairage, hors F-Gaz) | U | 4200 | 7200 | 13500 |
+| `CHR-09` | Chambre froide négative -18/-22°C démontable 4-10 m³ (panneaux renforcés + sol antigel + groupe BT + dégivrage, hors F-Gaz) | U | 6200 | 10500 | 19500 |
+| `CHR-10` | Mise en service frigorifique + attestation F-Gaz (tirage au vide, charge, étanchéité) — par groupe | U | 250 | 450 | 900 |
+| `CHR-11` | Comptoir / bar de service technique (structure + plan inox/résine + rail à glace + plonge bar + gaine) — au ml | ml | 800 | 1400 | 2800 |
+| `CHR-12` | Banquette de salle sur mesure (ossature + mousse HR + garnissage M1 ERP + dosseret) — au ml | ml | 350 | 600 | 1100 |
+
+### Lot CVC — Chauffage / Ventilation / Climatisation
+*(compléments extraction cuisine CHR)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `CVC-79` | Caisson d'extraction de buées cuisine en toiture (tourelle 400°C/2h, 2000-5000 m³/h, plots antivibratiles + variateur, rejet au-dessus faîtage) | U | 2400 | 4000 | 7200 |
+| `CVC-80` | Conduit d'extraction cuisine inox soudé étanche aux graisses + gaine coupe-feu EI + trappes de ramonage — au ml vertical réel | ml | 160 | 300 | 520 |
+| `CVC-81` | Ventilation de compensation d'air neuf cuisine (caisson/CTA + filtration + réseau + diffusion + asservissement ~90% extraction) — cuisine ≤50 m² | ens | 2500 | 4500 | 8500 |
+| `CVC-82` | Mise en service + équilibrage aéraulique + mesure des débits extraction/compensation + PV de réception | F | 650 | 1100 | 2200 |
+
+### Lot EL — Électricité courants forts et faibles
+*(compléments force / sécurité cuisine CHR)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `EL-43` | Départ force motrice dédié cuisine pro (mono/tri, disjoncteur + diff. 30mA, câble U1000R2V, boîte IP55) — par équipement | U | 220 | 400 | 850 |
+| `EL-44` | Arrêt d'urgence cuisine ERP (coup-de-poing) coupant les énergies de cuisson + asservissement gaz et extinction hotte | U | 380 | 700 | 1400 |
+| `EL-45` | Tableau divisionnaire cuisine pro étanche IP55 + différentiels par circuit + liaison équipotentielle des masses inox | U | 1200 | 2200 | 4800 |
+
+### Lot PLO — Plomberie et sanitaire
+*(complément CHR)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `PLO-95` | Bac à graisses / séparateur NF EN 1825 (aérien sous-évier ou enterré + débourbeur + regard), dimensionné au nombre de couverts | U | 1100 | 2300 | 5000 |
