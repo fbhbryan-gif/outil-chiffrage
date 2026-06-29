@@ -38,8 +38,12 @@ dans l'UI. L'UI ne fait qu'appeler le moteur et afficher.
 2. **Pas de markup** : la règle de majoration +15 % a été **supprimée** (décision
    métier 2026-06-28). Le PU appliqué = PU du BPU selon la gamme. Une majoration
    globale du devis sera ajoutée ultérieurement comme fonctionnalité dédiée.
-3. **Prix verrouillés** : `RS-01` et `RS-09` = **50 €/m²**, jamais recalculés
-   (constante `PRIX_VERROUILLES`). Appliqués tels quels (plus de markup).
+3. **Prix verrouillés** : `RS-50` (pose seule carrelage standard) et `RS-51`
+   (pose seule parquet flottant standard) = **50 €/m²**, jamais recalculés
+   (constante `PRIX_VERROUILLES`). NB : `RS-01` (chape) et `RS-09` (parquet
+   toutes essences) ont été **dé-verrouillés** (vraies gammes) — décision
+   2026-06-30, l'ancien verrou sur ces codes collisionnait avec des ouvrages
+   à gamme et sous-facturait.
 4. **Quantités conservatrices** (§5.1) : surfaces ×1.05–1.10, linéaires ×1.10,
    imprévus 3–5 % du HT. Implémenté via `coefQte` par ligne + `tauxImprevus` global
    (réparti au prorata sur les bases de TVA).

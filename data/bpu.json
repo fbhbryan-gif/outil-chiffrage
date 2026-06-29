@@ -3275,9 +3275,9 @@
     "lotTitre": "Plomberie et sanitaire",
     "designation": "Receveur douche 90×80cm + bonde extra-plate (fourniture seule)",
     "unite": "U",
-    "min": 550,
-    "moy": 740,
-    "max": 1300
+    "min": 350,
+    "moy": 470,
+    "max": 850
   },
   {
     "code": "PLO-19",
@@ -3285,9 +3285,9 @@
     "lotTitre": "Plomberie et sanitaire",
     "designation": "Receveur douche 140×90cm + bonde extra-plate (fourniture seule)",
     "unite": "U",
-    "min": 350,
-    "moy": 470,
-    "max": 850
+    "min": 550,
+    "moy": 740,
+    "max": 1300
   },
   {
     "code": "PLO-25",
@@ -4106,8 +4106,8 @@
     "designation": "Chape allégée ciment ép.5cm CT-C25-F5 (parquet collé)",
     "unite": "m²",
     "min": 20,
-    "moy": 50,
-    "max": 50
+    "moy": 30,
+    "max": 45
   },
   {
     "code": "RS-02",
@@ -4176,7 +4176,7 @@
     "designation": "Parquet toutes essences (fourniture + pose, sous-couche incluse)",
     "unite": "m²",
     "min": 60,
-    "moy": 50,
+    "moy": 95,
     "max": 140
   },
   {
@@ -4358,6 +4358,26 @@
     "min": 18,
     "moy": 30,
     "max": 55
+  },
+  {
+    "code": "RS-50",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Pose seule carrelage sol standard (grès 60×60, pose collée + joints) — calé à dire d'expert",
+    "unite": "m²",
+    "min": 50,
+    "moy": 50,
+    "max": 50
+  },
+  {
+    "code": "RS-51",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Pose seule parquet flottant standard (sous-couche incluse) — calé à dire d'expert",
+    "unite": "m²",
+    "min": 50,
+    "moy": 50,
+    "max": 50
   },
   {
     "code": "SEC-01",

@@ -28,8 +28,8 @@ import type {
  * Ne JAMAIS recalculer ces postes depuis la base composants.
  */
 export const PRIX_VERROUILLES: Record<string, number> = {
-  "RS-01": 50,
-  "RS-09": 50,
+  "RS-50": 50, // pose seule carrelage standard (ex-RS-01 verrouillé)
+  "RS-51": 50, // pose seule parquet flottant standard (ex-RS-09 verrouillé)
 };
 
 /** Coefficients conservateurs par défaut selon l'unité (Specifications §5.1). */

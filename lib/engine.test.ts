@@ -26,11 +26,11 @@ const params = (over: Partial<ParametresDevis> = {}): ParametresDevis => ({
   ...over,
 });
 
-const posteRS01: PosteBPU = {
-  code: "RS-01",
+const posteRS50: PosteBPU = {
+  code: "RS-50",
   lot: "RS",
   lotTitre: "Revêtements de sols",
-  designation: "Pose carrelage sol standard",
+  designation: "Pose seule carrelage standard",
   unite: "m²",
   min: 999,
   moy: 999,
@@ -56,9 +56,11 @@ describe("helpers", () => {
     expect(round2(Number("") * 2)).toBe(0);
   });
 
-  it("isVerrouille repère RS-01/RS-09", () => {
-    expect(isVerrouille("RS-01")).toBe(true);
-    expect(isVerrouille("RS-09")).toBe(true);
+  it("isVerrouille repère les codes pose-standard verrouillés (RS-50/RS-51)", () => {
+    expect(isVerrouille("RS-50")).toBe(true);
+    expect(isVerrouille("RS-51")).toBe(true);
+    expect(isVerrouille("RS-01")).toBe(false); // dé-verrouillé (vraie gamme chape)
+    expect(isVerrouille("RS-09")).toBe(false); // dé-verrouillé (vraie gamme parquet)
     expect(isVerrouille("OCREN-07")).toBe(false);
   });
 
@@ -77,10 +79,10 @@ describe("PU de base et prix verrouillés", () => {
     expect(puBaseRetenu(posteOCREN04, "MAX")).toBe(135);
   });
 
-  it("force 50 €/m² pour RS-01 quelle que soit la gamme", () => {
-    expect(puBaseRetenu(posteRS01, "MIN")).toBe(50);
-    expect(puBaseRetenu(posteRS01, "MOY")).toBe(50);
-    expect(puBaseRetenu(posteRS01, "MAX")).toBe(50);
+  it("force 50 €/m² pour un code verrouillé (RS-50) quelle que soit la gamme", () => {
+    expect(puBaseRetenu(posteRS50, "MIN")).toBe(50);
+    expect(puBaseRetenu(posteRS50, "MOY")).toBe(50);
+    expect(puBaseRetenu(posteRS50, "MAX")).toBe(50);
   });
 });
 
@@ -94,7 +96,7 @@ describe("ligneDepuisPoste", () => {
   });
 
   it("ajoute une note pour un prix verrouillé", () => {
-    const l = ligneDepuisPoste(posteRS01, params());
+    const l = ligneDepuisPoste(posteRS50, params());
     expect(l.puBase).toBe(50);
     expect(l.note).toMatch(/expert/i);
   });

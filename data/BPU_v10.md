@@ -63,8 +63,8 @@ Ces postes ont été calés à dire d'expert. Ils s'appliquent **sans recalcul**
 
 | Code | Désignation | PU |
 |---|---|---|
-| **RS-01** | Pose carrelage sol standard (grès cérame 60×60, pose collée + joints) | **50 €/m²** |
-| **RS-09** | Pose parquet flottant standard | **50 €/m²** |
+| **RS-50** | Pose seule carrelage sol standard (grès cérame 60×60, pose collée + joints) | **50 €/m²** |
+| **RS-51** | Pose seule parquet flottant standard | **50 €/m²** |
 
 ---
 
@@ -300,8 +300,8 @@ Ces postes ont été calés à dire d'expert. Ils s'appliquent **sans recalcul**
 | `PLO-14` | Pack bâti Geberit DuoFix + cuvette Villeroy & Boch faible profondeur | U | 850 | 1150 | 2000 |
 | `PLO-15` | Ajustement réseaux douche + lave-mains (reconfiguration) | F | 650 | 900 | 1600 |
 | `PLO-16` | Étanchéité zone douche KERDI ou Sika (natte + bandes d'about) | F | 380 | 500 | 850 |
-| `PLO-17` | Receveur douche 90×80cm + bonde extra-plate (fourniture seule) | U | 550 | 740 | 1300 |
-| `PLO-19` | Receveur douche 140×90cm + bonde extra-plate (fourniture seule) | U | 350 | 470 | 850 |
+| `PLO-17` | Receveur douche 90×80cm + bonde extra-plate (fourniture seule) | U | 350 | 470 | 850 |
+| `PLO-19` | Receveur douche 140×90cm + bonde extra-plate (fourniture seule) | U | 550 | 740 | 1300 |
 | `PLO-25` | Paroi douche fixe 80cm profilé doré brossé (fourniture seule) | U | 430 | 590 | 1050 |
 | `PLO-28` | Meuble vasque suspendu Panthéon ou équivalent (pose incluse) | U | 520 | 720 | 1300 |
 | `PLO-29` | Baignoire îlot ovale + robinet bain-douche de plage Châtelet | U | 1200 | 1600 | 3000 |
@@ -389,14 +389,16 @@ Ces postes ont été calés à dire d'expert. Ils s'appliquent **sans recalcul**
 
 | Code | Désignation | U | MIN | MOY | MAX |
 |---|---|---|---:|---:|---:|
-| `RS-01` | Chape allégée ciment ép.5cm CT-C25-F5 (parquet collé) | m² | 20 | **50** | 50 |
+| `RS-01` | Chape allégée ciment ép.5cm CT-C25-F5 (parquet collé) | m² | 20 | 30 | 45 |
 | `RS-02` | Chape allégée granulats ép.5cm CT-C20-F4 (carrelage collé) | m² | 22 | 35 | 55 |
 | `RS-03` | Parquet contrecollé chêne naturel huilé (pose pont de bateau) | m² | 75 | 105 | 165 |
 | `RS-04` | Plinthe MDF H=10cm prête à peindre | ml | 10 | 15 | 25 |
 | `RS-05` | Carrelage sol hexagonal 21×18 grès céram (type Equipe Coimbra) | m² | 90 | 130 | 200 |
 | `RS-07` | Natte d'étanchéité Schluter KERDI zone douche (DTU 52.2) | U | 250 | 350 | 600 |
 | `RS-08` | Ragréage fibré autonivelant (ép. 3-10mm, planéité ≤3mm) | m² | 22 | 35 | 60 |
-| `RS-09` | Parquet toutes essences (fourniture + pose, sous-couche incluse) | m² | 60 | **50** | 140 |
+| `RS-09` | Parquet toutes essences (fourniture + pose, sous-couche incluse) | m² | 60 | 95 | 140 |
+| `RS-50` | Pose seule carrelage sol standard (grès 60×60, pose collée + joints) — calé à dire d'expert | m² | 50 | 50 | 50 |
+| `RS-51` | Pose seule parquet flottant standard (sous-couche incluse) — calé à dire d'expert | m² | 50 | 50 | 50 |
 | `RS-10` | Carrelage sol 120×60 grès céram rectifié (Marazzi Travertino) | m² | 80 | 115 | 190 |
 | `RS-11` | Plinthe carrelage 6cm bord carré | ml | 10 | 15 | 25 |
 | `RS-12` | Carrelage sol 75×75 grès céram rectifié (Mystone berrici) | m² | 75 | 110 | 180 |
