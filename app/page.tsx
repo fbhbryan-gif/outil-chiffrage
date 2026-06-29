@@ -28,6 +28,7 @@ import {
   type ElementPanier,
 } from "@/lib/templates-piece";
 import { bumpVersion, genRef, versionDeRef } from "@/lib/ref";
+import { VARIANTES, optionsDisponibles } from "@/lib/variantes";
 import {
   TYPES_PROJET,
   detecterRecouvrements,
@@ -1447,7 +1448,12 @@ function AjoutPostes({
   onAjouterPanier: (selection: ElementPanier[], occurrences: number, zone: string) => void;
   codesPresents: Set<string>;
 }) {
-  const [vue, setVue] = useState<"recherche" | "lots" | "recents" | "piece">("recherche");
+  const [vue, setVue] = useState<
+    "recherche" | "lots" | "recents" | "piece" | "variantes"
+  >("recherche");
+  // Choix guidés : variante sélectionnée + quantité par groupe.
+  const [varChoix, setVarChoix] = useState<Record<string, string>>({});
+  const [varQte, setVarQte] = useState<Record<string, number>>({});
   const [query, setQuery] = useState("");
   const [lotOuvert, setLotOuvert] = useState<string | null>(null);
   const [filtreLot, setFiltreLot] = useState("");
@@ -1506,6 +1512,7 @@ function AjoutPostes({
             ["recherche", "Recherche"],
             ["lots", "Parcourir par lot"],
             ["recents", "Récents"],
+            ["variantes", "Choix guidés"],
             ["piece", "Configurer une pièce"],
           ] as [typeof vue, string][]
         ).map(([v, label]) => (
@@ -1590,6 +1597,81 @@ function AjoutPostes({
           onAjouter={onAjouter}
           vide="Aucun poste récent — ajoutez des postes pour les retrouver ici."
         />
+      )}
+
+      {vue === "variantes" && (
+        <div className="space-y-4">
+          <p className="text-xs text-marine-700/70">
+            Choisissez la <b>prestation</b> puis la <b>variante / gamme de produit</b> —
+            l'outil ajoute le bon poste BPU avec sa quantité.
+          </p>
+          {VARIANTES.map((g) => {
+            const dispo = optionsDisponibles(g, (c) => BPU_PAR_CODE.get(c));
+            if (dispo.length === 0) return null;
+            const choisi = varChoix[g.id] ?? dispo[0].option.code;
+            const posteChoisi = dispo.find((d) => d.option.code === choisi)?.poste;
+            const qte = varQte[g.id] ?? 1;
+            return (
+              <div key={g.id} className="rounded-md border border-marine-50 p-3">
+                <div className="mb-1 text-sm font-semibold text-marine-900">{g.titre}</div>
+                {g.aide && <div className="mb-2 text-xs text-marine-700/55">{g.aide}</div>}
+                <div className="flex flex-wrap gap-1.5">
+                  {dispo.map(({ option, poste }) => (
+                    <button
+                      key={option.code}
+                      onClick={() => setVarChoix((p) => ({ ...p, [g.id]: option.code }))}
+                      className={`rounded-md border px-2.5 py-1.5 text-left text-xs transition ${
+                        choisi === option.code
+                          ? "border-or bg-or/10 text-marine-900"
+                          : "border-marine-50 bg-white text-marine-700 hover:border-or"
+                      }`}
+                    >
+                      <span className="block font-medium">{option.label}</span>
+                      <span className="text-marine-700/60">
+                        {eur0.format(poste.moy)}/{poste.unite} MOY
+                      </span>
+                    </button>
+                  ))}
+                </div>
+                <div className="mt-2 flex items-center gap-2">
+                  <input
+                    className="input !w-24 text-right"
+                    type="number"
+                    min={0}
+                    step="any"
+                    value={qte || ""}
+                    onChange={(e) =>
+                      setVarQte((p) => ({ ...p, [g.id]: num(e.target.value, 1) }))
+                    }
+                  />
+                  <span className="w-6 text-xs text-marine-700/60">{posteChoisi?.unite}</span>
+                  <button
+                    className="btn-ghost ml-auto"
+                    disabled={!posteChoisi || !(qte > 0)}
+                    onClick={() =>
+                      posteChoisi &&
+                      onAjouterPanier(
+                        [
+                          {
+                            code: posteChoisi.code,
+                            designation: posteChoisi.designation,
+                            unite: posteChoisi.unite,
+                            qte,
+                            coche: true,
+                          },
+                        ],
+                        1,
+                        "",
+                      )
+                    }
+                  >
+                    + Ajouter
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       )}
 
       {vue === "piece" && (
