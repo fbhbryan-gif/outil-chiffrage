@@ -61,6 +61,12 @@ export interface LigneDevis {
   note?: string;
   /** Poste hors BPU créé à la volée. */
   adHoc?: boolean;
+  /** Lot de rattachement d'un poste AD-HOC (pour le regroupement par corps d'état). */
+  adHocLot?: string;
+  /** Prix de gamme d'un AD-HOC (optionnels) : permettent de suivre les boutons de gamme. */
+  puMin?: number;
+  puMoy?: number;
+  puMax?: number;
 }
 
 /** Mentions contractuelles d'un lot (Guide §8.3). Reprises sur les exports. */
@@ -95,6 +101,8 @@ export interface ParametresDevis {
   dateDemarragePrev?: string;
   /** Mentions INCLUS/EXCLUS/CONDITIONS par code de lot. */
   mentionsParLot?: Record<string, MentionsLot>;
+  /** Montant d'aides déduit du TTC (MaPrimeRénov', CEE…) pour le reste à charge. */
+  aides?: number;
 }
 
 /** Résultat calculé d'une ligne. */
@@ -136,4 +144,8 @@ export interface SyntheseDevis {
   totalTTC: number;
   /** Ratio €/m² HT (Total HT / surface SHAB) si la surface est connue. */
   ratioM2?: number;
+  /** Montant d'aides déduit (si > 0). */
+  montantAides?: number;
+  /** Reste à charge = TTC − aides (si des aides sont saisies). */
+  resteACharge?: number;
 }

@@ -88,6 +88,11 @@ function num(v: string, fb = 0): number {
   return Number.isFinite(n) ? n : fb;
 }
 
+/** Patch d'un AD-HOC : écrit le PU dans la case de la gamme courante. */
+function patchPuGamme(gamme: Gamme, v: number): Partial<LigneDevis> {
+  return gamme === "MIN" ? { puMin: v } : gamme === "MAX" ? { puMax: v } : { puMoy: v };
+}
+
 /* Récents (localStorage) ------------------------------------------------- */
 function lireRecents(): string[] {
   try {
@@ -843,6 +848,22 @@ function Detaille({
   const revision = clauseRevisionRequise(params.dateEmission, params.dateDemarragePrev);
   const codesPresents = useMemo(() => new Set(lignes.map((l) => l.code)), [lignes]);
 
+  // Garde-fou ERP : rappeler les lots réglementaires absents du devis.
+  const estERP = /erp|commercial|chr|tertiaire|sante/i.test(params.typeProjet);
+  const lotsPresents = useMemo(
+    () => new Set(synthese.parLot.map((l) => l.lot)),
+    [synthese],
+  );
+  const manquantsERP =
+    estERP && lignes.length > 0
+      ? (
+          [
+            ["SEC", "sécurité incendie (SEC)"],
+            ["ACC", "accessibilité PMR (ACC)"],
+          ] as [string, string][]
+        ).filter(([lot]) => !lotsPresents.has(lot))
+      : [];
+
   function setParam<K extends keyof ParametresDevis>(k: K, v: ParametresDevis[K]) {
     setParams((p) => ({ ...p, [k]: v }));
   }
@@ -907,6 +928,9 @@ function Detaille({
         designation: "",
         unite: "F",
         puBase: 0,
+        puMin: 0,
+        puMoy: 0,
+        puMax: 0,
         gamme: params.gammeDefaut,
         qteBrute: qteRef || 1,
         coefQte: 1,
@@ -924,6 +948,22 @@ function Detaille({
         if (patch.gamme && !l.adHoc) {
           const poste = BPU_PAR_CODE.get(l.code);
           if (poste) next.puBase = puBaseRetenu(poste, patch.gamme);
+        }
+        // AD-HOC à 3 gammes : recale le PU appliqué sur la gamme courante.
+        if (
+          l.adHoc &&
+          (patch.gamme != null ||
+            patch.puMin != null ||
+            patch.puMoy != null ||
+            patch.puMax != null)
+        ) {
+          const trio: Record<Gamme, number | undefined> = {
+            MIN: next.puMin,
+            MOY: next.puMoy,
+            MAX: next.puMax,
+          };
+          const v = trio[next.gamme];
+          if (typeof v === "number") next.puBase = v;
         }
         return next;
       }),
@@ -1226,9 +1266,37 @@ function Detaille({
               <Row label="Ratio €/m² HT" value={eur.format(synthese.ratioM2)} />
             )}
           </dl>
+          <div className="mt-3 flex items-center justify-between gap-2 text-sm text-marine-700">
+            <label htmlFor="aides">Aides déduites (MaPrimeRénov' / CEE)</label>
+            <input
+              id="aides"
+              className="input !w-36 text-right"
+              type="number"
+              min={0}
+              step="any"
+              value={params.aides || ""}
+              placeholder="0"
+              onChange={(e) =>
+                setParam("aides", e.target.value === "" ? undefined : num(e.target.value))
+              }
+            />
+          </div>
+          {synthese.resteACharge != null && (
+            <div className="mt-1 flex items-center justify-between border-t-2 border-or pt-1.5 text-base font-semibold text-marine-900">
+              <span>Reste à charge</span>
+              <span className="tabular-nums">{eur.format(synthese.resteACharge)}</span>
+            </div>
+          )}
           {attestationTVA && lignes.length > 0 && (
             <p className="mt-3 rounded-md bg-or/10 px-3 py-2 text-xs text-or-dark">
               ⚠️ TVA &lt; 20 % : attestation TVA simplifiée à joindre au devis.
+            </p>
+          )}
+          {manquantsERP.length > 0 && (
+            <p className="mt-3 rounded-md bg-or/10 px-3 py-2 text-xs text-or-dark">
+              ⚠️ Projet ERP : lots réglementaires absents du devis —{" "}
+              {manquantsERP.map(([, lib]) => lib).join(", ")}. À ne pas oublier
+              (lots SEC / ACC dans la bibliothèque).
             </p>
           )}
           <p className="mt-3 text-xs text-marine-700/60">Prix HT du BPU, indexés {INDEXATION}.</p>
@@ -1919,7 +1987,7 @@ function LotRows({
                 <select
                   className="input"
                   value={l.gamme}
-                  disabled={l.adHoc || verrou}
+                  disabled={verrou}
                   title={verrou ? "Prix verrouillé : gamme sans effet" : undefined}
                   onChange={(e) => onMaj(l.id, { gamme: e.target.value as Gamme })}
                 >
@@ -1958,7 +2026,8 @@ function LotRows({
                     type="number"
                     step="any"
                     value={l.puBase}
-                    onChange={(e) => onMaj(l.id, { puBase: num(e.target.value) })}
+                    title={`PU pour la gamme ${l.gamme}`}
+                    onChange={(e) => onMaj(l.id, patchPuGamme(l.gamme, num(e.target.value)))}
                   />
                 ) : (
                   <span className="block text-right text-xs tabular-nums">
@@ -2007,6 +2076,43 @@ function LotRows({
             {ouvert && (
               <tr className="bg-marine-50/30">
                 <td colSpan={10} className="px-3 py-2">
+                  {l.adHoc && (
+                    <div className="mb-3 grid gap-3 border-b border-marine-50 pb-3 md:grid-cols-4">
+                      <label className="block">
+                        <span className="mb-1 block text-xs font-medium text-marine-700">
+                          Lot de rattachement
+                        </span>
+                        <select
+                          className="input"
+                          value={l.adHocLot ?? ""}
+                          onChange={(e) =>
+                            onMaj(l.id, { adHocLot: e.target.value || undefined })
+                          }
+                        >
+                          <option value="">Divers / hors BPU</option>
+                          {LOTS.map((lo) => (
+                            <option key={lo.lot} value={lo.lot}>
+                              {lo.lot} — {lo.titre}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                      {(["puMin", "puMoy", "puMax"] as const).map((k, i) => (
+                        <label key={k} className="block">
+                          <span className="mb-1 block text-xs font-medium text-marine-700">
+                            PU {["MIN", "MOY", "MAX"][i]} (HT)
+                          </span>
+                          <input
+                            className="input text-right"
+                            type="number"
+                            step="any"
+                            value={l[k] ?? 0}
+                            onChange={(e) => onMaj(l.id, { [k]: num(e.target.value) })}
+                          />
+                        </label>
+                      ))}
+                    </div>
+                  )}
                   <div className="grid gap-3 md:grid-cols-3">
                     <label className="block md:col-span-1">
                       <span className="mb-1 block text-xs font-medium text-marine-700">

@@ -136,9 +136,9 @@ export function calculerLigne(ligne: LigneDevis): LigneCalculee {
   return { ...ligne, qteAppliquee, puFinal, totalHT };
 }
 
-/** Clé de lot d'une ligne : "DIV" pour les postes hors BPU, sinon le préfixe. */
+/** Clé de lot d'une ligne : lot de rattachement AD-HOC, sinon préfixe du code, sinon "DIV". */
 function cleLot(l: LigneCalculee): string {
-  if (l.adHoc || l.code === "AD-HOC") return "DIV";
+  if (l.adHoc || l.code === "AD-HOC") return l.adHocLot || "DIV";
   return l.code.split("-")[0] || "DIV";
 }
 
@@ -218,6 +218,9 @@ export function calculerSynthese(
   const surface = params.surfaceShab || 0;
   const ratioM2 = surface > 0 ? round2(totalHT / surface) : undefined;
 
+  const montantAides = params.aides && params.aides > 0 ? round2(params.aides) : undefined;
+  const resteACharge = montantAides ? round2(totalTTC - montantAides) : undefined;
+
   return {
     parLot,
     htPostes,
@@ -227,6 +230,8 @@ export function calculerSynthese(
     totalTVA,
     totalTTC,
     ratioM2,
+    montantAides,
+    resteACharge,
   };
 }
 

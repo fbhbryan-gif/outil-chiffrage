@@ -253,6 +253,29 @@ describe("regrouperParLot — ordre TCE et bucket Divers", () => {
     expect(groupes[groupes.length - 1].lot).toBe("DIV");
     expect(groupes[groupes.length - 1].lotTitre).toMatch(/Divers/);
   });
+
+  it("rattache un AD-HOC à son lot via adHocLot", () => {
+    const adhoc: LigneDevis = { ...L("AD-HOC", true), adHocLot: "DEMO" };
+    const groupes = regrouperParLot([adhoc].map(calculerLigne), (l) => l, ordre);
+    expect(groupes.map((g) => g.lot)).toEqual(["DEMO"]);
+    expect(groupes.some((g) => g.lot === "DIV")).toBe(false);
+  });
+});
+
+describe("calculerSynthese — aides et reste à charge", () => {
+  const lignes: LigneDevis[] = [
+    { id: "1", code: "AD-1", designation: "x", unite: "F", puBase: 1000, gamme: "MOY", qteBrute: 10, coefQte: 1, tva: 10 },
+  ];
+  it("déduit les aides du TTC", () => {
+    const s = calculerSynthese(lignes, params({ aides: 3000 }), (l) => l);
+    expect(s.montantAides).toBe(3000);
+    expect(s.resteACharge).toBe(round2(s.totalTTC - 3000));
+  });
+  it("pas de reste à charge sans aides", () => {
+    const s = calculerSynthese(lignes, params(), (l) => l);
+    expect(s.montantAides).toBeUndefined();
+    expect(s.resteACharge).toBeUndefined();
+  });
 });
 
 describe("calculerSynthese — ratio €/m²", () => {
