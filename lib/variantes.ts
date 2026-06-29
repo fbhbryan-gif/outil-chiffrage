@@ -77,6 +77,56 @@ export const VARIANTES: GroupeVariante[] = [
       { code: "PLO-09", label: "Porte pliante" },
     ],
   },
+  {
+    id: "baie",
+    titre: "Baie vitrée / coulissante",
+    aide: "À l'unité.",
+    options: [
+      { code: "MEX-20", label: "Coulissante 2 vantaux (L≤2,4m)" },
+      { code: "MEX-21", label: "Coulissante 3 vantaux (L≤3,6m)" },
+      { code: "MEX-22", label: "Galandage 1 vantail" },
+    ],
+  },
+  {
+    id: "escalier",
+    titre: "Escalier intérieur",
+    aide: "À l'unité.",
+    options: [
+      { code: "MEN-30", label: "Droit bois" },
+      { code: "MEN-31", label: "Quart-tournant bois" },
+      { code: "SER-10", label: "Métal limon central + marches bois" },
+    ],
+  },
+  {
+    id: "cloison",
+    titre: "Cloison",
+    aide: "Au m².",
+    options: [
+      { code: "CLO-32", label: "Double BA13 (Rw≥46dB)" },
+      { code: "CLO-40", label: "Amovible mélaminé/métal" },
+      { code: "CLO-41", label: "Vitrée toute hauteur (alu + verre)" },
+    ],
+  },
+  {
+    id: "garde_corps",
+    titre: "Garde-corps / rampe",
+    aide: "Au ml.",
+    options: [
+      { code: "SER-11", label: "Acier + lisses (trémie)" },
+      { code: "SER-12", label: "Rampe bois/métal sur volée" },
+      { code: "SER-13", label: "Verre + pinces inox" },
+    ],
+  },
+  {
+    id: "devanture",
+    titre: "Devanture / fermeture commerciale",
+    aide: "Vitrine au m², porte à l'unité, rideau au m².",
+    options: [
+      { code: "DEVA-01", label: "Châssis vitrine + vitrage sécurité" },
+      { code: "DEVA-02", label: "Porte commerciale vitrée" },
+      { code: "DEVA-03", label: "Rideau métallique motorisé" },
+    ],
+  },
 ];
 
 /** Ne garde que les options dont le code existe dans le BPU. */

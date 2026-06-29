@@ -660,6 +660,36 @@
     "max": 75
   },
   {
+    "code": "CLO-40",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Cloison amovible mélaminé/métal toute hauteur sous-plafond",
+    "unite": "m²",
+    "min": 120,
+    "moy": 180,
+    "max": 300
+  },
+  {
+    "code": "CLO-41",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Cloison vitrée toute hauteur profilé alu + verre clair",
+    "unite": "m²",
+    "min": 350,
+    "moy": 550,
+    "max": 900
+  },
+  {
+    "code": "CLO-42",
+    "lot": "CLO",
+    "lotTitre": "Cloisons et faux-plafonds",
+    "designation": "Bloc-porte vitré sur cloison amovible",
+    "unite": "U",
+    "min": 800,
+    "moy": 1200,
+    "max": 2000
+  },
+  {
     "code": "CVC-01",
     "lot": "CVC",
     "lotTitre": "Chauffage / Ventilation / Climatisation",
@@ -1260,6 +1290,46 @@
     "max": 20000
   },
   {
+    "code": "DEVA-01",
+    "lot": "DEVA",
+    "lotTitre": "Devanture commerciale",
+    "designation": "Châssis vitrine commercial alu/acier + vitrage de sécurité",
+    "unite": "m²",
+    "min": 450,
+    "moy": 700,
+    "max": 1200
+  },
+  {
+    "code": "DEVA-02",
+    "lot": "DEVA",
+    "lotTitre": "Devanture commerciale",
+    "designation": "Porte d'entrée commerciale vitrée 1V/2V",
+    "unite": "U",
+    "min": 1500,
+    "moy": 2500,
+    "max": 4500
+  },
+  {
+    "code": "DEVA-03",
+    "lot": "DEVA",
+    "lotTitre": "Devanture commerciale",
+    "designation": "Rideau métallique motorisé / grille extensible",
+    "unite": "m²",
+    "min": 180,
+    "moy": 300,
+    "max": 550
+  },
+  {
+    "code": "DEVA-04",
+    "lot": "DEVA",
+    "lotTitre": "Devanture commerciale",
+    "designation": "Store-banne coffre motorisé",
+    "unite": "ml",
+    "min": 300,
+    "moy": 500,
+    "max": 900
+  },
+  {
     "code": "EL-01",
     "lot": "EL",
     "lotTitre": "Électricité courants forts et faibles",
@@ -1548,6 +1618,36 @@
     "min": 400,
     "moy": 800,
     "max": 2000
+  },
+  {
+    "code": "ENS-01",
+    "lot": "ENS",
+    "lotTitre": "Enseigne et signalétique",
+    "designation": "Caisson lumineux LED d'enseigne",
+    "unite": "ml",
+    "min": 350,
+    "moy": 600,
+    "max": 1200
+  },
+  {
+    "code": "ENS-02",
+    "lot": "ENS",
+    "lotTitre": "Enseigne et signalétique",
+    "designation": "Lettres boîtier / relief + pose",
+    "unite": "U",
+    "min": 150,
+    "moy": 300,
+    "max": 700
+  },
+  {
+    "code": "ENS-03",
+    "lot": "ENS",
+    "lotTitre": "Enseigne et signalétique",
+    "designation": "Vitrophanie / covering vitrine",
+    "unite": "m²",
+    "min": 40,
+    "moy": 70,
+    "max": 130
   },
   {
     "code": "ISO-01",
@@ -1970,6 +2070,26 @@
     "max": 2500
   },
   {
+    "code": "MEN-30",
+    "lot": "MEN",
+    "lotTitre": "Menuiserie intérieure",
+    "designation": "Escalier intérieur droit bois (13-14 marches, limon crémaillère)",
+    "unite": "U",
+    "min": 2500,
+    "moy": 3800,
+    "max": 6500
+  },
+  {
+    "code": "MEN-31",
+    "lot": "MEN",
+    "lotTitre": "Menuiserie intérieure",
+    "designation": "Escalier quart-tournant bois",
+    "unite": "U",
+    "min": 3200,
+    "moy": 4800,
+    "max": 8000
+  },
+  {
     "code": "MEX-01",
     "lot": "MEX",
     "lotTitre": "Menuiserie extérieure",
@@ -2018,6 +2138,66 @@
     "min": 90,
     "moy": 126.25,
     "max": 220
+  },
+  {
+    "code": "MEX-20",
+    "lot": "MEX",
+    "lotTitre": "Menuiserie extérieure",
+    "designation": "Baie coulissante alu RPT 2 vantaux DV argon Uw≤1,4 (L≤2,4m)",
+    "unite": "U",
+    "min": 1400,
+    "moy": 2000,
+    "max": 3200
+  },
+  {
+    "code": "MEX-21",
+    "lot": "MEX",
+    "lotTitre": "Menuiserie extérieure",
+    "designation": "Baie coulissante alu 3 vantaux / 2 rails (L≤3,6m)",
+    "unite": "U",
+    "min": 2200,
+    "moy": 3200,
+    "max": 5000
+  },
+  {
+    "code": "MEX-22",
+    "lot": "MEX",
+    "lotTitre": "Menuiserie extérieure",
+    "designation": "Baie alu à galandage 1 vantail mobile",
+    "unite": "U",
+    "min": 2800,
+    "moy": 4000,
+    "max": 6500
+  },
+  {
+    "code": "MEX-23",
+    "lot": "MEX",
+    "lotTitre": "Menuiserie extérieure",
+    "designation": "Fenêtre triple vitrage Uw≤0,9 (PVC/alu RPT/bois) au m²",
+    "unite": "m²",
+    "min": 550,
+    "moy": 750,
+    "max": 1100
+  },
+  {
+    "code": "MEX-24",
+    "lot": "MEX",
+    "lotTitre": "Menuiserie extérieure",
+    "designation": "Porte d'entrée alu/acier isolante",
+    "unite": "U",
+    "min": 1500,
+    "moy": 2500,
+    "max": 4500
+  },
+  {
+    "code": "MEX-25",
+    "lot": "MEX",
+    "lotTitre": "Menuiserie extérieure",
+    "designation": "Porte de garage sectionnelle motorisée",
+    "unite": "U",
+    "min": 1200,
+    "moy": 1900,
+    "max": 3200
   },
   {
     "code": "MP-01",
@@ -3688,5 +3868,45 @@
     "min": 380,
     "moy": 515,
     "max": 950
+  },
+  {
+    "code": "SER-10",
+    "lot": "SER",
+    "lotTitre": "Serrurerie et métallerie",
+    "designation": "Escalier métal limon central + marches bois",
+    "unite": "U",
+    "min": 4000,
+    "moy": 6000,
+    "max": 11000
+  },
+  {
+    "code": "SER-11",
+    "lot": "SER",
+    "lotTitre": "Serrurerie et métallerie",
+    "designation": "Garde-corps intérieur trémie acier + lisses",
+    "unite": "ml",
+    "min": 250,
+    "moy": 400,
+    "max": 700
+  },
+  {
+    "code": "SER-12",
+    "lot": "SER",
+    "lotTitre": "Serrurerie et métallerie",
+    "designation": "Rampe d'escalier bois / métal sur volée",
+    "unite": "ml",
+    "min": 180,
+    "moy": 300,
+    "max": 550
+  },
+  {
+    "code": "SER-13",
+    "lot": "SER",
+    "lotTitre": "Serrurerie et métallerie",
+    "designation": "Garde-corps verre + pinces inox",
+    "unite": "ml",
+    "min": 450,
+    "moy": 700,
+    "max": 1200
   }
 ]

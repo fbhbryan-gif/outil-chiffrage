@@ -830,3 +830,64 @@ Pour un poste donné, le déboursé sec MO se calcule : `Déboursé MO = PU_MOY 
 |---|---|---|---:|---:|---:|
 | `OCTER-01` | Aménagement plateau de bureaux clé en main (cloisons + faux-plafond + sol technique + CVC + courants faibles) au m² | m² | 500 | 750 | 1200 |
 | `OCTER-10` | Kitchenette / tisanerie tertiaire clé en main (forfait) | U | 2500 | 4000 | 7000 |
+
+## Compléments v0 — menuiseries, escaliers, cloisons, devanture
+
+> **⚠️ Brouillon v0 à dire d'expert — À VALIDER par le métier avant usage client.**
+> Prix **HT hors markup**, **IDF Q2 2026**.
+
+### Lot MEX — Menuiserie extérieure
+*(compléments baies / triple vitrage / portes)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `MEX-20` | Baie coulissante alu RPT 2 vantaux DV argon Uw≤1,4 (L≤2,4m) | U | 1400 | 2000 | 3200 |
+| `MEX-21` | Baie coulissante alu 3 vantaux / 2 rails (L≤3,6m) | U | 2200 | 3200 | 5000 |
+| `MEX-22` | Baie alu à galandage 1 vantail mobile | U | 2800 | 4000 | 6500 |
+| `MEX-23` | Fenêtre triple vitrage Uw≤0,9 (PVC/alu RPT/bois) au m² | m² | 550 | 750 | 1100 |
+| `MEX-24` | Porte d'entrée alu/acier isolante | U | 1500 | 2500 | 4500 |
+| `MEX-25` | Porte de garage sectionnelle motorisée | U | 1200 | 1900 | 3200 |
+
+### Lot MEN — Menuiserie intérieure
+*(compléments escaliers)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `MEN-30` | Escalier intérieur droit bois (13-14 marches, limon crémaillère) | U | 2500 | 3800 | 6500 |
+| `MEN-31` | Escalier quart-tournant bois | U | 3200 | 4800 | 8000 |
+
+### Lot SER — Serrurerie et métallerie
+*(compléments escaliers / garde-corps)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `SER-10` | Escalier métal limon central + marches bois | U | 4000 | 6000 | 11000 |
+| `SER-11` | Garde-corps intérieur trémie acier + lisses | ml | 250 | 400 | 700 |
+| `SER-12` | Rampe d'escalier bois / métal sur volée | ml | 180 | 300 | 550 |
+| `SER-13` | Garde-corps verre + pinces inox | ml | 450 | 700 | 1200 |
+
+### Lot CLO — Cloisons et faux-plafonds
+*(compléments amovibles / vitrées)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `CLO-40` | Cloison amovible mélaminé/métal toute hauteur sous-plafond | m² | 120 | 180 | 300 |
+| `CLO-41` | Cloison vitrée toute hauteur profilé alu + verre clair | m² | 350 | 550 | 900 |
+| `CLO-42` | Bloc-porte vitré sur cloison amovible | U | 800 | 1200 | 2000 |
+
+### Lot DEVA — Devanture commerciale
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `DEVA-01` | Châssis vitrine commercial alu/acier + vitrage de sécurité | m² | 450 | 700 | 1200 |
+| `DEVA-02` | Porte d'entrée commerciale vitrée 1V/2V | U | 1500 | 2500 | 4500 |
+| `DEVA-03` | Rideau métallique motorisé / grille extensible | m² | 180 | 300 | 550 |
+| `DEVA-04` | Store-banne coffre motorisé | ml | 300 | 500 | 900 |
+
+### Lot ENS — Enseigne et signalétique
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `ENS-01` | Caisson lumineux LED d'enseigne | ml | 350 | 600 | 1200 |
+| `ENS-02` | Lettres boîtier / relief + pose | U | 150 | 300 | 700 |
+| `ENS-03` | Vitrophanie / covering vitrine | m² | 40 | 70 | 130 |
