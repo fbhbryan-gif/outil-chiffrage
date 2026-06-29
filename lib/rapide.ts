@@ -18,10 +18,18 @@ import type {
 export type TypeProjetRapide =
   | "renovation_appartement"
   | "renovation_maison"
-  | "renovation_energetique"
   | "renovation_studio"
+  | "renovation_haussmannien"
+  | "renovation_energetique"
+  | "adaptation_pmr"
   | "extension"
   | "surelevation"
+  | "neuf_maconne"
+  | "amenagement_commercial"
+  | "chr_restaurant"
+  | "amenagement_tertiaire"
+  | "erp_sante"
+  // Conservés pour compatibilité (anciens devis) ; non affichés.
   | "erp"
   | "neuf";
 
@@ -29,11 +37,16 @@ export const TYPES_PROJET: { value: TypeProjetRapide; label: string }[] = [
   { value: "renovation_appartement", label: "Rénovation appartement" },
   { value: "renovation_maison", label: "Rénovation maison" },
   { value: "renovation_studio", label: "Studio / locatif éco" },
+  { value: "renovation_haussmannien", label: "Haussmannien / patrimonial" },
   { value: "renovation_energetique", label: "Rénovation énergétique" },
+  { value: "adaptation_pmr", label: "Adaptation PMR / senior" },
   { value: "extension", label: "Extension" },
   { value: "surelevation", label: "Surélévation" },
-  { value: "erp", label: "ERP / local pro" },
-  { value: "neuf", label: "Construction neuve" },
+  { value: "neuf_maconne", label: "Maison neuve maçonnée" },
+  { value: "amenagement_commercial", label: "Commerce / boutique (ERP)" },
+  { value: "chr_restaurant", label: "CHR / Restaurant (ERP)" },
+  { value: "amenagement_tertiaire", label: "Bureaux / tertiaire" },
+  { value: "erp_sante", label: "ERP de santé (cabinet)" },
 ];
 
 /** Un ouvrage complet sélectionnable en mode rapide. */
@@ -58,7 +71,8 @@ const RENO: TypeProjetRapide[] = [
   "renovation_appartement",
   "renovation_maison",
   "renovation_studio",
-  "erp",
+  "renovation_haussmannien",
+  "adaptation_pmr",
 ];
 
 /** Ouvrages d'amélioration énergétique, proposés au projet "énergétique". */
@@ -216,6 +230,100 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     pour: ["surelevation"],
     qteDefaut: (s) => s,
   },
+  {
+    code: "OCREN-15",
+    label: "Rénovation patrimoniale / haussmannienne complète",
+    groupe: "Global",
+    aide: "m² SHAB concernés",
+    pour: ["renovation_haussmannien"],
+    qteDefaut: (s) => s,
+    coche: true,
+  },
+  {
+    code: "OCERP-01",
+    label: "Aménagement boutique / retail clé en main",
+    groupe: "Commerce / ERP",
+    aide: "m² de surface",
+    pour: ["amenagement_commercial"],
+    qteDefaut: (s) => s,
+    coche: true,
+  },
+  {
+    code: "OCERP-02",
+    label: "Local commercial coque nue → prêt à exploiter",
+    groupe: "Commerce / ERP",
+    aide: "m² de surface",
+    pour: ["amenagement_commercial"],
+    qteDefaut: () => 0,
+  },
+  {
+    code: "OCERP-03",
+    label: "Mise en accessibilité PMR (ERP existant)",
+    groupe: "Accessibilité ERP",
+    aide: "forfait",
+    pour: ["amenagement_commercial", "chr_restaurant", "erp_sante", "adaptation_pmr"],
+    qteDefaut: () => 0,
+  },
+  {
+    code: "OCERP-10",
+    label: "Cuisine professionnelle CHR clé en main",
+    groupe: "CHR / Restaurant",
+    aide: "m² de cuisine",
+    pour: ["chr_restaurant"],
+    qteDefaut: (s) => s,
+    coche: true,
+  },
+  {
+    code: "OCERP-11",
+    label: "Sanitaires publics ERP H/F + PMR",
+    groupe: "CHR / Restaurant",
+    aide: "nombre de blocs",
+    pour: ["chr_restaurant", "amenagement_commercial", "erp_sante"],
+    qteDefaut: () => 1,
+  },
+  {
+    code: "OCERP-20",
+    label: "Salle de soin clé en main",
+    groupe: "ERP santé",
+    aide: "m² (cumul des salles)",
+    pour: ["erp_sante"],
+    qteDefaut: (s) => s,
+    coche: true,
+  },
+  {
+    code: "OCMAC-01",
+    label: "Maison maçonnée — hors d'eau / hors d'air",
+    groupe: "Maison maçonnée",
+    aide: "m² SHAB",
+    pour: ["neuf_maconne"],
+    qteDefaut: (s) => s,
+    coche: true,
+  },
+  {
+    code: "OCMAC-02",
+    label: "Maison maçonnée — clé en main TCE",
+    groupe: "Maison maçonnée",
+    aide: "m² SHAB",
+    pour: ["neuf_maconne"],
+    qteDefaut: (s) => s,
+  },
+  {
+    code: "OCTER-01",
+    label: "Aménagement plateau de bureaux clé en main",
+    groupe: "Tertiaire / bureaux",
+    aide: "m² de plateau",
+    pour: ["amenagement_tertiaire"],
+    qteDefaut: (s) => s,
+    coche: true,
+  },
+  {
+    code: "OCTER-10",
+    label: "Kitchenette / tisanerie tertiaire",
+    groupe: "Tertiaire / bureaux",
+    aide: "nombre",
+    pour: ["amenagement_tertiaire"],
+    qteDefaut: () => 0,
+  },
 ];
 
 /**
@@ -232,7 +340,9 @@ const TYPES_RENO_LOGEMENT: TypeProjetRapide[] = [
   "renovation_appartement",
   "renovation_maison",
   "renovation_studio",
+  "renovation_haussmannien",
   "renovation_energetique",
+  "adaptation_pmr",
 ];
 
 /** TVA par défaut suggérée selon le type de projet (Guide §2.1). */
@@ -278,6 +388,9 @@ const RECOUVREMENTS: Record<string, string[]> = {
   // Les forfaits "clé en main TCE" englobent leur variante hors d'eau/hors d'air.
   "OCMOB-10": ["OCMOB-09"],
   "OCMOB-12": ["OCMOB-11"],
+  "OCMAC-02": ["OCMAC-01"],
+  // La réno haussmannienne complète recouvre la réno globale standard.
+  "OCREN-15": ["OCREN-07"],
 };
 
 /**

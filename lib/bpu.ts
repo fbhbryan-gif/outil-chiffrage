@@ -28,7 +28,7 @@ export function titreLot(lot: string): string {
 export const ORDRE_LOTS: string[] = [
   "PREP", "DEMO", "MAC", "MP", "ISO", "CHAR", "CLO", "MEN", "MEX", "SER",
   "EL", "PLO", "CVC", "RS", "RM", "PEINT", "RAV", "SEC", "ACC", "MSM",
-  "OCMOB", "OCREN", "AGEN", "EM",
+  "OCMOB", "OCREN", "OCERP", "OCMAC", "OCTER", "AGEN", "EM",
 ];
 
 /** Index d'un lot dans l'ordre canonique (999 si inconnu → en fin). */

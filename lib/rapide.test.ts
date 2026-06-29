@@ -94,6 +94,28 @@ describe("ouvragesPourType", () => {
     expect(ext).toContain("OCMOB-09");
     expect(ext).toContain("OCMOB-10");
   });
+
+  it("expose des ouvrages dédiés aux domaines ERP/neuf (plus de repli RENO)", () => {
+    expect(ouvragesPourType("chr_restaurant").map((o) => o.code)).toContain("OCERP-10");
+    expect(ouvragesPourType("amenagement_commercial").map((o) => o.code)).toContain("OCERP-01");
+    expect(ouvragesPourType("amenagement_tertiaire").map((o) => o.code)).toContain("OCTER-01");
+    expect(ouvragesPourType("erp_sante").map((o) => o.code)).toContain("OCERP-20");
+    expect(ouvragesPourType("neuf_maconne").map((o) => o.code)).toContain("OCMAC-01");
+    // un domaine ERP ne retombe PAS sur la rénovation logement
+    expect(ouvragesPourType("chr_restaurant").map((o) => o.code)).not.toContain("OCREN-07");
+  });
+});
+
+describe("tvaSuggeree — nouveaux types", () => {
+  it("10 % pour haussmannien et PMR, 5,5 % énergétique, 20 % ERP/neuf", () => {
+    expect(tvaSuggeree("renovation_haussmannien")).toBe(10);
+    expect(tvaSuggeree("adaptation_pmr")).toBe(10);
+    expect(tvaSuggeree("renovation_energetique")).toBe(5.5);
+    expect(tvaSuggeree("amenagement_commercial")).toBe(20);
+    expect(tvaSuggeree("chr_restaurant")).toBe(20);
+    expect(tvaSuggeree("neuf_maconne")).toBe(20);
+    expect(tvaSuggeree("erp_sante")).toBe(20);
+  });
 });
 
 describe("selectionsDefaut", () => {

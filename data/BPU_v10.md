@@ -804,3 +804,29 @@ Pour un poste donné, le déboursé sec MO se calcule : `Déboursé MO = PU_MOY 
 |---|---|---|---:|---:|---:|
 | `OCREN-13` | SDB PMR sécurisée clé en main (douche italienne plain-pied + barres + siège + WC surélevé + sol antidérapant + thermostatique) | U | 6500 | 9500 | 15000 |
 | `OCREN-14` | Chauffage PAC air-eau clé en main (chauffage + ECS + émetteurs + désembouage + mise en service) | U | 9000 | 13000 | 19000 |
+| `OCREN-15` | Rénovation patrimoniale / haussmannienne complète (modénatures + parquet point de Hongrie + cheminées + grande hauteur) au m² SHAB | m² | 1800 | 2500 | 3500 |
+
+### Lot OCERP — Ouvrages complets — ERP / commerce
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `OCERP-01` | Aménagement boutique / retail clé en main (sols + cloisons + élec + éclairage + peinture) au m² | m² | 600 | 900 | 1500 |
+| `OCERP-02` | Local commercial coque nue → prêt à exploiter (second œuvre complet) au m² | m² | 800 | 1200 | 2000 |
+| `OCERP-03` | Mise en accessibilité PMR d'un ERP existant (forfait global) | U | 3500 | 6000 | 12000 |
+| `OCERP-10` | Cuisine professionnelle CHR clé en main (extraction + compensation + bac à graisses + sol résine + faïence pleine hauteur) au m² | m² | 1200 | 1800 | 3000 |
+| `OCERP-11` | Sanitaires publics ERP H/F + PMR clé en main (forfait) | U | 8000 | 12000 | 20000 |
+| `OCERP-20` | Salle de soin clé en main (sol PVC U4 à gorge + lave-mains hygiénique + élec médicale + éclairage 500 lux) au m² | m² | 700 | 1050 | 1700 |
+
+### Lot OCMAC — Ouvrages complets — Maison maçonnée
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `OCMAC-01` | Maison maçonnée hors d'eau / hors d'air (fondations + dallage + parpaing + charpente tuile + menuiseries) au m² SHAB | m² | 1100 | 1450 | 1900 |
+| `OCMAC-02` | Maison maçonnée clé en main TCE au m² SHAB | m² | 1900 | 2400 | 3000 |
+
+### Lot OCTER — Ouvrages complets — Tertiaire / bureaux
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `OCTER-01` | Aménagement plateau de bureaux clé en main (cloisons + faux-plafond + sol technique + CVC + courants faibles) au m² | m² | 500 | 750 | 1200 |
+| `OCTER-10` | Kitchenette / tisanerie tertiaire clé en main (forfait) | U | 2500 | 4000 | 7000 |

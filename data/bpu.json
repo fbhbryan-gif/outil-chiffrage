@@ -2100,6 +2100,86 @@
     "max": 2400
   },
   {
+    "code": "OCERP-01",
+    "lot": "OCERP",
+    "lotTitre": "Ouvrages complets — ERP / commerce",
+    "designation": "Aménagement boutique / retail clé en main (sols + cloisons + élec + éclairage + peinture) au m²",
+    "unite": "m²",
+    "min": 600,
+    "moy": 900,
+    "max": 1500
+  },
+  {
+    "code": "OCERP-02",
+    "lot": "OCERP",
+    "lotTitre": "Ouvrages complets — ERP / commerce",
+    "designation": "Local commercial coque nue → prêt à exploiter (second œuvre complet) au m²",
+    "unite": "m²",
+    "min": 800,
+    "moy": 1200,
+    "max": 2000
+  },
+  {
+    "code": "OCERP-03",
+    "lot": "OCERP",
+    "lotTitre": "Ouvrages complets — ERP / commerce",
+    "designation": "Mise en accessibilité PMR d'un ERP existant (forfait global)",
+    "unite": "U",
+    "min": 3500,
+    "moy": 6000,
+    "max": 12000
+  },
+  {
+    "code": "OCERP-10",
+    "lot": "OCERP",
+    "lotTitre": "Ouvrages complets — ERP / commerce",
+    "designation": "Cuisine professionnelle CHR clé en main (extraction + compensation + bac à graisses + sol résine + faïence pleine hauteur) au m²",
+    "unite": "m²",
+    "min": 1200,
+    "moy": 1800,
+    "max": 3000
+  },
+  {
+    "code": "OCERP-11",
+    "lot": "OCERP",
+    "lotTitre": "Ouvrages complets — ERP / commerce",
+    "designation": "Sanitaires publics ERP H/F + PMR clé en main (forfait)",
+    "unite": "U",
+    "min": 8000,
+    "moy": 12000,
+    "max": 20000
+  },
+  {
+    "code": "OCERP-20",
+    "lot": "OCERP",
+    "lotTitre": "Ouvrages complets — ERP / commerce",
+    "designation": "Salle de soin clé en main (sol PVC U4 à gorge + lave-mains hygiénique + élec médicale + éclairage 500 lux) au m²",
+    "unite": "m²",
+    "min": 700,
+    "moy": 1050,
+    "max": 1700
+  },
+  {
+    "code": "OCMAC-01",
+    "lot": "OCMAC",
+    "lotTitre": "Ouvrages complets — Maison maçonnée",
+    "designation": "Maison maçonnée hors d'eau / hors d'air (fondations + dallage + parpaing + charpente tuile + menuiseries) au m² SHAB",
+    "unite": "m²",
+    "min": 1100,
+    "moy": 1450,
+    "max": 1900
+  },
+  {
+    "code": "OCMAC-02",
+    "lot": "OCMAC",
+    "lotTitre": "Ouvrages complets — Maison maçonnée",
+    "designation": "Maison maçonnée clé en main TCE au m² SHAB",
+    "unite": "m²",
+    "min": 1900,
+    "moy": 2400,
+    "max": 3000
+  },
+  {
     "code": "OCMOB-01",
     "lot": "OCMOB",
     "lotTitre": "Ouvrages complets — Maison Ossature Bois",
@@ -2358,6 +2438,36 @@
     "min": 9000,
     "moy": 13000,
     "max": 19000
+  },
+  {
+    "code": "OCREN-15",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "Rénovation patrimoniale / haussmannienne complète (modénatures + parquet point de Hongrie + cheminées + grande hauteur) au m² SHAB",
+    "unite": "m²",
+    "min": 1800,
+    "moy": 2500,
+    "max": 3500
+  },
+  {
+    "code": "OCTER-01",
+    "lot": "OCTER",
+    "lotTitre": "Ouvrages complets — Tertiaire / bureaux",
+    "designation": "Aménagement plateau de bureaux clé en main (cloisons + faux-plafond + sol technique + CVC + courants faibles) au m²",
+    "unite": "m²",
+    "min": 500,
+    "moy": 750,
+    "max": 1200
+  },
+  {
+    "code": "OCTER-10",
+    "lot": "OCTER",
+    "lotTitre": "Ouvrages complets — Tertiaire / bureaux",
+    "designation": "Kitchenette / tisanerie tertiaire clé en main (forfait)",
+    "unite": "U",
+    "min": 2500,
+    "moy": 4000,
+    "max": 7000
   },
   {
     "code": "PEINT-01",

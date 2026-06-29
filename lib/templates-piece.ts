@@ -167,6 +167,30 @@ export const TEMPLATES_PIECE: TemplatePiece[] = [
       { code: "EL-29", geo: "fixe", ratio: 1 }, // RJ45
     ],
   },
+  {
+    id: "cabine",
+    nom: "Cabine d'essayage (ERP)",
+    note: "Micro-pièce répétitive — utilisez ×N pour le nombre de cabines.",
+    elements: [
+      { code: "CLO-10", geo: "fixe", ratio: 1 }, // cloison
+      { code: "EL-03", geo: "fixe", ratio: 1 }, // point lumineux
+      { code: "EL-12", geo: "fixe", ratio: 1 }, // prise
+      { code: "AGEN-34", geo: "fixe", ratio: 1 }, // tablette/patère
+    ],
+  },
+  {
+    id: "salle_soin",
+    nom: "Salle de soin (ERP santé)",
+    note: "Sol PVC à gorge, électricité dédiée, éclairage — utilisez ×N pour plusieurs salles identiques.",
+    elements: [
+      { code: "RS-08", geo: "surface" }, // ragréage
+      { code: "RS-23", geo: "surface" }, // PVC hospitalier
+      { code: "RS-25", geo: "perimetre" }, // remontée à gorge
+      { code: "EL-02", geo: "parM2", ratio: 0.5 }, // PC
+      { code: "EL-03", geo: "parM2", ratio: 0.4 }, // éclairage
+      { code: "EL-29", geo: "fixe", ratio: 1 }, // RJ45
+    ],
+  },
 ];
 
 /** Quantité d'un élément selon son mode géométrique. */
