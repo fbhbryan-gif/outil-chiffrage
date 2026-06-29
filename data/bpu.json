@@ -1,5 +1,45 @@
 [
   {
+    "code": "ACC-01",
+    "lot": "ACC",
+    "lotTitre": "Accessibilité PMR",
+    "designation": "Bloc sanitaire PMR ERP complet (cuvette surélevée + barre + lave-mains accessible + aire de giration)",
+    "unite": "U",
+    "min": 1800,
+    "moy": 2800,
+    "max": 4800
+  },
+  {
+    "code": "ACC-02",
+    "lot": "ACC",
+    "lotTitre": "Accessibilité PMR",
+    "designation": "Rampe d'accès PMR pente ≤5% + main courante",
+    "unite": "ml",
+    "min": 250,
+    "moy": 400,
+    "max": 750
+  },
+  {
+    "code": "ACC-03",
+    "lot": "ACC",
+    "lotTitre": "Accessibilité PMR",
+    "designation": "Élargissement passage de porte ≥0,90 m",
+    "unite": "U",
+    "min": 350,
+    "moy": 550,
+    "max": 950
+  },
+  {
+    "code": "ACC-05",
+    "lot": "ACC",
+    "lotTitre": "Accessibilité PMR",
+    "designation": "Signalétique réglementaire ERP (braille/relief, pictos PMR, fléchage) + Ad'AP",
+    "unite": "F",
+    "min": 500,
+    "moy": 900,
+    "max": 1800
+  },
+  {
     "code": "AGEN-01",
     "lot": "AGEN",
     "lotTitre": "Agencement sur mesure (Atelier Blanc)",
@@ -1440,6 +1480,76 @@
     "max": 850
   },
   {
+    "code": "EM-01",
+    "lot": "EM",
+    "lotTitre": "Électroménager (fourniture + pose)",
+    "designation": "Four encastrable pyrolyse",
+    "unite": "U",
+    "min": 400,
+    "moy": 700,
+    "max": 1500
+  },
+  {
+    "code": "EM-02",
+    "lot": "EM",
+    "lotTitre": "Électroménager (fourniture + pose)",
+    "designation": "Table de cuisson induction 3-4 foyers",
+    "unite": "U",
+    "min": 350,
+    "moy": 650,
+    "max": 1400
+  },
+  {
+    "code": "EM-03",
+    "lot": "EM",
+    "lotTitre": "Électroménager (fourniture + pose)",
+    "designation": "Hotte décorative / plan aspirante",
+    "unite": "U",
+    "min": 300,
+    "moy": 600,
+    "max": 1500
+  },
+  {
+    "code": "EM-04",
+    "lot": "EM",
+    "lotTitre": "Électroménager (fourniture + pose)",
+    "designation": "Lave-vaisselle tout-intégrable",
+    "unite": "U",
+    "min": 400,
+    "moy": 650,
+    "max": 1200
+  },
+  {
+    "code": "EM-05",
+    "lot": "EM",
+    "lotTitre": "Électroménager (fourniture + pose)",
+    "designation": "Réfrigérateur américain / combiné encastré",
+    "unite": "U",
+    "min": 700,
+    "moy": 1200,
+    "max": 2800
+  },
+  {
+    "code": "EM-06",
+    "lot": "EM",
+    "lotTitre": "Électroménager (fourniture + pose)",
+    "designation": "Micro-ondes / combiné encastré",
+    "unite": "U",
+    "min": 200,
+    "moy": 350,
+    "max": 700
+  },
+  {
+    "code": "EM-07",
+    "lot": "EM",
+    "lotTitre": "Électroménager (fourniture + pose)",
+    "designation": "Cave à vin de service",
+    "unite": "U",
+    "min": 400,
+    "moy": 800,
+    "max": 2000
+  },
+  {
     "code": "ISO-01",
     "lot": "ISO",
     "lotTitre": "Isolation thermique",
@@ -2230,6 +2340,26 @@
     "max": 320
   },
   {
+    "code": "OCREN-13",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "SDB PMR sécurisée clé en main (douche italienne plain-pied + barres + siège + WC surélevé + sol antidérapant + thermostatique)",
+    "unite": "U",
+    "min": 6500,
+    "moy": 9500,
+    "max": 15000
+  },
+  {
+    "code": "OCREN-14",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "Chauffage PAC air-eau clé en main (chauffage + ECS + émetteurs + désembouage + mise en service)",
+    "unite": "U",
+    "min": 9000,
+    "moy": 13000,
+    "max": 19000
+  },
+  {
     "code": "PEINT-01",
     "lot": "PEINT",
     "lotTitre": "Peinture",
@@ -2760,6 +2890,106 @@
     "max": 680
   },
   {
+    "code": "PLO-90",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Barre d'appui PMR inox/époxy (droite/coudée) sur renfort",
+    "unite": "U",
+    "min": 90,
+    "moy": 140,
+    "max": 240
+  },
+  {
+    "code": "PLO-91",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Siège de douche rabattable mural PMR sur renfort",
+    "unite": "U",
+    "min": 180,
+    "moy": 260,
+    "max": 450
+  },
+  {
+    "code": "PLO-92",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Douche italienne plain-pied — forme de pente + siphon/caniveau + étanchéité SEL (DTU 52.2)",
+    "unite": "U",
+    "min": 800,
+    "moy": 1200,
+    "max": 2000
+  },
+  {
+    "code": "PLO-93",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "WC surélevé PMR (cuvette H 480-500mm ou bâti réglable)",
+    "unite": "U",
+    "min": 450,
+    "moy": 650,
+    "max": 1100
+  },
+  {
+    "code": "PLO-94",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Mitigeur thermostatique de douche anti-brûlure",
+    "unite": "U",
+    "min": 180,
+    "moy": 280,
+    "max": 480
+  },
+  {
+    "code": "PLO-96",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Évier cuisine inox/résine sous-plan + bonde (1 à 2 bacs)",
+    "unite": "U",
+    "min": 150,
+    "moy": 280,
+    "max": 600
+  },
+  {
+    "code": "PLO-97",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Mitigeur cuisine bec haut + douchette",
+    "unite": "U",
+    "min": 120,
+    "moy": 220,
+    "max": 450
+  },
+  {
+    "code": "PLO-98",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "VMC double flux individuelle haut rendement (échangeur ≥85%, réseau + bouches)",
+    "unite": "F",
+    "min": 4500,
+    "moy": 6500,
+    "max": 9000
+  },
+  {
+    "code": "PLO-100",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Calorifugeage canalisations chauffage/ECS — coquille laine minérale + finition",
+    "unite": "ml",
+    "min": 18,
+    "moy": 28,
+    "max": 45
+  },
+  {
+    "code": "PLO-101",
+    "lot": "PLO",
+    "lotTitre": "Plomberie et sanitaire",
+    "designation": "Dépose baignoire + tablier + raccordements (consignation EF/ECS/EV)",
+    "unite": "U",
+    "min": 250,
+    "moy": 380,
+    "max": 650
+  },
+  {
     "code": "PREP-01",
     "lot": "PREP",
     "lotTitre": "Préparation, études et installations",
@@ -3218,6 +3448,116 @@
     "min": 95,
     "moy": 132.5,
     "max": 220
+  },
+  {
+    "code": "RS-18",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Sol béton ciré / microciment (primaire + 2 passes + vernis PU)",
+    "unite": "m²",
+    "min": 90,
+    "moy": 140,
+    "max": 220
+  },
+  {
+    "code": "RS-20",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Sol stratifié clipsable AC4/AC5 + sous-couche (pose flottante)",
+    "unite": "m²",
+    "min": 25,
+    "moy": 40,
+    "max": 65
+  },
+  {
+    "code": "RS-21",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Sol résine époxy / PU coulé (décoratif ou technique antidérapant)",
+    "unite": "m²",
+    "min": 55,
+    "moy": 90,
+    "max": 160
+  },
+  {
+    "code": "RS-22",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Carrelage sol intérieur antidérapant R10/R11 (zone humide / PMR)",
+    "unite": "m²",
+    "min": 45,
+    "moy": 70,
+    "max": 120
+  },
+  {
+    "code": "RS-23",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Sol PVC/lino acoustique en lé soudé à chaud U4P3 (hospitalier/commercial)",
+    "unite": "m²",
+    "min": 40,
+    "moy": 70,
+    "max": 120
+  },
+  {
+    "code": "RS-25",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Remontée en plinthe à gorge soudée H10 + quart-de-rond",
+    "unite": "ml",
+    "min": 12,
+    "moy": 20,
+    "max": 35
+  },
+  {
+    "code": "SEC-01",
+    "lot": "SEC",
+    "lotTitre": "Sécurité incendie (ERP)",
+    "designation": "BAES évacuation/ambiance SATI",
+    "unite": "U",
+    "min": 80,
+    "moy": 130,
+    "max": 220
+  },
+  {
+    "code": "SEC-02",
+    "lot": "SEC",
+    "lotTitre": "Sécurité incendie (ERP)",
+    "designation": "Bloc autonome alarme sonore incendie type 4 ERP",
+    "unite": "U",
+    "min": 250,
+    "moy": 400,
+    "max": 700
+  },
+  {
+    "code": "SEC-03",
+    "lot": "SEC",
+    "lotTitre": "Sécurité incendie (ERP)",
+    "designation": "Extincteur EP6 / CO2 + plan + signalétique",
+    "unite": "U",
+    "min": 60,
+    "moy": 95,
+    "max": 160
+  },
+  {
+    "code": "SEC-05",
+    "lot": "SEC",
+    "lotTitre": "Sécurité incendie (ERP)",
+    "designation": "Bloc-porte coupe-feu EI30/EI60 + ferme-porte",
+    "unite": "U",
+    "min": 450,
+    "moy": 750,
+    "max": 1400
+  },
+  {
+    "code": "SEC-06",
+    "lot": "SEC",
+    "lotTitre": "Sécurité incendie (ERP)",
+    "designation": "Mission coordination SSI / passage commission de sécurité",
+    "unite": "F",
+    "min": 800,
+    "moy": 1500,
+    "max": 3500
   },
   {
     "code": "SER-01",

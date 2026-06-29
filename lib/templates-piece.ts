@@ -75,7 +75,7 @@ export const TEMPLATES_PIECE: TemplatePiece[] = [
   {
     id: "cuisine",
     nom: "Cuisine",
-    note: "Meubles Atelier Blanc, plan, crédence, lignes spécialisées, VMC.",
+    note: "Meubles Atelier Blanc, plan, crédence, évier, lignes spécialisées, VMC. Électroménager à cocher selon besoin.",
     elements: [
       { code: "RS-08", geo: "surface" }, // ragréage
       { code: "RS-10", geo: "surface" }, // carrelage sol
@@ -84,11 +84,42 @@ export const TEMPLATES_PIECE: TemplatePiece[] = [
       { code: "AGEN-06", geo: "fixe", ratio: 4 }, // meubles (ml, à ajuster)
       { code: "AGEN-25", geo: "fixe", ratio: 4 }, // plan de travail
       { code: "AGEN-27", geo: "fixe", ratio: 3 }, // crédence
+      { code: "PLO-96", geo: "fixe", ratio: 1 }, // évier
+      { code: "PLO-97", geo: "fixe", ratio: 1 }, // mitigeur cuisine
       { code: "EL-16", geo: "fixe", ratio: 1 }, // prise 32A plaque
       { code: "EL-15", geo: "fixe", ratio: 2 }, // prises spécialisées four/LV
       { code: "EL-12", geo: "fixe", ratio: 2 }, // doubles prises plan
       { code: "EL-32", geo: "parM2", ratio: 0.4 }, // spots
       { code: "PLO-03", geo: "fixe", ratio: 1 }, // VMC
+      // Électroménager (décoché par défaut — à sélectionner)
+      { code: "EM-01", geo: "fixe", ratio: 1, coche: false }, // four
+      { code: "EM-02", geo: "fixe", ratio: 1, coche: false }, // induction
+      { code: "EM-03", geo: "fixe", ratio: 1, coche: false }, // hotte
+      { code: "EM-04", geo: "fixe", ratio: 1, coche: false }, // lave-vaisselle
+      { code: "EM-05", geo: "fixe", ratio: 1, coche: false }, // frigo
+    ],
+  },
+  {
+    id: "sdb_pmr",
+    nom: "SDB PMR / douche sécurisée",
+    note: "Douche italienne plain-pied, barres d'appui, siège, WC surélevé, mitigeur thermostatique, sol antidérapant.",
+    elements: [
+      { code: "PLO-101", geo: "fixe", ratio: 1 }, // dépose baignoire
+      { code: "RS-08", geo: "surface" }, // ragréage
+      { code: "RS-22", geo: "surface" }, // carrelage antidérapant R11
+      { code: "RS-25", geo: "perimetre" }, // remontée à gorge
+      { code: "CLO-28", geo: "surface" }, // faux-plafond hydro
+      { code: "PLO-16", geo: "fixe", ratio: 1 }, // étanchéité
+      { code: "PLO-92", geo: "fixe", ratio: 1 }, // douche italienne plain-pied
+      { code: "RM-03", geo: "fixe", ratio: 1 }, // faïence douche
+      { code: "PLO-90", geo: "fixe", ratio: 2 }, // barres d'appui (×2)
+      { code: "PLO-91", geo: "fixe", ratio: 1 }, // siège de douche
+      { code: "PLO-94", geo: "fixe", ratio: 1 }, // mitigeur thermostatique
+      { code: "PLO-28", geo: "fixe", ratio: 1 }, // meuble vasque
+      { code: "PLO-08", geo: "fixe", ratio: 1 }, // mitigeur lavabo
+      { code: "PLO-93", geo: "fixe", ratio: 1 }, // WC surélevé PMR
+      { code: "PLO-01", geo: "fixe", ratio: 1 }, // VMC
+      { code: "EL-33", geo: "parM2", ratio: 0.5 }, // spots IP65
     ],
   },
   {

@@ -729,3 +729,78 @@ Pour un poste donné, le déboursé sec MO se calcule : `Déboursé MO = PU_MOY 
 | `AGEN-38` | Étude + plans d'exécution agencement sur-mesure (Atelier Blanc) | ens | 300 | 600 | 1500 |
 | `AGEN-39` | Pose et réglage sur site — MO atelier, par jour compagnon | J | 350 | 480 | 750 |
 | `AGEN-40` | Dépose ancien agencement + évacuation | ml | 40 | 70 | 130 |
+
+---
+
+## Compléments v0 — sous-ensemble prioritaire
+
+> **⚠️ Brouillon v0 à dire d'expert — À VALIDER par le métier avant usage client.**
+> Postes issus de l'analyse des chiffrages-types (SDB PMR, PAC, électroménager,
+> sols techniques, sécurité/accessibilité ERP). Prix **HT hors markup**, **IDF Q2 2026**.
+
+### Lot PLO — Plomberie et sanitaire
+*(compléments PMR / cuisine / énergie)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `PLO-90` | Barre d'appui PMR inox/époxy (droite/coudée) sur renfort | U | 90 | 140 | 240 |
+| `PLO-91` | Siège de douche rabattable mural PMR sur renfort | U | 180 | 260 | 450 |
+| `PLO-92` | Douche italienne plain-pied — forme de pente + siphon/caniveau + étanchéité SEL (DTU 52.2) | U | 800 | 1200 | 2000 |
+| `PLO-93` | WC surélevé PMR (cuvette H 480-500mm ou bâti réglable) | U | 450 | 650 | 1100 |
+| `PLO-94` | Mitigeur thermostatique de douche anti-brûlure | U | 180 | 280 | 480 |
+| `PLO-96` | Évier cuisine inox/résine sous-plan + bonde (1 à 2 bacs) | U | 150 | 280 | 600 |
+| `PLO-97` | Mitigeur cuisine bec haut + douchette | U | 120 | 220 | 450 |
+| `PLO-98` | VMC double flux individuelle haut rendement (échangeur ≥85%, réseau + bouches) | F | 4500 | 6500 | 9000 |
+| `PLO-100` | Calorifugeage canalisations chauffage/ECS — coquille laine minérale + finition | ml | 18 | 28 | 45 |
+| `PLO-101` | Dépose baignoire + tablier + raccordements (consignation EF/ECS/EV) | U | 250 | 380 | 650 |
+
+### Lot RS — Revêtements de sols
+*(compléments techniques)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `RS-18` | Sol béton ciré / microciment (primaire + 2 passes + vernis PU) | m² | 90 | 140 | 220 |
+| `RS-20` | Sol stratifié clipsable AC4/AC5 + sous-couche (pose flottante) | m² | 25 | 40 | 65 |
+| `RS-21` | Sol résine époxy / PU coulé (décoratif ou technique antidérapant) | m² | 55 | 90 | 160 |
+| `RS-22` | Carrelage sol intérieur antidérapant R10/R11 (zone humide / PMR) | m² | 45 | 70 | 120 |
+| `RS-23` | Sol PVC/lino acoustique en lé soudé à chaud U4P3 (hospitalier/commercial) | m² | 40 | 70 | 120 |
+| `RS-25` | Remontée en plinthe à gorge soudée H10 + quart-de-rond | ml | 12 | 20 | 35 |
+
+### Lot EM — Électroménager (fourniture + pose)
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `EM-01` | Four encastrable pyrolyse | U | 400 | 700 | 1500 |
+| `EM-02` | Table de cuisson induction 3-4 foyers | U | 350 | 650 | 1400 |
+| `EM-03` | Hotte décorative / plan aspirante | U | 300 | 600 | 1500 |
+| `EM-04` | Lave-vaisselle tout-intégrable | U | 400 | 650 | 1200 |
+| `EM-05` | Réfrigérateur américain / combiné encastré | U | 700 | 1200 | 2800 |
+| `EM-06` | Micro-ondes / combiné encastré | U | 200 | 350 | 700 |
+| `EM-07` | Cave à vin de service | U | 400 | 800 | 2000 |
+
+### Lot SEC — Sécurité incendie (ERP)
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `SEC-01` | BAES évacuation/ambiance SATI | U | 80 | 130 | 220 |
+| `SEC-02` | Bloc autonome alarme sonore incendie type 4 ERP | U | 250 | 400 | 700 |
+| `SEC-03` | Extincteur EP6 / CO2 + plan + signalétique | U | 60 | 95 | 160 |
+| `SEC-05` | Bloc-porte coupe-feu EI30/EI60 + ferme-porte | U | 450 | 750 | 1400 |
+| `SEC-06` | Mission coordination SSI / passage commission de sécurité | F | 800 | 1500 | 3500 |
+
+### Lot ACC — Accessibilité PMR
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `ACC-01` | Bloc sanitaire PMR ERP complet (cuvette surélevée + barre + lave-mains accessible + aire de giration) | U | 1800 | 2800 | 4800 |
+| `ACC-02` | Rampe d'accès PMR pente ≤5% + main courante | ml | 250 | 400 | 750 |
+| `ACC-03` | Élargissement passage de porte ≥0,90 m | U | 350 | 550 | 950 |
+| `ACC-05` | Signalétique réglementaire ERP (braille/relief, pictos PMR, fléchage) + Ad'AP | F | 500 | 900 | 1800 |
+
+### Lot OCREN — Ouvrages complets — Rénovation
+*(compléments)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `OCREN-13` | SDB PMR sécurisée clé en main (douche italienne plain-pied + barres + siège + WC surélevé + sol antidérapant + thermostatique) | U | 6500 | 9500 | 15000 |
+| `OCREN-14` | Chauffage PAC air-eau clé en main (chauffage + ECS + émetteurs + désembouage + mise en service) | U | 9000 | 13000 | 19000 |

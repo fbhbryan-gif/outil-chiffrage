@@ -111,6 +111,14 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     qteDefaut: () => 1,
   },
   {
+    code: "OCREN-13",
+    label: "Salle de bains PMR sécurisée clé en main",
+    groupe: "Pièces",
+    aide: "nombre de SDB PMR",
+    pour: RENO,
+    qteDefaut: () => 0,
+  },
+  {
     code: "OCREN-04",
     label: "Isolation intérieure (ITI)",
     groupe: "Enveloppe",
@@ -156,6 +164,14 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     groupe: "Lots techniques",
     aide: "m² SHAB",
     pour: RENO,
+    qteDefaut: () => 0,
+  },
+  {
+    code: "OCREN-14",
+    label: "Chauffage PAC air-eau clé en main",
+    groupe: "Lots techniques",
+    aide: "nombre d'installations",
+    pour: [...RENO, ENERGETIQUE],
     qteDefaut: () => 0,
   },
   {
@@ -233,6 +249,7 @@ export const CODES_ENERGETIQUES = new Set([
   "OCREN-05", // ITE
   "OCREN-09", // ravalement isolant
   "OCREN-10", // menuiseries isolantes
+  "OCREN-14", // PAC air-eau
 ]);
 
 /**
