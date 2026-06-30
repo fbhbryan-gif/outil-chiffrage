@@ -115,8 +115,8 @@ Ces postes ont été calés à dire d'expert. Ils s'appliquent **sans recalcul**
 | `DEMO-23` | Dépose faïences murales (burinage + mise à nu support) | F | 120 | 200 | 380 |
 | `DEMO-26` | Dépose doublages BA13 muraux (pour ITI) | m² | 12 | 20 | 35 |
 | `DEMO-28` | Dépose sol global carrelage ou parquet | m² | 6 | 10 | 20 |
-| `DEMO-35` | Dépose radiateur existant + obturation raccords | U | 35 | 52,5 | 90 |
-| `DEMO-43` | Piochage intégral enduits façade + grillage galvanisé anti-fissure | U | 8000 | 13896 | 20000 |
+| `DEMO-35` | Dépose radiateur existant + obturation raccords | U | 35 | 53 | 90 |
+| `DEMO-43` | Piochage intégral enduits façade + grillage galvanisé anti-fissure (au m²) | m² | 25 | 35 | 50 |
 
 ### Lot MAC — Maçonnerie et structure
 
@@ -181,7 +181,7 @@ Ces postes ont été calés à dire d'expert. Ils s'appliquent **sans recalcul**
 | `CHAR-02` | Reprise charpente-couverture extension (EP + gouttière) | U | 1400 | 1900 | 3200 |
 | `CHAR-03` | Gouttière zinc demi-ronde (crochets universels + crapaudines) | ml | 90 | 125 | 200 |
 | `CHAR-04` | Descente EP zinc (tubes + colliers + dauphin fonte peint) | ml | 75 | 110 | 180 |
-| `CHAR-05` | Charpente + couverture zinc extension (pigmenté ou naturel) | m² | 140 | 193,75 | 320 |
+| `CHAR-05` | Charpente + couverture zinc extension (pigmenté ou naturel) | m² | 140 | 194 | 320 |
 | `CHAR-06` | Chéneau zinc carré (jonction extension/mur de clôture) | ml | 300 | 420 | 700 |
 
 ### Lot CLO — Cloisons et faux-plafonds
@@ -200,7 +200,7 @@ Ces postes ont été calés à dire d'expert. Ils s'appliquent **sans recalcul**
 | `CLO-14` | Création demi-arche décorative BA13 sur ossature métallique | F | 170 | 250 | 430 |
 | `CLO-15` | Faux-plafond cuisine BA13 sur fourrures (prêt à peindre) | m² | 45 | 65 | 105 |
 | `CLO-16` | Cloison WC avec galandage (BA13 recto-verso + châssis encastré) | F | 550 | 790 | 1300 |
-| `CLO-17` | Coffrage bâti Geberit en BA13 hydrofuge (WC suspendu) | F | 130 | 190 | 320 |
+| `CLO-17` | Coffrage bâti Geberit en BA13 hydrofuge (WC suspendu) | F | 150 | 220 | 380 |
 | `CLO-28` | Faux-plafond hydrofuge SDE/SDB (BA13H sur fourrures F47) | m² | 45 | 65 | 105 |
 | `CLO-30` | Enduit réparation fissure plafond suite dépose cloisons (ml) | ml | 7 | 10 | 18 |
 | `CLO-32` | Cloison 100mm double BA13 (Rw≥46dB, DTU 25.41) | m² | 80 | 110 | 175 |
@@ -239,7 +239,7 @@ Ces postes ont été calés à dire d'expert. Ils s'appliquent **sans recalcul**
 | `MEX-02` | Porte alu 1V thermolaquée RAL (vert lichen ou autre) | U | 1300 | 1800 | 3200 |
 | `MEX-06` | Velux toiture plate 78×98cm avec store intérieur DKL | U | 1000 | 1400 | 2500 |
 | `MEX-10` | Fenêtre bois 2V SP10 petits bois (dito menuiseries existantes) | U | 550 | 755 | 1400 |
-| `MEX-11` | Store roulant micro-perforé L=135cm (fourniture + pose) | U | 90 | 126,25 | 220 |
+| `MEX-11` | Store roulant micro-perforé L=135cm (fourniture + pose) | U | 90 | 126 | 220 |
 
 ### Lot SER — Serrurerie et métallerie
 
@@ -309,7 +309,7 @@ Ces postes ont été calés à dire d'expert. Ils s'appliquent **sans recalcul**
 | `PLO-42` | VMC hygro compacte Aldes EasyHome 5-6 pièces humides | U | 1350 | 1850 | 3200 |
 | `PLO-44` | Réseaux EF/ECS complets (multicouche serti + réducteur pression) | ENS | 1800 | 2500 | 4500 |
 | `PLO-45` | Réseaux EU/EV intérieurs en PVC (canalisations vidange) | ENS | 420 | 600 | 1100 |
-| `PLO-52` | Robinet ext. mural (fourniture + pose + distribution EF) | U | 300 | 428,75 | 750 |
+| `PLO-52` | Robinet ext. mural (fourniture + pose + distribution EF) | U | 300 | 429 | 750 |
 | `PLO-60` | PAC air-eau monoblock 6-8 kW chauffage+ECS R32 COP≥3,8 — Atlantic Extensa 6 AOYA06LALL ou Daikin Altherma 3 ERLA06DV3 ou Mitsubishi Ecodan PUHZ-SW50VHA — fourniture+pose+raccordements hydrauliques+MSE | U | 7000 | 9500 | 14000 |
 | `PLO-61` | PAC air-eau monoblock 10-12 kW chauffage+ECS R32 COP≥3,5 — Atlantic Extensa 12 AOYA12LALL ou Daikin Altherma 3 ERLA12DV3 ou Mitsubishi Ecodan PUHZ-SW120VHA — fourniture+pose+raccordements hydrauliques+MSE | U | 9500 | 12500 | 18000 |
 | `PLO-62` | Ballon tampon hydraulique 200L — Atlantic Sauvegarde 200 ou Daikin BUH200GW ou Mitsubishi EHST20D-MEC — calorifugeage PU 50mm + raccordements — fourniture+pose | U | 2000 | 2800 | 5000 |
@@ -403,7 +403,7 @@ Ces postes ont été calés à dire d'expert. Ils s'appliquent **sans recalcul**
 | `RS-12` | Carrelage sol 75×75 grès céram rectifié (Mystone berrici) | m² | 75 | 110 | 180 |
 | `RS-13` | Sol PVC clipsable LVT (Floorify chêne cognac + sous-couche IXPE) | m² | 70 | 100 | 160 |
 | `RS-14` | Carrelage ext. 120×60 R11 (travertino, terrasse ou véranda) | m² | 70 | 105 | 175 |
-| `RS-15` | Terre cuite ancienne dito existant (pose + colle + joint) | m² | 95 | 132,5 | 220 |
+| `RS-15` | Terre cuite ancienne dito existant (pose + colle + joint) | m² | 95 | 133 | 220 |
 
 ### Lot RM — Revêtements muraux
 
@@ -435,7 +435,7 @@ Ces postes ont été calés à dire d'expert. Ils s'appliquent **sans recalcul**
 |---|---|---|---:|---:|---:|
 | `PEINT-01` | Peinture complète appartement (rebouchage + enduit + 2C mat) | U | 4000 | 5500 | 9500 |
 | `PEINT-02` | Peinture huisseries bois + mobilier + plinthes médium | U | 580 | 800 | 1400 |
-| `PEINT-03` | Peinture complète maison (enduit lissage + impression + 2C) | U | 4000 | 5500 | 9500 |
+| `PEINT-03` | Peinture complète maison (enduit lissage + impression + 2C) | U | 5500 | 7700 | 13000 |
 
 ### Lot RAV — Ravalement de façade
 
@@ -1085,7 +1085,7 @@ Pour un poste donné, le déboursé sec MO se calcule : `Déboursé MO = PU_MOY 
 
 | Code | Désignation | U | MIN | MOY | MAX |
 |---|---|---|---:|---:|---:|
-| `OCMOB-13` | Surélévation MOB hors d'air + isolation + plâtrerie (prêt à recevoir lots techniques) au m² SHON | m² | 1400 | 1900 | 2900 |
+| `OCMOB-13` | Surélévation MOB hors d'air + isolation + plâtrerie (prêt à recevoir lots techniques) au m² SHON | m² | 2050 | 2750 | 4200 |
 | `OCMOB-14` | Fondations + dalle d'extension (dé-cochable du forfait HO-HA) au m² | m² | 250 | 400 | 650 |
 | `OCMOB-15` | Extension MOB clé en main toit-terrasse (variante OCMOB-10) au m² SHON | m² | 2500 | 3400 | 5000 |
 

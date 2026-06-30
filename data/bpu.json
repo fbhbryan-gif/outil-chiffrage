@@ -486,7 +486,7 @@
     "designation": "Charpente + couverture zinc extension (pigmenté ou naturel)",
     "unite": "m²",
     "min": 140,
-    "moy": 193.75,
+    "moy": 194,
     "max": 320
   },
   {
@@ -765,9 +765,9 @@
     "lotTitre": "Cloisons et faux-plafonds",
     "designation": "Coffrage bâti Geberit en BA13 hydrofuge (WC suspendu)",
     "unite": "F",
-    "min": 130,
-    "moy": 190,
-    "max": 320
+    "min": 150,
+    "moy": 220,
+    "max": 380
   },
   {
     "code": "CLO-28",
@@ -1526,18 +1526,18 @@
     "designation": "Dépose radiateur existant + obturation raccords",
     "unite": "U",
     "min": 35,
-    "moy": 52.5,
+    "moy": 53,
     "max": 90
   },
   {
     "code": "DEMO-43",
     "lot": "DEMO",
     "lotTitre": "Démolition et dépose",
-    "designation": "Piochage intégral enduits façade + grillage galvanisé anti-fissure",
-    "unite": "U",
-    "min": 8000,
-    "moy": 13896,
-    "max": 20000
+    "designation": "Piochage intégral enduits façade + grillage galvanisé anti-fissure (au m²)",
+    "unite": "m²",
+    "min": 25,
+    "moy": 35,
+    "max": 50
   },
   {
     "code": "DEVA-01",
@@ -2526,7 +2526,7 @@
     "designation": "Store roulant micro-perforé L=135cm (fourniture + pose)",
     "unite": "U",
     "min": 90,
-    "moy": 126.25,
+    "moy": 126,
     "max": 220
   },
   {
@@ -2995,9 +2995,9 @@
     "lotTitre": "Ouvrages complets — Maison Ossature Bois",
     "designation": "Surélévation MOB hors d'air + isolation + plâtrerie (prêt à recevoir lots techniques) au m² SHON",
     "unite": "m²",
-    "min": 1400,
-    "moy": 1900,
-    "max": 2900
+    "min": 2050,
+    "moy": 2750,
+    "max": 4200
   },
   {
     "code": "OCMOB-14",
@@ -3385,9 +3385,9 @@
     "lotTitre": "Peinture",
     "designation": "Peinture complète maison (enduit lissage + impression + 2C)",
     "unite": "U",
-    "min": 4000,
-    "moy": 5500,
-    "max": 9500
+    "min": 5500,
+    "moy": 7700,
+    "max": 13000
   },
   {
     "code": "PIE-01",
@@ -3676,7 +3676,7 @@
     "designation": "Robinet ext. mural (fourniture + pose + distribution EF)",
     "unite": "U",
     "min": 300,
-    "moy": 428.75,
+    "moy": 429,
     "max": 750
   },
   {
@@ -4536,7 +4536,7 @@
     "designation": "Terre cuite ancienne dito existant (pose + colle + joint)",
     "unite": "m²",
     "min": 95,
-    "moy": 132.5,
+    "moy": 133,
     "max": 220
   },
   {
