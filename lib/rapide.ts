@@ -823,7 +823,15 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   },
   {
     code: "OCPMR-19",
-    label: "Monte-escalier / élévateur PMR",
+    label: "Monte-escalier siège PMR",
+    groupe: "Accessibilité ERP",
+    aide: "nombre",
+    pour: ["adaptation_pmr"],
+    qteDefaut: () => 0,
+  },
+  {
+    code: "OCPMR-20",
+    label: "Plateforme élévatrice PMR",
     groupe: "Accessibilité ERP",
     aide: "nombre",
     pour: ["adaptation_pmr"],
@@ -903,7 +911,8 @@ export const CODES_ADAPTATION_PMR = new Set([
   "OCPMR-16", // baignoire -> douche italienne
   "OCPMR-17", // WC adapté
   "OCPMR-18", // pack adaptation logement
-  "OCPMR-19", // monte-escalier / élévateur
+  "OCPMR-19", // monte-escalier siège
+  "OCPMR-20", // plateforme élévatrice PMR
 ]);
 
 /**

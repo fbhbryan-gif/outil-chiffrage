@@ -1175,9 +1175,9 @@
     "lotTitre": "Chauffage / Ventilation / Climatisation",
     "designation": "Gainable DC inverter 7kW froid+chaud (DUCT-24) — Tekno Point DUCT-24-V — mono 220V — liaisons frigo 1/4\"-5/8\" — fourniture + pose en faux-plafond + réseau + MSE",
     "unite": "U",
-    "min": 1400,
-    "moy": 1800,
-    "max": 3000
+    "min": 4800,
+    "moy": 6200,
+    "max": 8000
   },
   {
     "code": "CVC-73",
@@ -1185,9 +1185,9 @@
     "lotTitre": "Chauffage / Ventilation / Climatisation",
     "designation": "Gainable DC inverter 14kW froid+chaud (DUCT-48) — Tekno Point DUCT-36-48-V — triphasé 380V — liaisons frigo 3/8\"-3/4\" — fourniture + pose en faux-plafond + réseau + MSE",
     "unite": "U",
-    "min": 1800,
-    "moy": 2400,
-    "max": 4200
+    "min": 6500,
+    "moy": 8500,
+    "max": 11500
   },
   {
     "code": "CVC-74",
@@ -1315,19 +1315,19 @@
     "lotTitre": "Chauffage / Ventilation / Climatisation",
     "designation": "VMC logement complet (simple flux hygro B, réseau + bouches)",
     "unite": "U",
-    "min": 1800,
-    "moy": 3200,
-    "max": 6500
+    "min": 900,
+    "moy": 1500,
+    "max": 2800
   },
   {
     "code": "CVC-96",
     "lot": "CVC",
     "lotTitre": "Chauffage / Ventilation / Climatisation",
-    "designation": "Chauffage — remplacement émetteurs (radiateurs gaz/élec)",
+    "designation": "Chauffage — remplacement émetteurs logement (jeu de 5-8 radiateurs gaz/élec)",
     "unite": "U",
-    "min": 2500,
+    "min": 2800,
     "moy": 4500,
-    "max": 9000
+    "max": 8000
   },
   {
     "code": "DEMO-01",
@@ -1515,9 +1515,9 @@
     "lotTitre": "Démolition et dépose",
     "designation": "Dépose sol global carrelage ou parquet",
     "unite": "m²",
-    "min": 6,
-    "moy": 10,
-    "max": 20
+    "min": 12,
+    "moy": 28,
+    "max": 55
   },
   {
     "code": "DEMO-35",
@@ -3133,11 +3133,21 @@
     "code": "OCPMR-19",
     "lot": "OCPMR",
     "lotTitre": "Ouvrages complets — Adaptation PMR",
-    "designation": "Monte-escalier / élévateur PMR (fourniture + pose + raccordement)",
+    "designation": "Monte-escalier siège PMR sur rail (fourniture + pose + raccordement)",
     "unite": "U",
-    "min": 3500,
-    "moy": 6500,
-    "max": 14000
+    "min": 3200,
+    "moy": 5500,
+    "max": 11000
+  },
+  {
+    "code": "OCPMR-20",
+    "lot": "OCPMR",
+    "lotTitre": "Ouvrages complets — Adaptation PMR",
+    "designation": "Plateforme élévatrice PMR (course 1-3 m, fourniture + pose + raccordement)",
+    "unite": "U",
+    "min": 6500,
+    "moy": 12500,
+    "max": 17000
   },
   {
     "code": "OCREN-01",
@@ -3155,9 +3165,9 @@
     "lotTitre": "Ouvrages complets — Rénovation",
     "designation": "Cuisine complète clé en main — dépose+meubles+plan de travail+plomberie+élec",
     "unite": "ml",
-    "min": 1100,
-    "moy": 1650,
-    "max": 3200
+    "min": 1300,
+    "moy": 1900,
+    "max": 3400
   },
   {
     "code": "OCREN-03",
@@ -3165,9 +3175,9 @@
     "lotTitre": "Ouvrages complets — Rénovation",
     "designation": "WC complet — bâti Geberit+cuvette+faïence+coffrage+raccordements",
     "unite": "U",
-    "min": 2200,
-    "moy": 3200,
-    "max": 5500
+    "min": 1200,
+    "moy": 1800,
+    "max": 2800
   },
   {
     "code": "OCREN-04",
@@ -3275,9 +3285,9 @@
     "lotTitre": "Ouvrages complets — Rénovation",
     "designation": "Chauffage PAC air-eau clé en main (chauffage + ECS + émetteurs + désembouage + mise en service)",
     "unite": "U",
-    "min": 9000,
-    "moy": 13000,
-    "max": 19000
+    "min": 9500,
+    "moy": 13500,
+    "max": 18000
   },
   {
     "code": "OCREN-15",
@@ -3305,9 +3315,9 @@
     "lotTitre": "Ouvrages complets — Rénovation",
     "designation": "Studio / locatif — rafraîchissement complet (peinture + sols + reprises) au m²",
     "unite": "m²",
-    "min": 450,
-    "moy": 700,
-    "max": 1100
+    "min": 160,
+    "moy": 220,
+    "max": 320
   },
   {
     "code": "OCREN-21",
@@ -4075,9 +4085,9 @@
     "lotTitre": "Préparation, études et installations",
     "designation": "Évacuation gravats en décharge agréée (BSD CERFA inclus)",
     "unite": "m³",
-    "min": 80,
-    "moy": 160,
-    "max": 220
+    "min": 50,
+    "moy": 75,
+    "max": 110
   },
   {
     "code": "PREP-04",
@@ -4235,9 +4245,9 @@
     "lotTitre": "Ravalement de façade",
     "designation": "Étanchéité cour EPDM 1,5mm + pare-vapeur + isolant PSE 10cm",
     "unite": "m²",
-    "min": 150,
-    "moy": 210,
-    "max": 360
+    "min": 130,
+    "moy": 190,
+    "max": 280
   },
   {
     "code": "RM-01",
@@ -4395,9 +4405,9 @@
     "lotTitre": "Revêtements muraux",
     "designation": "Enduit façade monocouche 3 passes (gobetis + corps + finition W2)",
     "unite": "m²",
-    "min": 110,
-    "moy": 155,
-    "max": 240
+    "min": 55,
+    "moy": 72,
+    "max": 95
   },
   {
     "code": "RS-01",

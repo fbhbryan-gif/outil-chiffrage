@@ -77,7 +77,7 @@ Ces postes ont été calés à dire d'expert. Ils s'appliquent **sans recalcul**
 |---|---|---|---:|---:|---:|
 | `PREP-01` | Installation/repli de chantier (amenée, nettoyage, signalisation) | U | 1200 | 1600 | 2500 |
 | `PREP-02` | Location mini-pelle avec opérateur (journée complète, carburant inclus) | F | 1200 | 1800 | 2800 |
-| `PREP-03` | Évacuation gravats en décharge agréée (BSD CERFA inclus) | m³ | 80 | 160 | 220 |
+| `PREP-03` | Évacuation gravats en décharge agréée (BSD CERFA inclus) | m³ | 50 | 75 | 110 |
 | `PREP-04` | Rapport BET structure (notes de calcul, plans d'exécution) | U | 1500 | 1800 | 3000 |
 | `PREP-05` | Étude géotechnique de sol (mission G2 AVP ou G2 PRO) | U | 1200 | 1600 | 2500 |
 | `PREP-06` | Plans architecturaux + dépôt PC ou déclaration préalable | U | 600 | 900 | 1800 |
@@ -114,7 +114,7 @@ Ces postes ont été calés à dire d'expert. Ils s'appliquent **sans recalcul**
 | `DEMO-22` | Dépose SDB complète (receveur, vasque, mitigeur) | F | 300 | 450 | 800 |
 | `DEMO-23` | Dépose faïences murales (burinage + mise à nu support) | F | 120 | 200 | 380 |
 | `DEMO-26` | Dépose doublages BA13 muraux (pour ITI) | m² | 12 | 20 | 35 |
-| `DEMO-28` | Dépose sol global carrelage ou parquet | m² | 6 | 10 | 20 |
+| `DEMO-28` | Dépose sol global carrelage ou parquet | m² | 12 | 28 | 55 |
 | `DEMO-35` | Dépose radiateur existant + obturation raccords | U | 35 | 53 | 90 |
 | `DEMO-43` | Piochage intégral enduits façade + grillage galvanisé anti-fissure (au m²) | m² | 25 | 35 | 50 |
 
@@ -374,8 +374,8 @@ Ces postes ont été calés à dire d'expert. Ils s'appliquent **sans recalcul**
 | `CVC-61` | Dépose multi-split existant — pompage + dépose complète jusqu'à 3 unités int. — technicien certifié F-Gaz (toutes marques) | U | 380 | 520 | 950 |
 | `CVC-70` | Unité intérieure condensation à eau invisible monosplit 7kW (24000 BTU) R32 — Tekno Point IDRA-24C (ISKV-24C9) — mono 220V — raccord eau 1/2" — fourniture + pose + raccordement hydraulique + MSE | U | 3400 | 4150 | 6500 |
 | `CVC-71` | Unité intérieure condensation à eau invisible monosplit 10,5kW (35800 BTU) R32 — Tekno Point IDRA-36C (ISKV-36C9) — mono 220V — raccord eau 1/2" — fourniture + pose + raccordement hydraulique + MSE | U | 4500 | 5500 | 8000 |
-| `CVC-72` | Gainable DC inverter 7kW froid+chaud (DUCT-24) — Tekno Point DUCT-24-V — mono 220V — liaisons frigo 1/4"-5/8" — fourniture + pose en faux-plafond + réseau + MSE | U | 1400 | 1800 | 3000 |
-| `CVC-73` | Gainable DC inverter 14kW froid+chaud (DUCT-48) — Tekno Point DUCT-36-48-V — triphasé 380V — liaisons frigo 3/8"-3/4" — fourniture + pose en faux-plafond + réseau + MSE | U | 1800 | 2400 | 4200 |
+| `CVC-72` | Gainable DC inverter 7kW froid+chaud (DUCT-24) — Tekno Point DUCT-24-V — mono 220V — liaisons frigo 1/4"-5/8" — fourniture + pose en faux-plafond + réseau + MSE | U | 4800 | 6200 | 8000 |
+| `CVC-73` | Gainable DC inverter 14kW froid+chaud (DUCT-48) — Tekno Point DUCT-36-48-V — triphasé 380V — liaisons frigo 3/8"-3/4" — fourniture + pose en faux-plafond + réseau + MSE | U | 6500 | 8500 | 11500 |
 | `CVC-74` | Kit régulation zonée AIRZONE 3 zones WiFi — Tekno Point KIT AIRZONE 3 WIFI : centrale Flexa 4.0 + 3x thermostats radio + 3x registres motorisés 150mm + bypass + serveur cloud — fourniture + pose + programmation + MSE | ENS | 2500 | 3050 | 4800 |
 | `CVC-75` | Kit anti-coup de bélier hydraulique — Tekno Point KIT AWHAM — fourniture + pose sur réseau eau | U | 90 | 150 | 220 |
 | `CVC-76` | Réducteur de pression 3/4" M-F avec manomètre et thermomètre intégrés — Tekno Point RID-PR2 — fourniture + pose | U | 160 | 200 | 380 |
@@ -425,7 +425,7 @@ Ces postes ont été calés à dire d'expert. Ils s'appliquent **sans recalcul**
 | `RM-24` | Peinture acrylique mat 2 couches finition (type A DTU 59.1) | m² | 20 | 29 | 48 |
 | `RM-28` | Peinture ferronneries ext. (antirouille + 2C glycéro laque) | ml | 40 | 61 | 100 |
 | `RM-29` | Peinture bois façade (lessivage + impression + 2C microporeuse) | U | 110 | 160 | 270 |
-| `RM-31` | Enduit façade monocouche 3 passes (gobetis + corps + finition W2) | m² | 110 | 155 | 240 |
+| `RM-31` | Enduit façade monocouche 3 passes (gobetis + corps + finition W2) | m² | 55 | 72 | 95 |
 
 ### Lot PEINT — Peinture
 
@@ -445,7 +445,7 @@ Ces postes ont été calés à dire d'expert. Ils s'appliquent **sans recalcul**
 |---|---|---|---:|---:|---:|
 | `RAV-01` | Échafaudage pied classe 4 (300kg/m², par m² façade, 3 mois) | m² | 22 | 32 | 55 |
 | `RAV-02` | Pare-gravois filets mailles serrées (rétention chutes) | ml | 8 | 12 | 22 |
-| `RAV-05` | Étanchéité cour EPDM 1,5mm + pare-vapeur + isolant PSE 10cm | m² | 150 | 210 | 360 |
+| `RAV-05` | Étanchéité cour EPDM 1,5mm + pare-vapeur + isolant PSE 10cm | m² | 130 | 190 | 280 |
 
 <!-- Lot MSM (Mobilier sur mesure, postes legacy) FUSIONNÉ dans le lot AGEN le 2026-06-30 :
      MSM-01→AGEN-18 (vestiaire), MSM-03→AGEN-16 (bibliothèque), MSM-05→AGEN-20 (tête de lit).
@@ -477,8 +477,8 @@ Ces postes ont été calés à dire d'expert. Ils s'appliquent **sans recalcul**
 | Code | Désignation | U | MIN | MOY | MAX |
 |---|---|---|---:|---:|---:|
 | `OCREN-01` | SDB complète clé en main — dépose+étanchéité+carrelage+sanitaires+robinetterie | m² | 1200 | 1850 | 3200 |
-| `OCREN-02` | Cuisine complète clé en main — dépose+meubles+plan de travail+plomberie+élec | ml | 1100 | 1650 | 3200 |
-| `OCREN-03` | WC complet — bâti Geberit+cuvette+faïence+coffrage+raccordements | U | 2200 | 3200 | 5500 |
+| `OCREN-02` | Cuisine complète clé en main — dépose+meubles+plan de travail+plomberie+élec | ml | 1300 | 1900 | 3400 |
+| `OCREN-03` | WC complet — bâti Geberit+cuvette+faïence+coffrage+raccordements | U | 1200 | 1800 | 2800 |
 | `OCREN-04` | ITI complète prête à peindre — dépose+ossature métallique+LV GR32+BA13 | m² | 60 | 90 | 135 |
 | `OCREN-05` | ITE enduit sur isolant — piochage+PSE 100mm+sous-enduit armé+finition W2 | m² | 135 | 195 | 320 |
 | `OCREN-06` | Réfection pièce de vie — dépose sol+ragréage+parquet+peinture murs+plafond | m² | 210 | 320 | 520 |
@@ -797,7 +797,7 @@ Pour un poste donné, le déboursé sec MO se calcule : `Déboursé MO = PU_MOY 
 | Code | Désignation | U | MIN | MOY | MAX |
 |---|---|---|---:|---:|---:|
 | `OCREN-13` | SDB PMR sécurisée clé en main (douche italienne plain-pied + barres + siège + WC surélevé + sol antidérapant + thermostatique) | U | 6500 | 9500 | 15000 |
-| `OCREN-14` | Chauffage PAC air-eau clé en main (chauffage + ECS + émetteurs + désembouage + mise en service) | U | 9000 | 13000 | 19000 |
+| `OCREN-14` | Chauffage PAC air-eau clé en main (chauffage + ECS + émetteurs + désembouage + mise en service) | U | 9500 | 13500 | 18000 |
 | `OCREN-15` | Rénovation patrimoniale / haussmannienne complète (modénatures + parquet point de Hongrie + cheminées + grande hauteur) au m² SHAB | m² | 1800 | 2500 | 3500 |
 
 ### Lot OCERP — Ouvrages complets — ERP / commerce
@@ -1100,7 +1100,7 @@ Pour un poste donné, le déboursé sec MO se calcule : `Déboursé MO = PU_MOY 
 | Code | Désignation | U | MIN | MOY | MAX |
 |---|---|---|---:|---:|---:|
 | `OCREN-16` | ITE bardage ventilé sur ossature rapportée (au m² de façade) | m² | 160 | 230 | 380 |
-| `OCREN-20` | Studio / locatif — rafraîchissement complet (peinture + sols + reprises) au m² | m² | 450 | 700 | 1100 |
+| `OCREN-20` | Studio / locatif — rafraîchissement complet (peinture + sols + reprises) au m² | m² | 160 | 220 | 320 |
 | `OCREN-21` | Buanderie / cellier clé en main (faïence + sol PVC + arrivée/évacuation) | U | 1800 | 2800 | 4500 |
 
 ### Lot OCMOB — Ouvrages complets — Maison Ossature Bois
@@ -1168,15 +1168,16 @@ Pour un poste donné, le déboursé sec MO se calcule : `Déboursé MO = PU_MOY 
 | `OCPMR-16` | Transformation baignoire → douche italienne PMR plain-pied | U | 3800 | 5500 | 8500 |
 | `OCPMR-17` | WC adapté PMR / senior (cuvette surélevée + barres d'appui) | U | 900 | 1400 | 2400 |
 | `OCPMR-18` | Adaptation logement PMR / senior — pack accessibilité (forfait) | F | 2500 | 4500 | 8500 |
-| `OCPMR-19` | Monte-escalier / élévateur PMR (fourniture + pose + raccordement) | U | 3500 | 6500 | 14000 |
+| `OCPMR-19` | Monte-escalier siège PMR sur rail (fourniture + pose + raccordement) | U | 3200 | 5500 | 11000 |
+| `OCPMR-20` | Plateforme élévatrice PMR (course 1-3 m, fourniture + pose + raccordement) | U | 6500 | 12500 | 17000 |
 
 ### Lot CVC — Chauffage / Ventilation / Climatisation
 *(compléments forfaits rapide)*
 
 | Code | Désignation | U | MIN | MOY | MAX |
 |---|---|---|---:|---:|---:|
-| `CVC-95` | VMC logement complet (simple flux hygro B, réseau + bouches) | U | 1800 | 3200 | 6500 |
-| `CVC-96` | Chauffage — remplacement émetteurs (radiateurs gaz/élec) | U | 2500 | 4500 | 9000 |
+| `CVC-95` | VMC logement complet (simple flux hygro B, réseau + bouches) | U | 900 | 1500 | 2800 |
+| `CVC-96` | Chauffage — remplacement émetteurs logement (jeu de 5-8 radiateurs gaz/élec) | U | 2800 | 4500 | 8000 |
 
 ### Lot RS — Revêtements de sols
 *(complément forfait rapide)*
