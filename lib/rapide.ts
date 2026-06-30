@@ -1903,7 +1903,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     code: "PLO-72",
     label: "Chape fluide anhydrite sur plancher chauffant",
     groupe: "Lots techniques",
-    sousGroupe: "Émetteurs (1 au choix)",
+    sousGroupe: "Chauffage au sol (complément)",
     aide: "m² concernés",
     pour: ["neuf_maconne"],
     qteDefaut: (s) => s,
@@ -2135,9 +2135,10 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   },
   {
     code: "CVC-72",
-    label: "Chauffage / clim gainable du nouveau niveau (7 kW)",
-    groupe: "Surélévation ossature bois",
-    sousGroupe: "Chauffage du niveau",
+    label: "Climatisation/chauffage gainable réversible (7 kW)",
+    groupe: "Lots techniques",
+    sousGroupe: "Chauffage",
+    sousChoixId: "chauffage",
     aide: "nombre",
     pour: ["surelevation", "neuf_maconne", "renovation_maison"],
     qteDefaut: () => 1,
@@ -2145,8 +2146,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   {
     code: "SER-10",
     label: "Escalier métal limon central + marches bois",
-    groupe: "Surélévation ossature bois",
-    sousGroupe: "Escalier d'accès",
+    groupe: "Aménagement intérieur",
+    sousGroupe: "Escalier (1 au choix)",
+    sousChoixId: "escalier-maison",
     aide: "nombre",
     pour: ["surelevation", "neuf_maconne", "renovation_maison", "renovation_haussmannien", "extension"],
     qteDefaut: () => 1,
@@ -2695,17 +2697,37 @@ const RECOUVREMENTS: Record<string, string[]> = {
  * Détecte les paires d'ouvrages cochés au périmètre recouvrant.
  * Retourne des messages d'alerte (non bloquants) pour l'UI.
  */
+/**
+ * Fermeture transitive des recouvrements d'un forfait : si A recouvre B et que
+ * B est lui-même un forfait qui recouvre C, alors A recouvre C. Évite de devoir
+ * recopier les codes d'un forfait dans tous les forfaits qui l'englobent.
+ */
+function recouvreTransitif(code: string): Set<string> {
+  const res = new Set<string>();
+  const pile = [...(RECOUVREMENTS[code] ?? [])];
+  while (pile.length) {
+    const c = pile.pop() as string;
+    if (res.has(c)) continue;
+    res.add(c);
+    if (RECOUVREMENTS[c]) pile.push(...RECOUVREMENTS[c]);
+  }
+  return res;
+}
+
 export function detecterRecouvrements(codesActifs: string[]): string[] {
   const set = new Set(codesActifs);
   const msgs: string[] = [];
-  for (const [code, recouvre] of Object.entries(RECOUVREMENTS)) {
+  const vus = new Set<string>(); // évite le doublon de message sur une même paire
+  for (const code of Object.keys(RECOUVREMENTS)) {
     if (!set.has(code)) continue;
-    for (const r of recouvre) {
-      if (set.has(r)) {
-        const a = OUVRAGES_RAPIDE.find((o) => o.code === code)?.label ?? code;
-        const b = OUVRAGES_RAPIDE.find((o) => o.code === r)?.label ?? r;
-        msgs.push(`« ${a} » recouvre déjà « ${b} » — risque de double-comptage.`);
-      }
+    for (const r of recouvreTransitif(code)) {
+      if (r === code || !set.has(r)) continue;
+      const cle = code + ">" + r;
+      if (vus.has(cle)) continue;
+      vus.add(cle);
+      const a = OUVRAGES_RAPIDE.find((o) => o.code === code)?.label ?? code;
+      const b = OUVRAGES_RAPIDE.find((o) => o.code === r)?.label ?? r;
+      msgs.push(`« ${a} » recouvre déjà « ${b} » — risque de double-comptage.`);
     }
   }
   return msgs;

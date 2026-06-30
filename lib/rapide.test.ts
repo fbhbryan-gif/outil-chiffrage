@@ -198,6 +198,18 @@ describe("audit de parcours — correctifs", () => {
     const sel = selectionsDefaut("chr_restaurant", 100);
     expect(sel["PLO-95"]?.actif ?? false).toBe(false);
   });
+  it("recouvrement TRANSITIF : OCREN-15 → OCREN-07 → un sol détecté", () => {
+    // OCREN-15 recouvre OCREN-07, qui recouvre RS-10 : la chaîne doit remonter.
+    expect(detecterRecouvrements(["OCREN-15", "RS-10"]).length).toBeGreaterThan(0);
+  });
+  it("blocs ossature bois réservés à extension/surélévation (plus de fuite hors-MOB)", () => {
+    const fuites = OUVRAGES_RAPIDE.filter(
+      (o) =>
+        /ossature bois/i.test(o.groupe) &&
+        o.pour.some((t) => t !== "extension" && t !== "surelevation"),
+    ).map((o) => `${o.code} (${o.groupe})`);
+    expect(fuites, `fuites hors-MOB: ${fuites.join(", ")}`).toHaveLength(0);
+  });
 });
 
 describe("cohérence des blocs (GROUPES_ORDRE)", () => {

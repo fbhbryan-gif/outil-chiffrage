@@ -740,10 +740,21 @@ function WizardRapide({
           </div>
 
           {recouvrements.length > 0 && (
-            <div className="rounded-md bg-or/10 px-3 py-2 text-xs text-or-dark">
-              {recouvrements.map((m, i) => (
-                <div key={i}>⚠️ {m}</div>
-              ))}
+            <div className="rounded-lg border-2 border-or/50 bg-or/10 px-4 py-3 shadow-sm">
+              <div className="flex items-center gap-2 text-sm font-semibold text-or-dark">
+                <span className="text-base">⚠️</span>
+                Risque de double-comptage — {recouvrements.length} alerte
+                {recouvrements.length > 1 ? "s" : ""}
+              </div>
+              <ul className="mt-2 list-disc space-y-1 pl-6 text-xs text-marine-700">
+                {recouvrements.map((m, i) => (
+                  <li key={i}>{m}</li>
+                ))}
+              </ul>
+              <p className="mt-2 text-[11px] italic text-marine-700/70">
+                Un forfait clé en main inclut déjà ces postes : décochez le doublon ou
+                le poste à la carte pour ne pas le facturer deux fois.
+              </p>
             </div>
           )}
 
