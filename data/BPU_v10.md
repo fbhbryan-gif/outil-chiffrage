@@ -1096,3 +1096,99 @@ Pour un poste donné, le déboursé sec MO se calcule : `Déboursé MO = PU_MOY 
 | `OCMOB-13` | Surélévation MOB hors d'air + isolation + plâtrerie (prêt à recevoir lots techniques) au m² SHON | m² | 1400 | 1900 | 2900 |
 | `OCMOB-14` | Fondations + dalle d'extension (dé-cochable du forfait HO-HA) au m² | m² | 250 | 400 | 650 |
 | `OCMOB-15` | Extension MOB clé en main toit-terrasse (variante OCMOB-10) au m² SHON | m² | 2500 | 3400 | 5000 |
+
+## Compléments v0 — forfaits mode rapide (vague 3)
+
+> **⚠️ Brouillon v0 à dire d'expert — À VALIDER par le métier avant usage client.**
+> Forfaits clé en main du mode rapide. Prix **HT hors markup**, **IDF Q2 2026**.
+
+### Lot OCREN — Ouvrages complets — Rénovation
+*(compléments rapide)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `OCREN-16` | ITE bardage ventilé sur ossature rapportée (au m² de façade) | m² | 160 | 230 | 380 |
+| `OCREN-20` | Studio / locatif — rafraîchissement complet (peinture + sols + reprises) au m² | m² | 450 | 700 | 1100 |
+| `OCREN-21` | Buanderie / cellier clé en main (faïence + sol PVC + arrivée/évacuation) | U | 1800 | 2800 | 4500 |
+
+### Lot OCMOB — Ouvrages complets — Maison Ossature Bois
+*(compléments rapide)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `OCMOB-16` | Extension MOB clé en main TCE — toiture zinc (au m² SHON) | m² | 2650 | 3500 | 5200 |
+| `OCMOB-17` | Surélévation MOB clé en main TCE — toit-terrasse (au m² SHON) | m² | 3300 | 4400 | 6800 |
+| `OCMOB-18` | Surélévation MOB clé en main TCE — toiture tuiles (au m² SHON) | m² | 3450 | 4550 | 7000 |
+| `OCMOB-19` | Aménagement intérieur extension/surélévation (plâtrerie + sols + finitions) au m² | m² | 650 | 950 | 1500 |
+
+### Lot OCMAC — Ouvrages complets — Maison maçonnée
+*(compléments rapide)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `OCMAC-03` | Extension maçonnée — clé en main TCE (parpaing/brique) au m² | m² | 2200 | 2900 | 4200 |
+| `OCMAC-04` | Extension maçonnée — hors d'eau / hors d'air au m² | m² | 1250 | 1700 | 2500 |
+| `OCMAC-05` | Surélévation maçonnée — clé en main TCE au m² | m² | 3000 | 4000 | 6000 |
+
+### Lot OCNEUF — Ouvrages complets — Annexes & extérieurs
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `OCNEUF-20` | Garage / annexe maçonné(e) clé en main (dalle + élévation + toiture) au m² | m² | 700 | 1050 | 1600 |
+| `OCNEUF-21` | Carport / abri ossature bois couvert au m² | m² | 350 | 550 | 900 |
+| `OCNEUF-22` | Terrasse extérieure dallée clé en main (dalle béton + revêtement) au m² | m² | 120 | 190 | 320 |
+| `OCNEUF-23` | Aménagement extérieur / VRD de finition (accès, clôture) au m² | m² | 60 | 110 | 200 |
+
+### Lot OCERP — Ouvrages complets — ERP / commerce
+*(compléments rapide)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `OCERP-21` | Cabinet médical / paramédical complet clé en main (accueil + salles + normes) au m² | m² | 850 | 1250 | 2000 |
+| `OCERP-22` | Bloc accessibilité ERP à la carte (rampe + élargissement + signalétique) | F | 2000 | 3500 | 6500 |
+| `OCERP-23` | Mise en sécurité incendie ERP (BAES + alarme type 4 + extincteurs) | F | 2500 | 4500 | 9000 |
+| `OCERP-30` | Comptoir caisse / banque d'accueil retail sur-mesure (au ml) | ml | 900 | 1400 | 2400 |
+| `OCERP-31` | Cabine d'essayage clé en main (cloison + rideau/porte + miroir + éclairage) | U | 1200 | 1900 | 3200 |
+| `OCERP-32` | Linéaire de présentation retail (gondoles / étagères) au ml | ml | 250 | 450 | 850 |
+| `OCERP-40` | Climatisation / traitement d'air boutique (PAC réversible) au m² | m² | 90 | 140 | 230 |
+
+### Lot OCTER — Ouvrages complets — Tertiaire / bureaux
+*(compléments rapide)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `OCTER-20` | Baie de brassage VDI + cœur de réseau (forfait) | U | 3500 | 6000 | 12000 |
+| `OCTER-21` | Salle de réunion équipée clé en main (cloison acoustique + audiovisuel) | U | 6000 | 11000 | 22000 |
+
+### Lot OCCHR — Ouvrages complets — CHR (cuisine pro & salle)
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `OCCHR-30` | Comptoir / bar de service CHR clé en main (au ml) | ml | 1800 | 3200 | 6000 |
+| `OCCHR-40` | Extraction + compensation cuisine ERP (forfait, hors cuisine OCERP-10) | U | 9000 | 15000 | 28000 |
+| `OCCHR-50` | Sécurité gaz + extinction automatique de hotte cuisine ERP | ens | 4500 | 7000 | 13000 |
+| `OCCHR-60` | Chambres froides + production frigorifique (par enceinte) | U | 7000 | 11000 | 21000 |
+
+### Lot OCPMR — Ouvrages complets — Adaptation PMR
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `OCPMR-16` | Transformation baignoire → douche italienne PMR plain-pied | U | 3800 | 5500 | 8500 |
+| `OCPMR-17` | WC adapté PMR / senior (cuvette surélevée + barres d'appui) | U | 900 | 1400 | 2400 |
+| `OCPMR-18` | Adaptation logement PMR / senior — pack accessibilité (forfait) | F | 2500 | 4500 | 8500 |
+| `OCPMR-19` | Monte-escalier / élévateur PMR (fourniture + pose + raccordement) | U | 3500 | 6500 | 14000 |
+
+### Lot CVC — Chauffage / Ventilation / Climatisation
+*(compléments forfaits rapide)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `CVC-95` | VMC logement complet (simple flux hygro B, réseau + bouches) | U | 1800 | 3200 | 6500 |
+| `CVC-96` | Chauffage — remplacement émetteurs (radiateurs gaz/élec) | U | 2500 | 4500 | 9000 |
+
+### Lot RS — Revêtements de sols
+*(complément forfait rapide)*
+
+| Code | Désignation | U | MIN | MOY | MAX |
+|---|---|---|---:|---:|---:|
+| `RS-60` | Réfection sols complète logement (dépose + ragréage + revêtement + plinthes) au m² | m² | 85 | 130 | 220 |

@@ -1310,6 +1310,26 @@
     "max": 110
   },
   {
+    "code": "CVC-95",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "VMC logement complet (simple flux hygro B, réseau + bouches)",
+    "unite": "U",
+    "min": 1800,
+    "moy": 3200,
+    "max": 6500
+  },
+  {
+    "code": "CVC-96",
+    "lot": "CVC",
+    "lotTitre": "Chauffage / Ventilation / Climatisation",
+    "designation": "Chauffage — remplacement émetteurs (radiateurs gaz/élec)",
+    "unite": "U",
+    "min": 2500,
+    "moy": 4500,
+    "max": 9000
+  },
+  {
     "code": "DEMO-01",
     "lot": "DEMO",
     "lotTitre": "Démolition et dépose",
@@ -2660,6 +2680,46 @@
     "max": 2400
   },
   {
+    "code": "OCCHR-30",
+    "lot": "OCCHR",
+    "lotTitre": "Ouvrages complets — CHR (cuisine pro & salle)",
+    "designation": "Comptoir / bar de service CHR clé en main (au ml)",
+    "unite": "ml",
+    "min": 1800,
+    "moy": 3200,
+    "max": 6000
+  },
+  {
+    "code": "OCCHR-40",
+    "lot": "OCCHR",
+    "lotTitre": "Ouvrages complets — CHR (cuisine pro & salle)",
+    "designation": "Extraction + compensation cuisine ERP (forfait, hors cuisine OCERP-10)",
+    "unite": "U",
+    "min": 9000,
+    "moy": 15000,
+    "max": 28000
+  },
+  {
+    "code": "OCCHR-50",
+    "lot": "OCCHR",
+    "lotTitre": "Ouvrages complets — CHR (cuisine pro & salle)",
+    "designation": "Sécurité gaz + extinction automatique de hotte cuisine ERP",
+    "unite": "ens",
+    "min": 4500,
+    "moy": 7000,
+    "max": 13000
+  },
+  {
+    "code": "OCCHR-60",
+    "lot": "OCCHR",
+    "lotTitre": "Ouvrages complets — CHR (cuisine pro & salle)",
+    "designation": "Chambres froides + production frigorifique (par enceinte)",
+    "unite": "U",
+    "min": 7000,
+    "moy": 11000,
+    "max": 21000
+  },
+  {
     "code": "OCERP-01",
     "lot": "OCERP",
     "lotTitre": "Ouvrages complets — ERP / commerce",
@@ -2720,6 +2780,76 @@
     "max": 1700
   },
   {
+    "code": "OCERP-21",
+    "lot": "OCERP",
+    "lotTitre": "Ouvrages complets — ERP / commerce",
+    "designation": "Cabinet médical / paramédical complet clé en main (accueil + salles + normes) au m²",
+    "unite": "m²",
+    "min": 850,
+    "moy": 1250,
+    "max": 2000
+  },
+  {
+    "code": "OCERP-22",
+    "lot": "OCERP",
+    "lotTitre": "Ouvrages complets — ERP / commerce",
+    "designation": "Bloc accessibilité ERP à la carte (rampe + élargissement + signalétique)",
+    "unite": "F",
+    "min": 2000,
+    "moy": 3500,
+    "max": 6500
+  },
+  {
+    "code": "OCERP-23",
+    "lot": "OCERP",
+    "lotTitre": "Ouvrages complets — ERP / commerce",
+    "designation": "Mise en sécurité incendie ERP (BAES + alarme type 4 + extincteurs)",
+    "unite": "F",
+    "min": 2500,
+    "moy": 4500,
+    "max": 9000
+  },
+  {
+    "code": "OCERP-30",
+    "lot": "OCERP",
+    "lotTitre": "Ouvrages complets — ERP / commerce",
+    "designation": "Comptoir caisse / banque d'accueil retail sur-mesure (au ml)",
+    "unite": "ml",
+    "min": 900,
+    "moy": 1400,
+    "max": 2400
+  },
+  {
+    "code": "OCERP-31",
+    "lot": "OCERP",
+    "lotTitre": "Ouvrages complets — ERP / commerce",
+    "designation": "Cabine d'essayage clé en main (cloison + rideau/porte + miroir + éclairage)",
+    "unite": "U",
+    "min": 1200,
+    "moy": 1900,
+    "max": 3200
+  },
+  {
+    "code": "OCERP-32",
+    "lot": "OCERP",
+    "lotTitre": "Ouvrages complets — ERP / commerce",
+    "designation": "Linéaire de présentation retail (gondoles / étagères) au ml",
+    "unite": "ml",
+    "min": 250,
+    "moy": 450,
+    "max": 850
+  },
+  {
+    "code": "OCERP-40",
+    "lot": "OCERP",
+    "lotTitre": "Ouvrages complets — ERP / commerce",
+    "designation": "Climatisation / traitement d'air boutique (PAC réversible) au m²",
+    "unite": "m²",
+    "min": 90,
+    "moy": 140,
+    "max": 230
+  },
+  {
     "code": "OCMAC-01",
     "lot": "OCMAC",
     "lotTitre": "Ouvrages complets — Maison maçonnée",
@@ -2738,6 +2868,36 @@
     "min": 1900,
     "moy": 2400,
     "max": 3000
+  },
+  {
+    "code": "OCMAC-03",
+    "lot": "OCMAC",
+    "lotTitre": "Ouvrages complets — Maison maçonnée",
+    "designation": "Extension maçonnée — clé en main TCE (parpaing/brique) au m²",
+    "unite": "m²",
+    "min": 2200,
+    "moy": 2900,
+    "max": 4200
+  },
+  {
+    "code": "OCMAC-04",
+    "lot": "OCMAC",
+    "lotTitre": "Ouvrages complets — Maison maçonnée",
+    "designation": "Extension maçonnée — hors d'eau / hors d'air au m²",
+    "unite": "m²",
+    "min": 1250,
+    "moy": 1700,
+    "max": 2500
+  },
+  {
+    "code": "OCMAC-05",
+    "lot": "OCMAC",
+    "lotTitre": "Ouvrages complets — Maison maçonnée",
+    "designation": "Surélévation maçonnée — clé en main TCE au m²",
+    "unite": "m²",
+    "min": 3000,
+    "moy": 4000,
+    "max": 6000
   },
   {
     "code": "OCMOB-01",
@@ -2890,6 +3050,126 @@
     "max": 5000
   },
   {
+    "code": "OCMOB-16",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Extension MOB clé en main TCE — toiture zinc (au m² SHON)",
+    "unite": "m²",
+    "min": 2650,
+    "moy": 3500,
+    "max": 5200
+  },
+  {
+    "code": "OCMOB-17",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Surélévation MOB clé en main TCE — toit-terrasse (au m² SHON)",
+    "unite": "m²",
+    "min": 3300,
+    "moy": 4400,
+    "max": 6800
+  },
+  {
+    "code": "OCMOB-18",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Surélévation MOB clé en main TCE — toiture tuiles (au m² SHON)",
+    "unite": "m²",
+    "min": 3450,
+    "moy": 4550,
+    "max": 7000
+  },
+  {
+    "code": "OCMOB-19",
+    "lot": "OCMOB",
+    "lotTitre": "Ouvrages complets — Maison Ossature Bois",
+    "designation": "Aménagement intérieur extension/surélévation (plâtrerie + sols + finitions) au m²",
+    "unite": "m²",
+    "min": 650,
+    "moy": 950,
+    "max": 1500
+  },
+  {
+    "code": "OCNEUF-20",
+    "lot": "OCNEUF",
+    "lotTitre": "Ouvrages complets — Annexes & extérieurs",
+    "designation": "Garage / annexe maçonné(e) clé en main (dalle + élévation + toiture) au m²",
+    "unite": "m²",
+    "min": 700,
+    "moy": 1050,
+    "max": 1600
+  },
+  {
+    "code": "OCNEUF-21",
+    "lot": "OCNEUF",
+    "lotTitre": "Ouvrages complets — Annexes & extérieurs",
+    "designation": "Carport / abri ossature bois couvert au m²",
+    "unite": "m²",
+    "min": 350,
+    "moy": 550,
+    "max": 900
+  },
+  {
+    "code": "OCNEUF-22",
+    "lot": "OCNEUF",
+    "lotTitre": "Ouvrages complets — Annexes & extérieurs",
+    "designation": "Terrasse extérieure dallée clé en main (dalle béton + revêtement) au m²",
+    "unite": "m²",
+    "min": 120,
+    "moy": 190,
+    "max": 320
+  },
+  {
+    "code": "OCNEUF-23",
+    "lot": "OCNEUF",
+    "lotTitre": "Ouvrages complets — Annexes & extérieurs",
+    "designation": "Aménagement extérieur / VRD de finition (accès, clôture) au m²",
+    "unite": "m²",
+    "min": 60,
+    "moy": 110,
+    "max": 200
+  },
+  {
+    "code": "OCPMR-16",
+    "lot": "OCPMR",
+    "lotTitre": "Ouvrages complets — Adaptation PMR",
+    "designation": "Transformation baignoire → douche italienne PMR plain-pied",
+    "unite": "U",
+    "min": 3800,
+    "moy": 5500,
+    "max": 8500
+  },
+  {
+    "code": "OCPMR-17",
+    "lot": "OCPMR",
+    "lotTitre": "Ouvrages complets — Adaptation PMR",
+    "designation": "WC adapté PMR / senior (cuvette surélevée + barres d'appui)",
+    "unite": "U",
+    "min": 900,
+    "moy": 1400,
+    "max": 2400
+  },
+  {
+    "code": "OCPMR-18",
+    "lot": "OCPMR",
+    "lotTitre": "Ouvrages complets — Adaptation PMR",
+    "designation": "Adaptation logement PMR / senior — pack accessibilité (forfait)",
+    "unite": "F",
+    "min": 2500,
+    "moy": 4500,
+    "max": 8500
+  },
+  {
+    "code": "OCPMR-19",
+    "lot": "OCPMR",
+    "lotTitre": "Ouvrages complets — Adaptation PMR",
+    "designation": "Monte-escalier / élévateur PMR (fourniture + pose + raccordement)",
+    "unite": "U",
+    "min": 3500,
+    "moy": 6500,
+    "max": 14000
+  },
+  {
     "code": "OCREN-01",
     "lot": "OCREN",
     "lotTitre": "Ouvrages complets — Rénovation",
@@ -3040,6 +3320,36 @@
     "max": 3500
   },
   {
+    "code": "OCREN-16",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "ITE bardage ventilé sur ossature rapportée (au m² de façade)",
+    "unite": "m²",
+    "min": 160,
+    "moy": 230,
+    "max": 380
+  },
+  {
+    "code": "OCREN-20",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "Studio / locatif — rafraîchissement complet (peinture + sols + reprises) au m²",
+    "unite": "m²",
+    "min": 450,
+    "moy": 700,
+    "max": 1100
+  },
+  {
+    "code": "OCREN-21",
+    "lot": "OCREN",
+    "lotTitre": "Ouvrages complets — Rénovation",
+    "designation": "Buanderie / cellier clé en main (faïence + sol PVC + arrivée/évacuation)",
+    "unite": "U",
+    "min": 1800,
+    "moy": 2800,
+    "max": 4500
+  },
+  {
     "code": "OCTER-01",
     "lot": "OCTER",
     "lotTitre": "Ouvrages complets — Tertiaire / bureaux",
@@ -3058,6 +3368,26 @@
     "min": 2500,
     "moy": 4000,
     "max": 7000
+  },
+  {
+    "code": "OCTER-20",
+    "lot": "OCTER",
+    "lotTitre": "Ouvrages complets — Tertiaire / bureaux",
+    "designation": "Baie de brassage VDI + cœur de réseau (forfait)",
+    "unite": "U",
+    "min": 3500,
+    "moy": 6000,
+    "max": 12000
+  },
+  {
+    "code": "OCTER-21",
+    "lot": "OCTER",
+    "lotTitre": "Ouvrages complets — Tertiaire / bureaux",
+    "designation": "Salle de réunion équipée clé en main (cloison acoustique + audiovisuel)",
+    "unite": "U",
+    "min": 6000,
+    "moy": 11000,
+    "max": 22000
   },
   {
     "code": "PEINT-01",
@@ -4378,6 +4708,16 @@
     "min": 50,
     "moy": 50,
     "max": 50
+  },
+  {
+    "code": "RS-60",
+    "lot": "RS",
+    "lotTitre": "Revêtements de sols",
+    "designation": "Réfection sols complète logement (dépose + ragréage + revêtement + plinthes) au m²",
+    "unite": "m²",
+    "min": 85,
+    "moy": 130,
+    "max": 220
   },
   {
     "code": "SEC-01",

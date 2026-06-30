@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { BPU_PAR_CODE } from "./bpu";
 import {
   OUVRAGES_RAPIDE,
+  TYPES_PROJET,
   detecterRecouvrements,
   estEligible55,
   genererLignesRapide,
@@ -94,6 +95,18 @@ describe("intégrité du catalogue rapide", () => {
     expect(estEligible55("PLO-42")).toBe(false);
     expect(estEligible55("OCREN-04")).toBe(true);
   });
+  it("chaque type de projet affiché a des ouvrages DÉDIÉS (pas de repli catalogue)", () => {
+    for (const t of TYPES_PROJET) {
+      const ouv = ouvragesPourType(t.value);
+      expect(ouv.length, `type ${t.value} sans ouvrage`).toBeGreaterThan(0);
+      // si repli sur tout le catalogue, certains ouvrages n'incluraient pas ce type
+      expect(
+        ouv.every((o) => o.pour.includes(t.value)),
+        `type ${t.value} retombe sur le catalogue complet`,
+      ).toBe(true);
+    }
+  });
+
   it("les sous-choix partagent un sousChoixId avec ≥2 options par type", () => {
     // iso-murs, vmc, parquet-hauss, cloison-ter, clim-ter, enseigne, assainissement, iso-combles
     const ids = new Set(

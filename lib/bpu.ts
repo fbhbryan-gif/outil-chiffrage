@@ -29,7 +29,7 @@ export const ORDRE_LOTS: string[] = [
   "PREP", "VRD", "DEMO", "MAC", "MP", "ISO", "CHAR", "CLO", "MEN", "MEX",
   "SER", "EL", "PLO", "CVC", "RS", "RM", "PEINT", "STAFF", "PIE", "RAV",
   "DEVA", "ENS", "SEC", "ACC", "MSM", "OCMOB", "OCREN", "OCERP", "OCMAC",
-  "OCTER", "AGEN", "EM", "CHR",
+  "OCTER", "OCNEUF", "OCCHR", "OCPMR", "AGEN", "EM", "CHR",
 ];
 
 /** Index d'un lot dans l'ordre canonique (999 si inconnu → en fin). */
