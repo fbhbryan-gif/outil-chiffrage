@@ -32,6 +32,24 @@ export const PRIX_VERROUILLES: Record<string, number> = {
   "RS-51": 50, // pose seule parquet flottant standard (ex-RS-09 verrouillé)
 };
 
+/**
+ * Alias de codes BPU pour la rétrocompatibilité : un code retiré/fusionné est
+ * remappé vers son code canonique. Lot MSM (mobilier sur mesure legacy) fusionné
+ * dans AGEN le 2026-06-30 — prix/unité identiques. Garantit qu'un devis sauvegardé
+ * ou un [DEVIS_UPDATE] historique citant un code MSM se range sous AGEN et reste
+ * re-tarifable au changement de gamme (sinon il tomberait en « Divers » et figerait).
+ */
+export const ALIAS_CODE: Record<string, string> = {
+  "MSM-01": "AGEN-18", // vestiaire
+  "MSM-03": "AGEN-16", // bibliothèque + porte coulissante miroir
+  "MSM-05": "AGEN-20", // tête de lit
+};
+
+/** Renvoie le code canonique d'un poste (applique ALIAS_CODE), sinon le code tel quel. */
+export function codeCanonique(code: string): string {
+  return ALIAS_CODE[code] ?? code;
+}
+
 /** Coefficients conservateurs par défaut selon l'unité (Specifications §5.1). */
 export const COEF_QTE_DEFAUT: Record<string, number> = {
   "m²": 1.08, // surfaces : +5 à +10 %
@@ -348,7 +366,9 @@ export function parseDevisUpdate(texte: string): {
   const lignes: LigneDevis[] = [];
   for (const lot of data.lots ?? []) {
     for (const it of lot.items ?? []) {
-      const code = String(it.code ?? "").trim() || "AD-HOC";
+      // Code canonique : remappe les codes legacy fusionnés (ex. MSM→AGEN) pour
+      // qu'un [DEVIS_UPDATE] historique se range sous le bon lot et reste tarifable.
+      const code = codeCanonique(String(it.code ?? "").trim() || "AD-HOC");
       const adHocLot = it.adHocLot ? String(it.adHocLot) : undefined;
       lignes.push({
         id: cryptoRandomId(),

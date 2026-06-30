@@ -13,6 +13,7 @@ import {
   INDEXATION,
   calculerSynthese,
   clauseRevisionRequise,
+  codeCanonique,
   cryptoRandomId,
   isVerrouille,
   ligneDepuisPoste,
@@ -154,7 +155,15 @@ export default function Page() {
       if (brut) {
         const data = JSON.parse(brut);
         if (data.params) setParams({ ...PARAMS_DEFAUT, ...data.params });
-        if (Array.isArray(data.lignes)) setLignes(data.lignes);
+        if (Array.isArray(data.lignes))
+          // Remappe les codes legacy fusionnés (ex. MSM→AGEN) pour qu'un devis
+          // sauvegardé avant la fusion reste rangé au bon lot et re-tarifable.
+          setLignes(
+            data.lignes.map((l: LigneDevis) => {
+              const code = codeCanonique(l.code);
+              return code === l.code ? l : { ...l, code };
+            }),
+          );
         // L'état du wizard n'est pas persisté : ne pas rouvrir 'rapide' vide.
         if (data.mode === "detaille" || data.mode === "import") setMode(data.mode);
         else if (Array.isArray(data.lignes) && data.lignes.length)

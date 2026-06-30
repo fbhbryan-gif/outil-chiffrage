@@ -423,6 +423,20 @@ describe("parseDevisUpdate", () => {
     expect(re[0].adHoc).toBe(true);
     expect(re[0].tva).toBe(20);
   });
+  it("remappe les codes legacy fusionnés (MSM→AGEN) à l'import", () => {
+    const re = parseDevisUpdate(
+      JSON.stringify({ lots: [{ items: [
+        { code: "MSM-03", unit: "U", qty: 1, pu: 4900, tva: 10 },
+        { code: "MSM-01", unit: "U", qty: 1, pu: 6500, tva: 10 },
+      ] }] }),
+    ).lignes;
+    expect(re[0].code).toBe("AGEN-16"); // MSM-03 → AGEN-16
+    expect(re[1].code).toBe("AGEN-18"); // MSM-01 → AGEN-18
+    // → ces lignes se rangent désormais sous le lot AGEN, pas en « Divers »
+    const lots = regrouperParLot(re.map(calculerLigne), (l) => l).map((g) => g.lot);
+    expect(lots).toEqual(["AGEN"]);
+  });
+
   it("assainit l'unité importée (alias m2→m², inconnue→F) et clampe les négatifs", () => {
     const re = parseDevisUpdate(
       JSON.stringify({ lots: [{ items: [

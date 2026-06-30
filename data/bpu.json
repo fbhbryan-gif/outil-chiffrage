@@ -2650,36 +2650,6 @@
     "max": 5500
   },
   {
-    "code": "MSM-01",
-    "lot": "MSM",
-    "lotTitre": "Mobilier sur mesure (postes legacy)",
-    "designation": "Vestiaire sur-mesure MDF laqué (LED intégré + tiroirs push)",
-    "unite": "U",
-    "min": 4500,
-    "moy": 6500,
-    "max": 12000
-  },
-  {
-    "code": "MSM-03",
-    "lot": "MSM",
-    "lotTitre": "Mobilier sur mesure (postes legacy)",
-    "designation": "Bibliothèque + porte coulissante miroir sur-mesure (ébéniste)",
-    "unite": "U",
-    "min": 3500,
-    "moy": 4900,
-    "max": 8500
-  },
-  {
-    "code": "MSM-05",
-    "lot": "MSM",
-    "lotTitre": "Mobilier sur mesure (postes legacy)",
-    "designation": "Tête de lit sur-mesure MDF à peindre (fixation murale renforcée)",
-    "unite": "U",
-    "min": 900,
-    "moy": 1280,
-    "max": 2400
-  },
-  {
     "code": "OCCHR-30",
     "lot": "OCCHR",
     "lotTitre": "Ouvrages complets — CHR (cuisine pro & salle)",

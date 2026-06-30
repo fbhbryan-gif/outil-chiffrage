@@ -29,7 +29,6 @@
 | `RM` | Revêtements muraux |
 | `PEINT` | Peinture |
 | `RAV` | Ravalement de façade |
-| `MSM` | Mobilier sur mesure (postes legacy) |
 | `OCMOB` | Ouvrages complets — Maison Ossature Bois |
 | `OCREN` | Ouvrages complets — Rénovation |
 
@@ -448,15 +447,9 @@ Ces postes ont été calés à dire d'expert. Ils s'appliquent **sans recalcul**
 | `RAV-02` | Pare-gravois filets mailles serrées (rétention chutes) | ml | 8 | 12 | 22 |
 | `RAV-05` | Étanchéité cour EPDM 1,5mm + pare-vapeur + isolant PSE 10cm | m² | 150 | 210 | 360 |
 
-### Lot MSM — Mobilier sur mesure (postes legacy)
-
-*Postes résiduels — voir BPU Agencement v10 pour la production courante "Atelier Blanc"* — **3 postes**
-
-| Code | Désignation | U | MIN | MOY | MAX |
-|---|---|---|---:|---:|---:|
-| `MSM-01` | Vestiaire sur-mesure MDF laqué (LED intégré + tiroirs push) | U | 4500 | 6500 | 12000 |
-| `MSM-03` | Bibliothèque + porte coulissante miroir sur-mesure (ébéniste) | U | 3500 | 4900 | 8500 |
-| `MSM-05` | Tête de lit sur-mesure MDF à peindre (fixation murale renforcée) | U | 900 | 1280 | 2400 |
+<!-- Lot MSM (Mobilier sur mesure, postes legacy) FUSIONNÉ dans le lot AGEN le 2026-06-30 :
+     MSM-01→AGEN-18 (vestiaire), MSM-03→AGEN-16 (bibliothèque), MSM-05→AGEN-20 (tête de lit).
+     Prix/unité strictement identiques ; versions AGEN = canoniques. Alias de rétrocompat dans lib/engine.ts. -->
 
 ### Lot OCMOB — Ouvrages complets — Maison Ossature Bois
 
@@ -563,7 +556,6 @@ Pour un poste donné, le déboursé sec MO se calcule : `Déboursé MO = PU_MOY 
 | `MEX-02` | 20 | 8 | `MEX-06` | 25 | 7 | `MEX-10` | 22 | 8 |
 | `MEX-11` | 30 | 7 | `MP-01` | 55 | 8 | `MP-02` | 48 | 8 |
 | `MP-04` | 55 | 8 | `MP-05` | 53 | 8 | `MP-06` | 45 | 8 |
-| `MSM-01` | 42 | 7 | `MSM-03` | 40 | 7 | `MSM-05` | 55 | 7 |
 | `OCMOB-01` | 40 | 9 | `OCMOB-02` | 38 | 9 | `OCMOB-03` | 55 | 9 |
 | `OCMOB-04` | 45 | 9 | `OCMOB-05` | 42 | 8 | `OCMOB-06` | 42 | 9 |
 | `OCMOB-07` | 32 | 9 | `OCMOB-08` | 38 | 9 | `OCMOB-09` | 40 | 9 |
@@ -620,7 +612,7 @@ Pour un poste donné, le déboursé sec MO se calcule : `Déboursé MO = PU_MOY 
 | Élément | Spec | Programme v8 | À traiter en v11 |
 |---|---|---|---|
 | Préfixe peinture | `PEI` | `PEINT` | Aligner les conventions |
-| Lot `MSM` | Retiré du BPU principal | 3 postes encore présents | Migrer vers BPU Agencement v10 |
+| Lot `MSM` | Retiré du BPU principal | Fusionné dans `AGEN` (2026-06-30) | ✔ Fait — MSM-01/03/05 → AGEN-18/16/20 |
 | Onglet Agencement & SM (67 postes Atelier Blanc/HdG) | Documenté | **Absent** du programme | À intégrer |
 | Onglet Détail Composants (136 postes) | Documenté | **Absent** du programme | À intégrer |
 | Lot `PMR` (accessibilité) | Mentionné | **Absent** | À créer |

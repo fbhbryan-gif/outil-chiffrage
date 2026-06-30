@@ -28,7 +28,7 @@ export function titreLot(lot: string): string {
 export const ORDRE_LOTS: string[] = [
   "PREP", "VRD", "DEMO", "MAC", "MP", "ISO", "CHAR", "CLO", "MEN", "MEX",
   "SER", "EL", "PLO", "CVC", "RS", "RM", "PEINT", "STAFF", "PIE", "RAV",
-  "DEVA", "ENS", "SEC", "ACC", "MSM", "OCMOB", "OCREN", "OCERP", "OCMAC",
+  "DEVA", "ENS", "SEC", "ACC", "OCMOB", "OCREN", "OCERP", "OCMAC",
   "OCTER", "OCNEUF", "OCCHR", "OCPMR", "AGEN", "EM", "CHR",
 ];
 
