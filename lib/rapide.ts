@@ -76,21 +76,8 @@ export interface OuvrageRapide {
   eligible55?: boolean;
 }
 
-const RENO: TypeProjetRapide[] = [
-  "renovation_appartement",
-  "renovation_maison",
-  "renovation_studio",
-];
-
-/** Rénovations logement + variantes patrimoniale/PMR (pour les pièces communes). */
-const RENO_PLUS: TypeProjetRapide[] = [
-  ...RENO,
-  "renovation_haussmannien",
-  "adaptation_pmr",
-];
-
-/** Ouvrages d'amélioration énergétique, proposés au projet "énergétique". */
-const ENERGETIQUE: TypeProjetRapide = "renovation_energetique";
+// Les listes de types (RENO/RENO_PLUS/ENERGETIQUE) sont désormais inlinées
+// dans chaque pour[] (régénération du catalogue, audit de parcours 2026-06-30).
 
 /**
  * Catalogue des ouvrages complets du mode rapide.
@@ -111,7 +98,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Réfection pièce de vie",
     groupe: "Pièces",
     aide: "m² de la pièce",
-    pour: RENO,
+    pour: ["renovation_appartement", "renovation_maison", "renovation_studio"],
     qteDefaut: () => 0,
   },
   {
@@ -119,7 +106,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Salle de bains clé en main",
     groupe: "Pièces",
     aide: "m² de SDB (cumul)",
-    pour: RENO_PLUS,
+    pour: ["renovation_appartement", "renovation_maison", "renovation_studio", "renovation_haussmannien", "adaptation_pmr"],
     qteDefaut: () => 5,
   },
   {
@@ -127,7 +114,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Cuisine clé en main",
     groupe: "Pièces",
     aide: "ml de meubles",
-    pour: RENO_PLUS,
+    pour: ["renovation_appartement", "renovation_maison", "renovation_studio", "renovation_haussmannien", "adaptation_pmr"],
     qteDefaut: () => 4,
   },
   {
@@ -135,7 +122,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "WC complet",
     groupe: "Pièces",
     aide: "nombre de WC",
-    pour: RENO_PLUS,
+    pour: ["renovation_appartement", "renovation_maison", "renovation_studio", "renovation_haussmannien", "adaptation_pmr"],
     qteDefaut: () => 1,
   },
   {
@@ -143,7 +130,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Salle de bains PMR sécurisée clé en main",
     groupe: "Pièces",
     aide: "nombre de SDB PMR",
-    pour: RENO_PLUS,
+    pour: ["renovation_appartement", "renovation_maison", "renovation_studio", "renovation_haussmannien", "adaptation_pmr"],
     qteDefaut: () => 1,
   },
   {
@@ -152,10 +139,10 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     groupe: "Enveloppe",
     sousGroupe: "Isolation des murs",
     sousChoixId: "iso-murs",
-    eligible55: true,
     aide: "m² de murs",
-    pour: [...RENO, ENERGETIQUE],
-    qteDefaut: (s) => s, // ≈ surface de murs (à ajuster), évite la coche sans quantité
+    pour: ["renovation_appartement", "renovation_maison", "renovation_studio", "renovation_energetique"],
+    qteDefaut: (s) => s,
+    eligible55: true,
   },
   {
     code: "OCREN-05",
@@ -163,17 +150,17 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     groupe: "Enveloppe",
     sousGroupe: "Isolation des murs",
     sousChoixId: "iso-murs",
-    eligible55: true,
     aide: "m² de façade",
-    pour: ["renovation_maison", ENERGETIQUE],
+    pour: ["renovation_maison", "renovation_energetique"],
     qteDefaut: () => 0,
+    eligible55: true,
   },
   {
     code: "OCREN-09",
     label: "Ravalement de façade",
     groupe: "Enveloppe",
     aide: "m² de façade",
-    pour: ["renovation_maison"], // non isolant -> hors énergétique (ne casse plus la TVA 5,5)
+    pour: ["renovation_maison"],
     qteDefaut: () => 0,
   },
   {
@@ -181,7 +168,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Remplacement menuiseries extérieures",
     groupe: "Enveloppe",
     aide: "m² de menuiseries",
-    pour: [...RENO, ENERGETIQUE],
+    pour: ["renovation_appartement", "renovation_maison", "renovation_studio", "renovation_energetique"],
     qteDefaut: () => 0,
   },
   {
@@ -189,7 +176,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Électricité complète (mise aux normes)",
     groupe: "Lots techniques",
     aide: "m² SHAB",
-    pour: RENO,
+    pour: ["renovation_appartement", "renovation_maison", "renovation_studio"],
     qteDefaut: () => 0,
   },
   {
@@ -197,7 +184,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Plomberie complète",
     groupe: "Lots techniques",
     aide: "m² SHAB",
-    pour: RENO,
+    pour: ["renovation_appartement", "renovation_maison", "renovation_studio"],
     qteDefaut: () => 0,
   },
   {
@@ -206,10 +193,10 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     groupe: "Lots techniques",
     sousGroupe: "Chauffage",
     sousChoixId: "chauffage",
-    eligible55: true,
     aide: "nombre d'installations",
-    pour: [...RENO, ENERGETIQUE],
+    pour: ["renovation_appartement", "renovation_maison", "renovation_studio", "renovation_energetique"],
     qteDefaut: () => 0,
+    eligible55: true,
   },
   {
     code: "CVC-96",
@@ -218,7 +205,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     sousGroupe: "Chauffage",
     sousChoixId: "chauffage",
     aide: "logement",
-    pour: [...RENO, ENERGETIQUE],
+    pour: ["renovation_appartement", "renovation_maison", "renovation_studio", "renovation_energetique"],
     qteDefaut: () => 0,
   },
   {
@@ -226,7 +213,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Mur porteur — création d'ouverture",
     groupe: "Structure",
     aide: "nombre d'ouvertures",
-    pour: RENO,
+    pour: ["renovation_appartement", "renovation_maison", "renovation_studio"],
     qteDefaut: () => 1,
   },
   {
@@ -389,7 +376,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     groupe: "CHR / Restaurant",
     aide: "m² de cuisine (~30 % de la surface par défaut)",
     pour: ["chr_restaurant"],
-    qteDefaut: (s) => Math.round(s * 0.3), // la cuisine ≠ toute la SHAB (corrige ×3)
+    qteDefaut: (s) => Math.round(s * 0.3),
     coche: true,
   },
   {
@@ -442,19 +429,16 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     pour: ["amenagement_tertiaire"],
     qteDefaut: () => 0,
   },
-
-  // --- Sous-choix (variantes exclusives) sur codes BPU existants ---
-  // Énergétique : isolation toiture/combles (exclusif)
   {
     code: "ISO-08",
     label: "Combles perdus — soufflage R≥7",
     groupe: "Enveloppe",
     sousGroupe: "Isolation toiture",
     sousChoixId: "iso-combles",
-    eligible55: true,
     aide: "m² de plancher de combles",
     pour: ["renovation_maison", "renovation_energetique"],
     qteDefaut: () => 0,
+    eligible55: true,
   },
   {
     code: "ISO-09",
@@ -462,12 +446,11 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     groupe: "Enveloppe",
     sousGroupe: "Isolation toiture",
     sousChoixId: "iso-combles",
-    eligible55: true,
     aide: "m² de rampants",
     pour: ["renovation_maison", "renovation_energetique"],
     qteDefaut: () => 0,
+    eligible55: true,
   },
-  // Énergétique / réno : ventilation (exclusif)
   {
     code: "PLO-42",
     label: "VMC simple flux hygro B",
@@ -484,18 +467,17 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     groupe: "Lots techniques",
     sousGroupe: "Ventilation (VMC)",
     sousChoixId: "vmc",
-    eligible55: true,
     aide: "nombre de logements",
     pour: ["renovation_appartement", "renovation_maison", "renovation_energetique"],
     qteDefaut: () => 1,
+    eligible55: true,
   },
-  // Haussmannien : essence & pose du parquet (exclusif)
   {
     code: "RS-16",
     label: "Parquet point de Hongrie (chêne massif)",
-    groupe: "Pièces",
-    sousGroupe: "Parquet noble",
-    sousChoixId: "parquet-hauss",
+    groupe: "Sols",
+    sousGroupe: "Revêtement de sol (1 au choix)",
+    sousChoixId: "sol",
     aide: "m² de parquet",
     pour: ["renovation_haussmannien"],
     qteDefaut: () => 0,
@@ -503,9 +485,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   {
     code: "RS-17",
     label: "Parquet bâtons rompus / chevrons",
-    groupe: "Pièces",
-    sousGroupe: "Parquet noble",
-    sousChoixId: "parquet-hauss",
+    groupe: "Sols",
+    sousGroupe: "Revêtement de sol (1 au choix)",
+    sousChoixId: "sol",
     aide: "m² de parquet",
     pour: ["renovation_haussmannien"],
     qteDefaut: () => 0,
@@ -513,14 +495,13 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   {
     code: "RS-19",
     label: "Rénovation parquet existant (ponçage + vitrification)",
-    groupe: "Pièces",
-    sousGroupe: "Parquet noble",
-    sousChoixId: "parquet-hauss",
+    groupe: "Sols",
+    sousGroupe: "Revêtement de sol (1 au choix)",
+    sousChoixId: "sol",
     aide: "m² de parquet",
     pour: ["renovation_haussmannien"],
     qteDefaut: () => 0,
   },
-  // Tertiaire : cloisonnement (exclusif)
   {
     code: "CLO-40",
     label: "Cloisons amovibles mélaminé/métal",
@@ -541,7 +522,6 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     pour: ["amenagement_tertiaire"],
     qteDefaut: () => 0,
   },
-  // Tertiaire : climatisation (exclusif)
   {
     code: "CVC-90",
     label: "Climatisation VRF / détente directe",
@@ -562,13 +542,11 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     pour: ["amenagement_tertiaire"],
     qteDefaut: (s) => s,
   },
-  // Commerce : enseigne (exclusif)
   {
     code: "ENS-01",
     label: "Caisson lumineux LED",
     groupe: "Commerce / ERP",
     sousGroupe: "Enseigne",
-    sousChoixId: "enseigne",
     aide: "ml d'enseigne",
     pour: ["amenagement_commercial"],
     qteDefaut: () => 0,
@@ -578,7 +556,6 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Lettres boîtier / relief",
     groupe: "Commerce / ERP",
     sousGroupe: "Enseigne",
-    sousChoixId: "enseigne",
     aide: "nombre de lettres",
     pour: ["amenagement_commercial"],
     qteDefaut: () => 0,
@@ -588,12 +565,10 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Vitrophanie / covering",
     groupe: "Commerce / ERP",
     sousGroupe: "Enseigne",
-    sousChoixId: "enseigne",
     aide: "m² de vitrine",
     pour: ["amenagement_commercial"],
     qteDefaut: () => 0,
   },
-  // Neuf maçonné : assainissement (exclusif)
   {
     code: "VRD-03",
     label: "Raccordement assainissement collectif",
@@ -614,19 +589,16 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     pour: ["neuf_maconne"],
     qteDefaut: () => 1,
   },
-
-  // --- Forfaits v0 (vague 3) ---
-  // Logement / énergétique compléments
   {
     code: "OCREN-16",
     label: "ITE bardage ventilé (ossature rapportée)",
     groupe: "Enveloppe",
     sousGroupe: "Isolation des murs",
     sousChoixId: "iso-murs",
-    eligible55: true,
     aide: "m² de façade",
     pour: ["renovation_maison", "renovation_energetique"],
     qteDefaut: () => 0,
+    eligible55: true,
   },
   {
     code: "OCREN-20",
@@ -635,14 +607,13 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     aide: "m² SHAB",
     pour: ["renovation_studio"],
     qteDefaut: (s) => s,
-    coche: true,
   },
   {
     code: "RS-60",
     label: "Réfection sols complète (dépose + ragréage + revêtement + plinthes)",
     groupe: "Pièces",
     aide: "m² de sol",
-    pour: RENO_PLUS,
+    pour: ["renovation_appartement", "renovation_maison", "renovation_studio", "renovation_haussmannien", "adaptation_pmr"],
     qteDefaut: () => 0,
   },
   {
@@ -650,10 +621,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Buanderie / cellier clé en main",
     groupe: "Pièces",
     aide: "nombre",
-    pour: RENO_PLUS,
+    pour: ["renovation_appartement", "renovation_maison", "renovation_studio", "renovation_haussmannien", "adaptation_pmr"],
     qteDefaut: () => 0,
   },
-  // ERP santé
   {
     code: "OCERP-21",
     label: "Cabinet médical complet clé en main",
@@ -663,7 +633,6 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     qteDefaut: (s) => s,
     coche: true,
   },
-  // Accessibilité / sécurité ERP (transverses)
   {
     code: "OCERP-22",
     label: "Bloc accessibilité ERP à la carte",
@@ -680,7 +649,6 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     pour: ["amenagement_commercial", "chr_restaurant", "erp_sante"],
     qteDefaut: () => 0,
   },
-  // Commerce / retail
   {
     code: "OCERP-30",
     label: "Comptoir caisse / banque d'accueil",
@@ -713,7 +681,6 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     pour: ["amenagement_commercial"],
     qteDefaut: (s) => s,
   },
-  // Tertiaire
   {
     code: "OCTER-20",
     label: "Baie de brassage VDI + cœur de réseau",
@@ -730,7 +697,6 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     pour: ["amenagement_tertiaire"],
     qteDefaut: () => 0,
   },
-  // CHR — compléments cuisine pro & salle
   {
     code: "OCCHR-30",
     label: "Comptoir / bar de service CHR",
@@ -763,7 +729,6 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     pour: ["chr_restaurant"],
     qteDefaut: () => 0,
   },
-  // Neuf — annexes & extérieurs
   {
     code: "OCNEUF-20",
     label: "Garage / annexe maçonné(e) clé en main",
@@ -796,7 +761,6 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     pour: ["neuf_maconne"],
     qteDefaut: () => 0,
   },
-  // Adaptation PMR
   {
     code: "OCPMR-18",
     label: "Pack adaptation logement PMR / senior",
@@ -837,9 +801,6 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     pour: ["adaptation_pmr"],
     qteDefaut: () => 0,
   },
-
-  // --- Enrichissement v2 (escouade chargés d'études, 2026-06-30) :
-  //     +187 ouvrages/sous-choix, codes ∈ BPU, par type & catégorie. ---
   {
     code: "PREP-30",
     label: "Audit énergétique réglementaire (DPE + MaPrimeRénov')",
@@ -935,9 +896,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   {
     code: "RS-15",
     label: "Tomettes / terre cuite ancienne (dito existant)",
-    groupe: "Pièces",
-    sousGroupe: "Parquet noble",
-    sousChoixId: "parquet-hauss",
+    groupe: "Sols",
+    sousGroupe: "Revêtement de sol (1 au choix)",
+    sousChoixId: "sol",
     aide: "nombre",
     pour: ["renovation_haussmannien"],
     qteDefaut: () => 0,
@@ -954,9 +915,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   {
     code: "RS-09",
     label: "Parquet toutes essences (fourniture + pose)",
-    groupe: "Pièces",
+    groupe: "Sols",
     sousGroupe: "Revêtement de sol (1 au choix)",
-    sousChoixId: "sol-reno",
+    sousChoixId: "sol",
     aide: "nombre",
     pour: ["renovation_appartement", "renovation_maison", "renovation_studio", "neuf_maconne"],
     qteDefaut: () => 0,
@@ -964,9 +925,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   {
     code: "RS-10",
     label: "Carrelage grès cérame rectifié grand format",
-    groupe: "Pièces",
+    groupe: "Sols",
     sousGroupe: "Revêtement de sol (1 au choix)",
-    sousChoixId: "sol-reno",
+    sousChoixId: "sol",
     aide: "nombre",
     pour: ["renovation_appartement", "renovation_maison", "neuf_maconne", "renovation_studio"],
     qteDefaut: () => 0,
@@ -974,9 +935,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   {
     code: "RS-13",
     label: "Sol PVC clipsable LVT",
-    groupe: "Pièces",
+    groupe: "Sols",
     sousGroupe: "Revêtement de sol (1 au choix)",
-    sousChoixId: "sol-reno",
+    sousChoixId: "sol",
     aide: "nombre",
     pour: ["renovation_appartement", "renovation_maison", "renovation_studio", "adaptation_pmr"],
     qteDefaut: () => 0,
@@ -984,9 +945,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   {
     code: "RS-18",
     label: "Sol béton ciré / microciment",
-    groupe: "Pièces",
+    groupe: "Sols",
     sousGroupe: "Revêtement de sol (1 au choix)",
-    sousChoixId: "sol-reno",
+    sousChoixId: "sol",
     aide: "nombre",
     pour: ["renovation_appartement", "renovation_haussmannien", "renovation_maison", "neuf_maconne", "amenagement_commercial", "amenagement_tertiaire"],
     qteDefaut: () => 0,
@@ -994,9 +955,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   {
     code: "RS-03",
     label: "Parquet contrecollé chêne huilé",
-    groupe: "Pièces",
+    groupe: "Sols",
     sousGroupe: "Revêtement de sol (1 au choix)",
-    sousChoixId: "sol-reno",
+    sousChoixId: "sol",
     aide: "nombre",
     pour: ["renovation_maison", "renovation_appartement", "renovation_studio"],
     qteDefaut: () => 0,
@@ -1004,9 +965,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   {
     code: "RS-20",
     label: "Sol stratifié clipsable AC4/AC5",
-    groupe: "Pièces",
+    groupe: "Sols",
     sousGroupe: "Revêtement de sol (1 au choix)",
-    sousChoixId: "sol-reno",
+    sousChoixId: "sol",
     aide: "nombre",
     pour: ["renovation_maison", "renovation_appartement", "renovation_studio"],
     qteDefaut: () => 0,
@@ -1014,9 +975,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   {
     code: "RS-12",
     label: "Carrelage grès 75×75 rectifié",
-    groupe: "Pièces",
+    groupe: "Sols",
     sousGroupe: "Revêtement de sol (1 au choix)",
-    sousChoixId: "sol-reno",
+    sousChoixId: "sol",
     aide: "nombre",
     pour: ["renovation_appartement", "renovation_maison"],
     qteDefaut: () => 0,
@@ -1064,7 +1025,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     sousGroupe: "Cloisonnement",
     aide: "nombre",
     pour: ["renovation_appartement", "renovation_maison", "renovation_haussmannien", "renovation_studio"],
-    qteDefaut: () => 0,
+    qteDefaut: () => 1,
   },
   {
     code: "CLO-32",
@@ -1111,7 +1072,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     sousGroupe: "Peinture (au m²)",
     aide: "m² concernés",
     pour: ["renovation_studio", "renovation_appartement", "renovation_haussmannien", "amenagement_tertiaire", "renovation_maison", "adaptation_pmr"],
-    qteDefaut: (s) => s,
+    qteDefaut: () => 0,
   },
   {
     code: "RM-14",
@@ -1219,8 +1180,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   {
     code: "MEX-23",
     label: "Fenêtres triple vitrage Uw≤0,9 (haute performance)",
-    groupe: "Enveloppe",
-    sousGroupe: "Menuiseries extérieures",
+    groupe: "Menuiseries extérieures",
+    sousGroupe: "Fenêtres (1 au choix)",
+    sousChoixId: "fenetre-ext",
     aide: "nombre",
     pour: ["renovation_energetique", "renovation_maison", "neuf_maconne", "renovation_appartement"],
     qteDefaut: () => 0,
@@ -1327,7 +1289,8 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     code: "MEN-16",
     label: "Fenêtres PVC double vitrage (4/16/4 argon)",
     groupe: "Menuiseries extérieures",
-    sousGroupe: "Fenêtres (matériau — 1 au choix)",
+    sousGroupe: "Fenêtres (1 au choix)",
+    sousChoixId: "fenetre-ext",
     aide: "nombre",
     pour: ["renovation_appartement", "renovation_maison", "renovation_studio", "renovation_haussmannien", "renovation_energetique", "extension", "surelevation", "neuf_maconne"],
     qteDefaut: () => 0,
@@ -1349,7 +1312,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     sousGroupe: "Fenêtres de toit",
     aide: "nombre",
     pour: ["renovation_maison", "surelevation"],
-    qteDefaut: () => 0,
+    qteDefaut: () => 1,
   },
   {
     code: "MEX-11",
@@ -1378,7 +1341,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     sousGroupe: "Porte d'entrée (1 au choix)",
     sousChoixId: "mex-porte-entree",
     aide: "nombre",
-    pour: ["renovation_maison", "extension", "neuf_maconne", "amenagement_commercial"],
+    pour: ["renovation_maison", "extension", "neuf_maconne"],
     qteDefaut: () => 1,
   },
   {
@@ -1774,7 +1737,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     sousGroupe: "Chauffage",
     sousChoixId: "chauffage",
     aide: "nombre",
-    pour: ["renovation_energetique", "renovation_maison", "renovation_appartement", "renovation_studio"],
+    pour: ["renovation_energetique", "renovation_maison", "renovation_appartement"],
     qteDefaut: () => 1,
     eligible55: true,
   },
@@ -1806,7 +1769,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     sousGroupe: "Chauffage",
     sousChoixId: "chauffage",
     aide: "nombre",
-    pour: ["renovation_maison", "renovation_haussmannien"],
+    pour: ["renovation_maison"],
     qteDefaut: () => 1,
   },
   {
@@ -1816,7 +1779,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     sousGroupe: "Climatisation réversible (1 au choix)",
     sousChoixId: "clim-appart",
     aide: "nombre",
-    pour: ["renovation_appartement", "renovation_haussmannien", "renovation_energetique", "renovation_studio", "surelevation", "extension"],
+    pour: ["renovation_appartement", "renovation_haussmannien", "renovation_energetique", "surelevation", "extension"],
     qteDefaut: () => 0,
   },
   {
@@ -1879,7 +1842,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   },
   {
     code: "EL-53",
-    label: "Baie de brassage VDI 19\" + cœur de réseau (cabinet)",
+    label: "Baie de brassage VDI 19\\\" + cœur de réseau (cabinet)",
     groupe: "Lots techniques",
     sousGroupe: "Courants forts / faibles ERP",
     aide: "nombre",
@@ -1915,7 +1878,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     sousGroupe: "Eau chaude sanitaire (1 au choix)",
     sousChoixId: "ecs-appart",
     aide: "nombre",
-    pour: ["renovation_appartement", "renovation_studio", "renovation_maison", "amenagement_commercial"],
+    pour: ["renovation_appartement", "renovation_studio", "renovation_maison"],
     qteDefaut: () => 1,
   },
   {
@@ -1935,7 +1898,6 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     aide: "nombre",
     pour: ["neuf_maconne", "renovation_maison"],
     qteDefaut: () => 1,
-    coche: true,
   },
   {
     code: "PLO-72",
@@ -1963,7 +1925,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     sousGroupe: "Émetteurs (1 au choix)",
     sousChoixId: "emetteurs-maison",
     aide: "nombre",
-    pour: ["renovation_maison", "surelevation", "extension", "neuf_maconne", "renovation_appartement", "renovation_haussmannien"],
+    pour: ["renovation_maison", "surelevation", "extension", "neuf_maconne", "renovation_appartement", "renovation_haussmannien", "renovation_energetique"],
     qteDefaut: () => 0,
   },
   {
@@ -2053,7 +2015,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     groupe: "Préparation & dépose",
     aide: "nombre",
     pour: ["renovation_appartement", "renovation_maison", "renovation_haussmannien", "renovation_studio", "surelevation", "amenagement_commercial", "chr_restaurant", "amenagement_tertiaire", "erp_sante"],
-    qteDefaut: () => 0,
+    qteDefaut: () => 1,
   },
   {
     code: "DEMO-28",
@@ -2069,7 +2031,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     groupe: "Préparation & dépose",
     sousGroupe: "Dépose & curage",
     aide: "nombre",
-    pour: ["renovation_studio", "renovation_appartement", "renovation_haussmannien", "chr_restaurant"],
+    pour: ["renovation_studio", "renovation_appartement", "renovation_haussmannien", "chr_restaurant", "renovation_maison"],
     qteDefaut: () => 1,
   },
   {
@@ -2078,7 +2040,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     groupe: "Préparation & dépose",
     sousGroupe: "Dépose & curage",
     aide: "nombre",
-    pour: ["renovation_studio", "renovation_appartement", "renovation_haussmannien", "adaptation_pmr"],
+    pour: ["renovation_studio", "renovation_appartement", "renovation_haussmannien", "adaptation_pmr", "renovation_maison"],
     qteDefaut: () => 1,
   },
   {
@@ -2177,7 +2139,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     groupe: "Surélévation ossature bois",
     sousGroupe: "Chauffage du niveau",
     aide: "nombre",
-    pour: ["surelevation", "neuf_maconne", "renovation_appartement", "renovation_maison", "renovation_haussmannien"],
+    pour: ["surelevation", "neuf_maconne", "renovation_maison"],
     qteDefaut: () => 1,
   },
   {
@@ -2186,7 +2148,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     groupe: "Surélévation ossature bois",
     sousGroupe: "Escalier d'accès",
     aide: "nombre",
-    pour: ["surelevation", "neuf_maconne", "renovation_maison", "renovation_haussmannien", "renovation_appartement", "extension", "amenagement_tertiaire", "amenagement_commercial"],
+    pour: ["surelevation", "neuf_maconne", "renovation_maison", "renovation_haussmannien", "extension"],
     qteDefaut: () => 1,
   },
   {
@@ -2343,29 +2305,19 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   {
     code: "RS-23",
     label: "Sol PVC/lino commercial soudé U4 (en lés)",
-    groupe: "Commerce / ERP",
-    sousGroupe: "Revêtements (1 sol au choix)",
-    sousChoixId: "sol-com",
+    groupe: "Sols",
+    sousGroupe: "Revêtement de sol (1 au choix)",
+    sousChoixId: "sol",
     aide: "m² concernés",
     pour: ["amenagement_commercial", "erp_sante", "chr_restaurant", "amenagement_tertiaire"],
     qteDefaut: (s) => s,
   },
   {
-    code: "RS-50",
-    label: "Carrelage grès cérame (pose collée)",
-    groupe: "Commerce / ERP",
-    sousGroupe: "Revêtements (1 sol au choix)",
-    sousChoixId: "sol-com",
-    aide: "m² concernés",
-    pour: ["amenagement_commercial"],
-    qteDefaut: (s) => s,
-  },
-  {
     code: "RS-21",
     label: "Sol résine époxy/PU coulé",
-    groupe: "Commerce / ERP",
-    sousGroupe: "Revêtements (1 sol au choix)",
-    sousChoixId: "sol-com",
+    groupe: "Sols",
+    sousGroupe: "Revêtement de sol (1 au choix)",
+    sousChoixId: "sol",
     aide: "m² concernés",
     pour: ["amenagement_commercial", "chr_restaurant", "erp_sante", "amenagement_tertiaire"],
     qteDefaut: (s) => s,
@@ -2373,9 +2325,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   {
     code: "RS-22",
     label: "Carrelage sol antidérapant R10/R11 (zone humide / PMR)",
-    groupe: "Commerce / ERP",
-    sousGroupe: "Revêtements (1 sol au choix)",
-    sousChoixId: "sol-com",
+    groupe: "Sols",
+    sousGroupe: "Revêtement de sol (1 au choix)",
+    sousChoixId: "sol",
     aide: "m² concernés",
     pour: ["amenagement_commercial", "chr_restaurant", "erp_sante"],
     qteDefaut: (s) => s,
@@ -2397,7 +2349,6 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     aide: "nombre",
     pour: ["chr_restaurant"],
     qteDefaut: () => 1,
-    coche: true,
   },
   {
     code: "CHR-01",
@@ -2510,9 +2461,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   {
     code: "RS-26",
     label: "Sol tertiaire — dalles moquette plombantes / PVC en lés",
-    groupe: "Tertiaire / bureaux",
+    groupe: "Sols",
     sousGroupe: "Revêtement de sol (1 au choix)",
-    sousChoixId: "sol-ter",
+    sousChoixId: "sol",
     aide: "m² concernés",
     pour: ["amenagement_tertiaire", "amenagement_commercial"],
     qteDefaut: (s) => s,
@@ -2520,11 +2471,11 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   {
     code: "RS-24",
     label: "Faux-plancher technique sur vérins (dalles 600×600)",
-    groupe: "Tertiaire / bureaux",
+    groupe: "Sols",
     sousGroupe: "Revêtement de sol (1 au choix)",
-    sousChoixId: "sol-ter",
+    sousChoixId: "sol",
     aide: "m² concernés",
-    pour: ["amenagement_tertiaire", "erp_sante"],
+    pour: ["amenagement_tertiaire"],
     qteDefaut: (s) => s,
   },
   {
@@ -2556,7 +2507,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
   },
   {
     code: "SER-12",
-    label: "Main courante d'escalier (sur volée)",
+    label: "Rampe d'escalier bois/métal (sur volée)",
     groupe: "Accessibilité ERP",
     sousGroupe: "Circulation intérieure",
     aide: "nombre",
@@ -2569,7 +2520,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     groupe: "Accessibilité ERP",
     sousGroupe: "Repérage & signalétique",
     aide: "nombre",
-    pour: ["adaptation_pmr", "erp_sante", "amenagement_commercial", "chr_restaurant"],
+    pour: ["erp_sante", "amenagement_commercial", "chr_restaurant"],
     qteDefaut: () => 0,
   },
   {
@@ -2597,6 +2548,7 @@ export const GROUPES_ORDRE: string[] = [
   "Global",
   "Pièces",
   "Murs & plafonds",
+  "Sols",
   "Enveloppe",
   "Menuiseries intérieures",
   "Menuiseries extérieures",
@@ -2710,33 +2662,33 @@ export function tvaSuggereeSelection(
 
 /** Ouvrages dont le périmètre recouvre celui d'un autre (risque double-comptage). */
 const RECOUVREMENTS: Record<string, string[]> = {
-  // La rénovation globale au m² SHAB recouvre déjà la pièce de vie et les
-  // lots techniques pris séparément.
-  "OCREN-07": ["OCREN-06", "OCREN-11", "OCREN-12"],
-  // Les forfaits "clé en main TCE" englobent leur variante hors d'eau/hors d'air
-  // ET l'aménagement intérieur (OCMOB-19) ; pas les coques HE/HA (qu'OCMOB-19 complète).
-  "OCMOB-10": ["OCMOB-09", "OCMOB-19"],
-  "OCMOB-16": ["OCMOB-19"],
-  "OCMOB-15": ["OCMOB-19"],
-  "OCMAC-03": ["OCMOB-19"],
-  "OCMOB-12": ["OCMOB-11", "OCMOB-19"],
-  "OCMOB-18": ["OCMOB-19"],
-  "OCMOB-17": ["OCMOB-19"],
-  "OCMAC-05": ["OCMOB-19"],
-  "OCMAC-02": ["OCMAC-01"],
-  // La réno haussmannienne complète recouvre la réno globale standard.
-  "OCREN-15": ["OCREN-07"],
-  // La cuisine pro clé en main inclut déjà extraction et sécurité.
-  "OCERP-10": ["OCCHR-40", "OCCHR-50"],
-  // Le cabinet santé complet recouvre les salles de soin seules.
-  "OCERP-21": ["OCERP-20"],
-  // Accessibilité ERP : forfait global OU bloc à la carte, pas les deux.
-  "OCERP-03": ["OCERP-22"],
-  // Le pack adaptation PMR englobe la douche italienne et le WC adapté.
-  "OCPMR-18": ["OCPMR-16", "OCPMR-17"],
-  // Ravalement non isolant recouvert par l'ITE / le bardage sur la même façade.
+  "OCREN-07": ["OCREN-06", "OCREN-11", "OCREN-12", "RS-09", "RS-10", "RS-13", "RS-18", "RS-03", "RS-20", "RS-12", "RM-15", "RM-16", "RM-14", "PEINT-01", "PEINT-03", "CLO-10", "CLO-32", "CLO-08", "CLO-06", "STAFF-01", "PLO-42", "PLO-98"],
+  "OCMOB-10": ["OCMOB-09", "OCMOB-19", "RM-15", "MEN-17", "MEN-11", "PLO-44", "EL-55", "EL-01", "PLO-70", "PLO-74"],
+  "OCMOB-16": ["OCMOB-19", "RM-15", "MEN-17", "MEN-11", "PLO-44", "EL-55", "EL-01", "PLO-70", "PLO-74"],
+  "OCMOB-15": ["OCMOB-19", "RM-15", "MEN-17", "MEN-11", "PLO-44", "EL-55", "EL-01", "PLO-70", "PLO-74"],
+  "OCMAC-03": ["OCMOB-19", "RM-15", "MEN-17", "MEN-11", "PLO-44", "EL-55", "EL-01", "PLO-70", "PLO-74"],
+  "OCMOB-12": ["OCMOB-11", "OCMOB-19", "RM-15", "MEN-17", "CLO-33", "MEN-30", "SER-10", "SER-11", "SER-13", "MEN-14", "CVC-11", "CVC-72", "PLO-74", "PLO-44", "EL-01", "EL-55", "MEX-20", "MEX-21", "MEX-06"],
+  "OCMOB-18": ["OCMOB-19", "RM-15", "MEN-17", "CLO-33", "MEN-30", "SER-10", "SER-11", "SER-13", "MEN-14", "CVC-11", "CVC-72", "PLO-74", "PLO-44", "EL-01", "EL-55", "MEX-20", "MEX-21", "MEX-06"],
+  "OCMOB-17": ["OCMOB-19", "RM-15", "MEN-17", "CLO-33", "MEN-30", "SER-10", "SER-11", "SER-13", "MEN-14", "CVC-11", "CVC-72", "PLO-74", "PLO-44", "EL-01", "EL-55", "MEX-20", "MEX-21", "MEX-06"],
+  "OCMAC-05": ["OCMOB-19", "RM-15", "MEN-17", "CLO-33", "MEN-30", "SER-10", "SER-11", "SER-13", "MEN-14", "CVC-11", "CVC-72", "PLO-74", "PLO-44", "EL-01", "EL-55", "MEX-20", "MEX-21", "MEX-06"],
+  "OCMAC-02": ["OCMAC-01", "OCNEUF-20", "MAC-32", "DEMO-01", "DEMO-04", "CHAR-12", "CHAR-05", "EL-08", "PLO-44", "PLO-68", "PLO-70", "PLO-72", "PLO-74", "PLO-78", "CVC-72", "RS-09", "RS-10", "RS-18", "RM-20", "PEINT-03", "MEN-17", "MEN-11", "MEN-16", "MEN-30", "MEX-20", "MEX-21", "MEX-22", "MEX-02", "MEX-11", "MEX-24", "MEX-23", "SER-10", "SER-11", "SER-13", "AGEN-03", "AGEN-26", "VRD-01", "VRD-02", "VRD-03", "VRD-04", "VRD-05"],
+  "OCREN-15": ["OCREN-07", "STAFF-01", "STAFF-02", "STAFF-03", "STAFF-04", "RS-16", "RS-17", "RS-15", "RS-19", "PIE-02", "PIE-03", "PIE-04", "RM-15", "RM-16", "CLO-08", "CLO-06", "DEMO-08", "DEMO-28", "EL-05"],
+  "OCERP-10": ["OCCHR-40", "OCCHR-50", "PLO-95", "CHR-01", "CVC-79", "CVC-80", "EL-43", "EL-44", "EL-45"],
+  "OCERP-21": ["OCERP-20", "RS-23", "RS-21", "RS-22", "RS-24", "RM-20", "CLO-06", "CLO-08", "EL-50", "EL-51", "CVC-33", "CVC-92"],
+  "OCERP-03": ["OCERP-22", "ACC-01", "ACC-05"],
+  "OCPMR-18": ["OCPMR-16", "OCPMR-17", "PLO-90", "PLO-91", "PLO-92", "PLO-94", "ACC-03", "DEMO-10"],
   "OCREN-05": ["OCREN-09"],
   "OCREN-16": ["OCREN-09"],
+  "OCREN-20": ["RS-09", "RS-10", "RS-13", "RS-03", "RS-20", "RM-15", "RM-16", "CLO-08"],
+  "OCERP-01": ["RS-23", "RS-50", "RS-21", "RS-22", "RS-18", "RS-26", "RM-15", "CLO-08", "EL-56", "DEMO-08", "PREP-12"],
+  "OCERP-02": ["OCERP-01", "RS-23", "RS-50", "RS-21", "RS-22", "RS-18", "RS-26", "RM-15", "CLO-08", "EL-50", "EL-56", "PLO-33", "CVC-92", "DEMO-08"],
+  "OCCHR-60": ["CHR-08", "CHR-09"],
+  "OCERP-40": ["CVC-33"],
+  "OCTER-01": ["CLO-40", "CLO-41", "CLO-42", "CLO-08", "CLO-06", "RS-24", "RS-26", "CVC-90", "CVC-91", "CVC-92", "OCTER-20", "EL-50", "EL-56"],
+  "OCERP-20": ["RS-23", "RS-21", "RS-22", "EL-51"],
+  "OCMOB-14": [],
+  "OCMAC-01": ["MAC-32", "CHAR-12", "CHAR-05", "MEN-16", "MEX-23", "MEX-24", "MEX-02", "MEX-20", "MEX-21", "MEX-22", "MEX-11", "DEMO-01", "DEMO-04"],
+  "OCPMR-16": ["PLO-90", "PLO-91", "PLO-92", "PLO-94", "DEMO-10"],
 };
 
 /**

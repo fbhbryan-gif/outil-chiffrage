@@ -166,6 +166,40 @@ describe("detecterRecouvrements", () => {
   });
 });
 
+describe("audit de parcours — correctifs", () => {
+  it("sols consolidés en un seul radio 'sol' (plus de sol-com/ter/reno/parquet-hauss)", () => {
+    const ids = new Set(OUVRAGES_RAPIDE.map((o) => o.sousChoixId).filter(Boolean));
+    for (const mort of ["sol-com", "sol-ter", "sol-reno", "parquet-hauss"]) {
+      expect(ids.has(mort), `sousChoixId mort: ${mort}`).toBe(false);
+    }
+    expect(OUVRAGES_RAPIDE.filter((o) => o.sousChoixId === "sol").length).toBeGreaterThanOrEqual(8);
+  });
+  it("chaque type ne propose qu'UN groupe de sols (pas de double-radio sol)", () => {
+    for (const t of TYPES_PROJET) {
+      const groupes = new Set(
+        ouvragesPourType(t.value).filter((o) => o.sousChoixId === "sol").map((o) => o.groupe),
+      );
+      expect(groupes.size, `${t.value} : sols dans plusieurs groupes`).toBeLessThanOrEqual(1);
+    }
+  });
+  it("recouvrement réno globale OCREN-07 → sols/peinture détecté (anti double-comptage)", () => {
+    expect(detecterRecouvrements(["OCREN-07", "RS-10"]).length).toBeGreaterThan(0);
+    expect(detecterRecouvrements(["OCREN-07", "PEINT-01"]).length).toBeGreaterThan(0);
+  });
+  it("cuisine pro OCERP-10 recouvre le bac à graisses PLO-95", () => {
+    expect(detecterRecouvrements(["OCERP-10", "PLO-95"]).length).toBeGreaterThan(0);
+  });
+  it("postes hors-sujet retirés du parcours appartement (SER-10, CVC-72)", () => {
+    const appart = ouvragesPourType("renovation_appartement").map((o) => o.code);
+    expect(appart).not.toContain("SER-10");
+    expect(appart).not.toContain("CVC-72");
+  });
+  it("PLO-95 non coché par défaut en CHR (OCERP-10 inclut déjà l'extraction)", () => {
+    const sel = selectionsDefaut("chr_restaurant", 100);
+    expect(sel["PLO-95"]?.actif ?? false).toBe(false);
+  });
+});
+
 describe("cohérence des blocs (GROUPES_ORDRE)", () => {
   it("chaque groupe d'ouvrage a un rang défini (aucun bloc orphelin → 999)", () => {
     const orphelins = [...new Set(OUVRAGES_RAPIDE.map((o) => o.groupe))].filter(
