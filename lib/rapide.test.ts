@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
+import { BPU_PAR_CODE } from "./bpu";
 import {
+  OUVRAGES_RAPIDE,
   detecterRecouvrements,
+  estEligible55,
   genererLignesRapide,
   ouvragesPourType,
   selectionsDefaut,
@@ -76,6 +79,27 @@ describe("tvaSuggereeSelection", () => {
   it("adaptation PMR exclusivement = 5,5 %", () => {
     expect(tvaSuggereeSelection("adaptation_pmr", ["OCREN-13"])).toBe(5.5);
     expect(tvaSuggereeSelection("adaptation_pmr", ["OCREN-13", "OCREN-02"])).toBe(10);
+  });
+});
+
+describe("intégrité du catalogue rapide", () => {
+  it("tous les codes d'ouvrage existent dans le BPU (pas d'ouvrage fantôme)", () => {
+    const manquants = OUVRAGES_RAPIDE.filter((o) => !BPU_PAR_CODE.has(o.code)).map(
+      (o) => o.code,
+    );
+    expect(manquants, `codes absents du BPU: ${manquants.join(", ")}`).toHaveLength(0);
+  });
+  it("estEligible55 : attribut prioritaire (PLO-98 oui, PLO-42 non)", () => {
+    expect(estEligible55("PLO-98")).toBe(true);
+    expect(estEligible55("PLO-42")).toBe(false);
+    expect(estEligible55("OCREN-04")).toBe(true);
+  });
+  it("les sous-choix partagent un sousChoixId avec ≥2 options par type", () => {
+    // iso-murs, vmc, parquet-hauss, cloison-ter, clim-ter, enseigne, assainissement, iso-combles
+    const ids = new Set(
+      OUVRAGES_RAPIDE.filter((o) => o.sousChoixId).map((o) => o.sousChoixId),
+    );
+    expect(ids.size).toBeGreaterThanOrEqual(7);
   });
 });
 

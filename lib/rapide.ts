@@ -65,6 +65,15 @@ export interface OuvrageRapide {
   qteDefaut: (shab: number) => number;
   /** Coché par défaut à l'ouverture du wizard. */
   coche?: boolean;
+  /** Sous-bloc à l'intérieur d'un groupe (sous-titre). */
+  sousGroupe?: string;
+  /**
+   * Identifiant de sous-choix : les ouvrages partageant le même sousChoixId
+   * (dans un même type) sont MUTUELLEMENT EXCLUSIFS (rendus en radio).
+   */
+  sousChoixId?: string;
+  /** Éligible TVA 5,5 % (amélioration énergétique). Prioritaire sur le set legacy. */
+  eligible55?: boolean;
 }
 
 const RENO: TypeProjetRapide[] = [
@@ -141,6 +150,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     code: "OCREN-04",
     label: "Isolation intérieure (ITI)",
     groupe: "Enveloppe",
+    sousGroupe: "Isolation des murs",
+    sousChoixId: "iso-murs",
+    eligible55: true,
     aide: "m² de murs",
     pour: [...RENO, ENERGETIQUE],
     qteDefaut: (s) => s, // ≈ surface de murs (à ajuster), évite la coche sans quantité
@@ -149,6 +161,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     code: "OCREN-05",
     label: "Isolation extérieure (ITE)",
     groupe: "Enveloppe",
+    sousGroupe: "Isolation des murs",
+    sousChoixId: "iso-murs",
+    eligible55: true,
     aide: "m² de façade",
     pour: ["renovation_maison", ENERGETIQUE],
     qteDefaut: () => 0,
@@ -329,6 +344,178 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     pour: ["amenagement_tertiaire"],
     qteDefaut: () => 0,
   },
+
+  // --- Sous-choix (variantes exclusives) sur codes BPU existants ---
+  // Énergétique : isolation toiture/combles (exclusif)
+  {
+    code: "ISO-08",
+    label: "Combles perdus — soufflage R≥7",
+    groupe: "Enveloppe",
+    sousGroupe: "Isolation toiture",
+    sousChoixId: "iso-combles",
+    eligible55: true,
+    aide: "m² de plancher de combles",
+    pour: ["renovation_maison", "renovation_energetique"],
+    qteDefaut: () => 0,
+  },
+  {
+    code: "ISO-09",
+    label: "Rampants — entre/sous chevrons R≥6",
+    groupe: "Enveloppe",
+    sousGroupe: "Isolation toiture",
+    sousChoixId: "iso-combles",
+    eligible55: true,
+    aide: "m² de rampants",
+    pour: ["renovation_maison", "renovation_energetique"],
+    qteDefaut: () => 0,
+  },
+  // Énergétique / réno : ventilation (exclusif)
+  {
+    code: "PLO-42",
+    label: "VMC simple flux hygro B",
+    groupe: "Lots techniques",
+    sousGroupe: "Ventilation (VMC)",
+    sousChoixId: "vmc",
+    aide: "nombre de logements",
+    pour: ["renovation_appartement", "renovation_maison", "renovation_energetique"],
+    qteDefaut: () => 1,
+  },
+  {
+    code: "PLO-98",
+    label: "VMC double flux haut rendement",
+    groupe: "Lots techniques",
+    sousGroupe: "Ventilation (VMC)",
+    sousChoixId: "vmc",
+    eligible55: true,
+    aide: "nombre de logements",
+    pour: ["renovation_appartement", "renovation_maison", "renovation_energetique"],
+    qteDefaut: () => 1,
+  },
+  // Haussmannien : essence & pose du parquet (exclusif)
+  {
+    code: "RS-16",
+    label: "Parquet point de Hongrie (chêne massif)",
+    groupe: "Pièces",
+    sousGroupe: "Parquet noble",
+    sousChoixId: "parquet-hauss",
+    aide: "m² de parquet",
+    pour: ["renovation_haussmannien"],
+    qteDefaut: () => 0,
+  },
+  {
+    code: "RS-17",
+    label: "Parquet bâtons rompus / chevrons",
+    groupe: "Pièces",
+    sousGroupe: "Parquet noble",
+    sousChoixId: "parquet-hauss",
+    aide: "m² de parquet",
+    pour: ["renovation_haussmannien"],
+    qteDefaut: () => 0,
+  },
+  {
+    code: "RS-19",
+    label: "Rénovation parquet existant (ponçage + vitrification)",
+    groupe: "Pièces",
+    sousGroupe: "Parquet noble",
+    sousChoixId: "parquet-hauss",
+    aide: "m² de parquet",
+    pour: ["renovation_haussmannien"],
+    qteDefaut: () => 0,
+  },
+  // Tertiaire : cloisonnement (exclusif)
+  {
+    code: "CLO-40",
+    label: "Cloisons amovibles mélaminé/métal",
+    groupe: "Tertiaire / bureaux",
+    sousGroupe: "Cloisonnement",
+    sousChoixId: "cloison-ter",
+    aide: "m² de cloison",
+    pour: ["amenagement_tertiaire"],
+    qteDefaut: () => 0,
+  },
+  {
+    code: "CLO-41",
+    label: "Cloisons vitrées toute hauteur",
+    groupe: "Tertiaire / bureaux",
+    sousGroupe: "Cloisonnement",
+    sousChoixId: "cloison-ter",
+    aide: "m² de cloison",
+    pour: ["amenagement_tertiaire"],
+    qteDefaut: () => 0,
+  },
+  // Tertiaire : climatisation (exclusif)
+  {
+    code: "CVC-90",
+    label: "Climatisation VRF / détente directe",
+    groupe: "Tertiaire / bureaux",
+    sousGroupe: "Climatisation",
+    sousChoixId: "clim-ter",
+    aide: "m² traité",
+    pour: ["amenagement_tertiaire"],
+    qteDefaut: (s) => s,
+  },
+  {
+    code: "CVC-91",
+    label: "Centrale double flux (CTA)",
+    groupe: "Tertiaire / bureaux",
+    sousGroupe: "Climatisation",
+    sousChoixId: "clim-ter",
+    aide: "m² traité",
+    pour: ["amenagement_tertiaire"],
+    qteDefaut: (s) => s,
+  },
+  // Commerce : enseigne (exclusif)
+  {
+    code: "ENS-01",
+    label: "Caisson lumineux LED",
+    groupe: "Commerce / ERP",
+    sousGroupe: "Enseigne",
+    sousChoixId: "enseigne",
+    aide: "ml d'enseigne",
+    pour: ["amenagement_commercial"],
+    qteDefaut: () => 0,
+  },
+  {
+    code: "ENS-02",
+    label: "Lettres boîtier / relief",
+    groupe: "Commerce / ERP",
+    sousGroupe: "Enseigne",
+    sousChoixId: "enseigne",
+    aide: "nombre de lettres",
+    pour: ["amenagement_commercial"],
+    qteDefaut: () => 0,
+  },
+  {
+    code: "ENS-03",
+    label: "Vitrophanie / covering",
+    groupe: "Commerce / ERP",
+    sousGroupe: "Enseigne",
+    sousChoixId: "enseigne",
+    aide: "m² de vitrine",
+    pour: ["amenagement_commercial"],
+    qteDefaut: () => 0,
+  },
+  // Neuf maçonné : assainissement (exclusif)
+  {
+    code: "VRD-03",
+    label: "Raccordement assainissement collectif",
+    groupe: "Maison maçonnée",
+    sousGroupe: "Assainissement",
+    sousChoixId: "assainissement",
+    aide: "raccordement",
+    pour: ["neuf_maconne"],
+    qteDefaut: () => 1,
+  },
+  {
+    code: "VRD-04",
+    label: "Filière ANC (fosse + épandage)",
+    groupe: "Maison maçonnée",
+    sousGroupe: "Assainissement",
+    sousChoixId: "assainissement",
+    aide: "installation",
+    pour: ["neuf_maconne"],
+    qteDefaut: () => 1,
+  },
 ];
 
 /** Ordre canonique d'affichage des blocs (groupe) dans le wizard rapide. */
@@ -409,6 +596,16 @@ export const CODES_ADAPTATION_PMR = new Set([
  * - 5,5 % si adaptation PMR et sélection 100 % postes d'adaptation ;
  * sinon règle par type.
  */
+/** Ouvrage du catalogue rapide par code. */
+export function ouvrageParCode(code: string): OuvrageRapide | undefined {
+  return OUVRAGES_RAPIDE.find((o) => o.code === code);
+}
+
+/** Éligibilité TVA 5,5 % : attribut de l'ouvrage prioritaire, sinon set legacy. */
+export function estEligible55(code: string): boolean {
+  return ouvrageParCode(code)?.eligible55 ?? CODES_ENERGETIQUES.has(code);
+}
+
 export function tvaSuggereeSelection(
   type: TypeProjetRapide,
   codesActifs: string[],
@@ -416,7 +613,7 @@ export function tvaSuggereeSelection(
   if (codesActifs.length === 0) return tvaSuggeree(type);
   if (
     TYPES_RENO_LOGEMENT.includes(type) &&
-    codesActifs.every((c) => CODES_ENERGETIQUES.has(c))
+    codesActifs.every((c) => estEligible55(c))
   ) {
     return 5.5;
   }

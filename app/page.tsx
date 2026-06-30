@@ -40,6 +40,7 @@ import {
   selectionsDefaut,
   tvaSuggeree,
   tvaSuggereeSelection,
+  type OuvrageRapide,
   type TypeProjetRapide,
 } from "@/lib/rapide";
 import type {
@@ -95,6 +96,30 @@ function num(v: string, fb = 0): number {
 /** Patch d'un AD-HOC : écrit le PU dans la case de la gamme courante. */
 function patchPuGamme(gamme: Gamme, v: number): Partial<LigneDevis> {
   return gamme === "MIN" ? { puMin: v } : gamme === "MAX" ? { puMax: v } : { puMoy: v };
+}
+
+type UniteAffichage =
+  | { kind: "single"; o: OuvrageRapide }
+  | { kind: "radio"; id: string; sousGroupe?: string; options: OuvrageRapide[] };
+
+/** Découpe les ouvrages d'un bloc en unités d'affichage : cases simples + sets radio (sous-choix). */
+function unitesDeGroupe(items: OuvrageRapide[]): UniteAffichage[] {
+  const out: UniteAffichage[] = [];
+  const idx = new Map<string, number>();
+  for (const o of items) {
+    if (o.sousChoixId) {
+      const at = idx.get(o.sousChoixId);
+      if (at != null) {
+        (out[at] as { options: OuvrageRapide[] }).options.push(o);
+      } else {
+        idx.set(o.sousChoixId, out.length);
+        out.push({ kind: "radio", id: o.sousChoixId, sousGroupe: o.sousGroupe, options: [o] });
+      }
+    } else {
+      out.push({ kind: "single", o });
+    }
+  }
+  return out;
 }
 
 /* Récents (localStorage) ------------------------------------------------- */
@@ -578,56 +603,118 @@ function WizardRapide({
                   {groupe}
                 </div>
                 <div className="divide-y divide-marine-50 rounded-md border border-marine-50">
-                  {items.map((o) => {
-                    const s = sel[o.code] ?? { actif: false, qte: 0 };
-                    const unite = BPU_PAR_CODE.get(o.code)?.unite ?? "";
-                    const alerte = s.actif && !(s.qte > 0);
-                    return (
-                      <label
-                        key={o.code}
-                        className={`flex cursor-pointer items-start gap-3 px-3 py-2 hover:bg-marine-50/50 ${
-                          alerte ? "bg-or/5" : ""
-                        }`}
-                      >
-                        <input
-                          type="checkbox"
-                          className="mt-1 h-4 w-4 accent-[#C8A96A]"
-                          checked={s.actif}
-                          onChange={(e) =>
-                            setSel((p) => ({ ...p, [o.code]: { ...s, actif: e.target.checked } }))
-                          }
-                        />
-                        <span className="flex-1">
-                          <span className="text-sm text-marine-900">
-                            {o.label}
-                            <span className="ml-2 font-mono text-xs text-marine-700/50">
-                              {o.code}
-                            </span>
-                          </span>
-                          <span className="block text-xs text-marine-700/55">{o.aide}</span>
-                          {alerte && (
-                            <span className="block text-xs text-or-dark">
-                              Coché sans quantité — saisissez une valeur.
-                            </span>
-                          )}
-                        </span>
-                        <span className="flex shrink-0 items-center gap-1">
+                  {unitesDeGroupe(items).map((u) => {
+                    if (u.kind === "single") {
+                      const o = u.o;
+                      const s = sel[o.code] ?? { actif: false, qte: 0 };
+                      const unite = BPU_PAR_CODE.get(o.code)?.unite ?? "";
+                      const alerte = s.actif && !(s.qte > 0);
+                      return (
+                        <label
+                          key={o.code}
+                          className={`flex cursor-pointer items-start gap-3 px-3 py-2 hover:bg-marine-50/50 ${
+                            alerte ? "bg-or/5" : ""
+                          }`}
+                        >
                           <input
-                            type="number"
-                            min={0}
-                            step="any"
-                            className="input !w-24 text-right"
-                            value={s.qte || ""}
+                            type="checkbox"
+                            className="mt-1 h-4 w-4 accent-[#C8A96A]"
+                            checked={s.actif}
                             onChange={(e) =>
-                              setSel((p) => ({
-                                ...p,
-                                [o.code]: { actif: true, qte: num(e.target.value) },
-                              }))
+                              setSel((p) => ({ ...p, [o.code]: { ...s, actif: e.target.checked } }))
                             }
                           />
-                          <span className="w-6 text-xs text-marine-700/60">{unite}</span>
-                        </span>
-                      </label>
+                          <span className="flex-1">
+                            <span className="text-sm text-marine-900">
+                              {o.label}
+                              <span className="ml-2 font-mono text-xs text-marine-700/50">{o.code}</span>
+                            </span>
+                            <span className="block text-xs text-marine-700/55">{o.aide}</span>
+                            {alerte && (
+                              <span className="block text-xs text-or-dark">
+                                Coché sans quantité — saisissez une valeur.
+                              </span>
+                            )}
+                          </span>
+                          <span className="flex shrink-0 items-center gap-1">
+                            <input
+                              type="number"
+                              min={0}
+                              step="any"
+                              className="input !w-24 text-right"
+                              value={s.qte || ""}
+                              onChange={(e) =>
+                                setSel((p) => ({
+                                  ...p,
+                                  [o.code]: { actif: true, qte: num(e.target.value) },
+                                }))
+                              }
+                            />
+                            <span className="w-6 text-xs text-marine-700/60">{unite}</span>
+                          </span>
+                        </label>
+                      );
+                    }
+                    // Sous-choix exclusif (radio)
+                    const codes = u.options.map((x) => x.code);
+                    const choisi = codes.find((c) => sel[c]?.actif);
+                    const opt = u.options.find((x) => x.code === choisi);
+                    const unite = choisi ? BPU_PAR_CODE.get(choisi)?.unite ?? "" : "";
+                    return (
+                      <div key={u.id} className="px-3 py-2">
+                        <div className="mb-1.5 text-xs font-medium text-marine-700">
+                          {u.sousGroupe ?? "Choisir une option"}
+                          <span className="ml-1 text-marine-700/45">(1 au choix)</span>
+                        </div>
+                        <div className="flex flex-wrap gap-1.5">
+                          {u.options.map((o) => {
+                            const actif = choisi === o.code;
+                            return (
+                              <button
+                                key={o.code}
+                                onClick={() =>
+                                  setSel((p) => {
+                                    const next = { ...p };
+                                    for (const c of codes) {
+                                      next[c] =
+                                        c === o.code
+                                          ? { actif: !actif, qte: !actif ? o.qteDefaut(shab) : 0 }
+                                          : { actif: false, qte: next[c]?.qte ?? 0 };
+                                    }
+                                    return next;
+                                  })
+                                }
+                                className={`rounded-md border px-2.5 py-1.5 text-left text-xs transition ${
+                                  actif
+                                    ? "border-or bg-or/10 text-marine-900"
+                                    : "border-marine-50 bg-white text-marine-700 hover:border-or"
+                                }`}
+                              >
+                                {o.label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                        {choisi && opt && (
+                          <div className="mt-2 flex items-center gap-1">
+                            <input
+                              type="number"
+                              min={0}
+                              step="any"
+                              className="input !w-24 text-right"
+                              value={sel[choisi]?.qte || ""}
+                              onChange={(e) =>
+                                setSel((p) => ({
+                                  ...p,
+                                  [choisi]: { actif: true, qte: num(e.target.value) },
+                                }))
+                              }
+                            />
+                            <span className="w-6 text-xs text-marine-700/60">{unite}</span>
+                            <span className="ml-2 text-xs text-marine-700/55">{opt.aide}</span>
+                          </div>
+                        )}
+                      </div>
                     );
                   })}
                 </div>
