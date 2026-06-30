@@ -127,11 +127,13 @@ export function cryptoRandomId(): string {
 // ---------------------------------------------------------------------------
 
 /** Calcule une ligne : quantité appliquée, PU final, total HT.
- * Robuste aux saisies vides/NaN ; `ferme` force le coefficient à 1. */
+ * Robuste aux saisies vides/NaN/négatives ; `ferme` force le coefficient à 1.
+ * `coefQte = 0` est respecté (neutralise la ligne) ; seul undefined retombe sur 1. */
 export function calculerLigne(ligne: LigneDevis): LigneCalculee {
-  const coef = ligne.ferme ? 1 : ligne.coefQte || 1;
-  const qteAppliquee = round2((ligne.qteBrute || 0) * coef);
-  const puFinal = round2(ligne.puBase || 0);
+  const coef = ligne.ferme ? 1 : Math.max(0, ligne.coefQte ?? 1);
+  const qteBrute = Math.max(0, ligne.qteBrute || 0);
+  const qteAppliquee = round2(qteBrute * coef);
+  const puFinal = round2(Math.max(0, ligne.puBase || 0));
   const totalHT = round2(qteAppliquee * puFinal);
   return { ...ligne, qteAppliquee, puFinal, totalHT };
 }
@@ -216,10 +218,13 @@ export function calculerSynthese(
   const totalTTC = round2(totalHT + totalTVA);
 
   const surface = params.surfaceShab || 0;
-  const ratioM2 = surface > 0 ? round2(totalHT / surface) : undefined;
+  // Ratio seulement si HT > 0 (évite un "0 €/m²" trompeur sur un devis à HT nul).
+  const ratioM2 = surface > 0 && totalHT > 0 ? round2(totalHT / surface) : undefined;
 
   const montantAides = params.aides && params.aides > 0 ? round2(params.aides) : undefined;
-  const resteACharge = montantAides ? round2(totalTTC - montantAides) : undefined;
+  // Reste à charge planché à 0 (les aides ne peuvent pas le rendre négatif côté client).
+  const resteACharge =
+    montantAides != null ? round2(Math.max(0, totalTTC - montantAides)) : undefined;
 
   return {
     parLot,
@@ -304,6 +309,16 @@ export function parseDevisUpdate(texte: string): LigneDevis[] {
   };
   const tvaValide = (n: number): TauxTVA =>
     n === 5.5 || n === 20 ? n : 10;
+  const ALIAS_UNITE: Record<string, Unite> = {
+    m2: "m²", "m^2": "m²", m3: "m³", "m^3": "m³",
+    u: "U", f: "F", j: "J", ml: "ml", ens: "ens",
+  };
+  const UNITES_OK: Unite[] = ["m²", "ml", "m³", "U", "F", "J", "ens"];
+  const uniteValide = (u: unknown): Unite => {
+    const t = String(u ?? "").trim();
+    if ((UNITES_OK as string[]).includes(t)) return t as Unite;
+    return ALIAS_UNITE[t.toLowerCase()] ?? "F";
+  };
   const lignes: LigneDevis[] = [];
   for (const lot of data.lots ?? []) {
     for (const it of lot.items ?? []) {
@@ -312,10 +327,10 @@ export function parseDevisUpdate(texte: string): LigneDevis[] {
         id: cryptoRandomId(),
         code,
         designation: String(it.designation ?? ""),
-        unite: (String(it.unit ?? "F") as Unite) || "F",
-        puBase: Number(it.pu) || 0,
+        unite: uniteValide(it.unit),
+        puBase: Math.max(0, Number(it.pu) || 0),
         gamme: "MOY",
-        qteBrute: Number(it.qty) || 0,
+        qteBrute: Math.max(0, Number(it.qty) || 0),
         coefQte: 1, // qty déjà chiffré côté source
         tva: tvaValide(Number(it.tva)),
         note: it.note ? String(it.note) : undefined,

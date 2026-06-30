@@ -2274,10 +2274,11 @@ function LotRows({
                   className="input text-right"
                   type="number"
                   step="0.01"
+                  min={0.01}
                   disabled={l.ferme}
                   title={l.ferme ? "Quantité ferme (coef 1)" : "Coefficient conservateur"}
                   value={l.ferme ? 1 : l.coefQte}
-                  onChange={(e) => onMaj(l.id, { coefQte: num(e.target.value, 1) })}
+                  onChange={(e) => onMaj(l.id, { coefQte: Math.max(0.01, num(e.target.value, 1)) })}
                 />
               </td>
               <td className="px-2 py-1.5 text-right text-xs tabular-nums text-marine-700">

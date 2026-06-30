@@ -278,6 +278,28 @@ describe("calculerSynthese — aides et reste à charge", () => {
     expect(s.montantAides).toBeUndefined();
     expect(s.resteACharge).toBeUndefined();
   });
+  it("aides > TTC : reste à charge planché à 0 (jamais négatif)", () => {
+    const s = calculerSynthese(lignes, params({ aides: 999999 }), (l) => l);
+    expect(s.resteACharge).toBe(0);
+  });
+});
+
+describe("robustesse moteur — signes, coef 0, ratio HT nul", () => {
+  const L = (over: Partial<LigneDevis>): LigneDevis => ({
+    id: "x", code: "AD-1", designation: "x", unite: "F", puBase: 100,
+    gamme: "MOY", qteBrute: 2, coefQte: 1, tva: 10, ...over,
+  });
+  it("coefQte = 0 neutralise la ligne (pas traité comme 1)", () => {
+    expect(calculerLigne(L({ coefQte: 0 })).totalHT).toBe(0);
+  });
+  it("quantité / PU négatifs sont clampés à 0 (total HT jamais négatif)", () => {
+    expect(calculerLigne(L({ qteBrute: -5 })).totalHT).toBe(0);
+    expect(calculerLigne(L({ puBase: -100 })).totalHT).toBe(0);
+  });
+  it("ratio €/m² indéfini si surface saisie mais HT nul", () => {
+    const s = calculerSynthese([], params({ surfaceShab: 50 }), (l) => l);
+    expect(s.ratioM2).toBeUndefined();
+  });
 });
 
 describe("calculerSynthese — ratio €/m²", () => {
@@ -377,5 +399,17 @@ describe("parseDevisUpdate", () => {
     );
     expect(re[0].adHoc).toBe(true);
     expect(re[0].tva).toBe(20);
+  });
+  it("assainit l'unité importée (alias m2→m², inconnue→F) et clampe les négatifs", () => {
+    const re = parseDevisUpdate(
+      JSON.stringify({ lots: [{ items: [
+        { code: "RS-10", unit: "m2", qty: 10, pu: -5, tva: 10 },
+        { code: "AD-HOC", unit: "kg", qty: -3, pu: 100, tva: 10 },
+      ] }] }),
+    );
+    expect(re[0].unite).toBe("m²");
+    expect(re[0].puBase).toBe(0); // -5 clampé
+    expect(re[1].unite).toBe("F"); // 'kg' inconnu -> F
+    expect(re[1].qteBrute).toBe(0); // -3 clampé
   });
 });
