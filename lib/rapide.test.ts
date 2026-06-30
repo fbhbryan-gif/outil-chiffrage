@@ -1,11 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { BPU_PAR_CODE } from "./bpu";
 import {
+  GROUPES_ORDRE,
   OUVRAGES_RAPIDE,
   TYPES_PROJET,
   detecterRecouvrements,
   estEligible55,
   genererLignesRapide,
+  ordreDuGroupe,
   ouvragesPourType,
   selectionsDefaut,
   tvaSuggeree,
@@ -152,6 +154,30 @@ describe("detecterRecouvrements", () => {
   it("aucune alerte sans recouvrement", () => {
     expect(detecterRecouvrements(["OCREN-01", "OCREN-03"])).toHaveLength(0);
   });
+  it("cuisine pro clé en main recouvre extraction + sécurité CHR", () => {
+    expect(detecterRecouvrements(["OCERP-10", "OCCHR-50"])).toHaveLength(1);
+    expect(detecterRecouvrements(["OCERP-10", "OCCHR-40"]).length).toBeGreaterThan(0);
+  });
+  it("pack PMR recouvre douche italienne et WC adapté", () => {
+    expect(detecterRecouvrements(["OCPMR-18", "OCPMR-16", "OCPMR-17"])).toHaveLength(2);
+  });
+  it("accessibilité ERP : forfait global OU bloc à la carte (recouvrement)", () => {
+    expect(detecterRecouvrements(["OCERP-03", "OCERP-22"])).toHaveLength(1);
+  });
+});
+
+describe("cohérence des blocs (GROUPES_ORDRE)", () => {
+  it("chaque groupe d'ouvrage a un rang défini (aucun bloc orphelin → 999)", () => {
+    const orphelins = [...new Set(OUVRAGES_RAPIDE.map((o) => o.groupe))].filter(
+      (g) => ordreDuGroupe(g) >= 999,
+    );
+    expect(orphelins, `groupes hors GROUPES_ORDRE: ${orphelins.join(", ")}`).toHaveLength(0);
+  });
+  it("aucun libellé mort dans GROUPES_ORDRE (chaque rang est utilisé)", () => {
+    const utilises = new Set(OUVRAGES_RAPIDE.map((o) => o.groupe));
+    const morts = GROUPES_ORDRE.filter((g) => !utilises.has(g));
+    expect(morts, `libellés GROUPES_ORDRE sans ouvrage: ${morts.join(", ")}`).toHaveLength(0);
+  });
 });
 
 describe("ouvragesPourType", () => {
@@ -179,9 +205,11 @@ describe("ouvragesPourType", () => {
 });
 
 describe("tvaSuggeree — nouveaux types", () => {
-  it("10 % pour haussmannien et PMR, 5,5 % énergétique, 20 % ERP/neuf", () => {
+  it("10 % haussmannien, 5,5 % énergétique + PMR, 20 % ERP/neuf", () => {
     expect(tvaSuggeree("renovation_haussmannien")).toBe(10);
-    expect(tvaSuggeree("adaptation_pmr")).toBe(10);
+    // PMR = 5,5 % au niveau TYPE (suggestion étape 1) ; la sélection réelle
+    // bascule à 10 % si un poste non PMR est ajouté (cf. tvaSuggereeSelection).
+    expect(tvaSuggeree("adaptation_pmr")).toBe(5.5);
     expect(tvaSuggeree("renovation_energetique")).toBe(5.5);
     expect(tvaSuggeree("amenagement_commercial")).toBe(20);
     expect(tvaSuggeree("chr_restaurant")).toBe(20);

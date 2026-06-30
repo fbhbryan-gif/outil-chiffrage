@@ -264,7 +264,9 @@ export const TEMPLATES_PIECE: TemplatePiece[] = [
       { code: "RS-25", geo: "perimetre" }, // remontée à gorge
       { code: "RM-20", geo: "murs" }, // faïence pleine hauteur lessivable
       { code: "PLO-99", geo: "fixe", ratio: 1 }, // lave-mains hygiénique
-      { code: "EL-50", geo: "fixe", ratio: 1 }, // TGBT/TD ERP
+      // TGBT/TD ERP = équipement de bâtiment (1 par établissement), pas par salle :
+      // décoché par défaut pour éviter le double-comptage si plusieurs salles ×N.
+      { code: "EL-50", geo: "fixe", ratio: 1, coche: false }, // TGBT/TD ERP
       { code: "EL-51", geo: "fixe", ratio: 1 }, // liaison équipotentielle soins
       { code: "EL-02", geo: "parM2", ratio: 0.5 }, // PC
       { code: "EL-03", geo: "parM2", ratio: 0.4 }, // éclairage

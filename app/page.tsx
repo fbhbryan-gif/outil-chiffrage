@@ -203,9 +203,12 @@ export default function Page() {
     appliquerLignesGenerees(nouvelles, nextParams);
   }
 
-  function importerLignes(nouvelles: LigneDevis[]) {
-    // Import : ne change pas les paramètres du devis en cours.
-    appliquerLignesGenerees(nouvelles, params);
+  function importerLignes(res: { lignes: LigneDevis[]; tauxImprevus?: number }) {
+    // Import : ne touche pas aux paramètres, SAUF le taux d'imprévus si fourni
+    // par la source (round-trip [DEVIS_UPDATE] : sinon les imprévus seraient perdus).
+    const nextParams =
+      res.tauxImprevus != null ? { ...params, tauxImprevus: res.tauxImprevus } : params;
+    appliquerLignesGenerees(res.lignes, nextParams);
   }
 
   return (
@@ -449,10 +452,15 @@ function WizardRapide({
       const next = { ...cur };
       for (const code of Object.keys(nouveauxDef)) {
         const c = cur[code];
+        const ref = anciensDef[code];
         if (!c) {
           next[code] = nouveauxDef[code];
-        } else if (anciensDef[code] && c.qte === anciensDef[code].qte) {
-          next[code] = { ...c, qte: nouveauxDef[code].qte };
+        } else if (ref && c.qte === ref.qte && c.actif === ref.actif) {
+          // Ligne encore à son défaut (ni cochée ni dé-cochée à la main) →
+          // adopte le NOUVEAU défaut complet (actif + qte). Indispensable au
+          // passage shab 0→N : les têtes au m² (défaut actif mais qte 0 sous le
+          // garde-fou) doivent se re-cocher dès qu'une surface est saisie.
+          next[code] = nouveauxDef[code];
         }
       }
       return next;
@@ -869,20 +877,20 @@ function ImportDevis({
   onImporter,
 }: {
   onAnnuler: () => void;
-  onImporter: (lignes: LigneDevis[]) => void;
+  onImporter: (res: { lignes: LigneDevis[]; tauxImprevus?: number }) => void;
 }) {
   const [texte, setTexte] = useState("");
   const [erreur, setErreur] = useState<string | null>(null);
 
   function lancer() {
     try {
-      const lignes = parseDevisUpdate(texte);
-      if (lignes.length === 0) {
+      const res = parseDevisUpdate(texte);
+      if (res.lignes.length === 0) {
         setErreur("Aucune ligne trouvée dans le bloc.");
         return;
       }
       setErreur(null);
-      onImporter(lignes);
+      onImporter(res);
     } catch {
       setErreur("Format invalide : collez un bloc [DEVIS_UPDATE] ou un JSON conforme.");
     }
@@ -960,14 +968,19 @@ function Detaille({
     () => new Set(synthese.parLot.map((l) => l.lot)),
     [synthese],
   );
+  // Un aspect réglementaire est couvert par son lot dédié OU par un forfait qui
+  // l'embarque (ex. OCERP-23 « mise en sécurité incendie », OCERP-22 « bloc
+  // accessibilité »). On ne le signale absent que si NI le lot NI un forfait couvrant.
+  const aspectsERP: { lot: string; lib: string; couvrePar: string[] }[] = [
+    { lot: "SEC", lib: "sécurité incendie (SEC)", couvrePar: ["OCERP-23", "OCCHR-50"] },
+    { lot: "ACC", lib: "accessibilité PMR (ACC)", couvrePar: ["OCERP-03", "OCERP-22"] },
+  ];
   const manquantsERP =
     estERP && lignes.length > 0
-      ? (
-          [
-            ["SEC", "sécurité incendie (SEC)"],
-            ["ACC", "accessibilité PMR (ACC)"],
-          ] as [string, string][]
-        ).filter(([lot]) => !lotsPresents.has(lot))
+      ? aspectsERP.filter(
+          (a) =>
+            !lotsPresents.has(a.lot) && !a.couvrePar.some((c) => codesPresents.has(c)),
+        )
       : [];
 
   function setParam<K extends keyof ParametresDevis>(k: K, v: ParametresDevis[K]) {
@@ -1446,9 +1459,9 @@ function Detaille({
           )}
           {manquantsERP.length > 0 && (
             <p className="mt-3 rounded-md bg-or/10 px-3 py-2 text-xs text-or-dark">
-              ⚠️ Projet ERP : lots réglementaires absents du devis —{" "}
-              {manquantsERP.map(([, lib]) => lib).join(", ")}. À ne pas oublier
-              (lots SEC / ACC dans la bibliothèque).
+              ⚠️ Projet ERP : aspects réglementaires absents du devis —{" "}
+              {manquantsERP.map((a) => a.lib).join(", ")}. À ne pas oublier
+              (lots SEC / ACC ou forfaits OCERP dédiés dans la bibliothèque).
             </p>
           )}
           <p className="mt-3 text-xs text-marine-700/60">Prix HT du BPU, indexés {INDEXATION}.</p>

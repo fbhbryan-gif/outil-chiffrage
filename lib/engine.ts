@@ -156,7 +156,10 @@ export function regrouperParLot(
 ): TotalLot[] {
   const map = new Map<string, LigneCalculee[]>();
   for (const l of lignes) {
-    const lot = cleLot(l);
+    let lot = cleLot(l);
+    // Préfixe inconnu (import/code arbitraire) → replié sur DIV plutôt qu'un lot fantôme.
+    // (ordreLot par défaut renvoie 0 ; quand l'ordre canonique est fourni, 999 = inconnu.)
+    if (lot !== "DIV" && ordreLot(lot) >= 999) lot = "DIV";
     const arr = map.get(lot) ?? [];
     arr.push(l);
     map.set(lot, arr);
@@ -188,7 +191,9 @@ export function calculerSynthese(
   const parLot = regrouperParLot(calculees, lotTitre, ordreLot);
 
   const htPostes = round2(calculees.reduce((s, l) => s + l.totalHT, 0));
-  const montantImprevus = round2(htPostes * (params.tauxImprevus || 0));
+  // Taux d'imprévus borné [0 ; 0,10] (Specifications §5.1) — robustesse moteur.
+  const tauxImprevus = Math.min(0.1, Math.max(0, params.tauxImprevus || 0));
+  const montantImprevus = round2(htPostes * tauxImprevus);
   const totalHT = round2(htPostes + montantImprevus);
 
   // Bases HT par taux de TVA (postes uniquement).
@@ -275,9 +280,14 @@ export function versDevisUpdate(
   params: ParametresDevis,
   lotTitre: (lot: string) => string = (l) => l,
   ordreLot: (lot: string) => number = () => 0,
-): { lots: Array<{ title: string; mentions?: MentionsLot; items: object[] }> } {
+): {
+  meta?: { tauxImprevus?: number };
+  lots: Array<{ title: string; mentions?: MentionsLot; items: object[] }>;
+} {
   const synthese = calculerSynthese(lignes, params, lotTitre, ordreLot);
   return {
+    // Canal meta : préserve le taux d'imprévus au round-trip (sinon perdu à l'import).
+    meta: { tauxImprevus: params.tauxImprevus ?? 0 },
     lots: synthese.parLot.map((lot) => ({
       title: `Lot ${lot.lot} — ${lot.lotTitre}`,
       mentions: params.mentionsParLot?.[lot.lot],
@@ -290,6 +300,10 @@ export function versDevisUpdate(
         total: l.totalHT,
         tva: l.tva,
         note: l.note ?? "",
+        // Métadonnées de reprise (ignorées par le programme historique).
+        gamme: l.gamme,
+        ferme: l.ferme ?? false,
+        adHocLot: l.adHocLot,
       })),
     })),
   };
@@ -301,14 +315,24 @@ export function versDevisUpdate(
  * ne pas re-majorer, et `pu` devient le PU de base.
  * Lève une erreur si le contenu n'est pas exploitable.
  */
-export function parseDevisUpdate(texte: string): LigneDevis[] {
+export function parseDevisUpdate(texte: string): {
+  lignes: LigneDevis[];
+  tauxImprevus?: number;
+} {
   const bloc = texte.match(/\[DEVIS_UPDATE\]([\s\S]*?)\[\/DEVIS_UPDATE\]/);
   const json = (bloc ? bloc[1] : texte).trim();
   const data = JSON.parse(json) as {
+    meta?: { tauxImprevus?: number };
     lots?: Array<{ items?: Array<Record<string, unknown>> }>;
   };
-  const tvaValide = (n: number): TauxTVA =>
-    n === 5.5 || n === 20 ? n : 10;
+  // Nombre tolérant au format FR ("45,5", "1 200") — sinon NaN annulé silencieusement.
+  const num = (v: unknown): number => {
+    if (typeof v === "number") return Number.isFinite(v) ? v : 0;
+    const s = String(v ?? "").replace(/[\s  ]/g, "").replace(",", ".");
+    const n = parseFloat(s);
+    return Number.isFinite(n) ? n : 0;
+  };
+  const tvaValide = (n: number): TauxTVA => (n === 5.5 || n === 20 ? n : 10);
   const ALIAS_UNITE: Record<string, Unite> = {
     m2: "m²", "m^2": "m²", m3: "m³", "m^3": "m³",
     u: "U", f: "F", j: "J", ml: "ml", ens: "ens",
@@ -319,24 +343,33 @@ export function parseDevisUpdate(texte: string): LigneDevis[] {
     if ((UNITES_OK as string[]).includes(t)) return t as Unite;
     return ALIAS_UNITE[t.toLowerCase()] ?? "F";
   };
+  const gammeValide = (g: unknown): Gamme =>
+    g === "MIN" || g === "MAX" ? g : "MOY";
   const lignes: LigneDevis[] = [];
   for (const lot of data.lots ?? []) {
     for (const it of lot.items ?? []) {
       const code = String(it.code ?? "").trim() || "AD-HOC";
+      const adHocLot = it.adHocLot ? String(it.adHocLot) : undefined;
       lignes.push({
         id: cryptoRandomId(),
         code,
         designation: String(it.designation ?? ""),
         unite: uniteValide(it.unit),
-        puBase: Math.max(0, Number(it.pu) || 0),
-        gamme: "MOY",
-        qteBrute: Math.max(0, Number(it.qty) || 0),
+        puBase: Math.max(0, num(it.pu)),
+        gamme: gammeValide(it.gamme),
+        qteBrute: Math.max(0, num(it.qty)),
         coefQte: 1, // qty déjà chiffré côté source
-        tva: tvaValide(Number(it.tva)),
+        tva: tvaValide(num(it.tva)),
+        ferme: it.ferme === true,
         note: it.note ? String(it.note) : undefined,
         adHoc: code === "AD-HOC",
+        adHocLot: code === "AD-HOC" ? adHocLot : undefined,
       });
     }
   }
-  return lignes;
+  const t = data.meta?.tauxImprevus;
+  return {
+    lignes,
+    tauxImprevus: typeof t === "number" ? Math.min(0.1, Math.max(0, t)) : undefined,
+  };
 }

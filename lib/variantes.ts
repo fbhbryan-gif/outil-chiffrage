@@ -26,7 +26,7 @@ export const VARIANTES: GroupeVariante[] = [
       { code: "RS-20", label: "Stratifié clipsable (éco)" },
       { code: "RS-13", label: "PVC clipsable LVT" },
       { code: "RS-03", label: "Parquet contrecollé chêne" },
-      { code: "RS-09", label: "Parquet massif" },
+      { code: "RS-09", label: "Parquet toutes essences (massif/contrecollé)" },
       { code: "RS-16", label: "Parquet massif point de Hongrie" },
       { code: "RS-17", label: "Parquet massif bâtons rompus" },
       { code: "RS-19", label: "Rénovation parquet existant (ponçage+vitrif.)" },

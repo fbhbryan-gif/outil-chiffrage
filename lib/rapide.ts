@@ -380,7 +380,7 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     label: "Mise en accessibilité PMR (ERP existant)",
     groupe: "Accessibilité ERP",
     aide: "forfait",
-    pour: ["amenagement_commercial", "chr_restaurant", "erp_sante", "adaptation_pmr"],
+    pour: ["amenagement_commercial", "chr_restaurant", "erp_sante"],
     qteDefaut: () => 0,
   },
   {
@@ -404,9 +404,9 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
     code: "OCERP-20",
     label: "Salle(s) de soin seule(s)",
     groupe: "ERP santé",
-    aide: "m² (cumul des salles)",
+    aide: "m² des salles uniquement",
     pour: ["erp_sante"],
-    qteDefaut: (s) => s,
+    qteDefaut: (s) => Math.round(s * 0.5),
   },
   {
     code: "OCMAC-01",
@@ -835,7 +835,6 @@ export const OUVRAGES_RAPIDE: OuvrageRapide[] = [
 export const GROUPES_ORDRE: string[] = [
   "Global",
   "Pièces",
-  "Aménagement",
   "Enveloppe",
   "Lots techniques",
   "Structure",
@@ -844,13 +843,10 @@ export const GROUPES_ORDRE: string[] = [
   "Maison maçonnée",
   "Annexes & extérieurs",
   "Commerce / ERP",
-  "Devanture / vitrine",
-  "Enseigne / signalétique",
   "CHR / Restaurant",
   "Tertiaire / bureaux",
   "ERP santé",
   "Accessibilité ERP",
-  "Sécurité / Accessibilité",
 ];
 
 /** Rang d'un bloc dans l'ordre canonique (999 si inconnu → en fin). */
@@ -880,8 +876,10 @@ const TYPES_RENO_LOGEMENT: TypeProjetRapide[] = [
 
 /** TVA par défaut suggérée selon le type de projet (Guide §2.1). */
 export function tvaSuggeree(type: TypeProjetRapide): TauxTVA {
-  // Énergétique = 5,5 % ; rénovation logement = 10 % ; neuf/extension/pro = 20 %.
-  if (type === "renovation_energetique") return 5.5;
+  // Énergétique + adaptation PMR = 5,5 % ; rénovation logement = 10 % ; neuf/extension/pro = 20 %.
+  // (NB : la sélection réelle est arbitrée par tvaSuggereeSelection — bascule à 10 %
+  //  dès qu'un poste non éligible est coché. Ici = suggestion de TYPE, étape 1.)
+  if (type === "renovation_energetique" || type === "adaptation_pmr") return 5.5;
   if (TYPES_RENO_LOGEMENT.includes(type)) return 10;
   return 20;
 }
@@ -929,19 +927,14 @@ export function tvaSuggereeSelection(
   codesActifs: string[],
 ): TauxTVA {
   if (codesActifs.length === 0) return tvaSuggeree(type);
-  if (
-    TYPES_RENO_LOGEMENT.includes(type) &&
-    codesActifs.every((c) => estEligible55(c))
-  ) {
-    return 5.5;
-  }
-  if (
-    type === "adaptation_pmr" &&
-    codesActifs.every((c) => CODES_ADAPTATION_PMR.has(c))
-  ) {
-    return 5.5;
-  }
-  return tvaSuggeree(type);
+  // 5,5 % UNIQUEMENT si la sélection est 100 % éligible (énergétique ou adaptation PMR).
+  const tousEnergetiques =
+    TYPES_RENO_LOGEMENT.includes(type) && codesActifs.every((c) => estEligible55(c));
+  const tousPmr =
+    type === "adaptation_pmr" && codesActifs.every((c) => CODES_ADAPTATION_PMR.has(c));
+  if (tousEnergetiques || tousPmr) return 5.5;
+  // Sinon : 10 % réno logement (y compris énergétique avec un poste non éligible), 20 % neuf/pro.
+  return TYPES_RENO_LOGEMENT.includes(type) ? 10 : 20;
 }
 
 /** Ouvrages dont le périmètre recouvre celui d'un autre (risque double-comptage). */
@@ -949,9 +942,16 @@ const RECOUVREMENTS: Record<string, string[]> = {
   // La rénovation globale au m² SHAB recouvre déjà la pièce de vie et les
   // lots techniques pris séparément.
   "OCREN-07": ["OCREN-06", "OCREN-11", "OCREN-12"],
-  // Les forfaits "clé en main TCE" englobent leur variante hors d'eau/hors d'air.
-  "OCMOB-10": ["OCMOB-09"],
-  "OCMOB-12": ["OCMOB-11"],
+  // Les forfaits "clé en main TCE" englobent leur variante hors d'eau/hors d'air
+  // ET l'aménagement intérieur (OCMOB-19) ; pas les coques HE/HA (qu'OCMOB-19 complète).
+  "OCMOB-10": ["OCMOB-09", "OCMOB-19"],
+  "OCMOB-16": ["OCMOB-19"],
+  "OCMOB-15": ["OCMOB-19"],
+  "OCMAC-03": ["OCMOB-19"],
+  "OCMOB-12": ["OCMOB-11", "OCMOB-19"],
+  "OCMOB-18": ["OCMOB-19"],
+  "OCMOB-17": ["OCMOB-19"],
+  "OCMAC-05": ["OCMOB-19"],
   "OCMAC-02": ["OCMAC-01"],
   // La réno haussmannienne complète recouvre la réno globale standard.
   "OCREN-15": ["OCREN-07"],
@@ -959,6 +959,13 @@ const RECOUVREMENTS: Record<string, string[]> = {
   "OCERP-10": ["OCCHR-40", "OCCHR-50"],
   // Le cabinet santé complet recouvre les salles de soin seules.
   "OCERP-21": ["OCERP-20"],
+  // Accessibilité ERP : forfait global OU bloc à la carte, pas les deux.
+  "OCERP-03": ["OCERP-22"],
+  // Le pack adaptation PMR englobe la douche italienne et le WC adapté.
+  "OCPMR-18": ["OCPMR-16", "OCPMR-17"],
+  // Ravalement non isolant recouvert par l'ITE / le bardage sur la même façade.
+  "OCREN-05": ["OCREN-09"],
+  "OCREN-16": ["OCREN-09"],
 };
 
 /**

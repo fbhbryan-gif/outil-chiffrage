@@ -384,7 +384,7 @@ describe("parseDevisUpdate", () => {
     ];
     const out = versDevisUpdate(lignes, params(), (l) => l);
     const txt = `[DEVIS_UPDATE]\n${JSON.stringify(out)}\n[/DEVIS_UPDATE]`;
-    const re = parseDevisUpdate(txt);
+    const re = parseDevisUpdate(txt).lignes;
     expect(re).toHaveLength(1);
     expect(re[0].code).toBe("OCREN-04");
     expect(re[0].puBase).toBe(90); // pu source devient puBase
@@ -393,10 +393,33 @@ describe("parseDevisUpdate", () => {
     expect(re[0].tva).toBe(10);
   });
 
+  it("round-trip préserve gamme, ferme, adHocLot et le taux d'imprévus", () => {
+    const lignes: LigneDevis[] = [
+      { id: "1", code: "RS-09", designation: "Parquet", unite: "m²", puBase: 140, gamme: "MAX", qteBrute: 20, coefQte: 1, tva: 10, ferme: true },
+      { id: "2", code: "AD-HOC", designation: "Sur-mesure", unite: "F", puBase: 800, gamme: "MOY", qteBrute: 1, coefQte: 1, tva: 20, adHoc: true, adHocLot: "MEN" },
+    ];
+    const out = versDevisUpdate(lignes, params({ tauxImprevus: 0.04 }), (l) => l);
+    const re = parseDevisUpdate(`[DEVIS_UPDATE]\n${JSON.stringify(out)}\n[/DEVIS_UPDATE]`);
+    expect(re.tauxImprevus).toBe(0.04);
+    expect(re.lignes[0].gamme).toBe("MAX");
+    expect(re.lignes[0].ferme).toBe(true);
+    expect(re.lignes[1].adHoc).toBe(true);
+    expect(re.lignes[1].adHocLot).toBe("MEN");
+  });
+
+  it("tolère les nombres au format FR (virgule, espace) sans les annuler", () => {
+    const re = parseDevisUpdate(
+      JSON.stringify({ lots: [{ items: [{ code: "RS-10", unit: "m²", qty: "12,5", pu: "1 250,40", tva: "5,5" }] }] }),
+    ).lignes;
+    expect(re[0].qteBrute).toBe(12.5);
+    expect(re[0].puBase).toBe(1250.4);
+    expect(re[0].tva).toBe(5.5);
+  });
+
   it("marque AD-HOC et tolère l'absence de bloc", () => {
     const re = parseDevisUpdate(
       JSON.stringify({ lots: [{ items: [{ code: "AD-HOC", unit: "F", qty: 1, pu: 500, tva: 20 }] }] }),
-    );
+    ).lignes;
     expect(re[0].adHoc).toBe(true);
     expect(re[0].tva).toBe(20);
   });
@@ -406,7 +429,7 @@ describe("parseDevisUpdate", () => {
         { code: "RS-10", unit: "m2", qty: 10, pu: -5, tva: 10 },
         { code: "AD-HOC", unit: "kg", qty: -3, pu: 100, tva: 10 },
       ] }] }),
-    );
+    ).lignes;
     expect(re[0].unite).toBe("m²");
     expect(re[0].puBase).toBe(0); // -5 clampé
     expect(re[1].unite).toBe("F"); // 'kg' inconnu -> F
